@@ -1,0 +1,19 @@
+{
+    "compilerOptions": {
+      "declaration": true,
+      "resolveJsonModule": true,
+      "target": "ES6", // or your target environment
+      "module": "commonjs",
+      "lib": ["ES6", "DOM"],
+      "outDir": "./dist", // Output directory for compiled JavaScript files
+      "rootDir": "./test", // Source directory for your TypeScript files
+      "strict": true // Enable strict type checking
+    },
+    "include": [
+      "./test/**/*.ts" // Specify the paths to your TypeScript source files
+    ],
+    "exclude": [
+      "node_modules" // Exclude node_modules directory
+    ]
+  }
+  

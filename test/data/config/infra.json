@@ -1,0 +1,8 @@
+{
+    "qa": {
+        "DATABRICKS_SERVER_HOSTNAME": "dfsdf",
+        "SQLWAREHOUSE_PATH": "sdfsd",
+        "CATALOG_ID": "sdfsd",
+        "CLUSTER_ID":"sdfs"
+    }
+}

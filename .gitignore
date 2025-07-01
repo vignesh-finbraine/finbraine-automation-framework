@@ -1,0 +1,14 @@
+node_modules/
+test/test-results/
+/playwright-report/
+/playwright/.cache/
+package-lock.json
+/package-lock.json
+test/data/generated_data
+test/data/dataflows_report
+.DS_Store
+test/data/generated_data/
+.DS_Store
+test/data/exception_data/
+test/data/exception_data
+test/data/downloads/
