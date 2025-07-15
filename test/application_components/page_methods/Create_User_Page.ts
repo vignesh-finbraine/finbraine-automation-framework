@@ -5,6 +5,7 @@ import DataFactory from '../../utilities/data-factory';
 import * as fs from 'fs';
 import { DatabricksSQLwarehouse } from '../../utilities/databricks_sqlware';
 import { DatabricksFactoryDBFS } from '../../utilities/databricks_dbfs';
+import * as path from 'path';
 
 
 export class CREATE_USER_PAGE {
@@ -153,11 +154,24 @@ this.emt_homepage_reporting = this.page.getByText('Reporting', { exact: true });
   }
   async user_upload_photo(){
    // await this.playwrightFactory.click(this.Add_Button);
-    await this.Add_Button.setInputFiles('C:\RFC_TestAutomationframework\test\dmeeting bg7 - Copy 1  1 copy.jpg')
-    await this.page.waitForTimeout(3000);
+   // await this.Add_Button.setInputFiles('C:/RFC_TestAutomationframework/test/dmeeting bg7 - Copy 1  1 copy.jpg')
+   // await this.page.waitForTimeout(3000);
+   await this.page.getByRole('button', { name: 'Add' }).click();
+  await this.page.getByRole('button', { name: 'Add' }).setInputFiles('bird.jpg');
+  await this.page.getByRole('button', { name: 'Apply' }).click();
     await this.playwrightFactory.click(this.Profile_tab_close_btn);
 
   }
+  async uploadImage(locator: Locator, filePath:string) {
+      const rootPath = path.join(__dirname, '..', '..');
+      const filePath1: string = path.join(rootPath, 'bird.jpg');
+      const fileChooserPromise = this.page.waitForEvent('filechooser');
+      await this.page.locator("//*[contains(text(),'Profile Photo')]/ancestor::div//*[contains(text(),'Add')]").click();
+      const fileChooser = await fileChooserPromise;
+      await fileChooser.setFiles(filePath1);
+      await this.page.getByRole('button', { name: 'Apply' }).click();
+    await this.playwrightFactory.click(this.Profile_tab_close_btn);    
+    }
 
   
  

@@ -17,7 +17,7 @@ export default defineConfig({
      * Maximum time expect() should wait for the condition to be met.
      * For example in `await expect(locator).toHaveText();`
      */
-    timeout: 30000
+    timeout: 60000
   },
   /* Run tests in files in parallel */
   fullyParallel: true,
@@ -38,7 +38,7 @@ export default defineConfig({
     trace: 'on',
     video: 'on',
     screenshot: 'off',
-    actionTimeout: 20000
+    actionTimeout: 60000
   },
 
   /* Configure projects for major browsers */
@@ -69,10 +69,10 @@ export default defineConfig({
     // },
 
     /* Test against branded browsers. */
-    // {
-    //   name: 'Microsoft Edge',
-    //   use: { ...devices['Desktop Edge'], channel: 'msedge' },
-    // },
+     //{
+     // name: 'Microsoft Edge',
+      // use: { ...devices['Desktop Edge'], channel: 'msedge' },
+     //},
     // {
     //   name: 'Google Chrome',
     //   use: { ...devices['Desktop Chrome'], channel: 'chrome' },

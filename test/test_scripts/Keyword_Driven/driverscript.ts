@@ -37,6 +37,16 @@ import { ENQUIRY_CHARITIES } from '../../application_components/page_methods/Enq
 import { CREATE_ENQUIRY_CHARITIES } from '../../application_components/page_methods/Create_Charity_Enquiry';
 import { USER_PAGE } from '../../application_components/page_methods/Users_Page';
 import { CREATE_USER_PAGE } from '../../application_components/page_methods/Create_User_Page';
+import { WEBSITE_EVENT_DETAILS_PAGE } from '../../application_components/page_methods/Website_Event_Details_Page';
+import { WEBSITE_HOME_PAGE } from '../../application_components/page_methods/Website_Home_Page';
+import { WEBSITE_ALL_DISTANCES_PAGE } from '../../application_components/page_methods/Website_All_Distances_Page';
+import { WEBSITE_ALL_EVENT_PAGE } from '../../application_components/page_methods/Website_All_Event_Page';
+import { WEBSITE_LOGIN_PAGE } from '../../application_components/page_methods/Website_Login_Page';
+import { CONTRACT_PAGE } from '../../application_components/page_methods/Contract_Page';
+import { CREATE_CONTRACT_PAGE } from '../../application_components/page_methods/Create_Contract_Page';
+import { PARTNER_CHARITY_HISTORY } from '../../application_components/page_methods/Partner_Charity_History';
+import { TIMELINE_PAGE } from '../../application_components/page_methods/Timeline_Page';
+import { WEBSITE_ALL_REGIONS_PAGE } from '../../application_components/page_methods/Website_All_Regions_Page';
 
 export class DriverScript {
 
@@ -79,6 +89,16 @@ export class DriverScript {
     container.register('Create_Charity_Enquiry', new CREATE_ENQUIRY_CHARITIES(container));
     container.register('Users_Page', new USER_PAGE(container));
     container.register('Create_User_Page', new CREATE_USER_PAGE(container));
+    container.register('Website_Event_Details_Page', new WEBSITE_EVENT_DETAILS_PAGE(container));
+    container.register('Website_Home_Page', new WEBSITE_HOME_PAGE(container));
+    container.register('Website_All_Distances_Page', new WEBSITE_ALL_DISTANCES_PAGE(container));
+    container.register('Website_All_Event_Page', new WEBSITE_ALL_EVENT_PAGE(container));
+    container.register('Website_Login_Page',new WEBSITE_LOGIN_PAGE(container));
+    container.register('Contract_Page', new CONTRACT_PAGE(container));
+    container.register('Create_Contract_Page', new CREATE_CONTRACT_PAGE(container));
+    container.register('Partner_Charity_History', new PARTNER_CHARITY_HISTORY(container));
+    container.register('Timeline_Page', new TIMELINE_PAGE(container));
+    container.register('Website_All_Regions_Page', new WEBSITE_ALL_REGIONS_PAGE(container));
     
     /* API Page Methods*/
     container.register('trax_trackshipmet_apis', new TrackShipmentAPI(container));

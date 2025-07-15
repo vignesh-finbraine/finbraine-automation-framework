@@ -141,7 +141,11 @@ class DataFactory {
   }
 
   static getTestCaseDescription(jsonData: any) {
+
     const testCaseDesc = jsonData["TestcaseDescription"];
+
+    //const testCaseDesc =  jsonData["TestcaseDescription"] + ' - ' +jsonData["Tags"];
+
     return testCaseDesc;
   }
 
