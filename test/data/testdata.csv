@@ -91,7 +91,6 @@ TC_148,Enquiry_Management,0,RANDOM_ALPHA_NUMERIC,RANDOM_EMAIL
 TC_149,Enquiry_Management,0,RANDOM_ALPHA_NUMERIC,RANDOM_EMAIL
 TC_150_151,Enquiry_Management,0,RANDOM_ALPHA_NUMERIC,RANDOM_EMAIL
 TC_01_02,Bifurcating role Account Management,0,RANDOM_ALPHA_NUMERIC,RANDOM_EMAIL
-=======,,,,
 TC_01_Event Management_Create Event(Optional fields),Event_Management,0,RANDOM_ALPHA_NUMERIC,RANDOM_EMAIL
 TC_02_Event Management_SEO and additional section,Event_Management,0,RANDOM_ALPHA_NUMERIC,RANDOM_EMAIL
 TC_03_Event Management_Verify event Registration nad withdrawal field,Event_Management,0,RANDOM_ALPHA_NUMERIC,RANDOM_EMAIL
@@ -188,3 +187,24 @@ TC_06_07,Bifurcating role Account Management,0,RANDOM_ALPHABET,RANDOM_EMAIL
 TC_08,Bifurcating role Account Management,0,RANDOM_ALPHABET,RANDOM_EMAIL
 TC_63_64_65_66_67_68_69_70_71,Home Page,0,RANDOM_ALPHABET,RANDOM_EMAIL
 TC_15_16_17_18_31_32_33_34_35_36_37_38_39_40_41,Registration Event page,0,RANDOM_ALPHABET,RANDOM_EMAIL
+TC_09_10,Bifurcating Roles-Charity Moule,0,RANDOM_ALPHA_NUMERIC,RANDOM_EMAIL
+TC_11_12,Bifurcating Roles-Charity Moule,0,RANDOM_ALPHA_NUMERIC,RANDOM_EMAIL
+TC_13,Bifurcating Roles-Charity Moule,0,RANDOM_ALPHA_NUMERIC,RANDOM_EMAIL
+TC_14,Bifurcating Roles-Charity Moule,0,RANDOM_ALPHA_NUMERIC,RANDOM_EMAIL
+TC_15,Bifurcating Roles-Charity Moule,0,RANDOM_ALPHA_NUMERIC,RANDOM_EMAIL
+TC_16_17,Bifurcating Roles-Charity Moule,0,RANDOM_ALPHA_NUMERIC,RANDOM_EMAIL
+TC_18_19,Bifurcating Roles-Charity Moule,0,RANDOM_ALPHA_NUMERIC,RANDOM_EMAIL
+TC_20,Bifurcating Roles-Charity Moule,0,RANDOM_ALPHA_NUMERIC,RANDOM_EMAIL
+TC_21,Bifurcating Roles-Charity Moule,0,RANDOM_ALPHA_NUMERIC,RANDOM_EMAIL
+TC_22,Bifurcating Roles-Charity Moule,0,RANDOM_ALPHA_NUMERIC,RANDOM_EMAIL
+TC_23,Bifurcating Roles-Charity Moule,0,RANDOM_ALPHA_NUMERIC,RANDOM_EMAIL
+TC_24,Bifurcating Roles-Charity Moule,0,RANDOM_ALPHA_NUMERIC,RANDOM_EMAIL
+UJ_TC_01,Runner--> Find an Event and registering Interest for any event,0,RANDOM_ALPHABET,RANDOM_EMAIL
+UJ_TC_02,Runner--> Find an Event and registering Interest for any event,0,RANDOM_ALPHABET,RANDOM_EMAIL
+UJ_TC_03,Runner--> Find an Event and registering Interest for any event,0,RANDOM_ALPHABET,RANDOM_EMAIL
+UJ_TC_05,Runner--> Find an Event and registering Interest for any event,0,RANDOM_ALPHABET,RANDOM_EMAIL
+UJ_TC_06,Runner--> Find an Event and registering Interest for any event,0,RANDOM_ALPHABET,RANDOM_EMAIL
+UJ_TC_07,Runner--> Find an Event and registering Interest for any event,0,RANDOM_ALPHABET,RANDOM_EMAIL
+UJ_TC_08,Runner--> Find an Event and registering Interest for any event,0,RANDOM_ALPHABET,RANDOM_EMAIL
+UJ_TC_09,Runner--> Find an Event and registering Interest for any event,0,RANDOM_ALPHABET,RANDOM_EMAIL
+UJ_TC_10,Runner--> Find an Event and registering Interest for any event,0,RANDOM_ALPHABET,RANDOM_EMAIL

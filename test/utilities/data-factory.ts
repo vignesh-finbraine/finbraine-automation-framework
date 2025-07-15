@@ -141,11 +141,11 @@ class DataFactory {
   }
 
   static getTestCaseDescription(jsonData: any) {
-<<<<<<< Updated upstream
+
     const testCaseDesc = jsonData["TestcaseDescription"];
-=======
-    const testCaseDesc =  jsonData["TestcaseDescription"] + ' - ' +jsonData["Tags"];
->>>>>>> Stashed changes
+
+    //const testCaseDesc =  jsonData["TestcaseDescription"] + ' - ' +jsonData["Tags"];
+
     return testCaseDesc;
   }
 

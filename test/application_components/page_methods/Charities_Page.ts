@@ -108,7 +108,7 @@ this.emt_homepage_reporting = this.page.getByText('Reporting', { exact: true });
     this.btn_Catagories= this.page.locator("//*[contains(text(),'Categories')]/ancestor::component-section//a[@class='nav__link active']");
     this.List_Catagories= this.page.locator("//div[text()='Categories']/ancestor::component-table");
     this.Catagory_Name= this.page.locator("(//div[@class='table__details'])[1]");
-    this.No_of_Charities= this.page.locator("//div[text()='Categories']/ancestor::component-table//td[normalize-space()='Category Three1']/ancestor::tr[1]/td[2]");
+    this.No_of_Charities= this.page.locator("//div[text()='Categories']/ancestor::component-table//td[normalize-space()='Mini and Mum Care Center']/ancestor::tr[1]/td[2]");
    // this.Delete_Catgories_btn= this.page.locator("(//button[@class='table__button danger d-block'])[1]");
     this.Delete_Massage= this.page.locator("//*[contains(text(),'Are you sure?')]");
     this.OK_btn= this.page.locator("//button[normalize-space()='OK']");
@@ -357,6 +357,15 @@ async user_verify_filter_charities_title(){
       await expect(this.txt_Filtered_Charity_Category_Baby).toBeVisible();
       await expect(this.txt_Filtered_Charity_Category_Baby).toContainText('Baby');
     }
+    async user_sees_created_charity_list(){
+      await expect (this.Name).toBeVisible();
+      await expect (this.Status).toBeVisible();
+      await expect (this.Categorypage).toBeVisible();
+      await expect (this.Membership).toBeVisible();
+      await expect (this.AccountManager).toBeVisible();
+      await expect (this.ExpireDate).toBeVisible();
+    }
+ 
 
  
  
