@@ -7,7 +7,7 @@ import { DatabricksSQLwarehouse } from '../../utilities/databricks_sqlware';
 import { DatabricksFactoryDBFS } from '../../utilities/databricks_dbfs';
 
 
-export class TIMELINE_PAGE {
+export class timeline_page {
   private page: Page;
   private testInfo: TestInfo;
   private playwrightFactory: PlaywrightFactoryActions;
@@ -21,7 +21,6 @@ export class TIMELINE_PAGE {
   
 
   //**Declare */
-
 readonly btn_create: Locator;
 readonly btn_charities: Locator;
 readonly timeline:Locator;
@@ -29,8 +28,7 @@ readonly shree_test_one:Locator;
 readonly fund_for_charity:Locator;
 readonly city_race:Locator;
 readonly timeline_heading:Locator;
-
-
+  
 
 
 
@@ -60,9 +58,9 @@ readonly timeline_heading:Locator;
     this.databricks_dbfs = container.resolve('databricks_dbfs');
 
     /******************** Page Objects ************************/
-this.emt_homepage_reporting = this.page.getByText('Reporting', { exact: true });
+    this.emt_homepage_reporting = this.page.getByText('Reporting', { exact: true });
     this.link_search_open = this.page.getByRole('link', { name: 'Portal open' });
-   this.btn_create = this.page.locator("//component-button[@label='Create']//button//span");
+    this.btn_create = this.page.locator("//component-button[@label='Create']//button//span");
     this.btn_charities = this.page.locator("//*[contains(text(),'Charities')]/ancestor::div//a[@class='nav__link']");
     this.timeline=this.page.locator("//*[contains(text(),' Charity Management ')]/ancestor::component-sidebar//a[@title='Timeline']")
     this.shree_test_one=this.page.locator("//*[contains(text(),' Timeline')]/ancestor::component-section//*[contains(text(),'Shree test 1')]")
@@ -71,16 +69,17 @@ this.emt_homepage_reporting = this.page.getByText('Reporting', { exact: true });
     this.timeline_heading=this.page.locator("//h2[normalize-space()='Timeline']")
 
 
-    
-    
 
-    // Login to RFC
-    
-  }
+}
   
-  async user_click_createbtn(){
+  
+
+  
+// Create Category- Flow
+  
+async user_click_createbtn(){
     await this.playwrightFactory.click(this.btn_create);
-   
+    
   }
   async user_click_charitiesbtn(){
     await this.playwrightFactory.click(this.btn_charities);
@@ -88,42 +87,32 @@ this.emt_homepage_reporting = this.page.getByText('Reporting', { exact: true });
   }
   async user_click_timeline_btn(){
     await this.playwrightFactory.click(this.timeline);
-   
+    
   }
   async user_verify_timline_shree_test_one_field(){
     await expect(this.shree_test_one).toBeVisible();
-   
+    
   }
   async user_verify_timline_fund_for_charity(){
     await expect(this.fund_for_charity).toBeVisible();
-   
+    
   }
   async user_verify_timline_city_race(){
     await expect(this.city_race).toBeVisible();
-   
+    
   }
   async user_verify_timeline_heading(){
     await expect(this.timeline_heading).toBeVisible();
-   
+    
   }
   async user_verify_timeline_opn_notpresent(){
     await expect(this.timeline_heading).toBeHidden();
-   
+    
   }
   async user_click_charitiesbtn_not_present(){
     await expect(this.btn_charities).toBeHidden
     }
-   
- 
-
-  
-
- 
-
- 
-
-
-
+    
 
 }
 

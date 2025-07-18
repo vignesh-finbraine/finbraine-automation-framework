@@ -7,7 +7,7 @@ import { DatabricksSQLwarehouse } from '../../utilities/databricks_sqlware';
 import { DatabricksFactoryDBFS } from '../../utilities/databricks_dbfs';
 
 
-export class CREATE_CONTRACT_PAGE {
+export class Create_contract_page {
   private page: Page;
   private testInfo: TestInfo;
   private playwrightFactory: PlaywrightFactoryActions;
@@ -21,8 +21,7 @@ export class CREATE_CONTRACT_PAGE {
   
 
   //**Declare */
-
- readonly btn_create: Locator;
+     readonly btn_create: Locator;
      readonly btn_charities: Locator;
      readonly contract_btn:Locator;
      readonly Type_btn:Locator;
@@ -33,11 +32,6 @@ export class CREATE_CONTRACT_PAGE {
   readonly Agreement:Locator;
   readonly type_search_bar:Locator;
  readonly txt_SearchBox:Locator;
-
-
-
-
-
 
 
 
@@ -64,9 +58,9 @@ export class CREATE_CONTRACT_PAGE {
     this.databricks_dbfs = container.resolve('databricks_dbfs');
 
     /******************** Page Objects ************************/
-this.emt_homepage_reporting = this.page.getByText('Reporting', { exact: true });
+    this.emt_homepage_reporting = this.page.getByText('Reporting', { exact: true });
     this.link_search_open = this.page.getByRole('link', { name: 'Portal open' });
-  this.btn_create = this.page.locator("//component-button[@label='Create']//button//span");
+    this.btn_create = this.page.locator("//component-button[@label='Create']//button//span");
     this.btn_charities = this.page.locator("//*[contains(text(),'Charities')]/ancestor::div//a[@class='nav__link']");
     this.contract_btn=this.page.locator("//*[contains(text(),' Charity Management ')]/ancestor::component-sidebar//a[@title='Contract']")
     this.Type_btn=this.page.locator("//*[contains(text(),'Type')]/ancestor::component-select//span[@class='dropdown-btn']")
@@ -79,14 +73,12 @@ this.emt_homepage_reporting = this.page.getByText('Reporting', { exact: true });
     this.txt_SearchBox= this.page.locator("//input[@placeholder='Press ENTER to search']");
   }
 
-    
-    
-
-    // Login to RFC
-    
-  async user_click_createbtn(){
+  
+   // Create Category- Flow
+  
+    async user_click_createbtn(){
     await this.playwrightFactory.click(this.btn_create);
-   
+    
   }
   async user_click_charitiesbtn(){
     await this.playwrightFactory.click(this.btn_charities);
@@ -104,7 +96,7 @@ this.emt_homepage_reporting = this.page.getByText('Reporting', { exact: true });
     await expect(this.Membership_checkbox).toBeVisible();
     await this.playwrightFactory.click(this.page.locator("//*[contains(text(),'Type')]/ancestor::component-select//*[contains(text(),'"+strtype+"')]"))
     }
- 
+
     async user_enters_create_contract_title(strtitle: string){
     await this.playwrightFactory.fill(this.title,strtitle);
   }
@@ -114,22 +106,19 @@ this.emt_homepage_reporting = this.page.getByText('Reporting', { exact: true });
   async user_click_create_contract_state_dropdwn(strstate: string){
     await this.playwrightFactory.click(this.page.locator("//*[contains(text(),'"+strstate+"')]"))
   }
- 
+
   async user_clicks_create_contract_aggrement_btn(){
-  await this.Agreement.setInputFiles('C:/Users/ayush.tasare/Downloads/AssureIT_Tools_SW_List 1.pdf')
+  await this.Agreement.setInputFiles('C:/Users/vaishnavee.dange/Downloads/AAAssureIT_Tools_SW_List 1 (2).pdf')
    
   }
+  /*async user_enter_contractname_searchbox(striteration : any){
+    await this.txt_SearchBox.waitFor();
+    let username1 = await this.dataFactory.getIterationData(this.container,"USER_NAME",striteration);
+    await this.playwrightFactory.fill(this.txt_SearchBox,striteration);
+    await this.page.keyboard.press('Enter');
+    await this.page.waitForTimeout(3000);
+
+  }*/
  
-
-  
-
- 
-
- 
-
-
-
 
 }
-
-

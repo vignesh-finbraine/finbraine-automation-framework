@@ -41,10 +41,11 @@ readonly lnk_partner_charity_history: Locator;
     readonly lnk_timeline: Locator;
     readonly Enquiry_Management_btn:Locator;
   readonly Enquiry_charity_btn:Locator;
+  readonly Partner_Events_btn:Locator;
+
   readonly Account_Managament: Locator;
   readonly Users: Locator;
-
-
+   readonly Users_Table:Locator;
 
 
 
@@ -98,11 +99,11 @@ this.emt_homepage_reporting = this.page.getByText('Reporting', { exact: true });
    this.lnk_contract=this.page.locator("//*[contains(text(),' Charity Management ')]/ancestor::component-sidebar//a[@title='Contract']")
    this.Enquiry_Management_btn=this.page.locator("//button[normalize-space()='Enquiry Management']")
     this.Enquiry_charity_btn=this.page.locator("//a[@href='/enquiries/charity'][normalize-space()='Charities']")
+   
+    this.Partner_Events_btn=this.page.locator("//a[normalize-space()='Partner Events']")
     this.Account_Managament= this.page.locator("//*[contains(text(),' Account Management ')]");
     this.Users= this.page.locator("//div[@title='Account Management']//div//a[@title='Users']");
-    
-   
-    
+    this.Users_Table= this.page.locator("//*[contains(text(),'Users')]/ancestor::component-table//table")
     
 
 
@@ -187,6 +188,10 @@ async user_verify_and_clicks_enquiry_charity_btn(){
   await this.page.waitForTimeout(3000)
   await this.playwrightFactory.click(this.Enquiry_charity_btn)
 }
+async user_clicks_partner_events_btn(){
+  await this.playwrightFactory.click(this.Partner_Events_btn)
+}
+
 async user_click_account_management(){
   await this.playwrightFactory.click(this.Account_Managament);
 }
@@ -196,10 +201,9 @@ async user_verify_users_tab(){
 async user_click_user_tab(){
   await this.playwrightFactory.click(this.Users);
 }
-
-
-  
-
+async user_verify_users_table(){
+  await expect(this.Users_Table).toBeVisible();
+}
 
 
 
