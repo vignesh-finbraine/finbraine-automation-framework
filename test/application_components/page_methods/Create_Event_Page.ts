@@ -153,6 +153,7 @@ readonly TypeDropdownbtn:Locator;
   readonly btn_gallerypickfile: Locator;
   readonly btn_regwebsite: Locator;
    readonly btn_regportal: Locator;
+   readonly Select_Month:Locator;
 
 
 
@@ -202,7 +203,7 @@ this.emt_homepage_reporting = this.page.getByText('Reporting', { exact: true });
     this.txt_country= this.page.locator("//input[@placeholder='Country']");
    this.txt_CharityDiscription= this.page.frameLocator("//*[contains(text(),'Charity Description ')]/ancestor::component-textarea//iframe[contains(@id,'tiny-angular')]").locator('#tinymce');
     this.txt_Distance= this.page.locator("//*[contains(text(),'Distance')]/ancestor::component-select//span[@class='dropdown-btn']");
-    //this.txt_DistanceOption= this.page.locator("//div[normalize-space()='10K']");
+    //this.txt_DistanceOption= this.page.locator("//*[contains(text(),'Distance')]/ancestor::component-select//input[@aria-label='10K']");
     this.btn_DistanceTittle= this.page.locator("//*[contains(text(),'Distance ')]");
     this.txt_LocalFee= this.page.locator("//input[@placeholder='For UK residents']");
     this.btn_StartDate= this.page.locator("//*[contains(text(),'Start Date ')]/ancestor::component-datetime//button[@class='datepicker__mask']");
@@ -263,7 +264,7 @@ this.emt_homepage_reporting = this.page.getByText('Reporting', { exact: true });
     this.Answer= this.page.frameLocator("//*[contains(text(),'Answer ')]/ancestor::component-textarea//iframe[contains(@id,'tiny-angular')]").locator("#tinymce");
     this.close_btn= this.page.locator("//button[@aria-label='Close']");
     this.Registration_Deadline= this.page.locator("//*[contains(text(),'Registration Deadline ')]/ancestor::component-datetime//button[@class='datepicker__mask']");
-    this.Withdrawel_Deadline= this.page.locator("//*[contains(text(),'Widthdrawal Deadline ')]/ancestor::component-datetime//button[@class='datepicker__mask']");
+    this.Withdrawel_Deadline= this.page.locator("//*[contains(text(),'Withdrawal Deadline ')]/ancestor::component-datetime//button[@class='datepicker__mask']");
    // this.Registration_Date= this.page.locator("(//span[@class='custom-day'])[15]");
     //this.Withdrawal_Date= this.page.locator("(//span[@class='custom-day'])[11]");
     this.Event_List= this.page.locator("//*[contains(text(),'Events')]/ancestor::component-table//table[@class='table table-borderless local-table']");
@@ -320,7 +321,7 @@ this.ExcludefromCharities=this.page.locator("//*[contains(text(),'Exclude from C
    this.btn_gallerypickfile=this.page.locator("//*[contains(text(),'Details')]/ancestor::component-section//*[contains(text(),'Gallery')]/ancestor::component-file//span[contains(text(),'Pick Files')]")
    this.btn_regwebsite=this.page.locator("//input[@placeholder='Domain or URL']");
    this.btn_regportal=this.page.locator('("span").filter({ hasText: "Internal x" }).nth(1);')
- 
+   this.Select_Month=this.page.locator("//select[@title='Select month']")
     
 
 
@@ -350,7 +351,7 @@ async user_enter_charity_name(striteration: any){
 
 async user_select_distance(strDistance: string){
   await this.playwrightFactory.click(this.txt_Distance);
-  await this.playwrightFactory.click(this.page.locator("//div[normalize-space()='"+strDistance+"']"));
+  await this.playwrightFactory.clickForce(this.page.locator("//*[contains(text(),'Distance')]/ancestor::component-select//input[@aria-label='"+strDistance+"']"));
   await this.playwrightFactory.click(this.btn_DistanceTittle);
 }
 
@@ -360,19 +361,21 @@ async user_enter_localfee(strfee: string){
 
 async user_select_startdate(strStartdate: string){
   await this.playwrightFactory.click(this.btn_StartDate);
+  await this.Select_Month.selectOption({label:'Sep'})
   await this.playwrightFactory.click(this.page.locator("(//span[@class='custom-day'])["+strStartdate+"]"));
   await this.playwrightFactory.click(this.btn_CloseCalender);
 }
 
 async user_select_enddate(strEnddate: string){
   await this.playwrightFactory.click(this.btn_EndDate);
+  await this.Select_Month.selectOption({label:'Sep'})
   await this.playwrightFactory.click(this.page.locator("(//span[@class='custom-day'])["+strEnddate+"]"));
   await this.playwrightFactory.click(this.btn_CloseCalender);
 }
 
 async user_select_region(strRegion: string){
   await this.playwrightFactory.click(this.txt_reagion);
-  await this.playwrightFactory.click(this.page.locator("//*[contains(text(),'"+strRegion+"')]"));
+  await this.playwrightFactory.click(this.page.locator("//div[normalize-space()='"+strRegion+"']"))
   await this.playwrightFactory.click(this.btn_DistanceTittle);
 }
 
@@ -416,8 +419,9 @@ async user_enter_metadescription(strMeta: string){
   
 async user_click_publishbtn(){
     await this.playwrightFactory.click(this.btn_Publish);
-  
-  }
+    await this.page.pause();
+
+}
 
   async verify_success_massage(){
     await expect(this.txt_SuccessMaasage).toBeVisible();
@@ -532,10 +536,13 @@ window.scrollBy(2500, 3000); // Scroll down
   }
   async user_select_registration_date(strDate: string){
     await this.playwrightFactory.click(this.Registration_Deadline);
+    await this.Select_Month.selectOption({label:'Sep'})
     await this.playwrightFactory.click(this.page.locator("(//span[@class='custom-day'])["+strDate+"]"));
+    await this.playwrightFactory.click(this.btn_CloseCalender);
   }
   async user_select_widrawaldate(strDate: string){
     await this.playwrightFactory.click(this.Withdrawel_Deadline);
+    await this.Select_Month.selectOption({label:'Sep'})
     await this.playwrightFactory.click(this.page.locator("(//span[@class='custom-day'])["+strDate+"]"));
     await this.playwrightFactory.click(this.btn_CloseCalender);
   }

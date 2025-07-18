@@ -7,7 +7,7 @@ import { DatabricksSQLwarehouse } from '../../utilities/databricks_sqlware';
 import { DatabricksFactoryDBFS } from '../../utilities/databricks_dbfs';
 
 
-export class contract_page {
+export class signup_page {
   private page: Page;
   private testInfo: TestInfo;
   private playwrightFactory: PlaywrightFactoryActions;
@@ -19,11 +19,11 @@ export class contract_page {
   readonly emt_homepage_reporting: Locator;
   readonly link_search_open: Locator;
   
+  
 
-  //**Declare */
-readonly btn_create: Locator;
-readonly btn_charities: Locator;
-readonly contract_btn:Locator;
+  //*Declare *//
+
+  readonly AsParticipant_pay:Locator;
   
 
 
@@ -56,35 +56,78 @@ readonly contract_btn:Locator;
     /******************** Page Objects ************************/
     this.emt_homepage_reporting = this.page.getByText('Reporting', { exact: true });
     this.link_search_open = this.page.getByRole('link', { name: 'Portal open' });
-    this.btn_create = this.page.locator("//component-button[@label='Create']//button//span");
-    this.btn_charities = this.page.locator("//*[contains(text(),'Charities')]/ancestor::div//a[@class='nav__link']");
-    this.contract_btn=this.page.locator("//*[contains(text(),' Charity Management ')]/ancestor::component-sidebar//a[@title='Contract']")
-}
-  
-  
+   this.AsParticipant_pay=this.page.locator("//a[normalize-space()='As Participant']")
 
-  
-// Create Category- Flow
-  
-async user_click_createbtn(){
-    await this.playwrightFactory.click(this.btn_create);
+
+
+
+
+    
     
   }
-  async user_click_charitiesbtn(){
-    await this.playwrightFactory.click(this.btn_charities);
-    await this.page.waitForTimeout(5000);
-  }
-  async user_click_contract_btn(){
-    await this.playwrightFactory.click(this.contract_btn);
-  }
-  async user_verify_contract_btn_notpresent(){
-    await expect(this.contract_btn).toBeHidden();
- 
-  }
+  
+  
+
+  
+/*********************************************************************************************************************/
+  
+async user_launches_application() {
+  let url = process.env.APP_URL || " https://rfc-staging.sportsmediaagency.com/"
+  await this.playwrightFactory.launchApplication(url);
+}
+async user_clicks_asparticipant_btn()
+{
+await this.playwrightFactory.click(this.AsParticipant_pay)
+}
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 
 
 
 
 }
-
-

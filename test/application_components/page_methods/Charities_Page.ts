@@ -357,6 +357,7 @@ async user_verify_filter_charities_title(){
       await expect(this.txt_Filtered_Charity_Category_Baby).toBeVisible();
       await expect(this.txt_Filtered_Charity_Category_Baby).toContainText('Baby');
     }
+
     async user_sees_created_charity_list(){
       await expect (this.Name).toBeVisible();
       await expect (this.Status).toBeVisible();
@@ -365,9 +366,6 @@ async user_verify_filter_charities_title(){
       await expect (this.AccountManager).toBeVisible();
       await expect (this.ExpireDate).toBeVisible();
     }
- 
-
- 
  
 
 
