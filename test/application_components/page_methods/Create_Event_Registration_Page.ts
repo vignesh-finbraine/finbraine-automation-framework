@@ -102,8 +102,8 @@ this.emt_homepage_reporting = this.page.getByText('Reporting', { exact: true });
     this.Event_Dorny_Lake= this.page.locator("(//*[contains(text(),' Events ')]/ancestor::component-section//*[contains(text(),' Dorney Lake ')]/ancestor::li//*[contains(text(),' Dorney Lake ')]");
     this.Event_Drpdwn_List= this.page.locator("(//*[contains(text(),'Events ')]/ancestor::component-select//div[@class='dropdown-list'])[1]");
     this.Primary_Checkbox= this.page.locator("//*[contains(text(),'This page is primary registration page')]/ancestor::component-checkbox//span[@class='checkbox__tick']");
-    this.Charity_drpdwn= this.page.locator("(//*[contains(text(),'Charity ')]/ancestor::component-select//span[@class='dropdown-btn'])[2]");
-    this.Charity_Name= this.page.locator("//*[contains(text(),'Charity ')]/ancestor::component-select//*[contains(text(),' Cancer_kid ')]");
+    this.Charity_drpdwn= this.page.locator("//*[contains(text(),'Charity ')]/ancestor::component-select//span[@class='dropdown-btn']");
+    this.Charity_Name= this.page.locator("//*[contains(text(),'Charity ')]/ancestor::component-select//*[contains(text(),'Cancer_kid')]");
     this.Select_Payment_Option= this.page.locator("//*[contains(text(),'Payment Option ')]/ancestor::component-select//span[@class='dropdown-btn']");
     this.Participant_Pay= this.page.locator("(//*[contains(text(),'Payment Option ')]/ancestor::component-select//*[contains(text(),' Participant Pays ')])[1]");
     this.Participant_Pays_Family_Regestration= this.page.locator("//*[contains(text(),'Payment Option ')]/ancestor::component-select//*[contains(text(),' Participant Pays + Family Registrations ')]");
@@ -178,7 +178,8 @@ async user_check_primary_checkbox(){
 }
 async user_select_charity(strCharity: string){
   await this.playwrightFactory.click(this.Charity_drpdwn);
-  await this.playwrightFactory.fill(this.Search_Charity, strCharity);
+  await this.playwrightFactory.fill(this.page.locator("//*[contains(text(),'Charity ')]/ancestor::component-select//*[contains(text(),'"+strCharity+"')]"), strCharity)
+  await this.page.waitForTimeout(3000)
   await this.page.keyboard.press('Enter');
   await this.Charity_Name.waitFor();
   await this.playwrightFactory.click(this.Charity_Name);

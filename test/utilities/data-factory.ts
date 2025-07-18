@@ -72,7 +72,7 @@ class DataFactory {
           if (data.includes("#")) {
             length = data.split("#")[1].trim();
           }
-          computedData = await this.generateRandomAplhabets(length);
+          computedData = "Marathon"+await this.generateRandomAplhabets(length);
           break;
         case "RANDOM_NUMBER":
         case "RANDOM_ALPHA_NUMERIC":
@@ -141,11 +141,7 @@ class DataFactory {
   }
 
   static getTestCaseDescription(jsonData: any) {
-
     const testCaseDesc = jsonData["TestcaseDescription"];
-
-    //const testCaseDesc =  jsonData["TestcaseDescription"] + ' - ' +jsonData["Tags"];
-
     return testCaseDesc;
   }
 
