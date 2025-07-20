@@ -479,12 +479,12 @@ async user_selects_charities(){
  
 }
  
-   async user_verifies_website_registration_method(){
+async user_verifies_website_registration_method(){
   await this.registration_method_website.waitFor();
-  await this.playwrightFactory.click(this.registration_method_website);
+  await this.playwrightFactory.clickForce(this.registration_method_website);
  
  
- }
+}
  
  async user_verifies_portal_registration_method(){
   await this.playwrightFactory.click(this.registration_method_portal);

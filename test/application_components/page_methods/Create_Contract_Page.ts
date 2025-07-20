@@ -7,7 +7,7 @@ import { DatabricksSQLwarehouse } from '../../utilities/databricks_sqlware';
 import { DatabricksFactoryDBFS } from '../../utilities/databricks_dbfs';
 
 
-export class Create_contract_page {
+export class CREATE_CONTRACT_PAGE {
   private page: Page;
   private testInfo: TestInfo;
   private playwrightFactory: PlaywrightFactoryActions;
@@ -96,10 +96,10 @@ export class Create_contract_page {
     await expect(this.Membership_checkbox).toBeVisible();
     await this.playwrightFactory.click(this.page.locator("//*[contains(text(),'Type')]/ancestor::component-select//*[contains(text(),'"+strtype+"')]"))
     }
-
-    async user_enters_create_contract_title(strtitle: string){
-    await this.playwrightFactory.fill(this.title,strtitle);
-  }
+    async user_enters_create_contract_title(striteration: any){
+      let charityname = await this.dataFactory.getIterationData(this.container,'USER_NAME',striteration);
+     await this.playwrightFactory.fill(this.title,charityname);
+   }
   async user_clicks_create_contract_state_btn(){
     await this.playwrightFactory.click(this.state);
   }

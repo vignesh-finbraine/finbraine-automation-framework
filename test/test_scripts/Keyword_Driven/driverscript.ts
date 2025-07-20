@@ -36,18 +36,27 @@ import { EDIT_MARKETING_FOLDER } from '../../application_components/page_methods
 import { ENQUIRY_CHARITIES } from '../../application_components/page_methods/Enquiry_Charities_Page';
 import { CREATE_ENQUIRY_CHARITIES } from '../../application_components/page_methods/Create_Charity_Enquiry';
 import { partner_charity } from '../../application_components/page_methods/Partner_charity_history_page';
-import { contract_page } from '../../application_components/page_methods/Contract_page';
-import { Create_contract_page } from '../../application_components/page_methods/Create_Contract_page';
-import { timeline_page } from '../../application_components/page_methods/Timeline_page';
+
 import { Home_page } from '../../application_components/page_methods/Website_Homepage';
 import { signup_page } from '../../application_components/page_methods/Website_Signup_page';
 import { Participantsignup_page } from '../../application_components/page_methods/Website_Participant_Signup_page';
 import { website_register_ascharity_page } from '../../application_components/page_methods/Website_Register_as_charity_page';
-import { website_Login_page } from '../../application_components/page_methods/Website_Login_page';
+
 import { PARTNER_EVENT_PAGE } from '../../application_components/page_methods/Partner_Event_page';
 import { EXTERNAL_ENQUIRY_HOMEPAGE } from '../../application_components/page_methods/External_Enquiry_Create_page';
 import { Website_ENQUIRY_HOMEPAGE } from '../../application_components/page_methods/Portal_Website_Enquiry_Create_page';
 import { CREATE_EVENT_HUBPAGE } from '../../application_components/page_methods/Create_Event_Hub_page';
+import { ENQUIRY_MANAGEMENT_EXTERNAL_PAGE } from '../../application_components/page_methods/Enquiry_Management_External_Page';
+import { ENQUIRY_MANAGEMENT_WEBSITE_PAGE } from '../../application_components/page_methods/Enquiry_Management_Website_Page';
+import { EVENT_HUB_PAGE } from '../../application_components/page_methods/Event_Hub_Page';
+import { INVOICE_PAGE } from '../../application_components/page_methods/Invoice_Page';
+import { PARTNER_PACKAGES_PAGE } from '../../application_components/page_methods/Partner_Packages_Page';
+import { RENEWALS_PAGE } from '../../application_components/page_methods/Renewals_Page';
+import { website_Login_page } from '../../application_components/page_methods/Website_Login_Page';
+import { TIMELINE_PAGE } from '../../application_components/page_methods/Timeline_Page';
+
+import { CONTRACT_PAGE } from '../../application_components/page_methods/Contract_Page';
+import { CREATE_CONTRACT_PAGE } from '../../application_components/page_methods/Create_Contract_Page';
 
 export class DriverScript {
 
@@ -89,9 +98,7 @@ export class DriverScript {
     container.register('Enquiry_Charities_Page', new ENQUIRY_CHARITIES(container));
     container.register('Create_Charity_Enquiry', new CREATE_ENQUIRY_CHARITIES(container));
     container.register('Partner_charity_history_page', new  partner_charity(container));
-    container.register('Contract_page', new  contract_page(container));
-    container.register('Create_Contract_page', new Create_contract_page(container));
-    container.register('Timeline_page', new timeline_page(container));
+   
     container.register('Website_Homepage', new Home_page(container));
     container.register('Website_Signup_page', new signup_page(container));
     container.register('Website_Participant_Signup_page', new Participantsignup_page(container));
@@ -101,6 +108,20 @@ export class DriverScript {
     container.register('External_Enquiry_Create_page', new EXTERNAL_ENQUIRY_HOMEPAGE(container));
     container.register('Portal_Website_Enquiry_Create_page', new Website_ENQUIRY_HOMEPAGE(container));
     container.register('Create_Event_Hub_page', new CREATE_EVENT_HUBPAGE(container));
+    container.register('Enquiry_Management_External_Page', new ENQUIRY_MANAGEMENT_EXTERNAL_PAGE(container));
+    container.register('Enquiry_Management_Website_Page', new ENQUIRY_MANAGEMENT_WEBSITE_PAGE(container));
+    container.register('Event_Hub_Page', new EVENT_HUB_PAGE(container));
+    container.register('Invoice_Page', new INVOICE_PAGE(container));
+    container.register('Partner_Packages_Page', new PARTNER_PACKAGES_PAGE(container));
+    container.register('Renewals_Page', new RENEWALS_PAGE(container));
+    container.register('Timeline_Page', new TIMELINE_PAGE(container)); 
+    container.register('Contract_Page', new CONTRACT_PAGE(container));
+    container.register('Create_Contract_Page', new CREATE_CONTRACT_PAGE(container));
+
+
+
+
+
     /* API Page Methods*/
     container.register('trax_trackshipmet_apis', new TrackShipmentAPI(container));
     
