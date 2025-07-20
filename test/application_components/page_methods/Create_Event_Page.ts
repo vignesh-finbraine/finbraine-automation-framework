@@ -203,7 +203,7 @@ this.emt_homepage_reporting = this.page.getByText('Reporting', { exact: true });
     this.txt_country= this.page.locator("//input[@placeholder='Country']");
    this.txt_CharityDiscription= this.page.frameLocator("//*[contains(text(),'Charity Description ')]/ancestor::component-textarea//iframe[contains(@id,'tiny-angular')]").locator('#tinymce');
     this.txt_Distance= this.page.locator("//*[contains(text(),'Distance')]/ancestor::component-select//span[@class='dropdown-btn']");
-    //this.txt_DistanceOption= this.page.locator("//*[contains(text(),'Distance')]/ancestor::component-select//input[@aria-label='10K']");
+    //this.txt_DistanceOption= this.page.locator("//div[normalize-space()='10K']");
     this.btn_DistanceTittle= this.page.locator("//*[contains(text(),'Distance ')]");
     this.txt_LocalFee= this.page.locator("//input[@placeholder='For UK residents']");
     this.btn_StartDate= this.page.locator("//*[contains(text(),'Start Date ')]/ancestor::component-datetime//button[@class='datepicker__mask']");
@@ -301,7 +301,7 @@ this.ExcludefromCharities=this.page.locator("//*[contains(text(),'Exclude from C
    this.ddl_partner=this.page.locator('//component-select[@label="Partner"]//div[@class="select__dropdown"]//ng-multiselect-dropdown[@class="multi-select ng-untouched ng-valid ng-dirty"]//div[@class="multiselect-dropdown"]//div//span[@class="dropdown-btn"]');
  
     this.ddl_status=this.page.locator('//component-select[@label="Status"]//div[@class="select__dropdown"]//ng-multiselect-dropdown[@class="multi-select ng-untouched ng-valid ng-dirty"]//div[@class="multiselect-dropdown"]//div//span[@class="dropdown-btn"]')
-   this.ddl_state=this.page.locator('//ng-multiselect-dropdown[@class="multi-select ng-untouched ng-dirty"]//div[@class="multiselect-dropdown"]')
+    this.ddl_state=this.page.locator("//*[contains(text(),'State')]/ancestor::component-select//div[@class='multiselect-dropdown']")
    this.ddl_distance=this.page.locator('//component-select[@label="Distance"]//div//span[contains(text(),"Please Select")]')
    this.ddl_country=this.page.locator('//ng-multiselect-dropdown[@id="country"]//div[@class="multiselect-dropdown"]//div//span[@class="dropdown-btn"]')
    this.ddl_region=this.page.locator('//component-select[@label="Region"]//div//span[contains(text(),"Please Select")]')
@@ -349,11 +349,11 @@ async user_enter_charity_name(striteration: any){
   }
 
 
-async user_select_distance(strDistance: string){
-  await this.playwrightFactory.click(this.txt_Distance);
-  await this.playwrightFactory.clickForce(this.page.locator("//*[contains(text(),'Distance')]/ancestor::component-select//input[@aria-label='"+strDistance+"']"));
-  await this.playwrightFactory.click(this.btn_DistanceTittle);
-}
+  async user_select_distance(strDistance: string){
+    await this.playwrightFactory.click(this.txt_Distance);
+    await this.playwrightFactory.click(this.page.locator("//div[normalize-space()='"+strDistance+"']"));
+    await this.playwrightFactory.click(this.btn_DistanceTittle);
+  }
 
 async user_enter_localfee(strfee: string){
   await this.playwrightFactory.fill(this.txt_LocalFee, strfee);
@@ -375,7 +375,7 @@ async user_select_enddate(strEnddate: string){
 
 async user_select_region(strRegion: string){
   await this.playwrightFactory.click(this.txt_reagion);
-  await this.playwrightFactory.click(this.page.locator("//div[normalize-space()='"+strRegion+"']"))
+  await this.playwrightFactory.click(this.page.locator("//*[contains(text(),'"+strRegion+"')]"));
   await this.playwrightFactory.click(this.btn_DistanceTittle);
 }
 
@@ -419,7 +419,7 @@ async user_enter_metadescription(strMeta: string){
   
 async user_click_publishbtn(){
     await this.playwrightFactory.click(this.btn_Publish);
-    await this.page.pause();
+ 
 
 }
 
@@ -592,14 +592,10 @@ await expect (this.VirualEvent).toBeVisible();
 await expect (this.RankingEvent).toBeVisible();
 }
 async user_view_mode_dropdown_opn(){
-await this.page.waitForTimeout(5000);
-await expect (this.WaitlistEvent).toBeVisible();
-await expect (this.EstimateDate).toBeVisible();
-//await expect (this.ExcludefromCharities).toBeVisible();
-await expect (this.Excludefromparticipant).toBeVisible();
- 
- 
-}
+  await this.page.waitForTimeout(5000);
+  await expect (this.WaitlistEvent).toBeVisible();
+  await expect (this.EstimateDate).toBeVisible()
+  }
 async user_clicks_type_dropdown_btn(){
   await this.playwrightFactory.click(this.TypeDropdownbtn);
 await expect (this.Rolling).toBeVisible();

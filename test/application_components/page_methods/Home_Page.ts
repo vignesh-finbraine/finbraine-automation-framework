@@ -46,6 +46,20 @@ readonly lnk_partner_charity_history: Locator;
   readonly Account_Managament: Locator;
   readonly Users: Locator;
    readonly Users_Table:Locator;
+   
+
+readonly Dashboard: Locator;
+readonly Website: Locator;
+readonly External: Locator;
+readonly Renewals: Locator;
+readonly Finance_Mnagement: Locator;
+readonly Invoice_tab: Locator;
+readonly Partner_Packages: Locator;
+readonly Event_Hub: Locator;
+readonly Roll_drpdwn: Locator;
+readonly Roll_AccountManager: Locator;
+readonly Switch_Roll_btn: Locator;
+readonly Roll_Admin: Locator;
 
 
 
@@ -104,7 +118,18 @@ this.emt_homepage_reporting = this.page.getByText('Reporting', { exact: true });
     this.Account_Managament= this.page.locator("//*[contains(text(),' Account Management ')]");
     this.Users= this.page.locator("//div[@title='Account Management']//div//a[@title='Users']");
     this.Users_Table= this.page.locator("//*[contains(text(),'Users')]/ancestor::component-table//table")
-    
+    this.Dashboard=this.page.locator("//*[contains(text(),' Dashboard ')]"); 
+    this.Website= this.page.locator("//*[contains(text(),'Website ')]");
+    this.External= this.page.locator("//*[contains(text(),'External ')]");
+    this.Renewals= this.page.locator("//*[contains(text(),'Renewals') and @class='sidebar__link']");
+    this.Finance_Mnagement= this.page.locator("//*[contains(text(),'Finance Management') and @class='sidebar__head']");
+    this.Invoice_tab= this.page.locator("//*[contains(text(),'Invoices') and @class='sidebar__link']")
+    this.Partner_Packages= this.page.locator("//*[contains(text(),'Partner Packages') and @class='sidebar__link']")
+    this.Event_Hub= this.page.locator("//*[contains(text(),'Event Hub Pages') and @class='sidebar__link']")
+    this.Roll_drpdwn= this.page.locator("(//span[@class='dropdown-btn']/ancestor::ng-multiselect-dropdown)[1]");
+    this.Roll_AccountManager= this.page.locator("//*[contains(text(),'AccountManager')]");
+    this.Switch_Roll_btn= this.page.locator("//*[contains(text(),'Switch Role')]/ancestor::component-button");
+    this.Roll_Admin= this.page.locator("//*[contains(text(),'Administrator')]");
 
 
 
@@ -204,7 +229,44 @@ async user_click_user_tab(){
 async user_verify_users_table(){
   await expect(this.Users_Table).toBeVisible();
 }
-
+async user_verify_dashboard_tab(){
+  await expect(this.Dashboard).toBeVisible();
+}
+async user_click_external_tab(){
+  await this.playwrightFactory.click(this.External);
+}
+async user_click_website_tab(){
+  await this.playwrightFactory.click(this.Website);
+}
+async user_click_renewals_tab(){
+  await this.playwrightFactory.click(this.Renewals);
+}
+async user_click_contract_tab(){
+  await this.playwrightFactory.click(this.lnk_contract);
+}
+async user_click_finance_management(){
+  await this.playwrightFactory.click(this.Finance_Mnagement);
+}
+async user_click_invoce_tab(){
+  await this.playwrightFactory.click(this.Invoice_tab);
+}
+async user_click_partner_packages(){
+  await this.playwrightFactory.click(this.Partner_Packages);
+}
+async user_click_event_hub(){
+  await this.playwrightFactory.click(this.Event_Hub);
+}
+async user_switch_roll_to_account_manger(){
+await this.playwrightFactory.click(this.Roll_drpdwn);
+await this.playwrightFactory.click(this.Roll_AccountManager);
+await this.playwrightFactory.click(this.Switch_Roll_btn);
+await this.page.waitForTimeout(3000);
+}
+async user_switch_roll_to_admin(){
+await this.playwrightFactory.click(this.Roll_drpdwn); 
+await this.playwrightFactory.click(this.Roll_Admin);
+await this.playwrightFactory.click(this.Switch_Roll_btn);
+}
 
 
 }

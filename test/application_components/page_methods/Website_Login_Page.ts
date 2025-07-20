@@ -36,7 +36,9 @@ export class website_Login_page {
  readonly reset_password_btn:Locator;
  readonly Invalid_enter_code_msg:Locator;
 
-
+ readonly email: Locator;
+ readonly Password: Locator;
+ readonly Loging_btn: Locator;
 
 
 
@@ -78,7 +80,9 @@ export class website_Login_page {
     this.reset_enter_code_field= this.page.locator("#code")
     this.reset_password_btn= this.page.locator("//span[normalize-space()='Reset Password']")
     this.Invalid_enter_code_msg= this.page.locator("//*[contains(text(),' The code is invalid.')]")
-  
+    this.email= this.page.locator("#email");
+    this.Password= this.page.locator("#password");
+    this.Loging_btn= this.page.locator("//*[contains(text(),'Log In')]/ancestor::component-button//*[contains(text(),'Log In')]");
   }
   
   
@@ -119,9 +123,7 @@ async user_verify_request_reset_code_msg(){
   await expect (this.Request_reset_code_msg).toBeVisible();
 }
 
-async user_enter_email(striteration: any){
-await this.playwrightFactory.fill(this.Email_field,striteration);
-}
+
 async user_enter_login_email(striteration: any){
   await this.playwrightFactory.fill(this.Email_field,striteration);
   }
@@ -157,7 +159,15 @@ async user_enter_login_email(striteration: any){
         await expect (this.Invalid_enter_code_msg).toBeVisible();
       }
   
-
+      async user_enter_email(strEmail: string){
+        await this.playwrightFactory.fill(this.email, strEmail);
+      }
+      async user_enter_password(strPass: string){
+        await this.playwrightFactory.fill(this.Password, strPass)
+      }
+      async user_click_login_btn(){
+        await this.playwrightFactory.click(this.Loging_btn);
+      }
 
 
 
