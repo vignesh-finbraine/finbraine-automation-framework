@@ -72,6 +72,7 @@ import { WEBSITE_MIDLANDS_REGIONS_PAGE } from '../../application_components/page
 import { WEBSITE_NORTH_WEST_REGIONS_PAGE } from '../../application_components/page_methods/Website_North_West_Region_Page';
 import { WEBSITE_REGISTER_MY_CHARITY_PAGE } from '../../application_components/page_methods/Website_Register_My_Charity_Page';
 import { WEBSITE_SOUTH_EAST_REGIONS_PAGE } from '../../application_components/page_methods/Website_South_East_Region_Page';
+import { REGISTRATION_EVENT_WEBSITE } from '../../application_components/page_methods/Registration_For_Anevent_Page';
 
 export class DriverScript {
 
@@ -148,6 +149,8 @@ export class DriverScript {
     container.register('Website_North_West_Region_Page', new WEBSITE_NORTH_WEST_REGIONS_PAGE(container));
     container.register('Website_Register_My_Charity_Page', new WEBSITE_REGISTER_MY_CHARITY_PAGE(container));
     container.register('Website_South_East_Region_Page', new WEBSITE_SOUTH_EAST_REGIONS_PAGE(container));
+    container.register('Fianance_Invoice_Page', new INVOICE_PAGE(container));
+    container.register('Registration_For_Anevent_Page', new REGISTRATION_EVENT_WEBSITE(container));
     /* API Page Methods*/
     container.register('trax_trackshipmet_apis', new TrackShipmentAPI(container));
     

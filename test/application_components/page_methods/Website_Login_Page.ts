@@ -106,6 +106,14 @@ async user_launches_application() {
   let url = process.env.APP_URL || " https://rfc-staging.sportsmediaagency.com/"
   await this.playwrightFactory.launchApplication(url);
 }
+async verify_with_invalidurl() {
+  let url = process.env.APP_URL || "https://rfc-staging.sportsmediaagency.com/events-timeline4444444444"
+   
+   
+  await this.playwrightFactory.launchApplication(url);
+  await this.page.waitForTimeout(3000)
+ }
+
 
 async user_clicks_profile_icon(){
   await this.Profile_icon.hover();

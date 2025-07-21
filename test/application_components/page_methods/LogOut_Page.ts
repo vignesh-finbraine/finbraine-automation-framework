@@ -35,7 +35,10 @@ readonly Rutuja_Profile_Icon: Locator;
 readonly Participant: Locator;
 readonly Shivani_Profile_Icon: Locator;
 
-
+readonly account_manager_icon: Locator;
+readonly event_manager_icon: Locator;
+readonly charityuser_icon: Locator;
+readonly participant_icon: Locator;
 
 
 
@@ -78,7 +81,11 @@ this.emt_homepage_reporting = this.page.getByText('Reporting', { exact: true });
     this.Shivani_Profile_Icon=this.page.locator("//img[@alt='Shivani Chauhan']")
 
 
-
+    this.Logout_Button= this.page.locator('//a[normalize-space()="Logout"]')
+    this.account_manager_icon=this.page.locator('//img[@alt="Ayush T"]')
+    this.event_manager_icon=this.page.locator('//img[@alt="Vaishnavi Dange"]')
+    this.charityuser_icon=this.page.locator('//img[@alt="Rutuja Mohite"]')
+    this.participant_icon=this.page.locator('//img[@alt="Shivani Chauhan"]')
 
 
 
@@ -134,6 +141,24 @@ this.emt_homepage_reporting = this.page.getByText('Reporting', { exact: true });
   async user_clicks_shivani_profile_icon(){
     await this.Shivani_Profile_Icon.hover();
   }
+  async aacountmanager_clicks_profileicon(){
+    await this.account_manager_icon.hover();
+  }
+  async eventmanager_clicks_profileicon(){
+    await this.event_manager_icon.hover();
+   
+  } 
+  async charityuser_clicks_profileicon(){
+     await this.charityuser_icon.hover();
+
+
+
+}
+
+async participant_clicks_profileicon(){
+  await this.participant_icon.hover();
+}
+
 
 
 
