@@ -53,10 +53,7 @@ readonly btn_Event_Managament: Locator;
   readonly btn_apply:Locator;
   readonly filtered_data:Locator;
 
-  readonly Adress_Line_1: Locator;
-  readonly Save_btn: Locator;
-  readonly Update_Success_msg: Locator;
-  readonly btn_OK: Locator;
+
 
 
 
@@ -98,7 +95,7 @@ this.emt_homepage_reporting = this.page.getByText('Reporting', { exact: true });
      this.title_event=this.page.locator('//th[normalize-space()="Event"]');
      this.event_name=this.page.locator('//div[contains(text(),"Chepstow Running Festival Half Marathon- January 2")]');
      this.title_status=this.page.locator('//th[normalize-space()="Status"]');
-     this.status_notified=this.page.locator('//div[contains(text(),"Incomplete")]');
+     this.status_notified=this.page.locator('//div[contains(text(),"Notified")]');
      this.title_activity=this.page.locator('//th[normalize-space()="Activity"]');
      this.btn_back=this.page.locator('//*[@class="search__close"]');
      this.btn_export=this.page.locator('//span[normalize-space()="Export"]');
@@ -120,10 +117,7 @@ this.emt_homepage_reporting = this.page.getByText('Reporting', { exact: true });
      this.btn_male=this.page.locator('//div[normalize-space()="Male"]');
      this.btn_apply=this.page.locator('//component-button[@label="Apply"]//span[contains(text(),"Apply")]');
      this.filtered_data=this.page.locator('//div[normalize-space()="Suraj W"]');
-     this.Adress_Line_1= this.page.locator("//*[contains(text(),'Adress Line 1')]/ancestor::component-input//input[@id='address']");
-     this.Save_btn= this.page.locator("//*[contains(text(),'Save')]/ancestor::component-button");
-     this.Update_Success_msg= this.page.locator("//*[contains(text(),'Registration successfully updated! But there are warnings.')]");
-     this.btn_OK= this.page.locator("//button[@class='swal-button swal-button--confirm']");
+ 
 
     
     
@@ -146,14 +140,14 @@ this.emt_homepage_reporting = this.page.getByText('Reporting', { exact: true });
 // Create Category- Flow
   
  
-async user_searches_participant_in_list(strname:string){
-   await this.playwrightFactory.click(this.txt_search_participant);
-   await this.playwrightFactory.fill(this.txt_search_participant,strname);
-   await this.txt_search_participant.press('Enter');
-   await this.page.locator("//div[normalize-space()='"+strname+"']").waitFor();
-
-
- }
+   async user_searches_participant_in_list(strname:string){
+    await this.playwrightFactory.click(this.txt_search_participant);
+    await this.playwrightFactory.fill(this.txt_search_participant,strname);
+    await this.txt_search_participant.press('Enter');
+    await this.participant_name.waitFor();
+   
+ 
+  }
  
   async user_verifies_name(){
     await expect (this.title_name).toBeVisible();
@@ -277,37 +271,6 @@ async user_clicks_ok_btn(){
  
  }
  
- async user_click_participant(strname: string){
-
-   await this.playwrightFactory.click(this.page.locator("//div[normalize-space()='"+strname+"']"))
-
-}
-
-async user_edit_Adress(strEmail: string){
-
-   await this.Adress_Line_1.clear();
-
-   await this.playwrightFactory.fill(this.Adress_Line_1, strEmail);
-
-}
-
-async user_click_save_btn(){
-
-   await this.playwrightFactory.click(this.Save_btn);
-
-}
-
-async user_verify_success_msg(){
-
-   await expect(this.Update_Success_msg).toBeVisible();
-
-}
-
-async user_click_ok_button(){
- 
-    await this.playwrightFactory.click(this.btn_OK);
- 
-  }
  
   
 

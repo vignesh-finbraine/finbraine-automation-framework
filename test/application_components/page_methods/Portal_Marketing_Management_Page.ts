@@ -7,7 +7,7 @@ import { DatabricksSQLwarehouse } from '../../utilities/databricks_sqlware';
 import { DatabricksFactoryDBFS } from '../../utilities/databricks_dbfs';
 
 
-export class Partner_Charity_History {
+export class PORTAL_MARKETING_MANAGEMENT_PAGE {
   private page: Page;
   private testInfo: TestInfo;
   private playwrightFactory: PlaywrightFactoryActions;
@@ -16,18 +16,16 @@ export class Partner_Charity_History {
   private databricks_sqlware: DatabricksSQLwarehouse;
   private databricks_dbfs: DatabricksFactoryDBFS;
 
-  //readonly emt_homepage_reporting: Locator;
-  //readonly link_search_open: Locator;
-  
+  readonly emt_homepage_reporting: Locator;
+  readonly link_search_open: Locator;
 
   //**Declare */
 
-  readonly txt_Charity_History_Title: Locator;
-  readonly txt_Charity_Title: Locator;
-  readonly txt_New_Membership_Type: Locator;
-  readonly txt_Old_Membership_Type: Locator;
-  readonly txt_AM: Locator;
-  
+
+readonly txt_Profile_Icon: Locator;
+
+
+
 
 
 
@@ -63,55 +61,106 @@ export class Partner_Charity_History {
     this.databricks_dbfs = container.resolve('databricks_dbfs');
 
     /******************** Page Objects ************************/
+    this.emt_homepage_reporting = this.page.getByText('Reporting', { exact: true });
+    this.link_search_open = this.page.getByRole('link', { name: 'Portal open' });
+    this.txt_Profile_Icon=this.page.locator("#dropdownMenu")
     
-    this.txt_Charity_History_Title=this.page.locator("//*[contains(text(),'Charity History')]/ancestor::component-section//div[@class='title-purple card__title']")
-    this.txt_Charity_Title=this.page.locator("//th[normalize-space()='Charity']")
-    this.txt_New_Membership_Type=this.page.locator("//th[normalize-space()='New Membership Type']")
-    this.txt_Old_Membership_Type=this.page.locator("//th[normalize-space()='Old Membership Type']")
-    this.txt_AM=this.page.locator("//th[normalize-space()='AM']")
-
 
 
     
     
 
-    // Methods for Partner Charity History
+
+
+
+
+
+
+
+  
     
   }
-
-  async user_verify_charity_history_title(){
-    await expect(this.txt_Charity_History_Title).toBeVisible();
-  }
-
-  async user_verify_charity_title(){
-    await expect(this.txt_Charity_Title).toBeVisible();
-  }
-
-  async user_verify_new_membership_type_title(){
-    await expect(this.txt_New_Membership_Type).toBeVisible();
-  }
-
-  async user_verify_old_membership_type_title(){
-    await expect(this.txt_Old_Membership_Type).toBeVisible();
-  }
-
-  async user_verify_AM_title(){
-    await expect(this.txt_AM).toBeVisible();
-  }
   
+
   
+// Portal Marketing Management Page- Flow
   
+ async user_launches_application() {
+    let url = process.env.APP_URL || "https://rfc-staging.sportsmediaagency.com/"
+    await this.playwrightFactory.launchApplication(url);
+  }
+
+  async user_hover_profile_icon(){
+    await this.txt_Profile_Icon.hover();
+  }
+
   
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 
   
 
  
 
- 
 
 
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+  
 
 
 }
+
+
+
+
+
+
+
+
+
+
+ 
+ 
+
+
+
+
+
 
 

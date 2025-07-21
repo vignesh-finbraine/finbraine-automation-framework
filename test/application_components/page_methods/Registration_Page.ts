@@ -85,7 +85,7 @@ readonly txt_Charity_Name: Locator;
 readonly drpdwn_Participant_pays: Locator;
 readonly txt_Charity_Search_Bar: Locator;
 readonly txt_Fund_for_Charity: Locator;
-readonly Filter_charity_drpdwn_btn: Locator;
+ 
 
 
 
@@ -151,7 +151,7 @@ this.emt_homepage_reporting = this.page.getByText('Reporting', { exact: true });
     this.Deleted=this.page.locator("//span[normalize-space()='Deleted']")
     this.Searched_Result= this.page.locator("(//*[contains(text(),' Wolfcity Races ')])[1]");
     this.Wolfcity=this.page.locator("//div[contains(text(),'Wolfcity Races')]")
-    this.Registration_fees=this.page.locator("//*[contains(text(),' Registration Fee (£) ')]/ancestor::component-input//input[@type='number']")
+    this.Registration_fees=this.page.locator("//*[contains(text(),' Registration Fee (£) ')]/ancestor::component-input//input[@placeholder='Enter Your Own registration Fee it should not exceed £15']")
     this.Fundraising=this.page.locator("//*[contains(text(),' Fundraising Target Amount (£) ')]")
     this.Checkbox=this.page.locator("//component-input[@placeholder='How much can you Fundraise?']//component-checkbox[@placeholder='Use the same details for all distances']//span//span[1]")
     this.Edit_Fundraising_amount=this.page.locator("//input[@placeholder='How much can you Fundraise?']")
@@ -170,7 +170,7 @@ this.published_box=this.page.locator("//*[contains(text(),'Published')]")
     this.Tick_box=this.page.locator("//*[contains(text(),'Tick box to add Fundraising Information')]")
  this.Event_tittle= this.page.locator("//*[contains(text(),'Events')]/ancestor::component-select");
  this.registration_page=this.page.locator('//div[contains(text(),"India")]');
- this.checkbox_registration_fee=this.page.locator("//*[contains(text(),' Registration Fee (£) ')]/ancestor::component-input//*[contains(text(),'Use the same details for all distances')]");
+ this.checkbox_registration_fee=this.page.locator('//component-input[@placeholder="Enter Your Own registration Fee it should not exceed £15"]//component-checkbox[@placeholder="Use the same details for all distances"]//span//span[1]');
  this.txt_age_1=this.page.locator('(//*[contains(text(), "Age (5-15) ")]/ancestor::component-input//input[@placeholder="Enter Age"])[1]');
     this.txt_amount_1=this.page.locator('(//*[contains(text(), "Amount")]/ancestor::component-input//input[@placeholder="Enter Amount"])[1]');
     this.txt_age_2=this.page.locator('(//*[contains(text(), "Age (5-15) ")]/ancestor::component-input//input[@placeholder="Enter Age"])[2]');
@@ -190,7 +190,7 @@ this.published_box=this.page.locator("//*[contains(text(),'Published')]")
     this.drpdwn_Fund_For_Charity=this.page.locator("(//*[contains(text(),' Charity NV ')])[2]")
     this.txt_Charity_Search_Bar=this.page.locator("//component-select[@placeholder='Please select']//ng-multiselect-dropdown[@id='root-paginated-select']//input[@placeholder='Search']")
     this.txt_Fund_for_Charity=this.page.locator("//div[contains(text(),'Fund for Charity')]")
-    this.Filter_charity_drpdwn_btn= this.page.locator("//*[contains(text(),'Charity')]/ancestor::component-select//*[contains(text(),'Please Select')]");
+
     
     
 
@@ -222,10 +222,10 @@ async user_click_createbtn(){
     
   }
   async user_click_event(strEventname: string){
-    await this.page.locator("(//*[contains(text(),'"+strEventname+"')])[1]").waitFor();
-     await this.playwrightFactory.click(this.page.locator("(//*[contains(text(),'"+strEventname+"')])[1]"));
-     await this.page.waitForTimeout(3000);
-   }
+   await this.page.locator("//*[contains(text(),'"+strEventname+"')]").waitFor();
+    await this.playwrightFactory.click(this.page.locator("//*[contains(text(),'"+strEventname+"')]"));
+    await this.page.waitForTimeout(3000);
+  }
   async verify_slug_not_editable(){
     await expect(this.Slug_Field).toBeVisible();
     await this.page.goBack();
@@ -281,8 +281,8 @@ async user_clicks_filter(){
   await expect (this.Apply).toBeVisible();
  
 }  
-async user_verify_searched_registration_page(strPage: string){
-  await expect(this.page.locator("//*[contains(text(),'"+strPage+"')]")).toBeVisible();
+async user_verify_searched_registration_page(){
+  await expect(this.Searched_Result).toBeVisible();
 }
  async user_click_eventwolfcity(){
   await this.playwrightFactory.click(this.Wolfcity)
@@ -352,14 +352,14 @@ async verify_edit_reg_autopopulated_fields(){
       await expect (this.published_box).toBeVisible();
       await expect (this.Tick_box).toBeVisible();
      }
-     async user_click_wolfcity(strEvent: string){
-      await this.playwrightFactory.click(this.page.locator("//div[contains(text(),'"+strEvent+"')]"));
-    }
-    async user_clicks_edit_btn_of_registration_page(strPage: string){
-      await this.page.locator("//div[contains(text(),'"+strPage+"')]").hover();
-      await this.playwrightFactory.click(this.page.locator("//div[contains(text(),'"+strPage+"')]"));
-      await this.page.waitForTimeout(5000)
-    }
+async user_click_wolfcity(){
+  await this.playwrightFactory.click(this.Wolfcity);
+}
+async user_clicks_edit_btn_of_registration_page(){
+    await this.registration_page.hover();
+    await this.playwrightFactory.click(this.registration_page);
+    await this.page.waitForTimeout(5000)
+  }
   async user_clicks_registration_fee_checkbox(){
     await this.playwrightFactory.click(this.checkbox_registration_fee);
   }
@@ -450,9 +450,9 @@ async verify_edit_reg_autopopulated_fields(){
         await expect(this.txt_Distance_10K).toBeVisible();
         await expect(this.txt_Distance_10K).toContainText('10K')
       }
-      async user_verifies_charity_name_field_auto_populated(strCahrityname: string){
-        await expect(this.page.locator("(//*[contains(text(),'"+strCahrityname+"')])[1]")).toBeVisible();
-        await expect(this.page.locator("(//*[contains(text(),'"+strCahrityname+"')])[1]")).toContainText('Automation 0pyia');
+      async user_verifies_charity_name_field_auto_populated(){
+        await expect(this.txt_Charity_Name).toBeVisible();
+        await expect(this.txt_Charity_Name).toContainText(' Automation City Marathony4yap ');
  
       }
       async user_searche_existing_registration_page(striteration: any) {
@@ -467,19 +467,7 @@ async verify_edit_reg_autopopulated_fields(){
         await this.playwrightFactory.click(this.drpdwn_Participant_pays);
       }
  
-      async user_click_filter_btn(){
-        await this.playwrightFactory.click(this.Filter_btn);
-      }
-      async user_select_charity_in_filter(strCharity: string){
-        await this.playwrightFactory.click(this.Filter_charity_drpdwn_btn);
-        await this.playwrightFactory.click(this.page.locator("//*[contains(text(),'Charity')]/ancestor::component-select//*[contains(text(),'"+strCharity+"')]"))
-      }
-      async user_click_apply_btn(){
-        await this.playwrightFactory.click(this.Apply);
-      }
-      async user_verify_filter_result(strCharity: string){
-        await expect(this.page.locator("(//*[contains(text(),'"+strCharity+"')])[1]")).toBeVisible();
-      }
+ 
  
   
 

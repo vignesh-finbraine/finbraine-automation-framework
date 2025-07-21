@@ -72,9 +72,9 @@ class DataFactory {
           if (data.includes("#")) {
             length = data.split("#")[1].trim();
           }
-          computedData = "Marathon"+await this.generateRandomAplhabets(length);
+          computedData = "Automation" + await this.generateRandomAplhabets(length);
           break;
-        case "RANDOM_NUMBER":
+        case "RANDOM_NUMBER": 
         case "RANDOM_ALPHA_NUMERIC":
           if (data.includes("#")) {
             length = data.split("#")[1].trim();

@@ -147,7 +147,6 @@ readonly txt_no_record:Locator;
 
 
 
-
   
   /**
    * @param {Page} page
@@ -183,9 +182,6 @@ this.emt_homepage_reporting = this.page.getByText('Reporting', { exact: true });
     this.btn_distance_75k=this.page.locator('//div[contains(text(),"75k")]');
     this.btn_preview_section=this.page.locator('.preview__section');
     this.txt_local_fee=this.page.locator('//input[@placeholder="For UK residents"]');
-
-
-    
     this.btn_start_date=this.page.locator('//*[contains(text(), "Start Date")]/ancestor::component-datetime//button[contains(@class, "datepicker__mask")]');
     this.btn_next_month=this.page.locator('//button[@title="Next month"]//span[@class="ngb-dp-navigation-chevron"]');
     this.btn_22=this.page.locator('//span[normalize-space()="22"]');
@@ -479,12 +475,12 @@ async user_selects_charities(){
  
 }
  
-async user_verifies_website_registration_method(){
+   async user_verifies_website_registration_method(){
   await this.registration_method_website.waitFor();
-  await this.playwrightFactory.clickForce(this.registration_method_website);
+  await this.playwrightFactory.click(this.registration_method_website);
  
  
-}
+ }
  
  async user_verifies_portal_registration_method(){
   await this.playwrightFactory.click(this.registration_method_portal);
@@ -585,6 +581,8 @@ async user_clicks_back(){
  async user_enters_Privacy_policy_link(strpplink:string){
   await this.playwrightFactory.fill(this.link_privacy_policy,strpplink);
  }
+
+
  
  
  

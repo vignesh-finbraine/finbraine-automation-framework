@@ -18,11 +18,19 @@ export class WEBSITE_ALL_REGIONS_PAGE {
 
   readonly emt_homepage_reporting: Locator;
   readonly link_search_open: Locator;
-  
 
   //**Declare */
 
-readonly Region_East_England: Locator;
+
+readonly txt_Find_an_Event: Locator;
+readonly txt_Regions: Locator;
+readonly txt_All_Regions: Locator;
+readonly txt_Associated_Event_Counts: Locator;
+
+
+
+
+
 
 
 
@@ -55,31 +63,115 @@ readonly Region_East_England: Locator;
     this.databricks_dbfs = container.resolve('databricks_dbfs');
 
     /******************** Page Objects ************************/
-this.emt_homepage_reporting = this.page.getByText('Reporting', { exact: true });
+    this.emt_homepage_reporting = this.page.getByText('Reporting', { exact: true });
     this.link_search_open = this.page.getByRole('link', { name: 'Portal open' });
-    this.Region_East_England= this.page.locator("//a[@href='/regions/charity-runs-east-of-england']/ancestor::component-card9//*[contains(text(),'Charity Runs East of England')]");
+    this.txt_Find_an_Event=this.page.locator("//div[@class='header__item']//div[@title='Find an Event']")
+    this.txt_Regions=this.page.locator("(//div[@class='header__sub-item']//*[contains(text(),'Regions')])[1]")
+    this.txt_All_Regions=this.page.locator("//div[@class='header__sub-body']//*[contains(text(),' All Regions')]")
+    this.txt_Associated_Event_Counts=this.page.locator("//div[@class='d-flex flex-wrap pt-3']")
+
+    
+    
+
+
+
+
+
+
+
+
   
-
-    
-    
-
-   
     
   }
-  async user_click_region(){
-    await this.playwrightFactory.click(this.Region_East_England);
+  
+
+  
+// Website home page- Flow
+  
+ async user_launches_application() {
+    let url = process.env.APP_URL || "https://rfc-staging.sportsmediaagency.com/"
+    await this.playwrightFactory.launchApplication(url);
   }
- 
-  
+
+  async user_verify_find_an_event(){
+    await expect(this.txt_Find_an_Event).toBeVisible();
+  }
+
+  async user_hover_on_find_an_event(){
+    await this.txt_Find_an_Event.hover();
+  }
+
+  async user_verify_regions(){
+    await expect(this.txt_Regions).toBeVisible();
+  }
+
+  async user_click_on_regions(){
+    await this.playwrightFactory.click(this.txt_Regions);
+  }
+
+  async user_verify_all_regions(){
+    await expect(this.txt_All_Regions).toBeVisible();
+  }
+
+  async user_click_on_all_regions(){
+    await this.playwrightFactory.click(this.txt_All_Regions);
+  }
+
+  async user_verify_associated_event_counts(){
+    await expect(this.txt_Associated_Event_Counts).toBeVisible();
+  }
+
+
+
+
+
+
+
+
 
   
 
  
 
- 
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 
 
 
 
 }
+
+
+
+
+
+
+
+
+
+
+ 
+ 
+
+
+
+
+
+
 

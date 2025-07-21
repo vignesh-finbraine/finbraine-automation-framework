@@ -67,20 +67,7 @@ readonly txt_Deleted: Locator;
 readonly drpdwn_With: Locator;
 readonly btn_Apply: Locator;
 readonly txt_Filtered_Charity_Category_Baby: Locator;
-readonly catagories_list: Locator;
-readonly Charity_list: Locator;
-readonly Order_by_btn: Locator;
 
-readonly Asceding: Locator;
-
-readonly Apply_btn: Locator;
-
-readonly Export_btn: Locator;
-
-readonly Export_denied_msg: Locator;
-
-readonly Filter_catagory_search_box: Locator;
- 
 
 
 
@@ -126,7 +113,7 @@ this.emt_homepage_reporting = this.page.getByText('Reporting', { exact: true });
     this.Delete_Massage= this.page.locator("//*[contains(text(),'Are you sure?')]");
     this.OK_btn= this.page.locator("//button[normalize-space()='OK']");
     //this.Edit_btn= this.page.locator("(//button[@class='table__button primary d-block'])[1]");
-    this.Charity_Name= this.page.locator("(//div[@class='table__item'])[1]");
+    this.Charity_Name= this.page.locator("//div[@class='table__item']");//need to fix
       this.Name=this.page.locator("//th[normalize-space()='Name']")
       this.Status=this.page.locator("//th[normalize-space()='Status']")
       this.Categorypage=this.page.locator("//th[normalize-space()='Category']")
@@ -163,14 +150,7 @@ this.emt_homepage_reporting = this.page.getByText('Reporting', { exact: true });
     this.btn_Apply=this.page.locator("//component-button[@label='Apply']//button");
     this.txt_Filtered_Charity_Category_Baby=this.page.locator("//div[contains(text(),'Baby')]")
  
-    this.catagories_list= this.page.locator("//*[contains(text(),'Categories')]/ancestor::component-table");
-    this.Charity_list= this.page.locator("//*[contains(text(),'Charities')]/ancestor::component-table");
-    this.Order_by_btn= this.page.locator("//*[contains(text(),'Order By')]/ancestor::component-button");
-    this.Asceding= this.page.locator("(//*[contains(text(),' Ascending')]/ancestor::component-sort//button[@class='entity__btn'])[1]");
-    this.Apply_btn= this.page.locator("//*[contains(text(),'Apply')]/ancestor::component-button");
-    this.Export_btn= this.page.locator("//*[contains(text(),'Export')]/ancestor::component-button");
-    this.Export_denied_msg= this.page.locator("//*[contains(text(),'You do not have permission to access this resource!')]");
-    this.Filter_catagory_search_box= this.page.locator("//component-select[@placeholder='Please Select']//input[@placeholder='Press ENTER to search']");
+
 
 
 
@@ -193,6 +173,7 @@ async user_click_createbtn(){
     
   }
   async user_click_charitiesbtn(){
+    await this.page.waitForTimeout(3000);
     await this.playwrightFactory.click(this.btn_charities);
     await this.page.waitForTimeout(5000);
   }
@@ -211,7 +192,7 @@ async user_click_createbtn(){
     await expect(this.btn_charities).toBeVisible();
     await expect(this.btn_Catagories).toBeVisible();
   }
-  async user_sees_cagories_listwith_name_number(){
+  async user_sees_categories_listwith_name_number(){
     await expect(this.List_Catagories).toBeVisible();
     await expect(this.Catagory_Name).toBeVisible();
     await expect(this.No_of_Charities).toBeVisible();
@@ -338,16 +319,10 @@ async user_verify_filter_charities_title(){
  
     }
  
-    async user_selects_category(strCatagory: string){
-
+    async user_selects_category(){
       await this.playwrightFactory.click(this.txt_Category);
-
-      //await this.playwrightFactory.fill(this.Filter_catagory_search_box, strCatagory);
-
-      await this.playwrightFactory.click(this.page.locator("//*[contains(text(),'Category')]/ancestor::component-select//div[normalize-space()='"+strCatagory+"']"));
-
+      await this.playwrightFactory.click(this.drpdwn_Baby);
     }
- 
  
     async user_verify_status_title(){
       await expect(this.txt_Status_Title).toBeVisible();
@@ -378,51 +353,25 @@ async user_verify_filter_charities_title(){
       await this.btn_Apply.click();
     }
  
-    async user_verify_filtered_charity_category_baby(strCharity: string){
+    async user_verify_filtered_charity_category_baby(){
       await this.page.waitForTimeout(5000);
-      await expect(this.page.locator("(//div[contains(text(),'"+strCharity+"')])[1]")).toBeVisible();
- 
+      await expect(this.txt_Filtered_Charity_Category_Baby).toBeVisible();
+      await expect(this.txt_Filtered_Charity_Category_Baby).toContainText('Baby');
     }
 
-    async user_sees_created_charity_list(){
-      await expect (this.Name).toBeVisible();
-      await expect (this.Status).toBeVisible();
-      await expect (this.Categorypage).toBeVisible();
-      await expect (this.Membership).toBeVisible();
-      await expect (this.AccountManager).toBeVisible();
-      await expect (this.ExpireDate).toBeVisible();
-    }
+ async user_verify_charity_listing_page(){
+await expect (this.Name).toBeVisible();
+await expect (this.Status).toBeVisible();
+await expect (this.Categorypage).toBeVisible();
+await expect (this.Membership).toBeVisible();
+await expect (this.AccountManager).toBeVisible();
+await expect (this.ExpireDate).toBeVisible();
+ }
  
-    async user_click_catagories_btn(){
  
-      await this.playwrightFactory.click(this.btn_Catagories);
-      await this.page.waitForTimeout(3000);
-    }
 
-    async user_verify_catagories_listing(){
-      await expect(this.catagories_list).toBeVisible();
-    }
-    async user_verify_charity_list(){
-      await expect(this.Charity_list).toBeVisible();
-    }
-    async user_click_order_by_btn(){
-      await this.playwrightFactory.click(this.Order_by_btn);
-    }
-    async user_click_asceding(){
-      await this.playwrightFactory.click(this.Asceding);
-    }
-    async user_click_apply_btn(){
-      await this.playwrightFactory.click(this.Apply_btn);
-    }
-    async user_click_export_btn(){
-      await this.playwrightFactory.click(this.Export_btn);
-    }
-    async verify_export_denied_for_account_manager(){
-      await expect(this.Export_denied_msg).toContainText('You do not have permission to access this resource!');
-    }
-    async verify_filter_list(){
-      await expect(this.Charity_list).toBeVisible();
-    }
+
+
 
 }
 

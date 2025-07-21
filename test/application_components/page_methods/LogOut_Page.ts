@@ -25,6 +25,14 @@ export class LOGOUT_PAGE {
 
 readonly Profile_icon: Locator;
 readonly Logout_Button: Locator;
+readonly Account_Manager: Locator;
+readonly Ayush_Profile_Icon: Locator;
+readonly Event_Manager: Locator;
+readonly Vaishnavi_Profile_Icon: Locator;
+readonly Charity_Charity_Users: Locator;
+readonly Rutuja_Profile_Icon: Locator;
+readonly Participant: Locator;
+readonly Shivani_Profile_Icon: Locator;
 
 
 
@@ -60,10 +68,14 @@ this.emt_homepage_reporting = this.page.getByText('Reporting', { exact: true });
     this.link_search_open = this.page.getByRole('link', { name: 'Portal open' });
     this.Profile_icon= this.page.locator("//img[@src='https://rfc-api.sportsmediaagency.com//storage/media/images/4kjSms2ZhUjXyJXeiv5O3DUlkeOm1qkGqpCadtm4/4kjSms2ZhUjXyJXeiv5O3DUlkeOm1qkGqpCadtm4.png']");
     this.Logout_Button= this.page.locator("//*[contains(text(),'Log')]");
-    
-    
-
-
+    this.Account_Manager=this.page.locator("(//*[contains(text(),' Overview ')])[2]")
+    this.Ayush_Profile_Icon=this.page.locator("//img[@alt='Ayush T']")
+    this.Event_Manager=this.page.locator("//h1[normalize-space()='Dashboard']")
+    this.Vaishnavi_Profile_Icon=this.page.locator("//img[@alt='Vaishnavi Dange']")
+    this.Charity_Charity_Users=this.page.locator("//h1[normalize-space()='Dashboard']")
+    this.Rutuja_Profile_Icon=this.page.locator("//img[@alt='Rutuja Mohite']")
+    this.Participant=this.page.locator("//h1[normalize-space()='Dashboard']")
+    this.Shivani_Profile_Icon=this.page.locator("//img[@alt='Shivani Chauhan']")
 
 
 
@@ -82,10 +94,46 @@ this.emt_homepage_reporting = this.page.getByText('Reporting', { exact: true });
   async user_clicks_profileicon(){
     await this.Profile_icon.hover();
   }
+
   async user_click_logout_button(){
     await this.Logout_Button.hover();
     await this.playwrightFactory.click(this.Logout_Button);
   }
+  async user_verify_account_manager(){
+    await expect(this.Account_Manager).toBeVisible();
+    await this.page.waitForTimeout(3000);
+  }
+
+  async user_clicks_ayush_profile_icon(){
+    await this.Ayush_Profile_Icon.hover();
+  }
+
+  async user_verify_event_manager(){
+    await expect(this.Event_Manager).toBeVisible();
+  }
+
+  async user_clicks_vaishnavi_profile_icon(){
+    await this.Vaishnavi_Profile_Icon.hover();
+  }
+
+  async user_verify_charity_charity_users(){
+    await expect(this.Charity_Charity_Users).toBeVisible();
+    await this.page.waitForTimeout(3000);
+  }
+
+  async user_clicks_rutuja_profile_icon(){
+    await this.Rutuja_Profile_Icon.hover();
+  }
+
+  async user_verify_participant(){
+    await expect(this.Participant).toBeVisible();
+  }
+
+  async user_clicks_shivani_profile_icon(){
+    await this.Shivani_Profile_Icon.hover();
+  }
+
+
 
   
 

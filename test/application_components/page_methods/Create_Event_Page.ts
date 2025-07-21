@@ -153,7 +153,6 @@ readonly TypeDropdownbtn:Locator;
   readonly btn_gallerypickfile: Locator;
   readonly btn_regwebsite: Locator;
    readonly btn_regportal: Locator;
-   readonly Select_Month:Locator;
 
 
 
@@ -264,7 +263,7 @@ this.emt_homepage_reporting = this.page.getByText('Reporting', { exact: true });
     this.Answer= this.page.frameLocator("//*[contains(text(),'Answer ')]/ancestor::component-textarea//iframe[contains(@id,'tiny-angular')]").locator("#tinymce");
     this.close_btn= this.page.locator("//button[@aria-label='Close']");
     this.Registration_Deadline= this.page.locator("//*[contains(text(),'Registration Deadline ')]/ancestor::component-datetime//button[@class='datepicker__mask']");
-    this.Withdrawel_Deadline= this.page.locator("//*[contains(text(),'Withdrawal Deadline ')]/ancestor::component-datetime//button[@class='datepicker__mask']");
+    this.Withdrawel_Deadline= this.page.locator("//*[contains(text(),'Widthdrawal Deadline ')]/ancestor::component-datetime//button[@class='datepicker__mask']");
    // this.Registration_Date= this.page.locator("(//span[@class='custom-day'])[15]");
     //this.Withdrawal_Date= this.page.locator("(//span[@class='custom-day'])[11]");
     this.Event_List= this.page.locator("//*[contains(text(),'Events')]/ancestor::component-table//table[@class='table table-borderless local-table']");
@@ -301,7 +300,7 @@ this.ExcludefromCharities=this.page.locator("//*[contains(text(),'Exclude from C
    this.ddl_partner=this.page.locator('//component-select[@label="Partner"]//div[@class="select__dropdown"]//ng-multiselect-dropdown[@class="multi-select ng-untouched ng-valid ng-dirty"]//div[@class="multiselect-dropdown"]//div//span[@class="dropdown-btn"]');
  
     this.ddl_status=this.page.locator('//component-select[@label="Status"]//div[@class="select__dropdown"]//ng-multiselect-dropdown[@class="multi-select ng-untouched ng-valid ng-dirty"]//div[@class="multiselect-dropdown"]//div//span[@class="dropdown-btn"]')
-    this.ddl_state=this.page.locator("//*[contains(text(),'State')]/ancestor::component-select//div[@class='multiselect-dropdown']")
+   this.ddl_state=this.page.locator('//ng-multiselect-dropdown[@class="multi-select ng-untouched ng-dirty"]//div[@class="multiselect-dropdown"]')
    this.ddl_distance=this.page.locator('//component-select[@label="Distance"]//div//span[contains(text(),"Please Select")]')
    this.ddl_country=this.page.locator('//ng-multiselect-dropdown[@id="country"]//div[@class="multiselect-dropdown"]//div//span[@class="dropdown-btn"]')
    this.ddl_region=this.page.locator('//component-select[@label="Region"]//div//span[contains(text(),"Please Select")]')
@@ -321,7 +320,7 @@ this.ExcludefromCharities=this.page.locator("//*[contains(text(),'Exclude from C
    this.btn_gallerypickfile=this.page.locator("//*[contains(text(),'Details')]/ancestor::component-section//*[contains(text(),'Gallery')]/ancestor::component-file//span[contains(text(),'Pick Files')]")
    this.btn_regwebsite=this.page.locator("//input[@placeholder='Domain or URL']");
    this.btn_regportal=this.page.locator('("span").filter({ hasText: "Internal x" }).nth(1);')
-   this.Select_Month=this.page.locator("//select[@title='Select month']")
+ 
     
 
 
@@ -349,11 +348,11 @@ async user_enter_charity_name(striteration: any){
   }
 
 
-  async user_select_distance(strDistance: string){
-    await this.playwrightFactory.click(this.txt_Distance);
-    await this.playwrightFactory.click(this.page.locator("//div[normalize-space()='"+strDistance+"']"));
-    await this.playwrightFactory.click(this.btn_DistanceTittle);
-  }
+async user_select_distance(strDistance: string){
+  await this.playwrightFactory.click(this.txt_Distance);
+  await this.playwrightFactory.click(this.page.locator("//div[normalize-space()='"+strDistance+"']"));
+  await this.playwrightFactory.click(this.btn_DistanceTittle);
+}
 
 async user_enter_localfee(strfee: string){
   await this.playwrightFactory.fill(this.txt_LocalFee, strfee);
@@ -361,14 +360,12 @@ async user_enter_localfee(strfee: string){
 
 async user_select_startdate(strStartdate: string){
   await this.playwrightFactory.click(this.btn_StartDate);
-  await this.Select_Month.selectOption({label:'Sep'})
   await this.playwrightFactory.click(this.page.locator("(//span[@class='custom-day'])["+strStartdate+"]"));
   await this.playwrightFactory.click(this.btn_CloseCalender);
 }
 
 async user_select_enddate(strEnddate: string){
   await this.playwrightFactory.click(this.btn_EndDate);
-  await this.Select_Month.selectOption({label:'Sep'})
   await this.playwrightFactory.click(this.page.locator("(//span[@class='custom-day'])["+strEnddate+"]"));
   await this.playwrightFactory.click(this.btn_CloseCalender);
 }
@@ -419,9 +416,8 @@ async user_enter_metadescription(strMeta: string){
   
 async user_click_publishbtn(){
     await this.playwrightFactory.click(this.btn_Publish);
- 
-
-}
+  
+  }
 
   async verify_success_massage(){
     await expect(this.txt_SuccessMaasage).toBeVisible();
@@ -536,13 +532,10 @@ window.scrollBy(2500, 3000); // Scroll down
   }
   async user_select_registration_date(strDate: string){
     await this.playwrightFactory.click(this.Registration_Deadline);
-    await this.Select_Month.selectOption({label:'Sep'})
     await this.playwrightFactory.click(this.page.locator("(//span[@class='custom-day'])["+strDate+"]"));
-    await this.playwrightFactory.click(this.btn_CloseCalender);
   }
   async user_select_widrawaldate(strDate: string){
     await this.playwrightFactory.click(this.Withdrawel_Deadline);
-    await this.Select_Month.selectOption({label:'Sep'})
     await this.playwrightFactory.click(this.page.locator("(//span[@class='custom-day'])["+strDate+"]"));
     await this.playwrightFactory.click(this.btn_CloseCalender);
   }
@@ -592,10 +585,14 @@ await expect (this.VirualEvent).toBeVisible();
 await expect (this.RankingEvent).toBeVisible();
 }
 async user_view_mode_dropdown_opn(){
-  await this.page.waitForTimeout(5000);
-  await expect (this.WaitlistEvent).toBeVisible();
-  await expect (this.EstimateDate).toBeVisible()
-  }
+await this.page.waitForTimeout(5000);
+await expect (this.WaitlistEvent).toBeVisible();
+await expect (this.EstimateDate).toBeVisible();
+//await expect (this.ExcludefromCharities).toBeVisible();
+await expect (this.Excludefromparticipant).toBeVisible();
+ 
+ 
+}
 async user_clicks_type_dropdown_btn(){
   await this.playwrightFactory.click(this.TypeDropdownbtn);
 await expect (this.Rolling).toBeVisible();

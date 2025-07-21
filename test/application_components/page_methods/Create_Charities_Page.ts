@@ -92,7 +92,7 @@ readonly MetaDiscriptioncheckbox:Locator;
     this.txt_emailadress = this.page.locator("//input[@placeholder='Email Address']");
     this.txt_CharityName = this.page.locator("//input[@placeholder='e.g ASICS London']");
     this.txt_chatagoriesDropdown = this.page.locator("//*[contains(text(),'Category ')]/ancestor::component-select//span[@class='dropdown-btn']");
-    this.txt_chatagoriesoption = this.page.locator("//div[normalize-space()='Mini and Mum Care Center']");
+    this.txt_chatagoriesoption = this.page.locator("//*[contains(text(),' Category three1 ')]");
     this.txt_supportemail = this.page.getByRole('textbox', { name: 'Used for sending emails to' });
     this.txt_TCLink = this.page.locator("//input[@placeholder='T&Cs Link']");
     this.txt_website = this.page.locator("//input[@placeholder='Domain or URL']");
@@ -115,12 +115,28 @@ readonly MetaDiscriptioncheckbox:Locator;
    this.Robotname=this.page.locator("//span[normalize-space()='Robots']")
    this.CanonicalURL=this.page.locator("//input[@placeholder='Preferred version of the webpage chosen by search engines']")
    this.txt_Facebook=this.page.locator("//component-input[@formcontrolname='facebook']//input[@placeholder='my_charity']");
-   //this.txt_SearchBox= this.page.locator("//input[@placeholder='Press ENTER to search']");
+
   
-}
+ 
+
+    
+
+
+
+
+
+
+
+
+
+    
+  }
   
+
   
-  
+
+
+
   // Create Charities
   
 
@@ -222,8 +238,10 @@ await this.playwrightFactory.fill(this.CanonicalURL,strtitle)
 async user_enters_facebook_link(strfacebook: string){
     await this.playwrightFactory.fill(this.txt_Facebook, strfacebook);
   }
+
+  
+
  
-    
 
 
 

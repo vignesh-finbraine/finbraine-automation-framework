@@ -68,7 +68,7 @@ readonly Notification_Heading:Locator;
   readonly close_expiry_date: Locator;
   readonly type_drpdwn: Locator;
   readonly select_type: Locator;
-  readonly create_credit: Locator;
+  readonly store_credit: Locator;
   readonly ok_btn: Locator;
   readonly credit_history: Locator;
   readonly coloumn: Locator
@@ -139,7 +139,7 @@ this.emt_homepage_reporting = this.page.getByText('Reporting', { exact: true });
     //this.Account_Manager_Name= this.page.locator("//*[contains(text(),'Account Manager ')]/ancestor::component-select//*[contains(text(),' Suraj W ')]");
     this.Update_Membership_btn= this.page.locator("//*[contains(text(),'Update Membership')]");
     this.Status= this.page.locator("//*[contains(text(),'Active Status')]/ancestor::component-checkbox//span[@class='checkbox__tick']");
-    this.Membership_type_classic=this.page.locator("//*[contains(text(),'Membership Type')]/ancestor::component-select//*[contains(text(),'Classic')]")
+    this.Membership_type_classic=this.page.locator("(//*[contains(text(),'Membership Type')]/ancestor::component-select//*[contains(text(),'Classic')])[2]")
     this.Expiry_Past_Date= this.page.locator("//*[contains(text(),'may')]");
     this.Expiry_Date_Error_Msg= this.page.locator("//*[contains(text(),' The expiry date should be greater than 1 month or more ')]");
     this.Type_Partner= this.page.locator("//*[contains(text(),'Membership Type')]/ancestor::component-select//*[contains(text(), 'Partner ')]");
@@ -172,7 +172,7 @@ this.emt_homepage_reporting = this.page.getByText('Reporting', { exact: true });
     this.close_expiry_date = this.page.locator("//span[normalize-space()='Close']");
     this.type_drpdwn = this.page.locator("//span[contains(text(),'Select Type')]");
     this.select_type = this.page.locator("//div[normalize-space()='Membership Allocation']");
-    this.create_credit = this.page.locator("//div[normalize-space()='Create Credit']");
+    this.store_credit = this.page.locator("//div[normalize-space()='Store Credit']");
     this.ok_btn = this.page.locator("//button[normalize-space()='OK']");
     this.credit_history = this.page.locator("//h2[normalize-space()='Credit History']");
     this.coloumn = this.page.locator("//tr[4]//td[4]");
@@ -355,7 +355,7 @@ async users_adds_credit(){
 }
  
 async user_enters_credit_successfully(){
-  await expect(this.create_credit).toContainText('Create Credit');
+  await expect(this.store_credit).toContainText('Store Credit');
   await this.playwrightFactory.click(this.ok_btn);
 }
  

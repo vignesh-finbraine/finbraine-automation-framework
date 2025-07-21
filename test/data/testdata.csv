@@ -90,59 +90,13 @@ TC_147,Enquiry_Management,0,RANDOM_ALPHA_NUMERIC,RANDOM_EMAIL
 TC_148,Enquiry_Management,0,RANDOM_ALPHA_NUMERIC,RANDOM_EMAIL
 TC_149,Enquiry_Management,0,RANDOM_ALPHA_NUMERIC,RANDOM_EMAIL
 TC_150_151,Enquiry_Management,0,RANDOM_ALPHA_NUMERIC,RANDOM_EMAIL
-TC_01_02_03,Bifurcating role Account Management,0,RANDOM_ALPHA_NUMERIC,RANDOM_EMAIL
-TC_04_05,Bifurcating role Account Management,0,RANDOM_ALPHA_NUMERIC,RANDOM_EMAIL
-TC_06_07,Bifurcating role Account Management,0,RANDOM_ALPHA_NUMERIC,RANDOM_EMAIL
-TC_08,Bifurcating role Account Management,0,RANDOM_ALPHA_NUMERIC,RANDOM_EMAIL
-TC_01 | TC_03,Bifurcating Roles-Charity Moule,0,RANDOM_ALPHA_NUMERIC,RANDOM_EMAIL
-TC_02  | TC_04	,Bifurcating Roles-Charity Moule,0,RANDOM_ALPHA_NUMERIC,RANDOM_EMAIL
-TC_05 ,Bifurcating Roles-Charity Moule,0,RANDOM_ALPHA_NUMERIC,RANDOM_EMAIL
-TC_06,Bifurcating Roles-Charity Moule,0,RANDOM_ALPHA_NUMERIC,RANDOM_EMAIL
-TC_07,Bifurcating Roles-Charity Moule,0,RANDOM_ALPHABET,RANDOM_EMAIL
-TC_09 | TC_11,Bifurcating Roles-Charity Moule,0,RANDOM_ALPHABET,RANDOM_EMAIL
-TC_08 | TC_10,Bifurcating Roles-Charity Moule,0,RANDOM_ALPHABET,RANDOM_EMAIL
-TC_13,Bifurcating Roles-Charity Moule,0,RANDOM_ALPHABET,RANDOM_EMAIL
-TC_14,Bifurcating Roles-Charity Moule,0,RANDOM_ALPHABET,RANDOM_EMAIL
-TC_15,Bifurcating Roles-Charity Moule,0,RANDOM_ALPHABET,RANDOM_EMAIL
-TC_16,Bifurcating Roles-Charity Moule,0,RANDOM_ALPHA_NUMERIC,RANDOM_EMAIL
-TC_17,Bifurcating Roles-Charity Moule,0,RANDOM_ALPHA_NUMERIC,RANDOM_EMAIL
-TC_01_TC_02_TC_03_TC_04_TC_05_TC_06_TC_07_TC_08_TC_09_TC_10_TC_11_TC_12_TC_S01_TC_S02_TC_S03_TC_S04_TC_S05,Website Homepage,0,RANDOM_ALPHA_NUMERIC,RANDOM_EMAIL
-TC_S09_TC_S10__TC_S11_TC_S12_TC_S13_TC_S15,Website Signup Page/Forgot_Page/Reset_password,0,RANDOM_ALPHABET,RANDOM_EMAIL
-TC_S16,Website Signup Page/Login page,0,RANDOM_ALPHA_NUMERIC,RANDOM_EMAIL
-TC_S17_TC_S18_TC_S19_TC_S30_TC_S21_TC_S22_TCS_23_TC_S24_TC_S25_TC_S27_TC_S28_TC_S29_TC_S31,Website Signup Page/charity page,0,RANDOM_ALPHA_NUMERIC,RANDOM_EMAIL
-TC_R42_TC_R43,Website Register for event page,0,RANDOM_ALPHA_NUMERIC,RANDOM_EMAIL
-TC_R47,Website Register for event page,0,RANDOM_ALPHA_NUMERIC,RANDOM_EMAIL
-UJ_TC_01,User_Journey_Sign_Up_Page as Partipant,0,RANDOM_ALPHA_NUMERIC,RANDOM_EMAIL
-UJ_TC_02,User_Journey_Login_Page as Partipant,0,RANDOM_ALPHA_NUMERIC,RANDOM_EMAIL
-UJ_TC_03,Runner--> Subscribe for a Newsletter,0,RANDOM_ALPHA_NUMERIC,RANDOM_EMAIL
-UJ_TC_01, User Journey from Portal Admin,0,RANDOM_ALPHA_NUMERIC,RANDOM_EMAIL
-UJ_TC_002, User Journey from Portal Admin,0,RANDOM_ALPHA_NUMERIC,RANDOM_EMAIL
-UJ_TC_03, User Journey from Portal Admin,0,RANDOM_ALPHA_NUMERIC,RANDOM_EMAIL
-UJ_TC_04, User Journey from Portal Admin,0,RANDOM_ALPHA_NUMERIC,RANDOM_EMAIL
-UJ_TC_05, User Journey from Portal Admin,0,RANDOM_ALPHA_NUMERIC,RANDOM_EMAIL
-UJ_TC_06, User Journey from Portal Charity,0,RANDOM_ALPHA_NUMERIC,RANDOM_EMAIL
-TC_29_30,Home Page,0,RANDOM_ALPHA_NUMERIC,RANDOM_EMAIL
-TC_44_45_46_47_48,Home Page,0,RANDOM_ALPHA_NUMERIC,RANDOM_EMAIL
-TC_63_64_65_66_67_68_69_70_71,Home Page,0,RANDOM_ALPHA_NUMERIC,RANDOM_EMAIL
-TC_15_16_17_18_31_32_33_34_35_36_37_38_39_40_41,Registration Event page,0,RANDOM_ALPHA_NUMERIC,RANDOM_EMAIL
-UJ_TC_01,Runner--> Find an Event and registering Interest for any event,0,RANDOM_ALPHA_NUMERIC,RANDOM_EMAIL
-UJ_TC_02,Runner--> Find an Event and registering Interest for any event,0,RANDOM_ALPHA_NUMERIC,RANDOM_EMAIL
-UJ_TC_03,Runner--> Find an Event and registering Interest for any event,0,RANDOM_ALPHA_NUMERIC,RANDOM_EMAIL
-UJ_TC_04,Runner--> Find an Event and registering Interest for any event,0,RANDOM_ALPHA_NUMERIC,RANDOM_EMAIL
-UJ_TC_05,Runner--> Find an Event and registering Interest for any event,0,RANDOM_ALPHA_NUMERIC,RANDOM_EMAIL
-UJ_TC_06,Runner--> Find an Event and registering Interest for any event,0,RANDOM_ALPHA_NUMERIC,RANDOM_EMAIL
-UJ_TC_07,Runner--> Find an Event and registering Interest for any event,0,RANDOM_ALPHA_NUMERIC,RANDOM_EMAIL
-UJ_TC_08,Runner--> Find an Event and registering Interest for any event,0,RANDOM_ALPHA_NUMERIC,RANDOM_EMAIL
-UJ_TC_09,Runner--> Find an Event and registering Interest for any event,0,RANDOM_ALPHA_NUMERIC,RANDOM_EMAIL
-UJ_TC_10,Runner--> Find an Event and registering Interest for any event,0,RANDOM_ALPHA_NUMERIC,RANDOM_EMAIL
-UJ_TC_01,Portal--> Account Manager,0,RANDOM_ALPHA_NUMERIC,RANDOM_EMAIL
-UJ_TC_02,Portal--> Account Manager,0,RANDOM_ALPHA_NUMERIC,RANDOM_EMAIL
-UJ_TC_03,Portal--> Account Manager,0,RANDOM_ALPHA_NUMERIC,RANDOM_EMAIL
-UJ_TC_04,Portal--> Account Manager,0,RANDOM_ALPHA_NUMERIC,RANDOM_EMAIL
-UJ_TC_05,Portal--> Account Manager,0,RANDOM_ALPHA_NUMERIC,RANDOM_EMAIL
-UJ_TC_06,Portal--> Account Manager,0,RANDOM_ALPHA_NUMERIC,RANDOM_EMAIL
-UJ_TC_07,Portal--> Account Manager,0,RANDOM_ALPHA_NUMERIC,RANDOM_EMAIL
-UJ_TC_08,Portal--> Account Manager,0,RANDOM_ALPHA_NUMERIC,RANDOM_EMAIL
-UJ_TC_09,Portal--> Account Manager,0,RANDOM_ALPHA_NUMERIC,RANDOM_EMAIL
-UJ_TC_10,Portal--> Account Manager,0,RANDOM_ALPHA_NUMERIC,RANDOM_EMAIL
-UJ_TC_11,Portal--> Account Manager,0,RANDOM_ALPHA_NUMERIC,RANDOM_EMAIL
+TC_02_TC_03_TC_08,Bifurcating Roles- Charity Module,0,RANDOM_ALPHA_NUMERIC,RANDOM_EMAIL
+TC_01_TC_02_TC_08_TC_09,Website-Registration For an Event-Register Interest,0,RANDOM_ALPHA_NUMERIC,RANDOM_EMAIL
+TC_04_TC_07_TC_10,Website-Registration For an Event-Register Interest,0,RANDOM_ALPHA_NUMERIC,RANDOM_EMAIL
+TC_04,Bifurcating Roles- Charity Module,0,RANDOM_ALPHA_NUMERIC,RANDOM_EMAIL
+TC_001,User Journey-Find a Charity and registering for any event,0,RANDOM_ALPHA_NUMERIC,RANDOM_EMAIL
+TC_002,User Journey-Find a Charity and registering for any event,0,RANDOM_ALPHA_NUMERIC,RANDOM_EMAIL
+TC_003,User Journey-Find a Charity and registering for any event,0,RANDOM_ALPHA_NUMERIC,RANDOM_EMAIL
+TC_004,User Journey-Find a Charity and registering for any event,0,RANDOM_ALPHA_NUMERIC,RANDOM_EMAIL
+TC_005,User Journey-Find a Charity and registering for any event,0,RANDOM_ALPHA_NUMERIC,RANDOM_EMAIL
+TC_006,User Journey-Find a Charity and registering for any event,0,RANDOM_ALPHA_NUMERIC,RANDOM_EMAIL

@@ -7,7 +7,7 @@ import { DatabricksSQLwarehouse } from '../../utilities/databricks_sqlware';
 import { DatabricksFactoryDBFS } from '../../utilities/databricks_dbfs';
 
 
-export class WEBSITE_LOGIN_PAGE {
+export class WEBSITE_SOUTH_EAST_REGIONS_PAGE {
   private page: Page;
   private testInfo: TestInfo;
   private playwrightFactory: PlaywrightFactoryActions;
@@ -22,8 +22,11 @@ export class WEBSITE_LOGIN_PAGE {
   //**Declare */
 
 
-readonly txt_Profile_Icon: Locator;
-readonly txt_Login: Locator;
+readonly txt_Find_an_Event: Locator;
+readonly txt_Regions: Locator;
+readonly txt_Upcoming_Events_Title: Locator;
+readonly txt_South_East_Title: Locator;
+readonly txt_Associated_Events_Count: Locator;
 
 
 
@@ -63,8 +66,13 @@ readonly txt_Login: Locator;
     /******************** Page Objects ************************/
     this.emt_homepage_reporting = this.page.getByText('Reporting', { exact: true });
     this.link_search_open = this.page.getByRole('link', { name: 'Portal open' });
-    this.txt_Profile_Icon=this.page.locator("#dropdownMenu")
-    this.txt_Login=this.page.locator("//a[normalize-space()='Login']")
+    this.txt_Find_an_Event=this.page.locator("//div[@class='header__item']//div[@title='Find an Event']")
+    this.txt_Regions=this.page.locator("(//div[@class='header__sub-item']//*[contains(text(),'Regions')])[1]")
+    this.txt_Upcoming_Events_Title=this.page.locator("//h2[normalize-space()='Upcoming Events']")
+    this.txt_South_East_Title=this.page.locator("//h1[normalize-space()='South East']")
+    this.txt_Associated_Events_Count=this.page.locator("//div[@class='card8__container']")
+    
+
     
     
 
@@ -88,17 +96,43 @@ readonly txt_Login: Locator;
     await this.playwrightFactory.launchApplication(url);
   }
 
-  async user_hover_profile_icon(){
-    await this.txt_Profile_Icon.hover();
+  async user_verify_find_an_event(){
+    await expect(this.txt_Find_an_Event).toBeVisible();
   }
 
-  async user_verify_login(){
-    await expect(this.txt_Login).toBeVisible();
+  async user_hover_on_find_an_event(){
+    await this.txt_Find_an_Event.hover();
   }
 
-  async user_click_on_login(){
-    await this.playwrightFactory.click(this.txt_Login)
+  async user_verify_regions(){
+    await expect(this.txt_Regions).toBeVisible();
   }
+
+  async user_click_on_regions(){
+    await this.playwrightFactory.click(this.txt_Regions);
+  }
+
+  async user_verify_south_east_title(){
+    await expect(this.txt_South_East_Title).toBeVisible();
+  }
+
+  async user_verify_the_title_of_upcoming_events(){
+    await expect(this.txt_Upcoming_Events_Title).toBeVisible();
+  }
+
+  async user_verify_associated_events_count(){
+    await expect(this.txt_Associated_Events_Count).toBeVisible();
+  }
+
+
+
+  
+
+
+
+
+
+
 
 
   
