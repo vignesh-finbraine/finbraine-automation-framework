@@ -60,7 +60,30 @@ readonly Roll_drpdwn: Locator;
 readonly Roll_AccountManager: Locator;
 readonly Switch_Roll_btn: Locator;
 readonly Roll_Admin: Locator;
+readonly drpdwn_User_Role: Locator;
 
+readonly txt_Account_Manager_Role: Locator;
+
+readonly txt_Participant_Role_Dashboard: Locator;
+
+readonly txt_Participant_Role_My_Profile: Locator;
+
+readonly txt_Participant_Role_My_Events: Locator;
+
+readonly txt_Participant_Role_Entries: Locator;
+
+readonly txt_Participant_Role_Book_Events: Locator;
+
+readonly txt_Participant_Role_Support: Locator;
+
+readonly link_Administrator_Active_Role: Locator;
+
+readonly txt_Switch_Role: Locator;
+
+readonly txt_Account_Manager_Active_Role: Locator;
+
+readonly txt_Administrator: Locator;
+ 
 
 
 
@@ -131,7 +154,18 @@ this.emt_homepage_reporting = this.page.getByText('Reporting', { exact: true });
     this.Switch_Roll_btn= this.page.locator("//*[contains(text(),'Switch Role')]/ancestor::component-button");
     this.Roll_Admin= this.page.locator("//*[contains(text(),'Administrator')]");
 
-
+    this.drpdwn_User_Role=this.page.locator("(//*[contains(text(),'Administrator · Active ')])[1]")
+    this.txt_Account_Manager_Role=this.page.locator("//*[contains(text(),' AccountManager ')]")
+    this.txt_Participant_Role_Dashboard=this.page.locator("//*[contains(text(),' Dashboard ')]/ancestor::component-sidebar//a[@class='sidebar__item router-link-active']")
+    this.txt_Participant_Role_My_Profile=this.page.locator("(//*[contains(text(),' My Profile ')])[2]")
+    this.txt_Participant_Role_My_Events=this.page.locator("//*[contains(text(),' My Events ')]")
+    this.txt_Participant_Role_Entries=this.page.locator("(//*[contains(text(),' Entries ')]/ancestor::component-sidebar//a[@class='sidebar__item'])[3]")
+    this.txt_Participant_Role_Book_Events=this.page.locator("//*[contains(text(),' Book Events ')]")
+    this.txt_Participant_Role_Support=this.page.locator("//a[@class='sidebar__item'][normalize-space()='Support']")
+    this.link_Administrator_Active_Role=this.page.locator("(//ng-multiselect-dropdown[@class='multi-select ng-untouched ng-valid ng-dirty']/ancestor::component-sidebar//div[@class='multiselect-dropdown'])[1]")
+    this.txt_Switch_Role=this.page.locator("//*[contains(text(),'Switch Role')]")
+    this.txt_Account_Manager_Active_Role=this.page.locator("(//ng-multiselect-dropdown[@class='multi-select ng-untouched ng-valid ng-dirty']/ancestor::component-sidebar//div[@class='multiselect-dropdown'])[1]")
+    this.txt_Administrator=this.page.locator("//*[contains(text(),' Administrator')]")
 
 
 
@@ -289,11 +323,85 @@ async user_Verify_Participant_can_not_access_marketing_management(){
 }
 
 
+async user_verify_charity_management(){
 
+  await expect(this.element_CharityManagement).toBeVisible();
 
+}
+async user_click_partner_charity_history(){
+  await this.playwrightFactory.click(this.lnk_partner_charity_history);
+}
 
+async user_click_contract(){
 
+  await this.playwrightFactory.click(this.lnk_contract);
 
+}
+ 
+async user_verify_user_role(){
+  await expect(this.drpdwn_User_Role).toBeVisible();
+}
+async user_verify_account_manager_role(){
+  await expect(this.txt_Account_Manager_Role).toBeVisible();
+}
+ 
+async user_verify_charity_management_not_present(){
+    await expect(this.element_CharityManagement).toBeHidden();
+  }
+ 
+  async user_verify_participant_role_dashboard(){
+  await expect(this.txt_Participant_Role_Dashboard).toBeVisible();
+}
+ 
+async user_verify_participant_role_my_profile(){
+  await expect(this.txt_Participant_Role_My_Profile).toBeVisible();
+}
+ 
+async user_verify_participant_role_my_events(){
+  await expect(this.txt_Participant_Role_My_Events).toBeVisible();
+  await this.page.waitForTimeout(3000);
+}
+ 
+async user_verify_participant_role_entries(){
+  await expect(this.txt_Participant_Role_Entries).toBeVisible();
+}
+ 
+async user_verify_participant_role_book_events(){
+  await expect(this.txt_Participant_Role_Book_Events).toBeVisible();
+}
+ 
+ 
+async user_verify_participant_role_support(){
+  await expect(this.txt_Participant_Role_Support).toBeVisible();
+}
+ 
+async user_verify_administrator_active_role(){
+  await expect(this.link_Administrator_Active_Role).toBeVisible();
+}
+ 
+async user_clicks_administrator_active_role(){
+  await this.playwrightFactory.click(this.link_Administrator_Active_Role);
+}
+ 
+async user_clicks_account_manager_role(){
+  await this.playwrightFactory.click(this.txt_Account_Manager_Role);
+}
+ 
+async user_verify_switch_role(){
+  await expect(this.txt_Switch_Role).toBeVisible();
+}
+ 
+async user_clicks_switch_role(){
+  await this.playwrightFactory.click(this.txt_Switch_Role);
+}
+ 
+async user_click_account_manager_active_role(){
+  await this.playwrightFactory.click(this.txt_Account_Manager_Active_Role);
+}
+ 
+async user_clicks_administrator(){
+  await this.playwrightFactory.click(this.txt_Administrator);
+}
 
 }
 

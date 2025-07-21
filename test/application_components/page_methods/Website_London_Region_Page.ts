@@ -7,7 +7,8 @@ import { DatabricksSQLwarehouse } from '../../utilities/databricks_sqlware';
 import { DatabricksFactoryDBFS } from '../../utilities/databricks_dbfs';
 
 
-export class WEBSITE_ALL_REGIONS_PAGE {
+export class  WEBSITE_LONDON_REGIONS_PAGE
+{
   private page: Page;
   private testInfo: TestInfo;
   private playwrightFactory: PlaywrightFactoryActions;
@@ -16,21 +17,21 @@ export class WEBSITE_ALL_REGIONS_PAGE {
   private databricks_sqlware: DatabricksSQLwarehouse;
   private databricks_dbfs: DatabricksFactoryDBFS;
 
-  readonly emt_homepage_reporting: Locator;
-  readonly link_search_open: Locator;
   
 
   //**Declare */
 
-readonly Region_East_England: Locator;
-
-readonly txt_search_bar:Locator;
-  readonly link_london_event:Locator;
-
   readonly txt_Find_an_Event: Locator;
-  readonly txt_Regions: Locator;
-  readonly txt_All_Regions: Locator;
-  readonly txt_Associated_Event_Counts: Locator;
+
+readonly txt_Regions: Locator;
+
+readonly txt_London_Title: Locator;
+
+readonly txt_Associated_Events: Locator;
+ 
+
+
+
 
 
 
@@ -59,33 +60,22 @@ readonly txt_search_bar:Locator;
     this.databricks_dbfs = container.resolve('databricks_dbfs');
 
     /******************** Page Objects ************************/
-this.emt_homepage_reporting = this.page.getByText('Reporting', { exact: true });
-    this.link_search_open = this.page.getByRole('link', { name: 'Portal open' });
-    this.Region_East_England= this.page.locator("//a[@href='/regions/charity-runs-east-of-england']/ancestor::component-card9//*[contains(text(),'Charity Runs East of England')]");
-  
-    this.txt_search_bar=this.page.locator('//input[@placeholder="Press ENTER to search Regions"]');
-    this.link_london_event=this.page.locator('(//*[contains(text(), "London")]/ancestor::component-card9//*[contains(text(), "0 Events")])[1]');
     this.txt_Find_an_Event=this.page.locator("//div[@class='header__item']//div[@title='Find an Event']")
     this.txt_Regions=this.page.locator("(//div[@class='header__sub-item']//*[contains(text(),'Regions')])[1]")
-    this.txt_All_Regions=this.page.locator("//div[@class='header__sub-body']//*[contains(text(),' All Regions')]")
-    this.txt_Associated_Event_Counts=this.page.locator("//div[@class='d-flex flex-wrap pt-3']")
-    
+    this.txt_London_Title=this.page.locator("//h1[normalize-space()='London']")
+    this.txt_Associated_Events=this.page.locator("//div[@class='card__list3 mb-4']")
+ 
+  
 
-   
-    
+  
+
   }
-  async user_click_region(){
-    await this.playwrightFactory.click(this.Region_East_England);
-  }
- 
-  async user_enter_region_in_search_bar(strregion:string){
-    await this.playwrightFactory.click(this.txt_search_bar);
-    await this.playwrightFactory.fill(this.txt_search_bar,strregion);
+
+  async user_launches_application() {
+    let url = process.env.APP_URL || "https://rfc-staging.sportsmediaagency.com/"
+    await this.playwrightFactory.launchApplication(url);
   }
  
-  async user_click_london_event(){
-    await this.playwrightFactory.click(this.link_london_event);
-  }
   async user_verify_find_an_event(){
     await expect(this.txt_Find_an_Event).toBeVisible();
   }
@@ -102,25 +92,17 @@ this.emt_homepage_reporting = this.page.getByText('Reporting', { exact: true });
     await this.playwrightFactory.click(this.txt_Regions);
   }
  
-  async user_verify_all_regions(){
-    await expect(this.txt_All_Regions).toBeVisible();
+  async user_verify_london_title(){
+    await expect(this.txt_London_Title).toBeVisible();
   }
  
-  async user_click_on_all_regions(){
-    await this.playwrightFactory.click(this.txt_All_Regions);
+  async user_verify_associated_events(){
+    await expect(this.txt_Associated_Events).toBeVisible();
   }
- 
-  async user_verify_associated_event_counts(){
-    await expect(this.txt_Associated_Event_Counts).toBeVisible();
-  }
-  
-
- 
-
- 
 
 
 
 
 }
+
 

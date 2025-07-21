@@ -166,3 +166,25 @@ TC_05_UJ_Website Visitors_View the Fundraising ideas using the Fundraising Menu,
 TC_05_UJ_Website Visitor_View the Partners from the Home Page,Website Visitors,0,RANDOM_ALPHA_NUMERIC,RANDOM_EMAIL
 TC_05_UJ_Website Visitor_Use Blogs and Content to view the Information,Website Visitors,0,RANDOM_ALPHA_NUMERIC,RANDOM_EMAIL
 Portal_Event Manager_Login to Portal and view their Dashboard,Event_Manager,0,RANDOM_ALPHA_NUMERIC,RANDOM_EMAIL
+TC_01,Bifurcating Roles- Charity Module,0,RANDOM_ALPHA_NUMERIC,RANDOM_EMAIL
+TC_02_TC_03_TC_08,Bifurcating Roles- Charity Module,0,RANDOM_ALPHA_NUMERIC,RANDOM_EMAIL
+TC_04,Bifurcating Roles- Charity Module,0,RANDOM_ALPHA_NUMERIC,RANDOM_EMAIL
+TC_05_TC_09,Bifurcating Roles- Charity Module,0,RANDOM_ALPHA_NUMERIC,RANDOM_EMAIL
+TC_06_TC_10,Bifurcating Roles- Charity Module,0,RANDOM_ALPHA_NUMERIC,RANDOM_EMAIL
+TC_07_TC_11,Bifurcating Roles- Charity Module,0,RANDOM_ALPHA_NUMERIC,RANDOM_EMAIL
+TC_12,Bifurcating Roles- Charity Module,0,RANDOM_ALPHA_NUMERIC,RANDOM_EMAIL
+TC_37,Website- Find an Event-Regions-Home Page,0,RANDOM_ALPHA_NUMERIC,RANDOM_EMAIL
+TC_38,Website- Find an Event-Regions-Home Page,0,RANDOM_ALPHA_NUMERIC,RANDOM_EMAIL
+TC_39,Website- Find an Event-Regions-Home Page,0,RANDOM_ALPHA_NUMERIC,RANDOM_EMAIL
+TC_40,Website- Find an Event-Regions-Home Page,0,RANDOM_ALPHA_NUMERIC,RANDOM_EMAIL
+TC_41,Website- Find an Event-Regions-Home Page,0,RANDOM_ALPHA_NUMERIC,RANDOM_EMAIL
+TC_01_TC_02_TC_08_TC_09,Website-Registration For an Event-Register Interest,0,RANDOM_ALPHA_NUMERIC,RANDOM_EMAIL
+TC_04_TC_07_TC_10,Website-Registration For an Event-Register Interest,0,RANDOM_ALPHA_NUMERIC,RANDOM_EMAIL
+TC_001,User Journey-Find a Charity and registering for any event,0,RANDOM_ALPHA_NUMERIC,RANDOM_EMAIL
+TC_002,User Journey-Find a Charity and registering for any event,0,RANDOM_ALPHA_NUMERIC,RANDOM_EMAIL
+TC_003,User Journey-Find a Charity and registering for any event,0,RANDOM_ALPHA_NUMERIC,RANDOM_EMAIL
+TC_004,User Journey-Find a Charity and registering for any event,0,RANDOM_ALPHA_NUMERIC,RANDOM_EMAIL
+TC_005,User Journey-Find a Charity and registering for any event,0,RANDOM_ALPHA_NUMERIC,RANDOM_EMAIL
+TC_006,User Journey-Find a Charity and registering for any event,0,RANDOM_ALPHA_NUMERIC,RANDOM_EMAIL
+TC_07,User Journey-Portal Charity User- Marketing Management,0,RANDOM_ALPHA_NUMERIC,RANDOM_EMAIL
+TC_08,User Journey-Portal Charity User-Event Management,0,RANDOM_ALPHA_NUMERIC,RANDOM_EMAIL

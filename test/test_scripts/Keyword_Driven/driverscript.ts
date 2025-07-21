@@ -64,6 +64,14 @@ import { Website_Search_Page } from '../../application_components/page_methods/W
 import { Payment_details } from '../../application_components/page_methods/Website_payment_details';
 import { Setup_account } from '../../application_components/page_methods/Website_setup_your_account';
 import { Website_visitors } from '../../application_components/page_methods/Website_user_story_visitors';
+import { Contract_in_Charity_Management } from '../../application_components/page_methods/Contract_in_Charity_Management';
+import { PORTAL_MARKETING_MANAGEMENT_PAGE } from '../../application_components/page_methods/Portal_Marketing_Management_Page';
+import { WEBSITE_CHARITY_REGISTER_NOW_PAGE } from '../../application_components/page_methods/Website_Charity_Register_Now_Page';
+import { WEBSITE_LONDON_REGIONS_PAGE } from '../../application_components/page_methods/Website_London_Region_Page';
+import { WEBSITE_MIDLANDS_REGIONS_PAGE } from '../../application_components/page_methods/Website_Midlands_Region_Page';
+import { WEBSITE_NORTH_WEST_REGIONS_PAGE } from '../../application_components/page_methods/Website_North_West_Region_Page';
+import { WEBSITE_REGISTER_MY_CHARITY_PAGE } from '../../application_components/page_methods/Website_Register_My_Charity_Page';
+import { WEBSITE_SOUTH_EAST_REGIONS_PAGE } from '../../application_components/page_methods/Website_South_East_Region_Page';
 
 export class DriverScript {
 
@@ -132,7 +140,14 @@ export class DriverScript {
     container.register('Website_payment_details', new Payment_details(container));
     container.register('Website_setup_your_account', new Setup_account(container));
     container.register('Website_user_story_visitors', new Website_visitors(container));
-
+    container.register('Contract_in_Charity_Management', new Contract_in_Charity_Management(container));
+    container.register('Portal_Marketing_Management_Page', new PORTAL_MARKETING_MANAGEMENT_PAGE(container));
+    container.register('Website_Charity_Register_Now_Page', new WEBSITE_CHARITY_REGISTER_NOW_PAGE(container));
+    container.register('Website_London_Region_Page', new WEBSITE_LONDON_REGIONS_PAGE(container));
+    container.register('Website_Midlands_Region_Page', new WEBSITE_MIDLANDS_REGIONS_PAGE(container));
+    container.register('Website_North_West_Region_Page', new WEBSITE_NORTH_WEST_REGIONS_PAGE(container));
+    container.register('Website_Register_My_Charity_Page', new WEBSITE_REGISTER_MY_CHARITY_PAGE(container));
+    container.register('Website_South_East_Region_Page', new WEBSITE_SOUTH_EAST_REGIONS_PAGE(container));
     /* API Page Methods*/
     container.register('trax_trackshipmet_apis', new TrackShipmentAPI(container));
     

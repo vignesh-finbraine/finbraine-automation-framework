@@ -40,7 +40,8 @@ export class website_Login_page {
  readonly Password: Locator;
  readonly Loging_btn: Locator;
 
-
+ readonly txt_Profile_Icon: Locator;
+ readonly txt_Login: Locator;
 
 
 
@@ -83,6 +84,17 @@ export class website_Login_page {
     this.email= this.page.locator("#email");
     this.Password= this.page.locator("#password");
     this.Loging_btn= this.page.locator("//*[contains(text(),'Log In')]/ancestor::component-button//*[contains(text(),'Log In')]");
+
+    this.txt_Profile_Icon=this.page.locator("#dropdownMenu")
+    this.txt_Login=this.page.locator("//a[normalize-space()='Login']")
+
+
+
+
+
+
+
+
   }
   
   
@@ -169,7 +181,19 @@ async user_enter_login_email(striteration: any){
         await this.playwrightFactory.click(this.Loging_btn);
       }
 
-
+      
+     
+      async user_hover_profile_icon(){
+        await this.txt_Profile_Icon.hover();
+      }
+     
+      async user_verify_login(){
+        await expect(this.txt_Login).toBeVisible();
+      }
+     
+      async user_click_on_login(){
+        await this.playwrightFactory.click(this.txt_Login)
+      }
 
 
 
