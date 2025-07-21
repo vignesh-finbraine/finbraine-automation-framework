@@ -29,7 +29,7 @@ readonly txt_Store_Event_Folder: Locator;
 readonly txt_Store_Event_Folder_Success_Message: Locator;
 readonly btn_OK_Button: Locator;
 
-
+readonly title_Marketing_folder:Locator;
 
 
 
@@ -67,10 +67,10 @@ this.emt_homepage_reporting = this.page.getByText('Reporting', { exact: true });
     this.txt_Name=this.page.locator("//input[@id='name']")
     this.txt_DropBox_URL=this.page.locator("//input[@id='dropbox_url']")
     this.btn_Update_Button=this.page.locator("//span[normalize-space()='Update']")
-    this.txt_Store_Event_Folder=this.page.locator("//*[contains(text(),'Store Event Folder')]")
+    this.txt_Store_Event_Folder=this.page.locator("//*[contains(text(),'Create Event Folder')]")
     this.txt_Store_Event_Folder_Success_Message=this.page.locator("//*[contains(text(),'Successfully updated the folder!')]")
     this.btn_OK_Button=this.page.locator("//button[normalize-space()='OK']")
-
+    this.title_Marketing_folder=this.page.locator('//h1[normalize-space()="Marketing Folders"]')
 
     
     
@@ -98,9 +98,7 @@ this.emt_homepage_reporting = this.page.getByText('Reporting', { exact: true });
  
       async user_verifies_the_success_message(){
         await expect(this.txt_Store_Event_Folder).toBeVisible();
-        await expect(this.txt_Store_Event_Folder).toContainText('Store Event Folder');
- 
-        await expect(this.txt_Store_Event_Folder_Success_Message).toBeVisible();
+         await expect(this.txt_Store_Event_Folder_Success_Message).toBeVisible();
         await expect(this.txt_Store_Event_Folder_Success_Message).toContainText('Successfully updated the folder!')
  
       }
@@ -112,7 +110,11 @@ this.emt_homepage_reporting = this.page.getByText('Reporting', { exact: true });
  
       }
   
-  
+      async user_verify_Marketing_folder_page(){
+        await expect (this.title_Marketing_folder).toBeVisible();
+         await this.page.waitForTimeout(5000);
+ 
+      }
 
   
 

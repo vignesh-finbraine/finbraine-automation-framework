@@ -151,7 +151,6 @@ await this.playwrightFactory.fill(this.txt_name, username);
     await this.playwrightFactory.click(this.btn_OK);
     await this.page.waitForTimeout(5000);
   }
-  
   async user_verifies_and_clicks_site_drpdwn(){
   await expect(this.select_site).toBeVisible();
   await this.playwrightFactory.click(this.select_site);

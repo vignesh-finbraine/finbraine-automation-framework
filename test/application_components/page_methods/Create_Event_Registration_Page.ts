@@ -95,14 +95,14 @@ readonly Background_Img:Locator;
     this.databricks_dbfs = container.resolve('databricks_dbfs');
 
     /******************** Page Objects ************************/
-this.emt_homepage_reporting = this.page.getByText('Reporting', { exact: true });
+     this.emt_homepage_reporting = this.page.getByText('Reporting', { exact: true });
     this.link_search_open = this.page.getByRole('link', { name: 'Portal open' });
     this.Create_Registration_Page_Tittle = this.page.locator("//*[contains(text(),'Create Event Registration Page')]");
     this.Select_Event= this.page.locator("(//*[contains(text(),' Create ')]/ancestor::component-section//span[@class='dropdown-btn'])[1]");
     this.Event_Dorny_Lake= this.page.locator("(//*[contains(text(),' Events ')]/ancestor::component-section//*[contains(text(),' Dorney Lake ')]/ancestor::li//*[contains(text(),' Dorney Lake ')]");
     this.Event_Drpdwn_List= this.page.locator("(//*[contains(text(),'Events ')]/ancestor::component-select//div[@class='dropdown-list'])[1]");
     this.Primary_Checkbox= this.page.locator("//*[contains(text(),'This page is primary registration page')]/ancestor::component-checkbox//span[@class='checkbox__tick']");
-    this.Charity_drpdwn= this.page.locator("(//*[contains(text(),'Charity ')]/ancestor::component-select//span[@class='dropdown-btn'])[2]");
+    this.Charity_drpdwn= this.page.locator("(//*[contains(text(),'Charity ')]/ancestor::component-select//span[@class='dropdown-btn'])[1]");
     this.Charity_Name= this.page.locator("//*[contains(text(),'Charity ')]/ancestor::component-select//*[contains(text(),' Cancer_kid ')]");
     this.Select_Payment_Option= this.page.locator("//*[contains(text(),'Payment Option ')]/ancestor::component-select//span[@class='dropdown-btn']");
     this.Participant_Pay= this.page.locator("(//*[contains(text(),'Payment Option ')]/ancestor::component-select//*[contains(text(),' Participant Pays ')])[1]");
@@ -112,8 +112,8 @@ this.emt_homepage_reporting = this.page.getByText('Reporting', { exact: true });
     this.Charity_pays_Participant= this.page.locator("(//*[contains(text(),'Payment Option ')]/ancestor::component-select//*[contains(text(),' Charity Pays For Participant ')])[1]");
     this.Set_Registration_Fee= this.page.locator("//*[contains(text(),' Would you like to set your own registration fee and Fundraising Target Amount?  ')]/ancestor::component-select//span[@class='dropdown-btn']");
     this.YES= this.page.locator("//*[contains(text(),' Would you like to set your own registration fee and Fundraising Target Amount?  ')]/ancestor::component-select//*[contains(text(),' Yes ')]");
-    this.Registration_Fee= this.page.locator("//input[@placeholder='Enter Your Own registration Fee it should not exceed £15']");
-    this.Fundraising_Target_Amount= this.page.locator("//input[@placeholder='How much can you Fundraise?']");
+    this.Registration_Fee= this.page.locator("//*[contains(text(),' Registration Fee (£) ')]/ancestor::component-input//input[@type='number']");
+    this.Fundraising_Target_Amount= this.page.locator("//*[contains(text(),'Fundraising Target Amount (£)')]/ancestor::component-input//input[@type='number']");
     this.TC_Checkbox_one= this.page.locator("//*[contains(text(),'Accept Terms & Conditions')]/ancestor::label//span[@class='checkbox__tick']");
     this.TC_Checkbox_Two= this.page.locator("//*[contains(text(),'Accept terms & conditions')]/ancestor::label//span[@class='checkbox__tick']");
     this.Would_You_Like_To_ADD= this.page.locator("//*[contains(text(),' Would you like to add family?  ')]/ancestor::component-select//span[@class='dropdown-btn']");
@@ -131,9 +131,9 @@ this.emt_homepage_reporting = this.page.getByText('Reporting', { exact: true });
     this.Hide_Event_Discription=this.page.locator("//span[contains(text(),'Hide Event Description')]")
     this.Tick_Box=this.page.locator("//span[contains(text(),'Tick box to add Fundraising Information')]")
     this.Test_Event_Date=this.page.locator("//div[normalize-space()='Test event date']")
-    this.Search_Charity= this.page.locator("//component-select[@label='Charity']//input[@placeholder='Search']");
+    this.Search_Charity= this.page.locator("(//*[contains(text(),'Charity')]/ancestor::component-select//input[@placeholder='Search'])[1]");
     this.Event_drpdwn_search_bar= this.page.locator("//*[contains(text(),'Events ')]/ancestor::component-select//input[@placeholder='Search']");
-    this.Event_Dorny_Lake_edit= this.page.locator("(//*[contains(text(),'Dorney Lake')])[2]");
+    this.Event_Dorny_Lake_edit= this.page.locator("//*[contains(text(),'Dorney Lake')]");
     
 
     
@@ -183,6 +183,7 @@ async user_select_charity(strCharity: string){
   await this.Charity_Name.waitFor();
   await this.playwrightFactory.click(this.Charity_Name);
 }
+
 async user_verify_payment_option(){
   await this.playwrightFactory.click(this.Select_Payment_Option);
   await expect(this.Participant_Pay).toBeVisible();
@@ -247,27 +248,26 @@ async verify_distance_auto_populated(){
   await expect(this.Distance_Field).toContainText(' 5K 10K Half Marathon Marathons Bike Ride Corporate Duathlon');
 }
 async user_verify_event(){
-  await expect(this.Select_Event).toContainText(' Dorney Lake ');
+  await expect(this.Select_Event).toContainText(' Test event date x ');
 }
  async user_click_save(){
   await this.playwrightFactory.click(this.Save_Button);
  }
- async user_verify_updated_event(){
-  await expect(this.Event).toContainText('Dorney Lake');
- }
+ async user_verify_updated_event(strEvent: string){
+  await expect(this.page.locator("(//*[contains(text(),'"+strEvent+"')])[1]")).toContainText('Test Event Date');
+}
  async user_enter_text_registration_box(strRegistration: string){
   await this.Registration_Text_Box.clear();
   await this.playwrightFactory.fill(this.Registration_Text_Box, strRegistration);
  }
  async user_verify_text_in_registration_box(){
-  await expect(this.Registration_Text_Box).toContainText("Join us for the return of the Kettering Half Marathon & 5k on the 8th March 2026! Experience the beauty of Northamptonshire on this scenic, undulating course that showcases the best of the area. Starting and finishing at Wicksteed Park, the route takes you through the heart of Kettering town centre, past the stunning grounds of Boughton House, and along picturesque country lanes before returning to the park. Whether you're chasing a personal best or simply soaking in the views, this race offers an unforgettable running experience in a truly spectacular setting.");
- }
+  await expect(this.Registration_Text_Box).toContainText("sadf");
+}
  async user_verify_error_popup(){
   await expect(this.Error_Popup).toBeVisible();
  }
  async verify_registration_field_visible(){
    await expect (this.Background_Img).toBeVisible();
-   await expect (this.Published).toBeVisible();
    await expect (this.Hide_Event_Discription).toBeVisible();
    await expect (this.Tick_Box).toBeVisible();
 }

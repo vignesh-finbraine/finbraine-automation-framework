@@ -49,7 +49,13 @@ readonly OK_BTN_Delete: Locator;
 readonly txt_Filter_Event_Folder_Search_Bar: Locator;
 readonly txt_Membership: Locator;
 
-
+readonly delete_created_event:Locator;
+readonly btn_close_search:Locator;
+readonly txt_no_record:Locator;
+readonly successfully_del_btn:Locator;
+readonly delete_created_tutorial:Locator;
+readonly last_ok:Locator;
+readonly txt_del_folder:Locator;
 
 
 
@@ -112,7 +118,13 @@ this.emt_homepage_reporting = this.page.getByText('Reporting', { exact: true });
     this.txt_Filter_Event_Folder_Search_Bar=this.page.locator("//*[contains(text(),'Filter Event Folders')]/ancestor::ngb-modal-window//input[@placeholder='Search']")
     this.txt_Membership=this.page.locator("//*[contains(text(),' Membership ')]/ancestor::component-select//input[@aria-label='Membership']")
     
-
+    this.delete_created_event=this.page.locator('//*[contains(text(), "Automation Marketing Folder")]/ancestor::component-table//component-button[.//span[normalize-space(text())="Delete"]]');
+    this.btn_close_search=this.page.locator('//*[@class="search__close"]');
+    this.txt_no_record=this.page.locator('//caption[normalize-space()="No records found!"]');
+    this.successfully_del_btn=this.page.locator('//*[contains(text(),"Successfully deleted the folder!")]/ancestor::div//button[@class="swal-button swal-button--cancel"]');
+    this.delete_created_tutorial=this.page.locator('//*[contains(text(), "Automation Marketing Tutorial")]/ancestor::component-table//component-button[.//span[normalize-space(text())="Delete"]]')
+    this.last_ok=this.page.locator("//*[contains(text(),'Delete Tutorial')]/ancestor::div//*[contains(text(),'OK')]");
+    this.txt_del_folder=this.page.locator('//*[contains(text(),"Delete Event Folder")]/ancestor::div//*[contains(text(),"OK")]');
 
 
 
@@ -222,7 +234,41 @@ async user_selects_items_per_page(strPagenumber: string){
  
     }      
 
-  
+    async user_verifies_delete_btn_visibility(){
+      await expect (this.delete_created_event).toBeVisible();
+    }
+    async user_delete_created_folder(){
+      await this.playwrightFactory.click(this.delete_created_event);
+ 
+}  
+ 
+    async user_click_ok_after_successfully_deleting(){
+      await this.playwrightFactory.click(this.successfully_del_btn);
+    }
+ 
+    async user_clicks_close_search(){
+      await this.playwrightFactory.click(this.btn_close_search);
+    }
+ 
+    async user_verifies_sucessfully_deleted_folder(){
+      await expect(this.txt_no_record).toBeVisible();
+    }
+ 
+    async user_deletes_created_tutorial(){
+      await this.playwrightFactory.click(this.delete_created_tutorial);
+    }
+ 
+    async user_clicks_last_ok(){
+      await this.playwrightFactory.clickForce(this.last_ok);
+      await this.page.waitForTimeout(3000);
+ 
+    }
+ 
+    async user_clicks_delete_btn_of_folder(){
+      await this.playwrightFactory.clickForce(this.txt_del_folder);
+      await this.page.waitForTimeout(3000);
+      //await this.page.pause();
+    }
 
 
 

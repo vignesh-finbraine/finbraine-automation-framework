@@ -222,7 +222,13 @@ async verify_pagination(){
  
 }
  
-
+async user_search_created_tutorial(strtutorial:string){
+  await this.playwrightFactory.click(this.Tutorial_Search_Bar);
+  await this.playwrightFactory.fill(this.Tutorial_Search_Bar,strtutorial);
+  await this.Tutorial_Search_Bar.press('Enter');
+  await this.page.waitForTimeout(5000);
+ 
+}
   
 
   

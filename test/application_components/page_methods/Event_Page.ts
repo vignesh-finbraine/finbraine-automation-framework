@@ -62,6 +62,9 @@ readonly btn_Charity_Summary: Locator;
 //readonly txt_Automation_Interstate_Marathonymb: Locator;
 readonly txt_Charity_Summary_For_Event: Locator;
 readonly txt_Automation_Interstate_Marathonymb: Locator;
+readonly btn_participant:Locator;
+readonly participant_table:Locator;
+readonly participant:Locator;
 
 
 
@@ -138,10 +141,10 @@ this.emt_homepage_reporting = this.page.getByText('Reporting', { exact: true });
    this.btn_Charity_Summary=this.page.locator("(//*[contains(@href,'charity-summary')]/ancestor::table//a[@href='/events/9f00a870-2f9b-4a47-bf47-8beb506c9155/charity-summary'])[2]");
    this.txt_Charity_Summary_For_Event=this.page.locator("//h2[contains(text(),'Charity Summary for Event: Automation Interstate M')]");
  this.txt_Automation_Interstate_Marathonymb=this.page.locator("//div[normalize-space()='Automation Interstate Marathonymb']");
-    
-    
-
-
+ this.btn_participant=this.page.locator("(//*[contains(text(),' Participants ')])[6]")
+ this.participant_table=this.page.locator("//*[contains(text(),'Participants')]/ancestor::component-table//table")
+ this.participant=this.page.locator("(//*[contains(text(),' Automation Using Playwright by Rutuja ')]/ancestor::tr//*[contains(text(),'Participants')])[2]")
+                                                        
 
 
 
@@ -197,6 +200,10 @@ async user_click_createbtn(){
     await this.page.waitForTimeout(3000);
     await this.page.keyboard.press('Enter');
   }
+
+
+
+  
   async user_verify_created_event(){
     await expect(this.Created_Event_Name).toBeVisible();
   }
@@ -210,6 +217,24 @@ async user_click_createbtn(){
    
    
 }
+async user_clicks_three_dots_for_participant(){
+  await this.Event_Name.hover()
+  await this.btn_three_dots.waitFor();
+  await this.playwrightFactory.clickForce(this.btn_three_dots);
+  await this.participant.waitFor();
+  await this.playwrightFactory.clickForce(this.btn_three_dots);
+  await this.playwrightFactory.clickForce(this.participant);
+ 
+ 
+ 
+}
+
+
+ async user_verify_participant_table(){
+ await expect(this.participant_table).toBeVisible();
+
+}
+
 async user_clicks_three_dots_for_custom_field(){
   await this.Event_Name.hover();
     await this.btn_three_dots.waitFor();

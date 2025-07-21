@@ -26,7 +26,12 @@ readonly Search_bar: Locator;
 readonly Search_button: Locator;
 readonly Distance_5K: Locator;
 
+readonly txt_search_bar:Locator;
 
+  readonly btn_search:Locator;
+
+  readonly link_5k_event:Locator;
+ 
 
 
 
@@ -64,7 +69,9 @@ this.emt_homepage_reporting = this.page.getByText('Reporting', { exact: true });
     this.Search_bar= this.page.locator("//input[@placeholder='Press ENTER to search Distances']");
      this.Search_button= this.page.locator("//*[contains(text(),'Search')]/ancestor::button");
      this.Distance_5K= this.page.locator("//a[@href='/distances/5k']/ancestor::component-card9//*[contains(text(),'5K')]")
-
+     this.txt_search_bar=this.page.locator('//input[@placeholder="Press ENTER to search Distances"]');
+     this.btn_search=this.page.locator('//span[normalize-space()="Search"]');
+     this.link_5k_event=this.page.locator('//*[contains(text(), "5K")]/ancestor::component-card9//*[contains(text(), "50 Events")]');
     
     
 
@@ -89,7 +96,18 @@ this.emt_homepage_reporting = this.page.getByText('Reporting', { exact: true });
     await this.playwrightFactory.click(this.Distance_5K);
   }
   
-
+  async user_search_distance_in_search_bar(strdistance:string){
+    await this.playwrightFactory.click(this.txt_search_bar);
+    await this.playwrightFactory.fill(this.txt_search_bar,strdistance)
+}
+ 
+  async user_click_search(){
+    await this.playwrightFactory.click(this.btn_search);
+  }
+ 
+  async user_click_5k_event(){
+    await this.playwrightFactory.click(this.link_5k_event);
+  }
   
 
  

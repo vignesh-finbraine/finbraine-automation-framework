@@ -114,7 +114,7 @@ this.emt_homepage_reporting = this.page.getByText('Reporting', { exact: true });
     this.Select_Specific_Page= this.page.locator("//input[@type='number']");
     this.Previous_btn= this.page.locator("(//button[@class='button button-secondary icon-sm'])[1]");
     this.Next_btn= this.page.locator("(//button[@class='button button-secondary icon-sm'])[2]")
-    this.Page_Number= this.page.locator("//span[normalize-space()='2']");
+    this.Page_Number= this.page.locator("//*[contains(text(),'Select a specific page')]/ancestor::component-pagination//input[@type='number']");
     //this.Five_Page= this.page.locator("//*[contains(text(),' 5 ')]/ancestor::li");
     this.View_Charities_btn= this.page.locator("(//button[@class='button button-primary min-width-auto'])[1]");
     this.Charities_Tittle= this.page.locator("//*[contains(text(),'Charities')]/ancestor::component-table//div[@class='title-purple card__title']");
@@ -151,7 +151,7 @@ this.emt_homepage_reporting = this.page.getByText('Reporting', { exact: true });
     this.link_automation_testing_rutuja=this.page.locator('//div[contains(text(),"Automation Testing by Rutuja")]');
     this.link_playwright_automation=this.page.locator('//div[contains(text(),"Automation Playwright for Rfc")]');
     this.drpdwn_event_page=this.page.locator('//*[contains(text(), "Event Pages ")]/ancestor::component-select//*[@class="dropdown-btn"]');
-    this.link_event=this.page.locator('//ul//div[contains(text(),"Created at: Mon June 9, 2025 -")]');
+    this.link_event=this.page.locator("//*[contains(text(),'Event Pages')]/ancestor::component-select//ul[@class='item2']");
     this.txt_Charity_Search_Bar=this.page.locator("//*[contains(text(),'Filter Registration Pages')]/ancestor::ngb-modal-window//*[contains(text(),'Charity ')]/ancestor::component-select//input[@placeholder='Search']");
     this.txt_Event_Pages=this.page.locator("//*[contains(text(),'Event Pages ')]/ancestor::component-select//span[@class='dropdown-btn']")
     this.txt_Future_Dated_Event=this.page.locator("//ul//div[contains(text(),'Created at: Mon June 9, 2025 -')]")
@@ -226,11 +226,17 @@ this.emt_homepage_reporting = this.page.getByText('Reporting', { exact: true });
     await expect(this.Filter_Delete).toBeVisible();
   }
   async user_select_charity_for_filter(strCharityname: string){
+
     await this.playwrightFactory.click(this.Filter_Charity);
+
     await this.playwrightFactory.fill(this.txt_Charity_Search_Bar, strCharityname)
+
     await this.page.keyboard.press('Enter');
-    await this.playwrightFactory.click(this.Filter_Charity_Name);
+
+    await this.playwrightFactory.click(this.page.locator("//*[contains(text(),'Charity ')]/ancestor::form//*[contains(text(),'"+strCharityname+"')]"));
+
   }
+ 
   async user_select_deleted_drpdwn(strDeletedAll: string){
     await this.playwrightFactory.click(this.Filter_Delete);
     await this.playwrightFactory.click(this.page.locator("//*[contains(text(),'Deleted ')]/ancestor::component-select//*[contains(text(),'"+strDeletedAll+"')]"));
@@ -259,9 +265,9 @@ this.emt_homepage_reporting = this.page.getByText('Reporting', { exact: true });
   async user_click_update(){
     await this.playwrightFactory.click(this.Update_Button);
   }
-  async user_verify_charity_name(){
+  async user_verify_charity_name(strName: string){
     await this.page.waitForTimeout(3000);
-    await expect(this.Charity_Name).toContainText(' Cancer_kid');
+    await expect(this.page.locator("//*[contains(text(),'"+strName+"')]")).toBeVisible()
   }
   async user_enters_name(striteration: any) {
   let name= await this.dataFactory.getIterationData(this.container,'USER_NAME',striteration);
@@ -276,9 +282,9 @@ async user_clicks_selectopn() {
   await this.playwrightFactory.click(this.Cancer)
  
 }
-   async user_clicks_select() {
-   await this.playwrightFactory.click(this.Select)
-   await this.playwrightFactory.click(this.Created_event)
+async user_clicks_select(strEvent: string) {
+  await this.playwrightFactory.click(this.Select)
+  await this.playwrightFactory.click(this.page.locator("(//*[contains(text(),'"+strEvent+"')])[1]"))
 }
    async user_clicks_savebtn() {
    await this.playwrightFactory.click(this.SAVE)
@@ -293,7 +299,7 @@ async user_clicks_charity() {
   await this.playwrightFactory.fill(this.search_charity, strsearch);
   await this.page.keyboard.press('Enter');
   await this.page.waitForTimeout(3000);
-  await this.playwrightFactory.click(this.Cancer);
+  await this.playwrightFactory.click(this.page.locator("(//*[contains(text(),' Create')]/ancestor::component-section//*[contains(text(),'Charity')]/ancestor::component-select//*[contains(text(),'"+strsearch+"')])[1]"));
   await this.page.waitForTimeout(3000);
 }
 async user_clicks_charity_dropdown(strcharityname: string) {
@@ -321,13 +327,12 @@ let name= await this.dataFactory.getIterationData(this.container,'USER_NAME',str
     await expect(this.txt_Action_list).toBeVisible();
  
   }
-  async user_verifies_multiple_pages_with_same_event(){
+  async user_verifies_multiple_pages_with_same_event(strCharity: string){
  
-    await expect (this.link_automation_charity).toBeVisible();
-    await expect (this.link_automation_testing_rutuja).toBeVisible();
+    await expect (this.page.locator("//div[contains(text(),'"+strCharity+"')]")).toBeVisible();
   }
-  async user_clicks_edit(){
-    await this.playwrightFactory.click(this.link_playwright_automation);
+  async user_clicks_edit(strEdit: string){
+    await this.playwrightFactory.click(this.page.locator("//div[contains(text(),'"+strEdit+"')]"));
   }
  
   async user_verify_event_pages(){
@@ -344,9 +349,12 @@ let name= await this.dataFactory.getIterationData(this.container,'USER_NAME',str
         await this.txt_Event_Pages.click();
  
       }
- async user_verify_future_dated_event(){
-         await expect(this.txt_Future_Dated_Event).toBeVisible();
-      }
+      async user_verify_future_dated_event(strDate: string){
+        await expect(this.page.locator("(//ul//div[contains(text(),'"+strDate+"')])[1]")).toBeVisible();
+     }
+     async user_verify_filter_result(strCharity: string){
+      await expect(this.page.locator("(//*[contains(text(),'"+strCharity+"')])[1]")).toBeVisible();
+    }
    
  
  

@@ -72,6 +72,7 @@ readonly Ok_btn: Locator;
     this.Save_btn= this.page.locator("//*[contains(text(),'Save')]");
     this.Ok_btn= this.page.locator("//button[@class='swal-button swal-button--confirm']");
     
+ 
     
     
  }
@@ -100,7 +101,7 @@ await this.playwrightFactory.fill(this.Tutorial_Tittle, tutorialtittle);
  async user_enter_tittle(strTittle: string){
   await this.playwrightFactory.fill(this.Tutorial_Tittle, strTittle);
  }
-
+ 
   
 
   
