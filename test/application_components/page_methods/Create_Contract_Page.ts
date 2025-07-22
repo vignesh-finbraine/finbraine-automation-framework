@@ -33,11 +33,6 @@ export class CREATE_CONTRACT_PAGE {
   readonly type_search_bar:Locator;
  readonly txt_SearchBox:Locator;
 
-
-
-
-
-  
   /**
    * @param {Page} page
    * @param {TestInfo} testInfo

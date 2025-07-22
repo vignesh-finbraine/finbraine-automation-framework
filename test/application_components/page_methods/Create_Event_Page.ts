@@ -129,8 +129,7 @@ readonly TypeDropdownbtn:Locator;
  //readonly past_start_date: Locator;
   readonly past_end_date: Locator;
  // readonly datee1: Locator;
-    
-  readonly txt_name: Locator;
+     readonly txt_name: Locator;
   readonly txt_slug: Locator;
   readonly txt_type: Locator;
   readonly ddl_partner: Locator;
@@ -155,17 +154,6 @@ readonly TypeDropdownbtn:Locator;
    readonly btn_regportal: Locator;
    readonly Select_Month:Locator;
 
-
-
-
-
-
-
-
-
-
-
-  
   /**
    * @param {Page} page
    * @param {TestInfo} testInfo
@@ -288,7 +276,6 @@ this.ExcludefromCharities=this.page.locator("//*[contains(text(),'Exclude from C
     this.SlugName=this.page.locator("//input[@placeholder='Slug']")
     this.Standalone=this.page.locator("//*[contains(text(),'Details')]/ancestor::component-section//*[contains(text(),'Type')]/ancestor::component-select//span[@class='dropdown-btn']")
     this.Yes=this.page.locator("//*[contains(text(),'Details')]/ancestor::component-section//*[contains(text(),'Partner')]/ancestor::component-select//span[@class='dropdown-btn']")
- 
  this.CountryUK=this.page.locator("//*[contains(text(),'Country')]/ancestor::component-i18n-selector//span[@class='dropdown-btn']")
  this.Error_Msg=this.page.locator("//div[contains(text(),' The withdrawal deadline must be a date before registration deadline. ')]")
  this.TypeDropdownbtn=this.page.locator("//*[contains(text(),'Type ')]/ancestor::component-select//span[@class='dropdown-btn']")
@@ -299,7 +286,6 @@ this.ExcludefromCharities=this.page.locator("//*[contains(text(),'Exclude from C
    this.txt_slug=this.page.locator('//input[@placeholder="Slug"]');
    this.txt_type=this.page.locator('//*[contains(text(),"Type")]/ancestor::component-select//*[@class= "selected-item"]')
    this.ddl_partner=this.page.locator('//component-select[@label="Partner"]//div[@class="select__dropdown"]//ng-multiselect-dropdown[@class="multi-select ng-untouched ng-valid ng-dirty"]//div[@class="multiselect-dropdown"]//div//span[@class="dropdown-btn"]');
- 
     this.ddl_status=this.page.locator('//component-select[@label="Status"]//div[@class="select__dropdown"]//ng-multiselect-dropdown[@class="multi-select ng-untouched ng-valid ng-dirty"]//div[@class="multiselect-dropdown"]//div//span[@class="dropdown-btn"]')
     this.ddl_state=this.page.locator("//*[contains(text(),'State')]/ancestor::component-select//div[@class='multiselect-dropdown']")
    this.ddl_distance=this.page.locator('//component-select[@label="Distance"]//div//span[contains(text(),"Please Select")]')
@@ -316,29 +302,12 @@ this.ExcludefromCharities=this.page.locator("//*[contains(text(),'Exclude from C
    this.txt_reviews=this.page.locator('//input[@placeholder="Ratings page link"]')
    this.lbl_terms=this.page.locator("//*[contains(text(),'Details')]/ancestor::component-section//*[contains(text(),'Terms & Conditions ')]")
    this.txt_terms=this.page.locator('//input[@placeholder="Terms and conditions page link"]')
-   
    this.btn_imagepickfile=this.page.locator('//span[normalize-space()="Pick a File"]')
    this.btn_gallerypickfile=this.page.locator("//*[contains(text(),'Details')]/ancestor::component-section//*[contains(text(),'Gallery')]/ancestor::component-file//span[contains(text(),'Pick Files')]")
    this.btn_regwebsite=this.page.locator("//input[@placeholder='Domain or URL']");
    this.btn_regportal=this.page.locator('("span").filter({ hasText: "Internal x" }).nth(1);')
    this.Select_Month=this.page.locator("//select[@title='Select month']")
-    
-
-
-
-
-    
-
-
-
-
-
-
-
-
-
-    // Login to RFC
-    
+     
   }
   
   
@@ -722,13 +691,6 @@ async verify_portal(){
   await expect(this.btn_regportal).toBeEnabled();
  
 }
-
- 
-
- 
-
-
-
 
 }
 

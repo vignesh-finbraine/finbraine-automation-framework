@@ -66,19 +66,6 @@ readonly btn_participant:Locator;
 readonly participant_table:Locator;
 readonly participant:Locator;
 
-
-
-
-
-
-
-
-
-
-
-
-
-  
   /**
    * @param {Page} page
    * @param {TestInfo} testInfo
@@ -144,16 +131,7 @@ this.emt_homepage_reporting = this.page.getByText('Reporting', { exact: true });
  this.btn_participant=this.page.locator("(//*[contains(text(),' Participants ')])[6]")
  this.participant_table=this.page.locator("//*[contains(text(),'Participants')]/ancestor::component-table//table")
  this.participant=this.page.locator("(//*[contains(text(),' Automation Using Playwright by Rutuja ')]/ancestor::tr//*[contains(text(),'Participants')])[2]")
-                                                        
-
-
-
-
-
-
-
-    
-    
+                                                            
   }
   
   
@@ -350,8 +328,6 @@ async user_clicks_three_dots_for_custom_field(){
       await expect(this.txt_Charity_Summary_For_Event).toBeVisible();
      
     }
-
-
 
 }
 

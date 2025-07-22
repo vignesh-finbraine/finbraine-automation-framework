@@ -32,14 +32,6 @@ readonly Drop_Box_Url: Locator;
 readonly Save_btn: Locator;
 readonly Update_btn:Locator;
 
-
-
-
-
-
-
-
-
   /**
    * @param {Page} page
    * @param {TestInfo} testInfo
@@ -70,18 +62,7 @@ this.emt_homepage_reporting = this.page.getByText('Reporting', { exact: true });
    this.Drop_Box_Url= this.page.locator("//input[@placeholder='Enter DropBox URL']");
    this.Save_btn= this.page.locator("//component-button[@label='Save']//button");
    this.Update_btn= this.page.locator("//span[normalize-space()='Update']")
-    
-
-
-
-
-
-
-
-
-
-  
-    
+     
   }
   
 async user_verify_create_folder_tittle(){
@@ -115,12 +96,6 @@ async user_clear_name(){
   async user_click_update_btn(){
     await this.playwrightFactory.click(this.Update_btn);
   }
-
-  
-
-
-
-
 }
 
 

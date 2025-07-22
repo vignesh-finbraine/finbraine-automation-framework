@@ -51,20 +51,6 @@ export class CREATE_ENQUIRY_CHARITIES {
  readonly Converted_Yes_btn:Locator;
 readonly Categories:Locator;
 
-
-
-
-
-
-
-
-
-
-
-
-
-
-  
   /**
    * @param {Page} page
    * @param {TestInfo} testInfo
@@ -116,22 +102,7 @@ this.emt_homepage_reporting = this.page.getByText('Reporting', { exact: true });
  this.Contacted_Yes_btn=this.page.locator("//component-select[@label='Contacted']//div[contains(text(),'Yes')]")
  this.Converted_Yes_btn=this.page.locator("//component-select[@label='Converted']//div[contains(text(),'Yes')]")
  this.Categories=this.page.locator("//*[contains(text(),'Categories ')]/ancestor::component-select//span[@class='dropdown-btn']")
- 
-    
    
-    
-    
-
-
-
-
-
-
-
-
-
-  
-    
   }
   
 
@@ -296,12 +267,6 @@ async user_verify_comment_field(){
   await expect(this.Addtional_details_Comment).toBeVisible();
 }
  
-
-  
-
-
-
-
 }
 
 

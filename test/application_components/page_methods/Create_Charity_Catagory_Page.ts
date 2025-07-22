@@ -47,16 +47,6 @@ readonly txt_name: Locator;
   readonly save_draft_btn: Locator;
   readonly form_layout: Locator;
 
-
-
-
-
-
-
-
-
-
-  
   /**
    * @param {Page} page
    * @param {TestInfo} testInfo
@@ -101,25 +91,9 @@ this.emt_homepage_reporting = this.page.getByText('Reporting', { exact: true });
     this.canonical_link = this.page.locator("//input[@placeholder='Preferred version of the webpage chosen by search engines']");
     this.save_draft_btn = this.page.locator("//component-button[@lefticon='assets/icons/save-light.svg']//button");
     this.form_layout = this.page.locator("//form[@id='createEventForm']//component-section[@sectiontitle='Details']/div[1]");
- 
-
-
-
-
-
-
-
-
-    // Login to RFC
-    
+     
   }
-  
-
-  
-// Create Category- Flow
-  
-
-  
+ 
   async user_enter_name(striteration : any){
 let username = await this.dataFactory.getIterationData(this.container,"USER_NAME",striteration);
 await this.playwrightFactory.fill(this.txt_name, username);
@@ -204,20 +178,6 @@ async user_verifies_image_option_not_available(){
   await expect(this.form_layout).toBeVisible();
 }
  
-
-
-
-  
-
-  
-
- 
-
- 
-
-
-
-
 }
 
 

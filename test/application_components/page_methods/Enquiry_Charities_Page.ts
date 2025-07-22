@@ -52,23 +52,6 @@ readonly Filter_enquires_month_field:Locator;
 readonly Filter_enquires_apply_btn:Locator;
 readonly btn_Search_Charity_Bar:Locator;
  
- 
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-  
   /**
    * @param {Page} page
    * @param {TestInfo} testInfo
@@ -97,8 +80,7 @@ this.emt_homepage_reporting = this.page.getByText('Reporting', { exact: true });
     this.Enquiry_charity_btn=this.page.locator("//a[@href='/enquiries/charity'][normalize-space()='Charities']")
     this.Charity_Enquiry_heading=this.page.locator("//div[normalize-space()='Charity Enquiries']")
     this.Create_btn=this.page.locator("//span[normalize-space()='Create']")
-    this.Existing_Search_name=this.page.locator("(//td[@class='table__col'])[1]")
-                             
+    this.Existing_Search_name=this.page.locator("(//td[@class='table__col'])[1]")                            
     this.charity_enquiry_name_field=this.page.locator("//th[normalize-space()='Name']")
     this.charity_enquiry_charity_field=this.page.locator("//th[normalize-space()='Charity']")
     this.charity_enquiry_category_field=this.page.locator("//th[normalize-space()='Category']")
@@ -123,25 +105,7 @@ this.emt_homepage_reporting = this.page.getByText('Reporting', { exact: true });
     this.Filter_enquires_apply_btn=this.page.locator("//component-button[@label='Apply']//span[contains(text(),'Apply')]")
      this.btn_Search_Charity_Bar=this.page.locator("//input[@placeholder='Press ENTER to search']")
     
-   
-    
-    
-
-
-
-
-
-
-
-
-
-  
-    
   }
-  
-
-  
-//Methods
 async user_verify_charity_enquiry_heading(){
   await expect(this.Charity_Enquiry_heading).toBeVisible();
 }
@@ -240,14 +204,6 @@ async user_clicks_deletebtn(){
   await this.page.keyboard.press('Enter');
   await this.page.waitForTimeout(3000);
 }
-
- 
-  
-
-  
-
-
-
 
 }
 

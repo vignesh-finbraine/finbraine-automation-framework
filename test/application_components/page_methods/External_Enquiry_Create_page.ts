@@ -36,18 +36,6 @@ readonly External_email_field:Locator;
 readonly External_edit_first_row:Locator;
 readonly save_btn:Locator;
 
- 
-
-
-
-
-
-
-
-
-
-
-  
   /**
    * @param {Page} page
    * @param {TestInfo} testInfo
@@ -82,9 +70,7 @@ this.emt_homepage_reporting = this.page.getByText('Reporting', { exact: true });
     this.External_email_field= this.page.locator("//input[@placeholder='Their email address']")
     this.External_edit_first_row= this.page.locator("(//div[@class='table__product'])[1]")
     this.save_btn= this.page.locator("//span[normalize-space()='Save']")
-                                     
-  
-    
+                                         
   }
   
 

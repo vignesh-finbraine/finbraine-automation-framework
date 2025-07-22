@@ -26,14 +26,6 @@ readonly btn_charities: Locator;
 readonly contract_btn:Locator;
 readonly Search_bar: Locator;
 
-
-
-
-
-
-
-
-  
   /**
    * @param {Page} page
    * @param {TestInfo} testInfo
@@ -98,8 +90,6 @@ async user_click_createbtn(){
     await expect(this.page.locator("//*[contains(text(),'"+charityname+"')]")).toBeVisible();
 
   }
- 
-
 
 }
 

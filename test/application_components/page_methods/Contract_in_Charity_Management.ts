@@ -30,18 +30,8 @@ export class Contract_in_Charity_Management {
   readonly title:Locator;
   readonly state:Locator;
   readonly current_checkbox:Locator;
-  readonly Agreement:Locator;
+  readonly Agreement:Locator
 
-
-
-
-
-
-
-
-
-
-  
   /**
    * @param {Page} page
    * @param {TestInfo} testInfo
@@ -74,12 +64,6 @@ this.emt_homepage_reporting = this.page.getByText('Reporting', { exact: true });
     this.current_checkbox=this.page.locator("//*[contains(text(),' Current ')]")
     this.Agreement=this.page.locator("//*[contains(text(),'Agreement (Max Size - 4 MB) ')]/ancestor::component-input//input[@placeholder='Select Agreement']")
 
-
-    
-    
-
-    // Login to RFC
-    
   }
   
   async user_launches_application() {
@@ -127,16 +111,6 @@ this.emt_homepage_reporting = this.page.getByText('Reporting', { exact: true });
  
   }
   
-
-  
-
- 
-
- 
-
-
-
-
 }
 
 

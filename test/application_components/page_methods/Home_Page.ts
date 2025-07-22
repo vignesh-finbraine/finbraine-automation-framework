@@ -42,12 +42,9 @@ readonly lnk_partner_charity_history: Locator;
     readonly Enquiry_Management_btn:Locator;
   readonly Enquiry_charity_btn:Locator;
   readonly Partner_Events_btn:Locator;
-
   readonly Account_Managament: Locator;
   readonly Users: Locator;
    readonly Users_Table:Locator;
-   
-
 readonly Dashboard: Locator;
 readonly Website: Locator;
 readonly External: Locator;
@@ -84,18 +81,6 @@ readonly txt_Account_Manager_Active_Role: Locator;
 
 readonly txt_Administrator: Locator;
  
-
-
-
-
-
-
-
-
-
-
-
-  
   /**
    * @param {Page} page
    * @param {TestInfo} testInfo
@@ -135,8 +120,7 @@ this.emt_homepage_reporting = this.page.getByText('Reporting', { exact: true });
    this.lnk_timeline=this.page.locator("//*[contains(text(),' Charity Management ')]/ancestor::component-sidebar//a[@title='Timeline']")
    this.lnk_contract=this.page.locator("//*[contains(text(),' Charity Management ')]/ancestor::component-sidebar//a[@title='Contract']")
    this.Enquiry_Management_btn=this.page.locator("//button[normalize-space()='Enquiry Management']")
-    this.Enquiry_charity_btn=this.page.locator("//a[@href='/enquiries/charity'][normalize-space()='Charities']")
-   
+    this.Enquiry_charity_btn=this.page.locator("//a[@href='/enquiries/charity'][normalize-space()='Charities']")  
     this.Partner_Events_btn=this.page.locator("//a[normalize-space()='Partner Events']")
     this.Account_Managament= this.page.locator("//*[contains(text(),' Account Management ')]");
     this.Users= this.page.locator("//div[@title='Account Management']//div//a[@title='Users']");
@@ -153,7 +137,6 @@ this.emt_homepage_reporting = this.page.getByText('Reporting', { exact: true });
     this.Roll_AccountManager= this.page.locator("//*[contains(text(),'AccountManager')]");
     this.Switch_Roll_btn= this.page.locator("//*[contains(text(),'Switch Role')]/ancestor::component-button");
     this.Roll_Admin= this.page.locator("//*[contains(text(),'Administrator')]");
-
     this.drpdwn_User_Role=this.page.locator("(//*[contains(text(),'Administrator · Active ')])[1]")
     this.txt_Account_Manager_Role=this.page.locator("//*[contains(text(),' AccountManager ')]")
     this.txt_Participant_Role_Dashboard=this.page.locator("//*[contains(text(),' Dashboard ')]/ancestor::component-sidebar//a[@class='sidebar__item router-link-active']")
@@ -167,14 +150,6 @@ this.emt_homepage_reporting = this.page.getByText('Reporting', { exact: true });
     this.txt_Account_Manager_Active_Role=this.page.locator("(//ng-multiselect-dropdown[@class='multi-select ng-untouched ng-valid ng-dirty']/ancestor::component-sidebar//div[@class='multiselect-dropdown'])[1]")
     this.txt_Administrator=this.page.locator("//*[contains(text(),' Administrator')]")
 
-
-
-
-
-
-
-  
-    
   }
   
 
