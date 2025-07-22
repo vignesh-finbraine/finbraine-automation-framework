@@ -59,22 +59,6 @@ readonly Background_Img:Locator;
  readonly Event_drpdwn_search_bar: Locator;
  readonly Event_Dorny_Lake_edit: Locator;
 
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-  
   /**
    * @param {Page} page
    * @param {TestInfo} testInfo
@@ -134,26 +118,9 @@ readonly Background_Img:Locator;
     this.Search_Charity= this.page.locator("(//*[contains(text(),'Charity')]/ancestor::component-select//input[@placeholder='Search'])[1]");
     this.Event_drpdwn_search_bar= this.page.locator("//*[contains(text(),'Events ')]/ancestor::component-select//input[@placeholder='Search']");
     this.Event_Dorny_Lake_edit= this.page.locator("//*[contains(text(),'Dorney Lake')]");
-    
-
-    
-    
-
-
-
-
-
-
-
-
-
-    
-    
+  
   }
-  
-  
 
-  
 async user_verify_create_event_registration_page(){
   await expect(this.Create_Registration_Page_Tittle).toBeVisible();
 }
@@ -283,10 +250,6 @@ async user_select_payment_option(){
   await this.playwrightFactory.click(this.Participant_Pay);
 }
   
-
-
-
-
 }
 
 

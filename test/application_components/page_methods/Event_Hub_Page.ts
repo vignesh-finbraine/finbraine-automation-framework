@@ -28,7 +28,6 @@ export class EVENT_HUB_PAGE{
   readonly Filter_Delete: Locator;
   readonly txt_Charity_Search_Bar: Locator;
   readonly Apply_Button: Locator;
-
   readonly lnk_contentmanagement: Locator;
   readonly lnk_event_hub_pages: Locator;
   readonly btn_create: Locator;
@@ -81,18 +80,6 @@ export class EVENT_HUB_PAGE{
   readonly txt_searchbar: Locator;
   readonly btn_deleteineventhub_listing: Locator;
 
- 
-
-
-
-
-
-
-
-
-
-
-  
   /**
    * @param {Page} page
    * @param {TestInfo} testInfo
@@ -122,7 +109,6 @@ this.emt_homepage_reporting = this.page.getByText('Reporting', { exact: true });
     this.Filter_Delete= this.page.locator("//*[contains(text(),'Deleted ')]/ancestor::component-select//span[@class='dropdown-btn']");
     this.txt_Charity_Search_Bar=this.page.locator("//*[contains(text(),'Filter Event Hub Pages')]/ancestor::ngb-modal-window//*[contains(text(),'Charity ')]/ancestor::component-select//input[@placeholder='Search']");
     this.Apply_Button= this.page.locator("//component-button[@label='Apply']//button");
-
     this.lnk_contentmanagement=this.page.locator('//button[normalize-space()="Content Management"]')
 this.lnk_event_hub_pages=this.page.locator('//a[normalize-space()="Event Hub Pages"]')
 this.btn_create=this.page.locator('//span[normalize-space()="Create"]')
@@ -512,11 +498,6 @@ async verify_admin_acess_eventhub_page(){
   
   }
   
-
-
-
-
-
 }
 
 

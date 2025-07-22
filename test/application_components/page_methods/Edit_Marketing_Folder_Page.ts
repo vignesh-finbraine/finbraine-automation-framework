@@ -28,19 +28,7 @@ readonly btn_Update_Button: Locator;
 readonly txt_Store_Event_Folder: Locator;
 readonly txt_Store_Event_Folder_Success_Message: Locator;
 readonly btn_OK_Button: Locator;
-
 readonly title_Marketing_folder:Locator;
-
-
-
-
-
-
-
-
-
-
-  
   /**
    * @param {Page} page
    * @param {TestInfo} testInfo
@@ -70,12 +58,7 @@ this.emt_homepage_reporting = this.page.getByText('Reporting', { exact: true });
     this.txt_Store_Event_Folder=this.page.locator("//*[contains(text(),'Create Event Folder')]")
     this.txt_Store_Event_Folder_Success_Message=this.page.locator("//*[contains(text(),'Successfully updated the folder!')]")
     this.btn_OK_Button=this.page.locator("//button[normalize-space()='OK']")
-    this.title_Marketing_folder=this.page.locator('//h1[normalize-space()="Marketing Folders"]')
-
-    
-    
-
-    
+    this.title_Marketing_folder=this.page.locator('//h1[normalize-space()="Marketing Folders"]') 
   }
   async user_verify_edit_marketing_folders_title(){
         await expect(this.txt_Edit_Marketing_Folders_Title).toBeVisible();
@@ -115,16 +98,6 @@ this.emt_homepage_reporting = this.page.getByText('Reporting', { exact: true });
          await this.page.waitForTimeout(5000);
  
       }
-
-  
-
- 
-
- 
-
-
-
-
 }
 
 

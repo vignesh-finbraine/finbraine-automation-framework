@@ -48,7 +48,6 @@ readonly txt_Search_Result: Locator;
 readonly OK_BTN_Delete: Locator;
 readonly txt_Filter_Event_Folder_Search_Bar: Locator;
 readonly txt_Membership: Locator;
-
 readonly delete_created_event:Locator;
 readonly btn_close_search:Locator;
 readonly txt_no_record:Locator;
@@ -57,17 +56,6 @@ readonly delete_created_tutorial:Locator;
 readonly last_ok:Locator;
 readonly txt_del_folder:Locator;
 
-
-
-
-
-
-
-
-
-
-
-  
   /**
    * @param {Page} page
    * @param {TestInfo} testInfo
@@ -116,8 +104,7 @@ this.emt_homepage_reporting = this.page.getByText('Reporting', { exact: true });
     this.txt_Search_Result=this.page.locator("//div[@class='table__details']")
     this.OK_BTN= this.page.locator("//*[contains(text(),'OK')]/ancestor::div//button[@class='swal-button swal-button--confirm']");
     this.txt_Filter_Event_Folder_Search_Bar=this.page.locator("//*[contains(text(),'Filter Event Folders')]/ancestor::ngb-modal-window//input[@placeholder='Search']")
-    this.txt_Membership=this.page.locator("//*[contains(text(),' Membership ')]/ancestor::component-select//input[@aria-label='Membership']")
-    
+    this.txt_Membership=this.page.locator("//*[contains(text(),' Membership ')]/ancestor::component-select//input[@aria-label='Membership']")    
     this.delete_created_event=this.page.locator('//*[contains(text(), "Automation Marketing Folder")]/ancestor::component-table//component-button[.//span[normalize-space(text())="Delete"]]');
     this.btn_close_search=this.page.locator('//*[@class="search__close"]');
     this.txt_no_record=this.page.locator('//caption[normalize-space()="No records found!"]');
@@ -125,16 +112,6 @@ this.emt_homepage_reporting = this.page.getByText('Reporting', { exact: true });
     this.delete_created_tutorial=this.page.locator('//*[contains(text(), "Automation Marketing Tutorial")]/ancestor::component-table//component-button[.//span[normalize-space(text())="Delete"]]')
     this.last_ok=this.page.locator("//*[contains(text(),'Delete Tutorial')]/ancestor::div//*[contains(text(),'OK')]");
     this.txt_del_folder=this.page.locator('//*[contains(text(),"Delete Event Folder")]/ancestor::div//*[contains(text(),"OK")]');
-
-
-
-
-
-
-
-
-    
-    
   }
   
   async user_clicks_btn_create() {
@@ -269,10 +246,6 @@ async user_selects_items_per_page(strPagenumber: string){
       await this.page.waitForTimeout(3000);
       //await this.page.pause();
     }
-
-
-
-
 
 }
 

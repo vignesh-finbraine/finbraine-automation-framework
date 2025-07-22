@@ -94,9 +94,7 @@ readonly btn_Event_Managament: Locator;
  readonly btn_publish_now: Locator;
  readonly btn_ok: Locator;
  readonly txt_success_msg:Locator;
- 
 readonly txt_Search_field:Locator;
-
 readonly btn_Type:Locator;
 readonly btn_Type_standalone:Locator;
 readonly btn_Type_rolling:Locator;
@@ -128,27 +126,12 @@ readonly drpdwn_charities:Locator;
 readonly btn_green_tree:Locator;
 readonly btn_save:Locator;
 readonly txt_success_msg_edit_event:Locator;
- 
 readonly btn_back:Locator;
 readonly btn_delete:Locator;
 readonly txt_confirmation_msg:Locator;
 readonly txt_sucessfully_deleted_msg:Locator;
 readonly txt_no_record:Locator;
 
-
-
-
-
-
-
-
-
-
-
-
-
-
-  
   /**
    * @param {Page} page
    * @param {TestInfo} testInfo
@@ -183,9 +166,6 @@ this.emt_homepage_reporting = this.page.getByText('Reporting', { exact: true });
     this.btn_distance_75k=this.page.locator('//div[contains(text(),"75k")]');
     this.btn_preview_section=this.page.locator('.preview__section');
     this.txt_local_fee=this.page.locator('//input[@placeholder="For UK residents"]');
-
-
-    
     this.btn_start_date=this.page.locator('//*[contains(text(), "Start Date")]/ancestor::component-datetime//button[contains(@class, "datepicker__mask")]');
     this.btn_next_month=this.page.locator('//button[@title="Next month"]//span[@class="ngb-dp-navigation-chevron"]');
     this.btn_22=this.page.locator('//span[normalize-space()="22"]');
@@ -251,12 +231,6 @@ this.emt_homepage_reporting = this.page.getByText('Reporting', { exact: true });
     this.btn_publish_now=this.page.locator('//span[normalize-space()="Publish Now"]');
     this.btn_ok=this.page.locator('//button[normalize-space()="OK"]');
     this.txt_success_msg=this.page.locator('//div[normalize-space()="Successfully created the event!"]');
-   
- 
- /******************** Create Event ************************************/
- 
- //********************** Edit Event ********************************** */
- 
     this.txt_Search_field=this.page.locator('//input[@placeholder="Press ENTER to search"]');
     this.btn_Type=this.page.locator('//*[contains(text(), "Type")]/ancestor::component-select//span[@class="dropdown-multiselect__caret"]');
     this.btn_Type_standalone=this.page.locator('//ul//div[contains(text(),"Standalone")]');
@@ -296,36 +270,9 @@ this.emt_homepage_reporting = this.page.getByText('Reporting', { exact: true });
   this.txt_confirmation_msg=this.page.locator('//div[normalize-space()="Are you sure?"]');
   this.txt_sucessfully_deleted_msg=this.page.locator('//div[normalize-space()="Successfully deleted the event!"]');
   this.txt_no_record=this.page.locator('//caption[normalize-space()="No records found!"]');
- 
- 
- 
- 
- 
- 
- 
-
-    
-    
-
-
-
-
-
-
-
-
-
-    
-    
+   
   }
-  
-  
 
-  
-
- 
-  //**********************  Edit Event  ************************** */
- 
     async user_search_event_under_list(striteration: any){
      let search= await this.dataFactory.getIterationData(this.container,"USER_NAME",striteration)
    await this.playwrightFactory.fill(this.txt_Search_field, search );
@@ -585,14 +532,6 @@ async user_clicks_back(){
  async user_enters_Privacy_policy_link(strpplink:string){
   await this.playwrightFactory.fill(this.link_privacy_policy,strpplink);
  }
- 
- 
- 
- 
-  
-
-
-
 
 }
 

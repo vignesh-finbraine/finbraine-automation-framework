@@ -29,19 +29,6 @@ readonly Tutorial_Link: Locator;
 readonly Save_btn: Locator;
 readonly Ok_btn: Locator;
 
-
-
-
-
-
-
-
-
-
-
-
-
-  
   /**
    * @param {Page} page
    * @param {TestInfo} testInfo
@@ -70,11 +57,7 @@ readonly Ok_btn: Locator;
     //this.Run_For_Charity= this.page.locator("//*[contains(text(),'Platform ')]/ancestor::component-select//*[contains(text(),' Run For Charity ')]");
     this.Tutorial_Link= this.page.locator("//input[@placeholder='Enter Tutorials Link']");
     this.Save_btn= this.page.locator("//*[contains(text(),'Save')]");
-    this.Ok_btn= this.page.locator("//button[@class='swal-button swal-button--confirm']");
-    
- 
-    
-    
+    this.Ok_btn= this.page.locator("//button[@class='swal-button swal-button--confirm']");  
  }
   
  async user_click_create_button(){
@@ -101,15 +84,6 @@ await this.playwrightFactory.fill(this.Tutorial_Tittle, tutorialtittle);
  async user_enter_tittle(strTittle: string){
   await this.playwrightFactory.fill(this.Tutorial_Tittle, strTittle);
  }
- 
-  
-
-  
-
-  
-
-
-
 
 }
 
