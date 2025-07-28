@@ -93,6 +93,7 @@ readonly date_of_birth:Locator;
   readonly Select_date:Locator;
   readonly date_of_birth_close_btn:Locator;
   readonly Female:Locator;
+  readonly Fundraising_Amount: Locator;
  
 
 
@@ -127,7 +128,7 @@ this.emt_homepage_reporting = this.page.getByText('Reporting', { exact: true });
     this.link_search_open = this.page.getByRole('link', { name: 'Portal open' });
     this.Select_btn= this.page.locator("(//*[contains(text(),'Select')]/ancestor::button)[1]");
     this.Event_Name= this.page.locator("//*[contains(text(),' Automation Interstate Marathoniki ')]");
-    this.Event_Image= this.page.locator("//img[@src='assets/images/default.png']");
+    this.Event_Image= this.page.locator("//figure[@class='image__figure']//img");
     this.Event_Detail_Link= this.page.locator("//*[contains(text(),'Click here to view Event Detail')]");
     this.Event_Date_Location= this.page.locator("//p[@class='text-muted-eventname mt-2']");
     this.Event_Cost= this.page.locator("//div[@class='pricewithEvent']");
@@ -159,7 +160,7 @@ this.emt_homepage_reporting = this.page.getByText('Reporting', { exact: true });
     this.Select_Month=this.page.locator("//select[@title='Select month']");
     this.Select_Year= this.page.locator("//select[@title='Select year']");
     this.Date= this.page.locator("(//span[@class='custom-day'])[8]");
-    this.Register_success_msg= this.page.locator("//*[contains(text(),'Thank you for getting in touch!')]");
+    this.Register_success_msg= this.page.locator("//h3[@class='registerSuccess mt-3']");
     this.Load_more_btn= this.page.locator("//*[contains(text(),'Explore More')]");
     
     this.txt_Profile_Icon=this.page.locator("#dropdownMenu")
@@ -196,6 +197,7 @@ this.emt_homepage_reporting = this.page.getByText('Reporting', { exact: true });
     this.Select_date=this.page.getByText('12', { exact: true })
     this.date_of_birth_close_btn=this.page.getByRole('button', { name: 'Close' })
     this.Female=this.page.locator("//div[normalize-space()='Female']")
+    this.Fundraising_Amount= this.page.locator("//*[contains(text(),'Fundraising Amount')]/ancestor::component-input//input[@placeholder='How much are you aiming to fundraise?']");
   
 
    
@@ -289,19 +291,16 @@ let firstname = await this.dataFactory.getIterationData(this.container,'USER_NAM
   
   async user_accept_tc(){
     await this.playwrightFactory.click(this.TC1);
-    
     await this.playwrightFactory.click(this.TC2);
-    
     await this.playwrightFactory.click(this.TC3);
-    
   }
   async user_click_submit_btn(){
     await expect(this.Submit_btn).toBeEnabled();
-    await this.playwrightFactory.clickForce(this.Submit_btn);
+    await this.playwrightFactory.click(this.Submit_btn);
   }
   async user_verify_register_success_msg(){
     await expect(this.Register_success_msg).toBeVisible();
-    await expect(this.Register_success_msg).toContainText('Thank you for getting in touch!');
+    await expect(this.Register_success_msg).toContainText('Thank you for registering your Interest!');
   }
   async user_verify_explore_more_btn(){
     await expect(this.Load_more_btn).toBeVisible();
@@ -489,6 +488,9 @@ async user_clicks_female(strgender: string){
   async user_clicks_submit_button(){
     await this.page.waitForTimeout(3000);
     await this.playwrightFactory.click(this.btn_Submit)
+  }
+  async user_enter_fundraising_amount(strAmount: string){
+    await this.playwrightFactory.fill(this.Fundraising_Amount, strAmount);
   }
 
 

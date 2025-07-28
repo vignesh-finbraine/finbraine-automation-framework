@@ -381,7 +381,7 @@ this.emt_homepage_reporting = this.page.getByText('Reporting', { exact: true });
     this.Fundraising_Header= this.page.locator("//div[@class='header__item']//div[@title='Fundraising']");
     this.Easy_Fundraising= this.page.locator("(//div[@class='header__sub-item']//*[contains(text(),'Easy Fundraising')])[1]");
     this.Fundraising_Ideas= this.page.locator("(//div[@class='header__sub-item']//*[contains(text(),'Fundraising Ideas')])[1]");
-    this.How_to_Fundraise= this.page.locator("//div[@class='header__sub-item']//*[contains(text(),'How to Fundraise')]");
+    this.How_to_Fundraise= this.page.locator("(//div[@class='header__sub-item']//*[contains(text(),'How to Fundraise')])[1]");
     this.Why_Run_for_Charity= this.page.locator("(//div[@class='header__sub-item']//*[contains(text(),'Why Run for Charity')])[1]");
     this.Partners_Header= this.page.locator("//div[@class='header__item']//div[@title='Partners']");
     this.Become_Partner= this.page.locator("(//div[@class='header__sub-item']//*[contains(text(),'Become a Partner')])[1]");
@@ -499,7 +499,7 @@ this.emt_homepage_reporting = this.page.getByText('Reporting', { exact: true });
     this.Registor_btn= this.page.locator("//*[contains(text(),'Register')]/ancestor::button")
     this.Find_an_Event_btn= this.page.locator("//*[contains(text(),'Find an Event') and @class='button main__button']");
     this.Start_an_Event_btn= this.page.locator("//*[contains(text(),'Start an event') and @class='button main__button']");
-    this.Region_Header= this.page.locator("//div[@class='header__sub-body']//*[contains(text(),'Regions')]");
+    this.Region_Header= this.page.locator("//*[contains(text(),'Find an Event') and @class='header__link linkdropdown']/parent::div[@class='header__item active']//a[@title='Regions']");
     this.All_Region= this.page.locator("//div[@class='header__sub-body']//*[contains(text(),'All Regions')]");
     
     this.user_icon=this.page.locator('//*[@class="d-inline-block dropdown"]/ancestor::component-dropdown');
