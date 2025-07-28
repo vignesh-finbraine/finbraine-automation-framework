@@ -92,19 +92,6 @@ readonly btn_Users_Title: Locator;
 readonly btn_Events_Title: Locator;
 readonly btn_Call_Notes_Title: Locator;
  
-
-
-
-
-
-
-
-
-
-
-
-
-  
   /**
    * @param {Page} page
    * @param {TestInfo} testInfo
@@ -195,22 +182,7 @@ this.emt_homepage_reporting = this.page.getByText('Reporting', { exact: true });
     this.btn_Users_Title=this.page.locator("//button[normalize-space()='Users']")
     this.btn_Events_Title=this.page.locator("//button[normalize-space()='Events']")
     this.btn_Call_Notes_Title=this.page.locator("//button[normalize-space()='Call Notes']")
- 
- 
- 
 
-    
-
-
-
-
-
-
-
-
-
-  
-    
   }
   
 
@@ -446,12 +418,6 @@ async verify_edit_charity_title(){
   async verify_call_notes_title(){
     await expect(this.btn_Call_Notes_Title).toBeVisible();
   }
- 
-
-  
-
-
-
 
 }
 

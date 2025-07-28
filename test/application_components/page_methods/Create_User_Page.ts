@@ -41,18 +41,6 @@ readonly Set_Profile_picture: Locator;
 readonly Add_Button: Locator;
 readonly Profile_tab_close_btn: Locator;
 
-
-
-
-
-
-
-
-
-
-
-
-  
   /**
    * @param {Page} page
    * @param {TestInfo} testInfo
@@ -94,13 +82,6 @@ this.emt_homepage_reporting = this.page.getByText('Reporting', { exact: true });
    this.Add_Button=this.page.locator("//*[contains(text(),'Profile Photo')]/ancestor::div//*[contains(text(),'Add')]");
    this.Profile_tab_close_btn= this.page.locator("//*[contains(text(),'Profile Photo')]/ancestor::div//button[@class='modal__close']");
   
-    
-
-    
-    
-
-    
-    
   }
   async user_enter_first_name(striteration: any){
      let firstname = await this.dataFactory.getIterationData(this.container,'USER_NAME',striteration);
@@ -172,15 +153,6 @@ this.emt_homepage_reporting = this.page.getByText('Reporting', { exact: true });
       await this.page.getByRole('button', { name: 'Apply' }).click();
     await this.playwrightFactory.click(this.Profile_tab_close_btn);    
     }
-
-  
- 
-
- 
-
-
-
-
 }
 
 

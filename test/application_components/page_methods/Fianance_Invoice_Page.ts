@@ -29,8 +29,6 @@ readonly txt_invalid_Username: Locator;
 readonly txt_invalid_password: Locator;
 readonly wrong_password: Locator;
 readonly Login_Logo: Locator;
-
-
 readonly btn_finance_management: Locator;
   readonly btn_invoices: Locator;
   readonly txt_pressentertosearch: Locator;
@@ -50,14 +48,6 @@ readonly btn_back: Locator;
 readonly btn_partnerpackages: Locator;
 readonly btn_cancel: Locator;
 
-
-
-
-
-
-
-
-  
   /**
    * @param {Page} page
    * @param {TestInfo} testInfo
@@ -91,8 +81,7 @@ this.emt_homepage_reporting = this.page.getByText('Reporting', { exact: true });
     this.btn_invoices=this.page.locator('//a[normalize-space()="Invoices"]')
     this.txt_pressentertosearch=this.page.locator('//input[@placeholder="Press ENTER to search"]')
     //this.txt_invoicename=this.page.locator('//div[@class="table__description"]')
-    this.btn_download=this.page.locator('(//*[contains(text(),"Invoice for Participant Transfer (Hsw Solicitors) on Behalf of Syed Saleem")]/ancestor::tr//button[@class="table__button d-block primary"])[1]')
-     
+    this.btn_download=this.page.locator('(//*[contains(text(),"Invoice for Participant Transfer (Hsw Solicitors) on Behalf of Syed Saleem")]/ancestor::tr//button[@class="table__button d-block primary"])[1]')     
     this.btn_checkbox=this.page.locator('(//span[@class="checkbox__tick"])[2]')
     this.btn_membership_prices=this.page.locator('//a[normalize-space()="Membership Prices"]')
     this.btn_adminlogo=this.page.locator('//img[@alt="Suraj W"]')
@@ -206,14 +195,6 @@ this.emt_homepage_reporting = this.page.getByText('Reporting', { exact: true });
     await expect(this.btn_partnerpackages).toBeVisible()
   } 
   
-
- 
-
- 
-
-
-
-
 }
 
 

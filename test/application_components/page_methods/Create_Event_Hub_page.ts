@@ -27,19 +27,6 @@ readonly Event_hub_btn:Locator;
 readonly Event_Title:Locator;
 readonly Event_hub_dashboard_page:Locator;
 
-
-
-
-
-
-
-
-
-
-
-
-
-  
   /**
    * @param {Page} page
    * @param {TestInfo} testInfo
@@ -64,16 +51,7 @@ readonly Event_hub_dashboard_page:Locator;
     this.link_search_open = this.page.getByRole('link', { name: 'Portal open' });
     this.Event_hub_btn= this.page.locator("//a[normalize-space()='Event Hub Pages']")
     this.Event_Title= this.page.locator("//input[@placeholder='Enter Title']")
-    this.Event_hub_dashboard_page= this.page.locator("//h1[normalize-space()='Dashboard']")
-
-
-
-
-
-
-
-    
-    
+    this.Event_hub_dashboard_page= this.page.locator("//h1[normalize-space()='Dashboard']");  
   }
   
   async user_clicks_event_hub_btn(){
@@ -87,26 +65,6 @@ readonly Event_hub_dashboard_page:Locator;
   async user_verify_dashboard_page(){
     await expect(this.Event_hub_dashboard_page).toBeVisible();
   }
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-  
-
-  
-
-
-
 
 }
 

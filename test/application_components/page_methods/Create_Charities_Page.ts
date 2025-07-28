@@ -53,17 +53,6 @@ readonly MetaDiscriptioncheckbox:Locator;
   readonly CanonicalURL: Locator;
   readonly txt_Facebook: Locator;
  
-
-
-
-
-
-
-
-
-
-
-  
   /**
    * @param {Page} page
    * @param {TestInfo} testInfo
@@ -223,11 +212,6 @@ async user_enters_facebook_link(strfacebook: string){
     await this.playwrightFactory.fill(this.txt_Facebook, strfacebook);
   }
  
-    
-
-
-
-
 }
 
 

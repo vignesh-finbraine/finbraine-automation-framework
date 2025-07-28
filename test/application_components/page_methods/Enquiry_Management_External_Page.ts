@@ -26,19 +26,6 @@ export class ENQUIRY_MANAGEMENT_EXTERNAL_PAGE{
 
   readonly External_Enquiries_List: Locator;
 
-
- 
-
-
-
-
-
-
-
-
-
-
-  
   /**
    * @param {Page} page
    * @param {TestInfo} testInfo
@@ -68,12 +55,7 @@ this.emt_homepage_reporting = this.page.getByText('Reporting', { exact: true });
     this.External_Enquiries_List= this.page.locator("//*[contains(text(),'External Enquiries')]/ancestor::component-table");
     
   }
-  
-
-                       
- /******************** Page Object with Optional Field************************/
- 
- 
+   
  async user_verify_enquiries_list(){
   await expect(this.External_Enquiries_List).toBeVisible();
 }

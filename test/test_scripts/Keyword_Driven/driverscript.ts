@@ -73,6 +73,11 @@ import { WEBSITE_NORTH_WEST_REGIONS_PAGE } from '../../application_components/pa
 import { WEBSITE_REGISTER_MY_CHARITY_PAGE } from '../../application_components/page_methods/Website_Register_My_Charity_Page';
 import { WEBSITE_SOUTH_EAST_REGIONS_PAGE } from '../../application_components/page_methods/Website_South_East_Region_Page';
 import { REGISTRATION_EVENT_WEBSITE } from '../../application_components/page_methods/Registration_For_Anevent_Page';
+import { WEBSITE_ALL_EVENT_PAGE } from '../../application_components/page_methods/Website_All_Event_Page';
+import { WEBSITE_ALL_DISTANCES_PAGE } from '../../application_components/page_methods/Website_All_Distances_Page';
+import { WEBSITE_EVENT_DETAILS_PAGE } from '../../application_components/page_methods/Website_Event_Details_Page';
+import { WEBSITE_ALL_REGIONS_PAGE } from '../../application_components/page_methods/Website_All_Regions_Page';
+
 
 export class DriverScript {
 
@@ -151,6 +156,10 @@ export class DriverScript {
     container.register('Website_South_East_Region_Page', new WEBSITE_SOUTH_EAST_REGIONS_PAGE(container));
     container.register('Fianance_Invoice_Page', new INVOICE_PAGE(container));
     container.register('Registration_For_Anevent_Page', new REGISTRATION_EVENT_WEBSITE(container));
+    container.register('Website_All_Event_Page', new WEBSITE_ALL_EVENT_PAGE(container));
+    container.register('Website_All_Distances_Page', new WEBSITE_ALL_DISTANCES_PAGE(container));
+    container.register('Website_Event_Details_Page', new WEBSITE_EVENT_DETAILS_PAGE(container));
+    container.register('Website_All_Regions_Page', new WEBSITE_ALL_REGIONS_PAGE(container));
     /* API Page Methods*/
     container.register('trax_trackshipmet_apis', new TrackShipmentAPI(container));
     

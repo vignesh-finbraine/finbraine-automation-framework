@@ -70,29 +70,12 @@ readonly txt_Filtered_Charity_Category_Baby: Locator;
 readonly catagories_list: Locator;
 readonly Charity_list: Locator;
 readonly Order_by_btn: Locator;
-
 readonly Asceding: Locator;
-
 readonly Apply_btn: Locator;
-
 readonly Export_btn: Locator;
-
 readonly Export_denied_msg: Locator;
-
 readonly Filter_catagory_search_box: Locator;
- 
 
-
-
-
-
-
-
-
-
-
-
-  
   /**
    * @param {Page} page
    * @param {TestInfo} testInfo
@@ -162,8 +145,7 @@ this.emt_homepage_reporting = this.page.getByText('Reporting', { exact: true });
     this.drpdwn_With=this.page.getByText('With', { exact: true });
     this.btn_Apply=this.page.locator("//component-button[@label='Apply']//button");
     this.txt_Filtered_Charity_Category_Baby=this.page.locator("//div[contains(text(),'Baby')]")
- 
-    this.catagories_list= this.page.locator("//*[contains(text(),'Categories')]/ancestor::component-table");
+  this.catagories_list= this.page.locator("//*[contains(text(),'Categories')]/ancestor::component-table");
     this.Charity_list= this.page.locator("//*[contains(text(),'Charities')]/ancestor::component-table");
     this.Order_by_btn= this.page.locator("//*[contains(text(),'Order By')]/ancestor::component-button");
     this.Asceding= this.page.locator("(//*[contains(text(),' Ascending')]/ancestor::component-sort//button[@class='entity__btn'])[1]");
@@ -171,22 +153,8 @@ this.emt_homepage_reporting = this.page.getByText('Reporting', { exact: true });
     this.Export_btn= this.page.locator("//*[contains(text(),'Export')]/ancestor::component-button");
     this.Export_denied_msg= this.page.locator("//*[contains(text(),'You do not have permission to access this resource!')]");
     this.Filter_catagory_search_box= this.page.locator("//component-select[@placeholder='Please Select']//input[@placeholder='Press ENTER to search']");
-
-
-
-
-
-
-
-
-    
-    
+ 
   }
-  
-  
-
-  
-// Create Category- Flow
   
 async user_click_createbtn(){
     await this.playwrightFactory.click(this.btn_create);
@@ -269,30 +237,23 @@ async user_verifies_associated_charity_field_three(){
   await expect(this.coloumn_three).toBeVisible();
   await expect(this.coloumn_three).toHaveText('Automation Xeeju');
 }
- 
-
- 
+  
 async user_verifies_items_per_page_pagination(strPagenumber: string){
- 
   await this.playwrightFactory.click(this.items_per_page_drpdwn);
   await this.playwrightFactory.clickForce(this.page.locator("//*[contains(text(),'Items per page:')]/parent::div//*[contains(@type,'checkbox') and contains(@aria-label,'"+strPagenumber+"')]"));
   await expect(this.items_per_page_number).toContainText(strPagenumber);
 }
- 
 async user_verifies_and_clicks_page_forward_btn(){
   await expect(this.ForwardBtn).toBeEnabled();
   await this.playwrightFactory.click(this.ForwardBtn);
 }
- 
 async user_verifies_page_number_after_clicking_forward_btn(){
   await expect(this.page_number_2).toBeVisible();
 }
- 
 async user_verifies_and_clicks_page_backward_btn(){
   await expect(this.page_backward_btn).toBeEnabled();
   await this.playwrightFactory.click(this.page_backward_btn);
 }
- 
 async user_verifies_page_number_after_clicking_backward_btn(){
   await expect(this.page_number_1).toBeVisible();
 }
@@ -347,8 +308,6 @@ async user_verify_filter_charities_title(){
       await this.playwrightFactory.click(this.page.locator("//*[contains(text(),'Category')]/ancestor::component-select//div[normalize-space()='"+strCatagory+"']"));
 
     }
- 
- 
     async user_verify_status_title(){
       await expect(this.txt_Status_Title).toBeVisible();
       //await this.page.pause()

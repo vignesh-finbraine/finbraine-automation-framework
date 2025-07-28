@@ -25,20 +25,6 @@ export class ENQUIRY_MANAGEMENT_WEBSITE_PAGE{
 
 
   readonly Enquiries_List: Locator;
-
-
- 
-
-
-
-
-
-
-
-
-
-
-  
   /**
    * @param {Page} page
    * @param {TestInfo} testInfo
