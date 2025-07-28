@@ -36,15 +36,15 @@ readonly Registration: Locator;
 readonly Landing_Page: Locator;
 readonly link_participants:Locator;
 readonly lnk_partner_charity_history: Locator;
-    readonly lnk_charity_users: Locator;
-    readonly lnk_contract: Locator;
-    readonly lnk_timeline: Locator;
-    readonly Enquiry_Management_btn:Locator;
-  readonly Enquiry_charity_btn:Locator;
-  readonly Partner_Events_btn:Locator;
-  readonly Account_Managament: Locator;
-  readonly Users: Locator;
-   readonly Users_Table:Locator;
+readonly lnk_charity_users: Locator;
+readonly lnk_contract: Locator;
+readonly lnk_timeline: Locator;
+readonly Enquiry_Management_btn:Locator;
+readonly Enquiry_charity_btn:Locator;
+readonly Partner_Events_btn:Locator;
+readonly Account_Managament: Locator;
+readonly Users: Locator;
+readonly Users_Table:Locator;
 readonly Dashboard: Locator;
 readonly Website: Locator;
 readonly External: Locator;
@@ -58,27 +58,16 @@ readonly Roll_AccountManager: Locator;
 readonly Switch_Roll_btn: Locator;
 readonly Roll_Admin: Locator;
 readonly drpdwn_User_Role: Locator;
-
 readonly txt_Account_Manager_Role: Locator;
-
 readonly txt_Participant_Role_Dashboard: Locator;
-
 readonly txt_Participant_Role_My_Profile: Locator;
-
 readonly txt_Participant_Role_My_Events: Locator;
-
 readonly txt_Participant_Role_Entries: Locator;
-
 readonly txt_Participant_Role_Book_Events: Locator;
-
 readonly txt_Participant_Role_Support: Locator;
-
 readonly link_Administrator_Active_Role: Locator;
-
 readonly txt_Switch_Role: Locator;
-
 readonly txt_Account_Manager_Active_Role: Locator;
-
 readonly txt_Administrator: Locator;
  
   /**
@@ -117,9 +106,9 @@ this.emt_homepage_reporting = this.page.getByText('Reporting', { exact: true });
     this.link_participants=this.page.locator('//a[normalize-space()="Participants"]');
     this.lnk_partner_charity_history=this.page.locator("//*[contains(text(),' Charity Management ')]/ancestor::component-sidebar//a[@title='Partner Charity History']")
     this.lnk_charity_users=this.page.locator("//*[contains(text(),' Charity Management ')]/ancestor::component-sidebar//a[@title='Charity Users']")
-   this.lnk_timeline=this.page.locator("//*[contains(text(),' Charity Management ')]/ancestor::component-sidebar//a[@title='Timeline']")
-   this.lnk_contract=this.page.locator("//*[contains(text(),' Charity Management ')]/ancestor::component-sidebar//a[@title='Contract']")
-   this.Enquiry_Management_btn=this.page.locator("//button[normalize-space()='Enquiry Management']")
+    this.lnk_timeline=this.page.locator("//*[contains(text(),' Charity Management ')]/ancestor::component-sidebar//a[@title='Timeline']")
+    this.lnk_contract=this.page.locator("//*[contains(text(),' Charity Management ')]/ancestor::component-sidebar//a[@title='Contract']")
+    this.Enquiry_Management_btn=this.page.locator("//button[normalize-space()='Enquiry Management']")
     this.Enquiry_charity_btn=this.page.locator("//a[@href='/enquiries/charity'][normalize-space()='Charities']")  
     this.Partner_Events_btn=this.page.locator("//a[normalize-space()='Partner Events']")
     this.Account_Managament= this.page.locator("//*[contains(text(),' Account Management ')]");
@@ -154,22 +143,20 @@ this.emt_homepage_reporting = this.page.getByText('Reporting', { exact: true });
   
 
   
-// Create Category- Flow
+//******** Methods**********************/
   async user_waituntil_charitymanagementvisible(){
     await this.element_CharityManagement.waitFor();
   }
   async user_click_charities(){
     await this.playwrightFactory.click(this.element_charities);
-  
-
   }
   async user_click_eventmanagement(){
   await this.playwrightFactory.click(this.element_EventManagement);
-}
+  }
 
-async user_click_event(){
+  async user_click_event(){
   await this.playwrightFactory.click(this.element_event);
-}
+  }
 async user_click_managers(){
   await this.playwrightFactory.click(this.element_Managers);
 }
