@@ -190,11 +190,11 @@ this.emt_homepage_reporting = this.page.getByText('Reporting', { exact: true });
     this.btn_reminder=this.page.locator('//span[contains(text(),"Select Reminder")]');
     this.btn_weekly=this.page.locator('//div[normalize-space()="Weekly"]');
     this.txt_description=this.page.locator('iframe[title="Rich Text Area"]').contentFrame().getByRole('paragraph');
-    this.link_video=this.page.locator('//input[@placeholder="Video (YouTube, Vimeo, etc) link"]');
-    this.link_website=this.page.locator('//input[@placeholder="Domain or URL"]');
-    this.link_review_=this.page.locator('//input[@placeholder="Ratings page link"]');
-    this.link_terms_condition=this.page.locator('//input[@placeholder="Terms and conditions page link"]');
-    this.link_privacy_policy=this.page.locator('//input[@placeholder="Privacy Policy page link"]');
+    this.link_video=this.page.locator("(//input[contains(@class,'input-primary')])[9]");
+    this.link_website=this.page.locator("(//input[contains(@class,'input-primary')])[10]");
+    this.link_review_=this.page.locator("(//input[contains(@class,'input-primary')])[11]");
+    this.link_terms_condition=this.page.locator("(//input[contains(@class,'input-primary')])[12]");
+    this.link_privacy_policy=this.page.locator("(//input[contains(@class,'input-primary')])[13]");
     this.btn_event_managers=this.page.locator('component-select').filter({ hasText: 'Event Manager(s) Please' }).locator('span').nth(1);
     this.btn_suraj_automation=this.page.locator('//li[@class="multiselect-item-checkbox"]//div[contains(text(),"suraj automation")]');
     this.btn_image=this.page.locator('//span[normalize-space()="Pick a File"]');
@@ -261,7 +261,7 @@ this.emt_homepage_reporting = this.page.getByText('Reporting', { exact: true });
     this.drpdwn_charities_options=this.page.locator('//*[contains(text(), " Details ")]/ancestor::component-section//*[contains(text(), "Charity Options ")]/ancestor::component-select//span[@class="dropdown-multiselect__caret"]');
     this.btn_included=this.page.locator('//div[normalize-space()="Included"]');
     this.drpdwn_charities=this.page.locator('//*[contains(text(), " Details ")]/ancestor::component-section//*[contains(text(), "Charities ")]/ancestor::component-select//span[@class="dropdown-multiselect__caret"]');
-    this.btn_green_tree=this.page.locator('//div[normalize-space()="Green tree"]');
+    this.btn_green_tree=this.page.locator('//div[normalize-space()="Charity green"]');
     this.btn_save=this.page.locator("//*[contains(text(),'Save')]");
     this.txt_success_msg_edit_event=this.page.locator('//div[normalize-space()="Edit Event"]');
     this.btn_ok=this.page.locator('//button[normalize-space()="OK"]');
@@ -270,6 +270,7 @@ this.emt_homepage_reporting = this.page.getByText('Reporting', { exact: true });
   this.txt_confirmation_msg=this.page.locator('//div[normalize-space()="Are you sure?"]');
   this.txt_sucessfully_deleted_msg=this.page.locator('//div[normalize-space()="Successfully deleted the event!"]');
   this.txt_no_record=this.page.locator('//caption[normalize-space()="No records found!"]');
+  
    
   }
 
@@ -487,8 +488,7 @@ async user_clicks_back(){
    await this.playwrightFactory.fill(this.txt_Search_field, search );
     await this.txt_Search_field.press('Enter');
   }
- 
-    
+     
  
   async user_delete_event(){
     await this.playwrightFactory.click(this.btn_delete);

@@ -91,14 +91,19 @@ this.emt_homepage_reporting = this.page.getByText('Reporting', { exact: true });
     this.btn_create = this.page.locator("//component-button[@label='Create']//button//span");
     this.Event_List= this.page.locator("//table[@class='table table-borderless local-table']");
     this.Event_SearchBar= this.page.locator("//input[@placeholder='Press ENTER to search']");
+<<<<<<< HEAD
     this.Event_Name= this.page.locator("//div[@class='table__product event__title']");
     this.View_Icon= this.page.locator("a.icon[href*='/event/'][target='_blank']");
+=======
+    this.Event_Name= this.page.locator("(//div[@class='table__product event__title'])[1]");
+    this.View_Icon= this.page.locator("(//*[contains(@href,'https://rfc-staging.sportsmediaagency.com/event')])[2]");
+>>>>>>> 3403859e2f763a88bde93a4d483d0800a0c67721
     this.Event_Tittle= this.page.locator("//div[@class='event-name']");
     this.Created_Event_Name= this.page.locator("//div[@class='table__product event__title']");
-    this.btn_three_dots=this.page.locator('component-dropdown').filter({ hasText: 'Delete Archive Duplicate' }).locator('#dropdownMenu');
-    this.btn_Requirments=this.page.locator('(//*[contains(text()," Automation Using Playwright by Rutuja ")]/ancestor::tr//*[contains(text()," Requirements ")])[2]');
-    this.btn_custom_field=this.page.locator('(//*[contains(text()," Automation Using Playwright by Rutuja ")]/ancestor::tr//*[contains(text()," Custom Fields ")])[2]');
-    this.btn_edit=this.page.locator('//div[@class="table__product event__title"]');
+    this.btn_three_dots=this.page.locator('(//a[@id="dropdownMenu"])[3]')
+    this.btn_Requirments=this.page.locator('(//a[@class="dropdown__link"])[7]');
+    this.btn_custom_field=this.page.locator('(//a[@class="dropdown__link"])[8]');
+    this.btn_edit=this.page.locator('(//button[@class="table__button primary d-block"])[1]');
     this.btn_delete=this.page.locator('//span[normalize-space()="Delete"]');
     this.txt_confirmation_msg=this.page.locator('//div[normalize-space()="Are you sure?"]');
     this.txt_sucessfully_deleted_msg=this.page.locator('//div[normalize-space()="Successfully deleted the event!"]');
@@ -152,7 +157,7 @@ async user_click_createbtn(){
     await this.page.waitForTimeout(3000);
     await this.page.keyboard.press('Enter');
     await this.page.waitForTimeout(3000);
-    //await this.Event_Name.waitFor();
+    await this.Event_Name.waitFor();
   }
   async user_verify_viewbutton_enabled(){
     await this.Event_Name.hover();
@@ -173,6 +178,14 @@ async user_click_createbtn(){
     await expect(this.Event_Name).toBeVisible();
   }
   async user_search_created_event(striteration: any){
+    let event = await this.dataFactory.getIterationData(this.container,'USER_NAME',striteration);
+    await this.playwrightFactory.fill(this.Event_SearchBar,event);
+    await this.page.waitForTimeout(3000);
+    await this.page.keyboard.press('Enter');
+    await this.Event_Name.hover();
+  }
+
+   async user_search_created_eventnew(striteration: any){
     let event = await this.dataFactory.getIterationData(this.container,'USER_NAME',striteration);
     await this.playwrightFactory.fill(this.Event_SearchBar,event);
     await this.page.waitForTimeout(3000);
@@ -226,6 +239,7 @@ async user_clicks_three_dots_for_custom_field(){
     await this.playwrightFactory.click(this.btn_edit);
  
   }
+
   async user_delete_event(){
     await this.playwrightFactory.click(this.btn_delete);
   }

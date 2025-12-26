@@ -330,6 +330,42 @@ export class REGISTRATION_PAGE {
     await this.page.waitForTimeout(5000);
     await expect(this.Search_name).toBeVisible();
     await this.playwrightFactory.click(this.Search_name)
+<<<<<<< HEAD
+=======
+<<<<<<< HEAD
+    }
+    async user_enters_edit_reg_ammount(stramount: string){
+      await this.page.waitForTimeout(5000);
+      await this.Registration_fees.clear();
+      await this.playwrightFactory.fill(this.Registration_fees,stramount)
+      }
+  async user_enters_edit_fund_ammount(stramount: string){
+        await this.page.waitForTimeout(5000);
+        await this.Fundraising_fees.clear();
+        await this.page.waitForTimeout(5000);
+        await this.playwrightFactory.fill(this.Fundraising_fees,stramount)
+ 
+}
+async verify_edit_reg_autopopulated_fields(){
+        await expect (this.Event_tittle).toBeVisible();
+        await expect (this.Payment_opn).toBeVisible();
+       
+     }
+     async verify_edit_reg_checkbox_fields(){
+      await expect (this.published_box).toBeVisible();
+      await expect (this.Tick_box).toBeVisible();
+     }
+     async user_click_wolfcity(strEvent: string){
+      await this.playwrightFactory.click(this.page.locator("//div[contains(text(),'"+strEvent+"')]"));
+    }
+    async user_clicks_edit_btn_of_registration_page(strPage:string){
+      await this.page.locator("//span[contains(text(),'"+strPage+"')]").hover();
+      await this.playwrightFactory.click(this.page.locator("//span[contains(text(),'"+strPage+"')]"));
+      await this.page.waitForTimeout(5000)
+    }
+  async user_clicks_registration_fee_checkbox(){
+=======
+>>>>>>> main
   }
   async user_enters_edit_reg_ammount(stramount: string) {
     await this.page.waitForTimeout(5000);
@@ -361,6 +397,10 @@ export class REGISTRATION_PAGE {
     await this.page.waitForTimeout(5000)
   }
   async user_clicks_registration_fee_checkbox() {
+<<<<<<< HEAD
+=======
+>>>>>>> 3403859e2f763a88bde93a4d483d0800a0c67721
+>>>>>>> main
     await this.playwrightFactory.click(this.checkbox_registration_fee);
   }
 
