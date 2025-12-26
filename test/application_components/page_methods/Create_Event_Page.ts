@@ -5,23 +5,23 @@ import DataFactory from '../../utilities/data-factory';
 import * as fs from 'fs';
 import { DatabricksSQLwarehouse } from '../../utilities/databricks_sqlware';
 import { DatabricksFactoryDBFS } from '../../utilities/databricks_dbfs';
-
-
+ 
+ 
 export class CREATE_EVENT_PAGE {
   private page: Page;
   private testInfo: TestInfo;
   private playwrightFactory: PlaywrightFactoryActions;
   private dataFactory: DataFactory;
-  private container: any; 
+  private container: any;
   private databricks_sqlware: DatabricksSQLwarehouse;
   private databricks_dbfs: DatabricksFactoryDBFS;
-
+ 
   readonly emt_homepage_reporting: Locator;
   readonly link_search_open: Locator;
-  
-
+ 
+ 
   //**Declare */
-
+ 
 readonly btn_Publish: Locator;
 readonly txt_SuccessMaasage: Locator;
 readonly txt_emailadress: Locator;
@@ -68,6 +68,7 @@ readonly Reviews_Field: Locator;
 readonly TC_Field: Locator;
 readonly Pick_File: Locator;
 readonly Gallary_Pick_File: Locator;
+readonly Gallery_Load_More: Locator;
 readonly Gallary_Image1: Locator;
 readonly btn_Done: Locator;
 readonly method_drpdwn_btn1: Locator;
@@ -153,7 +154,8 @@ readonly TypeDropdownbtn:Locator;
   readonly btn_regwebsite: Locator;
    readonly btn_regportal: Locator;
    readonly Select_Month:Locator;
-
+   readonly Select_Year:Locator;
+ 
   /**
    * @param {Page} page
    * @param {TestInfo} testInfo
@@ -163,7 +165,7 @@ readonly TypeDropdownbtn:Locator;
    * @param {DatabricksSQLwarehouse} databricks_sqlware;
    * @param {DatabricksFactoryDBFS} databricks_dbfs;
    */
-
+ 
   constructor(container: any) {
     this.container = container;
     this.page = container.resolve('page');
@@ -172,7 +174,7 @@ readonly TypeDropdownbtn:Locator;
     this.dataFactory = container.resolve('dataFactory');
     this.databricks_sqlware = container.resolve('databricks_sqlware');
     this.databricks_dbfs = container.resolve('databricks_dbfs');
-
+ 
     /******************** Page Objects ************************/
 this.emt_homepage_reporting = this.page.getByText('Reporting', { exact: true });
     this.link_search_open = this.page.getByRole('link', { name: 'Portal open' });
@@ -216,13 +218,17 @@ this.emt_homepage_reporting = this.page.getByText('Reporting', { exact: true });
     this.meta_description= this.page.locator("//*[contains(text(),'Meta Description ')]/ancestor::component-textarea//textarea[@class='editor__textarea ng-untouched ng-pristine ng-valid']");
     this.Create_Event_Tittle= this.page.locator("//*[contains(text(),'Create Event')]");
     this.City_Dropdown_list= this.page.locator("//*[contains(text(),'City')]/ancestor::component-select//div[@class='dropdown-list']");
-    this.Vedio_Field= this.page.locator("//input[@placeholder='Video (YouTube, Vimeo, etc) link']");
-    this.Website_Field= this.page.locator("//input[@placeholder='Domain or URL']");
-    this.Reviews_Field= this.page.locator("//input[@placeholder='Ratings page link']");
-    this.TC_Field= this.page.locator("//input[@placeholder='Terms and conditions page link']");
+    //this.Vedio_Field= this.page.locator("//input[@placeholder='Video (YouTube, Vimeo, etc) link']");
+    this.Vedio_Field= this.page.locator("//input[@placeholder='https://wwww.youtube.com/watch?v=abc']");
+    //this.Website_Field= this.page.locator("//input[@placeholder='Domain or URL']");
+    this.Website_Field= this.page.locator("//input[@placeholder='https://www.mywebsite.com']");
+    //this.Reviews_Field= this.page.locator("//input[@placeholder='Ratings page link']");
+    this.Reviews_Field= this.page.locator("//input[@placeholder='https://www.mywebsite.com/reviews']");
+    this.TC_Field= this.page.locator("//input[@placeholder='https://www.mywebsite.com/terms']");
     this.Pick_File= this.page.locator("//*[contains(text(),'Pick a File')]");
-    this.Gallary_Pick_File= this.page.locator("//*[contains(text(),'Gallery ')]/ancestor::component-file//button[@tabindex='0'][1]");
-    this.Gallary_Image1= this.page.locator("//*[contains(text(),'Images')]/ancestor::component-section//*[contains(text(),'tri')]");
+    this.Gallary_Pick_File= this.page.locator("//component-section[@sectiontitle='Details']//div[@class='section section__background']//component-file-editor//div//div//div[@class='py-4']//component-file//span[contains(text(),'Pick Files')]");
+    this.Gallery_Load_More = this.page.locator("//span[text()='Load More']")
+    this.Gallary_Image1= this.page.locator("//*[contains(text(),'Images')]/ancestor::component-section//*[contains(text(),'Test Event')]");
     this.btn_Done= this.page.locator("//component-button[@label='Done']");
     this.method_drpdwn_btn1= this.page.locator("//*[contains(text(),' Website ')]/ancestor::component-select//span[@class='dropdown-btn']");
     this.Internal_Checkbox1= this.page.locator("//*[contains(text(),' Website ')]/ancestor::component-select//input[@aria-label='Internal']");
@@ -256,7 +262,7 @@ this.emt_homepage_reporting = this.page.getByText('Reporting', { exact: true });
    // this.Registration_Date= this.page.locator("(//span[@class='custom-day'])[15]");
     //this.Withdrawal_Date= this.page.locator("(//span[@class='custom-day'])[11]");
     this.Event_List= this.page.locator("//*[contains(text(),'Events')]/ancestor::component-table//table[@class='table table-borderless local-table']");
-    this.Total_Places= this.page.locator("//component-input[@labelinfo='Total number of places available to all charities regardless of their individual reservations']//input[@placeholder='Number of places']");
+    this.Total_Places= this.page.locator("//component-input[@labelinfo[contains(.,'Total number of charity places available')]]//input[@placeholder='Number of places']");
     this.SEO_Configuration=this.page.locator('//*[contains(text()," SEO Configuration ")]');
     this.Gallery=this.page.locator("//*[contains(text(),'Details')]/ancestor::component-section//*[contains(text(),'Gallery')]");
     this.Reminder=this.page.locator("//*[contains(text(),'Reminder ')]/ancestor::component-select//div[@class='select__dropdown']");
@@ -295,106 +301,109 @@ this.ExcludefromCharities=this.page.locator("//*[contains(text(),'Exclude from C
    this.txt_address=this.page.locator('//input[@placeholder="Where is the event taking place?"]')
    this.txt_description=this.page.locator("//*[contains(text(),'Description')]")
    this.lbl_video=this.page.locator("//*[contains(text(),'Video ')]")
-   this.txt_video=this.page.locator('//input[@placeholder="Video (YouTube, Vimeo, etc) link"]')
+   this.txt_video=this.page.locator('//*[@placeholder="https://wwww.youtube.com/watch?v=abc" and @label="Video"]')
    this.lbl_website=this.page.locator("//*[contains(text(),'Details')]/ancestor::component-section//*[contains(text(),'Website')]/ancestor::component-input")
    this.txt_website=this.page.locator('//input[@placeholder="Domain or URL"]')
    this.lbl_reviews=this.page.locator("//*[contains(text(),'Details')]/ancestor::component-section//*[contains(text(),'Reviews')]")
    this.txt_reviews=this.page.locator('//input[@placeholder="Ratings page link"]')
    this.lbl_terms=this.page.locator("//*[contains(text(),'Details')]/ancestor::component-section//*[contains(text(),'Terms & Conditions ')]")
-   this.txt_terms=this.page.locator('//input[@placeholder="Terms and conditions page link"]')
+   this.txt_terms=this.page.locator('//*[@placeholder="https://www.mywebsite.com/terms" and  @label="Terms & Conditions"]')
    this.btn_imagepickfile=this.page.locator('//span[normalize-space()="Pick a File"]')
    this.btn_gallerypickfile=this.page.locator("//*[contains(text(),'Details')]/ancestor::component-section//*[contains(text(),'Gallery')]/ancestor::component-file//span[contains(text(),'Pick Files')]")
    this.btn_regwebsite=this.page.locator("//input[@placeholder='Domain or URL']");
    this.btn_regportal=this.page.locator('("span").filter({ hasText: "Internal x" }).nth(1);')
    this.Select_Month=this.page.locator("//select[@title='Select month']")
+   this.Select_Year=this.page.locator("//select[@aria-label='Select year']")
      
   }
-  
-  
+ 
+ 
 //Event Management
 async user_enter_charity_name(striteration: any){
     let charityname = await this.dataFactory.getIterationData(this.container,'USER_NAME',striteration);
     await this.playwrightFactory.fill(this.txt_CharityName,charityname);
   }
-
-
+ 
+ 
   async user_select_distance(strDistance: string){
     await this.playwrightFactory.click(this.txt_Distance);
     await this.playwrightFactory.click(this.page.locator("//div[normalize-space()='"+strDistance+"']"));
     await this.playwrightFactory.click(this.btn_DistanceTittle);
   }
-
+ 
 async user_enter_localfee(strfee: string){
   await this.playwrightFactory.fill(this.txt_LocalFee, strfee);
 }
-
+ 
 async user_select_startdate(strStartdate: string){
   await this.playwrightFactory.click(this.btn_StartDate);
   await this.Select_Month.selectOption({label:'Sep'})
+  await this.Select_Year.selectOption({ label: '2026'})
   await this.playwrightFactory.click(this.page.locator("(//span[@class='custom-day'])["+strStartdate+"]"));
   await this.playwrightFactory.click(this.btn_CloseCalender);
 }
-
+ 
 async user_select_enddate(strEnddate: string){
   await this.playwrightFactory.click(this.btn_EndDate);
   await this.Select_Month.selectOption({label:'Sep'})
+  await this.Select_Year.selectOption({ label: '2026'})
   await this.playwrightFactory.click(this.page.locator("(//span[@class='custom-day'])["+strEnddate+"]"));
   await this.playwrightFactory.click(this.btn_CloseCalender);
 }
-
+ 
 async user_select_region(strRegion: string){
   await this.playwrightFactory.click(this.txt_reagion);
   await this.playwrightFactory.click(this.page.locator("//*[contains(text(),'"+strRegion+"')]"));
   await this.playwrightFactory.click(this.btn_DistanceTittle);
 }
-
+ 
 async user_enter_eventadress(strEventAdress: string){
   await this.playwrightFactory.fill(this.txt_eventAdress, strEventAdress);
   await this.playwrightFactory.click(this.btn_eventAdressOption);
 }
-
+ 
 async user_enter_event_description(strDescription: string){
   await this.playwrightFactory.fill(this.EventDescription, strDescription);
 }
-
+ 
 async user_select_event_city(){
   await this.playwrightFactory.click(this.EventCity);
   await this.playwrightFactory.click(this.CityOption);
   await this.playwrightFactory.click(this.btn_DistanceTittle);
 }
-
+ 
 async user_enter_ticker(strTicker: string){
   await this.playwrightFactory.fill(this.ticker, strTicker);
 }
-
+ 
 async user_set_remainder(){
   await this.playwrightFactory.click(this.SelectRemainder);
   await this.playwrightFactory.click(this.RemainderOption);
 }
-
+ 
 async user_select_mode(){
   await this.playwrightFactory.click(this.SelectMode);
   await this.playwrightFactory.clickForce(this.ModeOption);
 }
-
+ 
 async user_enter_postCode(strEventPostCode: string){
   await this.playwrightFactory.fill(this.EventPostcode, strEventPostCode);
 }
-
+ 
 async user_enter_metadescription(strMeta: string){
   await this.playwrightFactory.click(this.meta_edit_checkbox);
   await this.playwrightFactory.fill(this.meta_description, strMeta);
 }
-  
+ 
 async user_click_publishbtn(){
     await this.playwrightFactory.click(this.btn_Publish);
  
-
+ 
 }
-
+ 
   async verify_success_massage(){
     await expect(this.txt_SuccessMaasage).toBeVisible();
-    
+   
   }
   async verify_create_eventpage_visible(){
     await expect(this.Create_Event_Tittle).toBeVisible();
@@ -405,7 +414,7 @@ async user_click_publishbtn(){
   }
   async verify_vediofield_accessible(strVedio: string){
     await this.playwrightFactory.fill(this.Vedio_Field, strVedio);
-
+ 
   }
   async verify_website_field_accessible(strWebsite: string){
     await this.playwrightFactory.fill(this.Website_Field, strWebsite);
@@ -418,12 +427,14 @@ async user_click_publishbtn(){
   }
   async user_click_andselect_gallaryimage(){
     await this.playwrightFactory.click(this.Gallary_Pick_File);
+    await this.playwrightFactory.click(this.Gallery_Load_More);
     await this.playwrightFactory.click(this.Gallary_Image1);
      await this.playwrightFactory.click(this.btn_Done);
-    
+   
   }
   async user_clickandselect_image(){
     await this.playwrightFactory.click(this.Pick_File);
+    await this.playwrightFactory.click(this.Gallery_Load_More);
     await this.playwrightFactory.click(this.Gallary_Image1);
   }
   async user_verify_defaultmethodsetto_internal(){
@@ -440,19 +451,19 @@ async user_click_publishbtn(){
     await this.page.evaluate(() => {
 window.scrollBy(2500, 3000); // Scroll down
 });
-    
+   
     await this.playwrightFactory.click(this.Meta_Tittle_Editcheckbox);
     await expect(this.Meta_Tittle_Box).toBeVisible();
     await this.playwrightFactory.fill(this.Meta_Tittle_Box, strMeta);
     await this.playwrightFactory.click(this.meta_edit_checkbox);
     await expect(this.meta_description).toBeVisible();
     await this.playwrightFactory.fill(this.meta_description, strMeta);
-
+ 
   }
   async verify_the_keyword_field_accessible(strKeyword: string){
-    
+   
     await this.playwrightFactory.fill(this.Keywords, strKeyword);
-
+ 
   }
   async verify_robotfield_accesible(){
     await this.playwrightFactory.click(this.Robot_Fields);
@@ -461,13 +472,13 @@ window.scrollBy(2500, 3000); // Scroll down
   async user_enter_coronical_url(strCoronical: string){
     await this.playwrightFactory.fill(this.Coronical_URL, strCoronical);
   }
-  async user_check_routeinformation_field_accesible(strRouteInfo: string){
-    await this.playwrightFactory.click(this.Type_Field);
-    await this.playwrightFactory.click(this.Route_Image);
-    await this.playwrightFactory.click(this.Type_Field);
-    await this.playwrightFactory.click(this.Embed_Code);
-    await this.playwrightFactory.fill(this.route_Information, strRouteInfo);
-  }
+  // async user_check_routeinformation_field_accesible(strRouteInfo: string){
+  //   await this.playwrightFactory.click(this.Type_Field);
+  //   await this.playwrightFactory.click(this.Route_Image);
+  //   await this.playwrightFactory.click(this.Type_Field);
+  //   await this.playwrightFactory.click(this.Embed_Code);
+  //   await this.playwrightFactory.fill(this.route_Information, strRouteInfo);
+  // }
   async user_check_whtatsincludedfield_accessible(strWhat: string){
     await this.playwrightFactory.fill(this.what_included, strWhat);
   }
@@ -495,7 +506,7 @@ window.scrollBy(2500, 3000); // Scroll down
     await this.playwrightFactory.fill(this.Question,strQuestion);
     await this.playwrightFactory.fill(this.Answer,strQuestion);
     await this.playwrightFactory.click(this.close_btn);
-
+ 
   }
   async user_sees_registration_deadline_field(){
     await expect(this.Registration_Deadline).toBeVisible();
@@ -519,11 +530,14 @@ window.scrollBy(2500, 3000); // Scroll down
     await expect(this.Event_List).toBeVisible();
   }
   async user_enter_total_places(strPlace: string){
-    await this.playwrightFactory.fill(this.Total_Places, strPlace);
-  }
+    await this.playwrightFactory.click(this.Total_Places);
+   await this.playwrightFactory.fill(this.Total_Places,strPlace);
+};
+  
+
   async user_view_seo_configuration(){
 await this.page.evaluate(() => {
-window.scrollBy(2000, 2500); // Scroll down 
+window.scrollBy(2000, 2500); // Scroll down
 });
  
 await expect (this.SEO_Configuration).toBeVisible();
@@ -572,7 +586,7 @@ await this.playwrightFactory.click(this.Rolling);
 }
 async user_verify_other_fields(strDistance: string){
 await expect (this.btn_DistanceTittle).toBeVisible();
-await this.playwrightFactory.click(this.txt_Distance); 
+await this.playwrightFactory.click(this.txt_Distance);
 await this.playwrightFactory.click(this.page.locator("//div[normalize-space()='"+strDistance+"']"))
 await this.playwrightFactory.click(this.btn_DistanceTittle)
 await expect (this.Registration_Deadline).toBeVisible();
@@ -691,7 +705,9 @@ async verify_portal(){
   await expect(this.btn_regportal).toBeEnabled();
  
 }
-
+ 
 }
-
-
+ 
+ 
+ 
+ 

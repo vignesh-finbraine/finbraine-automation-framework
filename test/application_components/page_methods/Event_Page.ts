@@ -92,7 +92,7 @@ this.emt_homepage_reporting = this.page.getByText('Reporting', { exact: true });
     this.Event_List= this.page.locator("//table[@class='table table-borderless local-table']");
     this.Event_SearchBar= this.page.locator("//input[@placeholder='Press ENTER to search']");
     this.Event_Name= this.page.locator("//div[@class='table__product event__title']");
-    this.View_Icon= this.page.locator("(//*[contains(@href,'https://rfc-staging.sportsmediaagency.com/event')])[2]");
+    this.View_Icon= this.page.locator("a.icon[href*='/event/'][target='_blank']");
     this.Event_Tittle= this.page.locator("//div[@class='event-name']");
     this.Created_Event_Name= this.page.locator("//div[@class='table__product event__title']");
     this.btn_three_dots=this.page.locator('component-dropdown').filter({ hasText: 'Delete Archive Duplicate' }).locator('#dropdownMenu');

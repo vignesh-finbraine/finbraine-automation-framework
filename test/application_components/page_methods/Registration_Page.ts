@@ -355,9 +355,9 @@ async verify_edit_reg_autopopulated_fields(){
      async user_click_wolfcity(strEvent: string){
       await this.playwrightFactory.click(this.page.locator("//div[contains(text(),'"+strEvent+"')]"));
     }
-    async user_clicks_edit_btn_of_registration_page(strPage: string){
-      await this.page.locator("//div[contains(text(),'"+strPage+"')]").hover();
-      await this.playwrightFactory.click(this.page.locator("//div[contains(text(),'"+strPage+"')]"));
+    async user_clicks_edit_btn_of_registration_page(strPage:string){
+      await this.page.locator("//span[contains(text(),'"+strPage+"')]").hover();
+      await this.playwrightFactory.click(this.page.locator("//span[contains(text(),'"+strPage+"')]"));
       await this.page.waitForTimeout(5000)
     }
   async user_clicks_registration_fee_checkbox(){
