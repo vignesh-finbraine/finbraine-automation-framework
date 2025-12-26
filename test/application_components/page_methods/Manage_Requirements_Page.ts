@@ -23,8 +23,10 @@ export class MANAGE_REQUIRMENT {
   //**Declare */
 
 readonly txt_min_age:Locator;
-  readonly date_picker:Locator;
-  readonly btn_year:Locator;
+  readonly selecttimedopdown : Locator
+  readonly selectendtimedropdown : Locator
+  readonly time_picker:Locator;
+  readonly end_time:Locator;
   readonly btn_close:Locator;
   readonly btn_save:Locator;
   readonly txt_success_msg:Locator;
@@ -65,8 +67,10 @@ readonly txt_min_age:Locator;
 this.emt_homepage_reporting = this.page.getByText('Reporting', { exact: true });
     this.link_search_open = this.page.getByRole('link', { name: 'Portal open' });
     this.txt_min_age=this.page.locator('//input[@placeholder="Minimum registration age"]');
- this.date_picker=this.page.locator('//*[contains(text(), "Born Before ")]/ancestor::component-section//button[contains(@class, "datepicker__mask" )]');
- this.btn_year=this.page.locator('//select[@title="Select year"]');
+    this.selecttimedopdown = this.page.locator("(//span[@class='dropdown-multiselect__caret'])[3]")
+ this.time_picker=this.page.locator("//div[contains(text(),' 09:00 - 09:30 ')]");
+ this.selectendtimedropdown = this.page.locator("(//span[@class='dropdown-multiselect__caret'])[4]")
+ this.end_time=this.page.locator("(//div[contains(text(),' 09:30 - 10:00 ')])[2]");
  this.btn_close=this.page.locator('//span[normalize-space()="Close"]');
  this.btn_save=this.page.locator('//span[normalize-space()="Save"]');
  this.txt_success_msg=this.page.locator('//div[normalize-space()="Create Requirement"]');
@@ -100,11 +104,11 @@ async user_enters_minimum_age_for_registration(strage:string){
 }
  
  
-async user_picks_date(){
-  await this.playwrightFactory.click(this.date_picker);
-  await this.playwrightFactory.click(this.btn_year);
-  await this.page.getByLabel('Select year').selectOption('2019')
-  await this.playwrightFactory.click(this.btn_close);
+async user_picks_time(){
+  await this.playwrightFactory.click(this.selecttimedopdown)
+  // await this.playwrightFactory.click(this.time_picker);
+  await this.playwrightFactory.click(this.selectendtimedropdown)
+  await this.playwrightFactory.click(this.end_time);
  
 }
  

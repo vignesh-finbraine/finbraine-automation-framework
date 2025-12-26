@@ -94,9 +94,9 @@ this.emt_homepage_reporting = this.page.getByText('Reporting', { exact: true });
      this.link_participants=this.page.locator('//a[normalize-space()="Participants"]');
      this.txt_search_participant=this.page.locator('//input[@placeholder="Press ENTER to search"]');
      this.title_name=this.page.locator('//th[normalize-space()="Name"]');
-     this.participant_name=this.page.locator('//div[normalize-space()="Suraj Waghmare"]');
+     this.participant_name=this.page.locator('//div[normalize-space()="Vivek v"]');
      this.title_event=this.page.locator('//th[normalize-space()="Event"]');
-     this.event_name=this.page.locator('//div[contains(text(),"Chepstow Running Festival Half Marathon- January 2")]');
+     this.event_name=this.page.locator('//div[contains(text(),"Hackney Half Marathon 2026")]');
      this.title_status=this.page.locator('//th[normalize-space()="Status"]');
      this.status_notified=this.page.locator('//div[contains(text(),"Incomplete")]');
      this.title_activity=this.page.locator('//th[normalize-space()="Activity"]');
@@ -107,15 +107,15 @@ this.emt_homepage_reporting = this.page.getByText('Reporting', { exact: true });
      this.btn_filter=this.page.locator('//span[normalize-space()="Filter"]');
      this.drpdwn_events=this.page.locator('//component-select[@label="Event"]//div//span[contains(text(),"Please Select")]');
      this.txt_search=this.page.locator('//component-select[@label="Event"]//input[@placeholder="Press ENTER to search"]');
-     this.btn_london_marathon=this.page.locator('//li[@class="multiselect-item-checkbox"]//div[contains(text(),"London Marathon 5K")]');
-     this.btn_state=this.page.locator('//component-select[@label="State"]//div//span[contains(text(),"Please Select")]');
+     this.btn_london_marathon=this.page.locator('//li[@class="multiselect-item-checkbox"]//div[contains(text(),"Hackney Half Marathon 2026")]');
+     this.btn_state=this.page.locator("(//div//form[@id='createEventForm']//div//span[contains(text(),'Please Select')])[3]");
      this.btn_live=this.page.locator('//div[normalize-space()="Live"]');
      this.btn_status=this.page.locator('//component-select[@label="Status"]//div//span[contains(text(),"Please Select")]');
-     this.btn_notified=this.page.locator('//li[@class="multiselect-item-checkbox"]//div[contains(text(),"Notified")]');
+     this.btn_notified=this.page.locator('//li[@class="multiselect-item-checkbox"]//div[contains(text(),"Incomplete")]');
      this.btn_payment_status=this.page.locator('//component-select[@label="Payment Status"]//div//span[contains(text(),"Please Select")]');
-     this.btn_paid=this.page.locator('//li[@class="multiselect-item-checkbox"]//div[contains(text(),"Paid")]');
-     this.btn_category=this.page.locator('//ng-multiselect-dropdown[@id="root-paginated-select"]//div//span[contains(text(),"Please Select")]');
-     this.btn_5k=this.page.locator('//component-select[@label="Category"]//div[contains(text(),"sa")]');
+     this.btn_paid=this.page.locator('//li[@class="multiselect-item-checkbox"]//div[contains(text(),"Waived")]');
+     this.btn_category=this.page.locator('(//ng-multiselect-dropdown[@id="root-paginated-select"]//div//span[contains(text(),"Please Select")])[3]');
+     this.btn_5k=this.page.locator('//component-select[@label="Category"]//div[contains(text(),"16k")]');
      this.btn_gender=this.page.locator('//component-select[@label="Gender"]//div//span[contains(text(),"Please Select")]');
      this.btn_male=this.page.locator('//div[normalize-space()="Male"]');
      this.btn_apply=this.page.locator('//component-button[@label="Apply"]//span[contains(text(),"Apply")]');
@@ -220,11 +220,11 @@ async user_clicks_ok_btn(){
  
    }
  
-   async user_selects_state(){
-    await this.playwrightFactory.click(this.btn_state);
-    await this.playwrightFactory.click(this.btn_live);
+//    async user_selects_state(){
+//     await this.playwrightFactory.click(this.btn_state);
+//     await this.playwrightFactory.click(this.btn_live);
  
-  }
+//   }
  
  async user_selects_status(){
     await this.playwrightFactory.click(this.btn_status);
