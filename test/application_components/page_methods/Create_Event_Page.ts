@@ -153,6 +153,7 @@ readonly TypeDropdownbtn:Locator;
   readonly btn_regwebsite: Locator;
    readonly btn_regportal: Locator;
    readonly Select_Month:Locator;
+   readonly Select_Year:Locator;
 
   /**
    * @param {Page} page
@@ -233,7 +234,7 @@ this.emt_homepage_reporting = this.page.getByText('Reporting', { exact: true });
     this.Meta_Tittle_Editcheckbox= this.page.locator("//*[contains(text(),'Meta Title ')]/ancestor::component-input//span[@class='checkbox__tick']");
     this.Keywords= this.page.locator("//span[@role='textbox']");
     this.Robot_Fields= this.page.locator("//*[contains(text(),'Robots ')]/ancestor::component-select//span[@class='dropdown-btn']");
-    this.No_Index= this.page.locator("//*[contains(text(),'Robots ')]/ancestor::component-select//*[contains(text(),' No Index ')]");
+    this.No_Index= this.page.locator("//*[contains(text(),'Robots ')]/ancestor::component-select//*[contains(text(),'No Index')]");
     this.Coronical_URL= this.page.locator("//input[@placeholder='Preferred version of the webpage chosen by search engines']");
     this.Type_Field= this.page.locator("//*[contains(text(),' Route Information ')]/ancestor::component-section//span[@class='dropdown-btn']");
     this.Route_Image= this.page.locator("//*[contains(text(),'Type ')]/ancestor::component-select//*[contains(text(),' Route Image ')]");
@@ -256,7 +257,7 @@ this.emt_homepage_reporting = this.page.getByText('Reporting', { exact: true });
    // this.Registration_Date= this.page.locator("(//span[@class='custom-day'])[15]");
     //this.Withdrawal_Date= this.page.locator("(//span[@class='custom-day'])[11]");
     this.Event_List= this.page.locator("//*[contains(text(),'Events')]/ancestor::component-table//table[@class='table table-borderless local-table']");
-    this.Total_Places= this.page.locator("//component-input[@labelinfo='Total number of places available to all charities regardless of their individual reservations']//input[@placeholder='Number of places']");
+    this.Total_Places= this.page.locator("//component-input[@labelinfo[contains(.,'Total number of charity places available')]]//input[@placeholder='Number of places']");
     this.SEO_Configuration=this.page.locator('//*[contains(text()," SEO Configuration ")]');
     this.Gallery=this.page.locator("//*[contains(text(),'Details')]/ancestor::component-section//*[contains(text(),'Gallery')]");
     this.Reminder=this.page.locator("//*[contains(text(),'Reminder ')]/ancestor::component-select//div[@class='select__dropdown']");
@@ -307,7 +308,7 @@ this.ExcludefromCharities=this.page.locator("//*[contains(text(),'Exclude from C
    this.btn_regwebsite=this.page.locator("//input[@placeholder='Domain or URL']");
    this.btn_regportal=this.page.locator('("span").filter({ hasText: "Internal x" }).nth(1);')
    this.Select_Month=this.page.locator("//select[@title='Select month']")
-     
+   this.Select_Year=this.page.locator("//select[@aria-label='Select year']")
   }
   
   
@@ -331,6 +332,7 @@ async user_enter_localfee(strfee: string){
 async user_select_startdate(strStartdate: string){
   await this.playwrightFactory.click(this.btn_StartDate);
   await this.Select_Month.selectOption({label:'Sep'})
+  await this.Select_Year.selectOption({ label: '2026'})
   await this.playwrightFactory.click(this.page.locator("(//span[@class='custom-day'])["+strStartdate+"]"));
   await this.playwrightFactory.click(this.btn_CloseCalender);
 }
@@ -338,6 +340,7 @@ async user_select_startdate(strStartdate: string){
 async user_select_enddate(strEnddate: string){
   await this.playwrightFactory.click(this.btn_EndDate);
   await this.Select_Month.selectOption({label:'Sep'})
+  await this.Select_Year.selectOption({ label: '2026'})
   await this.playwrightFactory.click(this.page.locator("(//span[@class='custom-day'])["+strEnddate+"]"));
   await this.playwrightFactory.click(this.btn_CloseCalender);
 }
@@ -457,6 +460,7 @@ window.scrollBy(2500, 3000); // Scroll down
   async verify_robotfield_accesible(){
     await this.playwrightFactory.click(this.Robot_Fields);
     await this.playwrightFactory.click(this.No_Index);
+    await this.playwrightFactory.click(this.Robot_Fields);
   }
   async user_enter_coronical_url(strCoronical: string){
     await this.playwrightFactory.fill(this.Coronical_URL, strCoronical);

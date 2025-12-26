@@ -80,7 +80,7 @@ this.emt_homepage_reporting = this.page.getByText('Reporting', { exact: true });
   }
   
   async user_launches_application() {
-    let url = process.env.APP_URL || "https://rfc-portal.sportsmediaagency.com/auth/login?returnUrl=%2Fdashboard"
+    let url = process.env.APP_URL || "https://rfc2-staging-portal.fororganizers.com/"
     await this.playwrightFactory.launchApplication(url);
   }
 

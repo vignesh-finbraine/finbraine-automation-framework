@@ -42,11 +42,18 @@ export default defineConfig({
   },
 
   /* Configure projects for major browsers */
-   projects: [
+  projects: [
      {
-       name: 'Google Chrome',
-      use: { ...devices['Desktop Chrome'], channel: 'chrome',viewport: { width: 1920, height: 1080 },},
-     },
+    name: 'Google Chrome',
+    use: {
+      channel: 'chrome',
+      headless: false,
+      viewport: null,
+      launchOptions: {
+        args: ['--start-maximized'],
+      }
+    }
+  },
 
     // {
     //   name: 'firefox',
