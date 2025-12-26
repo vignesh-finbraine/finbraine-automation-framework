@@ -155,7 +155,11 @@ readonly TypeDropdownbtn:Locator;
    readonly btn_regportal: Locator;
    readonly Select_Month:Locator;
    readonly Select_Year:Locator;
+<<<<<<< HEAD
  
+=======
+
+>>>>>>> 3403859e2f763a88bde93a4d483d0800a0c67721
   /**
    * @param {Page} page
    * @param {TestInfo} testInfo
@@ -239,7 +243,7 @@ this.emt_homepage_reporting = this.page.getByText('Reporting', { exact: true });
     this.Meta_Tittle_Editcheckbox= this.page.locator("//*[contains(text(),'Meta Title ')]/ancestor::component-input//span[@class='checkbox__tick']");
     this.Keywords= this.page.locator("//span[@role='textbox']");
     this.Robot_Fields= this.page.locator("//*[contains(text(),'Robots ')]/ancestor::component-select//span[@class='dropdown-btn']");
-    this.No_Index= this.page.locator("//*[contains(text(),'Robots ')]/ancestor::component-select//*[contains(text(),' No Index ')]");
+    this.No_Index= this.page.locator("//*[contains(text(),'Robots ')]/ancestor::component-select//*[contains(text(),'No Index')]");
     this.Coronical_URL= this.page.locator("//input[@placeholder='Preferred version of the webpage chosen by search engines']");
     this.Type_Field= this.page.locator("//*[contains(text(),' Route Information ')]/ancestor::component-section//span[@class='dropdown-btn']");
     this.Route_Image= this.page.locator("//*[contains(text(),'Type ')]/ancestor::component-select//*[contains(text(),' Route Image ')]");
@@ -314,7 +318,10 @@ this.ExcludefromCharities=this.page.locator("//*[contains(text(),'Exclude from C
    this.btn_regportal=this.page.locator('("span").filter({ hasText: "Internal x" }).nth(1);')
    this.Select_Month=this.page.locator("//select[@title='Select month']")
    this.Select_Year=this.page.locator("//select[@aria-label='Select year']")
+<<<<<<< HEAD
      
+=======
+>>>>>>> 3403859e2f763a88bde93a4d483d0800a0c67721
   }
  
  
@@ -468,6 +475,7 @@ window.scrollBy(2500, 3000); // Scroll down
   async verify_robotfield_accesible(){
     await this.playwrightFactory.click(this.Robot_Fields);
     await this.playwrightFactory.click(this.No_Index);
+    await this.playwrightFactory.click(this.Robot_Fields);
   }
   async user_enter_coronical_url(strCoronical: string){
     await this.playwrightFactory.fill(this.Coronical_URL, strCoronical);
