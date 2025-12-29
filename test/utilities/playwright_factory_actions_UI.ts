@@ -62,6 +62,7 @@ export class PlaywrightFactoryActions {
   }
 
   async fill(locator: Locator, strValue:string) {
+    await locator.waitFor({ state: 'visible' });
     await locator.fill(strValue);
   }
 

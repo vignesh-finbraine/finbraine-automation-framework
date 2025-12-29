@@ -310,6 +310,7 @@ async user_clicks_three_dots_for_custom_field(){
     }
  
     async user_clicks_export_button(){
+      await this.page.pause();
       await expect(this.btn_Export).toBeVisible();
       await this.btn_Export.click();
     }

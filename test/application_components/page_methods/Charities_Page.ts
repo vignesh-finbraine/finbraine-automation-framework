@@ -161,6 +161,7 @@ async user_click_createbtn(){
     
   }
   async user_click_charitiesbtn(){
+    await this.page.waitForTimeout(5000);
     await this.playwrightFactory.click(this.btn_charities);
     await this.page.waitForTimeout(5000);
   }
