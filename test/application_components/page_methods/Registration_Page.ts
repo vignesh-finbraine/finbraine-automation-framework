@@ -487,4 +487,3 @@ export class REGISTRATION_PAGE {
 
 
 }
-
