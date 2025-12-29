@@ -115,7 +115,7 @@ readonly MetaDiscriptioncheckbox:Locator;
 
   async user_enter_email(striteration: any){
     let Email = await this.dataFactory.getIterationData(this.container,'EMAIL',striteration);
-    await this.playwrightFactory.fill(this.txt_emailadress,Email);
+    await this.playwrightFactory.fill(this.txt_emailadress, Email);
   }
  
   async user_enter_charity_name(striteration: any){

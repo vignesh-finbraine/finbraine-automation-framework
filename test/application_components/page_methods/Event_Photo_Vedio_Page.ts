@@ -98,13 +98,13 @@ this.emt_homepage_reporting = this.page.getByText('Reporting', { exact: true });
     this.txt_Event=this.page.locator("//span[contains(text(),'Please select')]")
     this.drpdwn_Membership=this.page.locator("//ul//div[contains(text(),'Membership')]")
     this.btn_Apply=this.page.locator("//span[normalize-space()='Apply']")
-    this.txt_Membership_Event=this.page.locator("(//tr[@class='table__row'])[2]")
+    this.txt_Membership_Event=this.page.locator("(//tr[@class='table__row'])[1]")
     this.txt_Existing_Folder_Name=this.page.locator("//div[contains(text(),'Automation Interstate Marathon')]")
     this.btn_create =this.page.getByRole('button', { name: 'Create' });
     this.txt_Search_Result=this.page.locator("//div[@class='table__details']")
     this.OK_BTN= this.page.locator("//*[contains(text(),'OK')]/ancestor::div//button[@class='swal-button swal-button--confirm']");
-    this.txt_Filter_Event_Folder_Search_Bar=this.page.locator("//*[contains(text(),'Filter Event Folders')]/ancestor::ngb-modal-window//input[@placeholder='Search']")
-    this.txt_Membership=this.page.locator("//*[contains(text(),' Membership ')]/ancestor::component-select//input[@aria-label='Membership']")    
+    this.txt_Filter_Event_Folder_Search_Bar=this.page.locator("//*[contains(text(),'Filter Event Folders')]/ancestor::ngb-modal-window//input[@placeholder='Press ENTER to search']")
+    this.txt_Membership=this.page.locator("//*[contains(text(),'Marathon new 2')]/ancestor::component-select//input[@aria-label='Marathon new 2']")    
     this.delete_created_event=this.page.locator('//*[contains(text(), "Automation Marketing Folder")]/ancestor::component-table//component-button[.//span[normalize-space(text())="Delete"]]');
     this.btn_close_search=this.page.locator('//*[@class="search__close"]');
     this.txt_no_record=this.page.locator('//caption[normalize-space()="No records found!"]');
@@ -189,7 +189,7 @@ async user_selects_items_per_page(strPagenumber: string){
       async user_search_membership_on_search_bar(streventsearch: string){
   await this.playwrightFactory.fill(this.txt_Filter_Event_Folder_Search_Bar, streventsearch);
   await this.page.keyboard.press('Enter');
-  await this.page.waitForTimeout(3000);
+  await this.page.waitForTimeout(5000);
   await this.playwrightFactory.clickForce(this.txt_Membership);
   await this.page.waitForTimeout(3000);
 }

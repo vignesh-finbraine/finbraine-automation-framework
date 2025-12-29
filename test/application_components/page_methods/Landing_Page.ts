@@ -139,7 +139,7 @@ this.emt_homepage_reporting = this.page.getByText('Reporting', { exact: true });
     this.OKBTN=this.page.locator("//button[normalize-space()='OK']")
     this.Created_event=this.page.locator("//div[contains(text(),'Created at: Mon June 9, 2025 -')]")
     this.Charity=this.page.locator ("//*[contains(text(),' Create')]/ancestor::component-section//*[contains(text(),'Charity')]/ancestor::component-select//span[@class='dropdown-btn']")
-    this.search_charity=this.page.locator("//input[@placeholder='Search']")
+    this.search_charity=this.page.locator("//input[@placeholder='Press ENTER to search']")
     //this.automation_marathon_name=this.page.locator("(//*[contains(text(),' Automation City Marathony4yap ')])[1]")
     this.Existing_search_name=this.page.locator("(//div[@class='table__item'])[1]")
     this.txt_title_list=this.page.locator('//th[normalize-space()="Title"]');
