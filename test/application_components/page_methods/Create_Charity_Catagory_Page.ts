@@ -90,7 +90,7 @@ this.emt_homepage_reporting = this.page.getByText('Reporting', { exact: true });
     this.canonical_url_title = this.page.locator("//span[normalize-space()='Canonical URL']");
     this.canonical_link = this.page.locator("//input[@placeholder='Preferred version of the webpage chosen by search engines']");
     this.save_draft_btn = this.page.locator("//component-button[@lefticon='assets/icons/save-light.svg']//button");
-    this.form_layout = this.page.locator("//form[@id='createEventForm']//component-section[@sectiontitle='Details']/div[1]");
+    this.form_layout = this.page.locator("//form[@id='createEventForm']//component-section[@sectiontitle='Details']");
      
   }
  

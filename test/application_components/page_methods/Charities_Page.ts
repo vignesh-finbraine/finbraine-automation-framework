@@ -76,6 +76,7 @@ readonly Export_btn: Locator;
 readonly Export_denied_msg: Locator;
 readonly Filter_catagory_search_box: Locator;
 
+
   /**
    * @param {Page} page
    * @param {TestInfo} testInfo
@@ -99,12 +100,12 @@ readonly Filter_catagory_search_box: Locator;
 this.emt_homepage_reporting = this.page.getByText('Reporting', { exact: true });
     this.link_search_open = this.page.getByRole('link', { name: 'Portal open' });
     this.btn_create = this.page.locator("//component-button[@label='Create']//button//span");
-    this.btn_charities = this.page.locator("//*[contains(text(),'Charities')]/ancestor::div//a[@class='nav__link']");
+    this.btn_charities = this.page.locator("//*[contains(text(),'Charities')]/ancestor::div//a[@class='nav__link active']");
     this.txt_SearchBox= this.page.locator("//input[@placeholder='Press ENTER to search']");
-    this.btn_Catagories= this.page.locator("//*[contains(text(),'Categories')]/ancestor::component-section//a[@class='nav__link active']");
+    this.btn_Catagories= this.page.locator("//*[contains(text(),'Categories')]/ancestor::component-section//a[@class='nav__link']");
     this.List_Catagories= this.page.locator("//div[text()='Categories']/ancestor::component-table");
     this.Catagory_Name= this.page.locator("(//div[@class='table__details'])[1]");
-    this.No_of_Charities= this.page.locator("//div[text()='Categories']/ancestor::component-table//td[normalize-space()='Mini and Mum Care Center']/ancestor::tr[1]/td[2]");
+    this.No_of_Charities= this.page.locator("//div[text()='Categories']/ancestor::component-table//td[normalize-space()='Animals']/ancestor::tr[1]/td[2]");
    // this.Delete_Catgories_btn= this.page.locator("(//button[@class='table__button danger d-block'])[1]");
     this.Delete_Massage= this.page.locator("//*[contains(text(),'Are you sure?')]");
     this.OK_btn= this.page.locator("//button[normalize-space()='OK']");
@@ -120,14 +121,14 @@ this.emt_homepage_reporting = this.page.getByText('Reporting', { exact: true });
       this.ForwardBtn=this.page.locator("//*[contains(text(),'Page')]/ancestor::div//component-button[@centericon='assets/icons/chevron_forward-light.svg']")
       this.coloumn_one = this.page.locator("//div[text()='Categories']/ancestor::component-table//td[normalize-space()='Automation Using Playwright']/ancestor::tr[1]/td[1]");
     this.coloumn_two = this.page.locator("//div[text()='Categories']/ancestor::component-table//td[normalize-space()='Automation Using Playwright123']/ancestor::tr[1]/td[1]");
-    this.coloumn_three = this.page.locator("//div[text()='Categories']/ancestor::component-table//td[normalize-space()='Automation Xeeju']/ancestor::tr[1]/td[1]");
+    this.coloumn_three = this.page.locator("//div[text()='Categories']/ancestor::component-table//td[normalize-space()='Automation Using Playwright22']/ancestor::tr[1]/td[1]");
     //this.items_per_page = this.page.locator("//ul//div[contains(text(),'20')]");
     this.items_per_page_drpdwn = this.page.locator("//*[contains(text(),'Items per page:')]/ancestor::pagination-template//span[@class='dropdown-multiselect__caret']");
     this.items_per_page_number = this.page.locator("//*[contains(text(),'Items per page:')]/parent::div//*[contains(@class,'selected-item')]");
     this.page_number_2 = this.page.locator("//span[normalize-space()='2']");
     this.page_backward_btn = this.page.locator("//component-button[@centericon='assets/icons/chevron_backward-light.svg']//button");
     this.page_number_1 = this.page.locator("//span[normalize-space()='1']");
-    this.navigate_to_charity = this.page.locator("//div[contains(text(),'National Trust Charity')]");
+    this.navigate_to_charity = this.page.locator("//div[contains(text(),' National Rheumatoid Arthritis Society (Nras)')]");
     this.btn_Filter=this.page.locator("//span[normalize-space()='Filter']");
     this.txt_Filter_Charities_Title=this.page.locator("//span[normalize-space()='Filter Charities']");
     this.txt_Category_Title=this.page.locator("//span[normalize-space()='Category']");
@@ -153,9 +154,25 @@ this.emt_homepage_reporting = this.page.getByText('Reporting', { exact: true });
     this.Export_btn= this.page.locator("//*[contains(text(),'Export')]/ancestor::component-button");
     this.Export_denied_msg= this.page.locator("//*[contains(text(),'You do not have permission to access this resource!')]");
     this.Filter_catagory_search_box= this.page.locator("//component-select[@placeholder='Please Select']//input[@placeholder='Press ENTER to search']");
- 
+   
+
   }
   
+async user_click_categories_btn(){
+  await this.btn_Catagories.click();
+}
+
+async user_clear_search_text_box(){
+  await this.txt_SearchBox.clear();
+}
+
+async user_click_charity_btn(){
+
+  await this.btn_charities.click();
+}
+
+
+
 async user_click_createbtn(){
     await this.playwrightFactory.click(this.btn_create);
     
@@ -180,6 +197,7 @@ async user_click_createbtn(){
     await expect(this.btn_charities).toBeVisible();
     await expect(this.btn_Catagories).toBeVisible();
   }
+
   async user_sees_cagories_listwith_name_number(){
     await expect(this.List_Catagories).toBeVisible();
     await expect(this.Catagory_Name).toBeVisible();
@@ -201,6 +219,7 @@ async user_click_createbtn(){
     await this.page.keyboard.press('Enter');
     await this.page.waitForTimeout(3000);
   }
+
   async user_click_edit_btn(striteration : any){
      let strusername= await this.dataFactory.getIterationData(this.container,"USER_NAME",striteration);
     await this.page.locator("//div[text()='Charities']/ancestor::component-table//td[normalize-space()='"+strusername+"']/ancestor::tr[1]/td[1]").waitFor();
@@ -236,10 +255,12 @@ async user_verifies_associated_charity_field_two(){
  
 async user_verifies_associated_charity_field_three(){
   await expect(this.coloumn_three).toBeVisible();
-  await expect(this.coloumn_three).toHaveText('Automation Xeeju');
+  await expect(this.coloumn_three).toHaveText('Automation Using Playwright22');
 }
   
 async user_verifies_items_per_page_pagination(strPagenumber: string){
+  await this.playwrightFactory.click(this.items_per_page_drpdwn);
+  await this.playwrightFactory.clickForce(this.page.locator("//*[contains(text(),'Items per page:')]/parent::div//*[contains(@type,'checkbox') and contains(@aria-label,'"+strPagenumber+"')]"));
   await this.playwrightFactory.click(this.items_per_page_drpdwn);
   await this.playwrightFactory.clickForce(this.page.locator("//*[contains(text(),'Items per page:')]/parent::div//*[contains(@type,'checkbox') and contains(@aria-label,'"+strPagenumber+"')]"));
   await expect(this.items_per_page_number).toContainText(strPagenumber);
