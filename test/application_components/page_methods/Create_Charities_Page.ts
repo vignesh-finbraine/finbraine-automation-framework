@@ -5,24 +5,24 @@ import DataFactory from '../../utilities/data-factory';
 import * as fs from 'fs';
 import { DatabricksSQLwarehouse } from '../../utilities/databricks_sqlware';
 import { DatabricksFactoryDBFS } from '../../utilities/databricks_dbfs';
-
-
+ 
+ 
 export class CREATE_CHARITIES {
   private page: Page;
   private testInfo: TestInfo;
   private playwrightFactory: PlaywrightFactoryActions;
   private dataFactory: DataFactory;
-  private container: any; 
+  private container: any;
   private databricks_sqlware: DatabricksSQLwarehouse;
   private databricks_dbfs: DatabricksFactoryDBFS;
-
+ 
   readonly emt_homepage_reporting: Locator;
   readonly link_search_open: Locator;
-  
-
+ 
+ 
   //**Declare */
-
-
+ 
+ 
 readonly btn_Publish: Locator;
 readonly txt_SuccessMaasage: Locator;
  
@@ -39,6 +39,7 @@ readonly txt_adressoption: Locator;
 readonly txt_postcode: Locator;
 readonly txt_city: Locator;
 readonly txt_country: Locator;
+readonly txt_registration_no:Locator;
 readonly txt_CharityDiscription: Locator;
 readonly SaveDraft: Locator;
 readonly SEO_Config:Locator;
@@ -62,7 +63,7 @@ readonly MetaDiscriptioncheckbox:Locator;
    * @param {DatabricksSQLwarehouse} databricks_sqlware;
    * @param {DatabricksFactoryDBFS} databricks_dbfs;
    */
-
+ 
   constructor(container: any) {
     this.container = container;
     this.page = container.resolve('page');
@@ -71,9 +72,9 @@ readonly MetaDiscriptioncheckbox:Locator;
     this.dataFactory = container.resolve('dataFactory');
     this.databricks_sqlware = container.resolve('databricks_sqlware');
     this.databricks_dbfs = container.resolve('databricks_dbfs');
-
+ 
     /******************** Page Objects ************************/
-
+ 
     this.btn_Publish = this.page.locator("//component-button[@label='Publish Now']");
     this.txt_SuccessMaasage = this.page.locator("//div[@class='swal-title']");
     this.emt_homepage_reporting = this.page.getByText('Reporting', { exact: true });
@@ -83,14 +84,15 @@ readonly MetaDiscriptioncheckbox:Locator;
     this.txt_chatagoriesDropdown = this.page.locator("//*[contains(text(),'Category ')]/ancestor::component-select//span[@class='dropdown-btn']");
     this.txt_chatagoriesoption = this.page.locator("//div[normalize-space()='Mini and Mum Care Center']");
     this.txt_supportemail = this.page.getByRole('textbox', { name: 'Used for sending emails to' });
-    this.txt_TCLink = this.page.locator("//input[@placeholder='T&Cs Link']");
-    this.txt_website = this.page.locator("//input[@placeholder='Domain or URL']");
+    this.txt_TCLink = this.page.locator("//input[@placeholder='https://my_charity.com/terms']");
+    this.txt_website = this.page.locator("//input[@placeholder='https://my_charity.com']");
     this.txt_phonenumber = this.page.locator('#phoneNumber');
     this.txt_adress= this.page.locator("//input[@placeholder='Address']");
     this.txt_adressoption= this.page.getByText('London Luton Airport (LTN)');
     this.txt_postcode= this.page.locator("//input[@placeholder='Postcode']");
     this.txt_city= this.page.locator("//input[@placeholder='City']");
     this.txt_country= this.page.locator("//input[@placeholder='Country']");
+    this.txt_registration_no=this.page.locator(`//*[@type="text" and @placeholder="The charity's registration number"]`);
    this.txt_CharityDiscription= this.page.frameLocator("//*[contains(text(),'Charity Description ')]/ancestor::component-textarea//iframe[contains(@id,'tiny-angular')]").locator('#tinymce');
    this.SaveDraft=this.page.locator("//component-button[@lefticon='assets/icons/save-light.svg']//button");
    this.SEO_Config=this.page.locator("//h2[normalize-space()='SEO Configuration']")
@@ -105,17 +107,17 @@ readonly MetaDiscriptioncheckbox:Locator;
    this.CanonicalURL=this.page.locator("//input[@placeholder='Preferred version of the webpage chosen by search engines']")
    this.txt_Facebook=this.page.locator("//component-input[@formcontrolname='facebook']//input[@placeholder='my_charity']");
    //this.txt_SearchBox= this.page.locator("//input[@placeholder='Press ENTER to search']");
-  
+ 
 }
-  
-  
-  
+ 
+ 
+ 
   // Create Charities
-  
-
+ 
+ 
   async user_enter_email(striteration: any){
     let Email = await this.dataFactory.getIterationData(this.container,'EMAIL',striteration);
-    await this.playwrightFactory.fill(this.txt_emailadress, Email);
+    await this.playwrightFactory.fill(this.txt_emailadress,Email);
   }
  
   async user_enter_charity_name(striteration: any){
@@ -158,6 +160,9 @@ readonly MetaDiscriptioncheckbox:Locator;
   }
   async user_enter_country(strCountry: string){
     await this.playwrightFactory.fill(this.txt_country, strCountry);
+  }
+  async user_enters_registration_number(strno:string){
+    await this.playwrightFactory.fill(this.txt_registration_no,strno)
   }
  
   async user_enter_description(strDescription: string){
@@ -213,5 +218,7 @@ async user_enters_facebook_link(strfacebook: string){
   }
  
 }
-
-
+ 
+ 
+ 
+ 

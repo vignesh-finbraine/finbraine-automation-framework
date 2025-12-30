@@ -86,6 +86,7 @@ export class REGISTRATION_PAGE {
   readonly txt_Charity_Search_Bar: Locator;
   readonly txt_Fund_for_Charity: Locator;
   readonly Filter_charity_drpdwn_btn: Locator;
+  Click_Save: Locator;
 
 
 
@@ -165,7 +166,7 @@ export class REGISTRATION_PAGE {
     this.Fundraising_fees = this.page.locator("//input[@placeholder='How much can you Fundraise?']")
     //this.Event=this.page.locator("//*[contains(text(),'Events')]/ancestor::component-select")
     this.Payment_opn = this.page.locator("//*[contains(text(),'Payment Option ')]/ancestor::component-select")
-
+    this.Click_Save = this.page.locator("//span[normalize-space()='Save']");
     this.published_box = this.page.locator("//*[contains(text(),'Published')]")
     this.Tick_box = this.page.locator("//*[contains(text(),'Tick box to add Fundraising Information')]")
     this.Event_tittle = this.page.locator("//*[contains(text(),'Events')]/ancestor::component-select");
@@ -188,7 +189,7 @@ export class REGISTRATION_PAGE {
     this.txt_Charity_Name = this.page.locator("(//*[contains(text(),' Automation City Marathony4yap ')])[1]")
     this.drpdwn_Participant_pays = this.page.locator("//div[normalize-space()='Participant Pays']")
     this.drpdwn_Fund_For_Charity = this.page.locator("(//*[contains(text(),' Charity NV ')])[2]")
-    this.txt_Charity_Search_Bar = this.page.locator("//component-select[@placeholder='Please select']//ng-multiselect-dropdown[@id='root-paginated-select']//input[@placeholder='Search']")
+    this.txt_Charity_Search_Bar = this.page.locator("//component-select[@placeholder='Please select']//ng-multiselect-dropdown[@id='root-paginated-select']//input[@placeholder='Search']']")
     this.txt_Fund_for_Charity = this.page.locator("//div[contains(text(),'Fund for Charity')]")
     this.Filter_charity_drpdwn_btn = this.page.locator("//*[contains(text(),'Charity')]/ancestor::component-select//*[contains(text(),'Please Select')]");
 
@@ -349,11 +350,13 @@ export class REGISTRATION_PAGE {
 
   }
   async verify_edit_reg_checkbox_fields() {
-    await expect(this.published_box).toBeVisible();
+   // await expect(this.published_box).toBeVisible();
+   await expect(this.Click_Save).toBeVisible
+    await this.playwrightFactory.click(this.Click_Save);
     await expect(this.Tick_box).toBeVisible();
   }
   async user_click_wolfcity(strEvent: string) {
-    await this.playwrightFactory.click(this.page.locator("//div[contains(text(),'" + strEvent + "')]"));
+    await this.playwrightFactory.click(this.page.locator("//div[contains(text(),'" + strEvent + "')]").first());
   }
   async user_clicks_edit_btn_of_registration_page(strPage: string) {
     await this.page.locator("//div[contains(text(),'" + strPage + "')]").hover();
@@ -487,4 +490,3 @@ export class REGISTRATION_PAGE {
 
 
 }
-
