@@ -12,3 +12,8 @@ test/data/generated_data/
 test/data/exception_data/
 test/data/exception_data
 test/data/downloads/
+
+# Playwright
+/test-results/
+/blob-report/
+/playwright/.auth/

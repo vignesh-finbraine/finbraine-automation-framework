@@ -5,21 +5,21 @@ import DataFactory from '../../utilities/data-factory';
 import * as fs from 'fs';
 import { DatabricksSQLwarehouse } from '../../utilities/databricks_sqlware';
 import { DatabricksFactoryDBFS } from '../../utilities/databricks_dbfs';
-
-
+ 
+ 
 export class CHARITIES_PAGE {
   private page: Page;
   private testInfo: TestInfo;
   private playwrightFactory: PlaywrightFactoryActions;
   private dataFactory: DataFactory;
-  private container: any; 
+  private container: any;
   private databricks_sqlware: DatabricksSQLwarehouse;
   private databricks_dbfs: DatabricksFactoryDBFS;
-
+ 
   readonly emt_homepage_reporting: Locator;
   readonly link_search_open: Locator;
-  
-
+ 
+ 
   //**Declare */
 readonly btn_create: Locator;
 readonly btn_charities: Locator;
@@ -75,7 +75,7 @@ readonly Apply_btn: Locator;
 readonly Export_btn: Locator;
 readonly Export_denied_msg: Locator;
 readonly Filter_catagory_search_box: Locator;
-
+ 
   /**
    * @param {Page} page
    * @param {TestInfo} testInfo
@@ -85,7 +85,7 @@ readonly Filter_catagory_search_box: Locator;
    * @param {DatabricksSQLwarehouse} databricks_sqlware;
    * @param {DatabricksFactoryDBFS} databricks_dbfs;
    */
-
+ 
   constructor(container: any) {
     this.container = container;
     this.page = container.resolve('page');
@@ -94,17 +94,17 @@ readonly Filter_catagory_search_box: Locator;
     this.dataFactory = container.resolve('dataFactory');
     this.databricks_sqlware = container.resolve('databricks_sqlware');
     this.databricks_dbfs = container.resolve('databricks_dbfs');
-
+ 
     /******************** Page Objects ************************/
 this.emt_homepage_reporting = this.page.getByText('Reporting', { exact: true });
     this.link_search_open = this.page.getByRole('link', { name: 'Portal open' });
     this.btn_create = this.page.locator("//component-button[@label='Create']//button//span");
     this.btn_charities = this.page.locator("//*[contains(text(),'Charities')]/ancestor::div//a[@class='nav__link']");
     this.txt_SearchBox= this.page.locator("//input[@placeholder='Press ENTER to search']");
-    this.btn_Catagories= this.page.locator("//*[contains(text(),'Categories')]/ancestor::component-section//a[@class='nav__link active']");
+    this.btn_Catagories= this.page.locator('a').filter({ hasText: 'Categories' });;
     this.List_Catagories= this.page.locator("//div[text()='Categories']/ancestor::component-table");
     this.Catagory_Name= this.page.locator("(//div[@class='table__details'])[1]");
-    this.No_of_Charities= this.page.locator("//div[text()='Categories']/ancestor::component-table//td[normalize-space()='Mini and Mum Care Center']/ancestor::tr[1]/td[2]");
+    this.No_of_Charities= this.page.locator("//div[text()='Categories']/ancestor::component-table//td[normalize-space()='Abcd']/ancestor::tr[1]/td[2]");
    // this.Delete_Catgories_btn= this.page.locator("(//button[@class='table__button danger d-block'])[1]");
     this.Delete_Massage= this.page.locator("//*[contains(text(),'Are you sure?')]");
     this.OK_btn= this.page.locator("//button[normalize-space()='OK']");
@@ -155,15 +155,19 @@ this.emt_homepage_reporting = this.page.getByText('Reporting', { exact: true });
     this.Filter_catagory_search_box= this.page.locator("//component-select[@placeholder='Please Select']//input[@placeholder='Press ENTER to search']");
  
   }
-  
+ 
 async user_click_createbtn(){
     await this.playwrightFactory.click(this.btn_create);
-    
+   
   }
   async user_click_charitiesbtn(){
-    await this.page.waitForTimeout(5000);
     await this.playwrightFactory.click(this.btn_charities);
     await this.page.waitForTimeout(5000);
+  }
+ 
+  async user_click_category_btn(){
+    await this.btn_Catagories.hover();
+    await this.playwrightFactory.click(this.btn_Catagories)
   }
   async user_enter_charityname_searchbox(striteration : any){
     await this.txt_SearchBox.waitFor();
@@ -171,7 +175,7 @@ async user_click_createbtn(){
     await this.playwrightFactory.fill(this.txt_SearchBox, username1);
     await this.page.keyboard.press('Enter');
     await this.page.waitForTimeout(3000);
-
+ 
   }
   async user_sees_createbtn(){
     await expect(this.btn_create).toBeVisible();
@@ -179,6 +183,7 @@ async user_click_createbtn(){
   async user_sees_charities_catagories_btn(){
     await expect(this.btn_charities).toBeVisible();
     await expect(this.btn_Catagories).toBeVisible();
+ 
   }
   async user_sees_cagories_listwith_name_number(){
     await expect(this.List_Catagories).toBeVisible();
@@ -238,7 +243,7 @@ async user_verifies_associated_charity_field_three(){
   await expect(this.coloumn_three).toBeVisible();
   await expect(this.coloumn_three).toHaveText('Automation Xeeju');
 }
-  
+ 
 async user_verifies_items_per_page_pagination(strPagenumber: string){
   await this.playwrightFactory.click(this.items_per_page_drpdwn);
   await this.playwrightFactory.clickForce(this.page.locator("//*[contains(text(),'Items per page:')]/parent::div//*[contains(@type,'checkbox') and contains(@aria-label,'"+strPagenumber+"')]"));
@@ -302,13 +307,13 @@ async user_verify_filter_charities_title(){
     }
  
     async user_selects_category(strCatagory: string){
-
+ 
       await this.playwrightFactory.click(this.txt_Category);
-
+ 
       //await this.playwrightFactory.fill(this.Filter_catagory_search_box, strCatagory);
-
+ 
       await this.playwrightFactory.click(this.page.locator("//*[contains(text(),'Category')]/ancestor::component-select//div[normalize-space()='"+strCatagory+"']"));
-
+ 
     }
     async user_verify_status_title(){
       await expect(this.txt_Status_Title).toBeVisible();
@@ -344,7 +349,7 @@ async user_verify_filter_charities_title(){
       await expect(this.page.locator("(//div[contains(text(),'"+strCharity+"')])[1]")).toBeVisible();
  
     }
-
+ 
     async user_sees_created_charity_list(){
       await expect (this.Name).toBeVisible();
       await expect (this.Status).toBeVisible();
@@ -359,7 +364,7 @@ async user_verify_filter_charities_title(){
       await this.playwrightFactory.click(this.btn_Catagories);
       await this.page.waitForTimeout(3000);
     }
-
+ 
     async user_verify_catagories_listing(){
       await expect(this.catagories_list).toBeVisible();
     }
@@ -384,7 +389,9 @@ async user_verify_filter_charities_title(){
     async verify_filter_list(){
       await expect(this.Charity_list).toBeVisible();
     }
-
+ 
 }
-
-
+ 
+ 
+ 
+ 
