@@ -5,24 +5,24 @@ import DataFactory from '../../utilities/data-factory';
 import * as fs from 'fs';
 import { DatabricksSQLwarehouse } from '../../utilities/databricks_sqlware';
 import { DatabricksFactoryDBFS } from '../../utilities/databricks_dbfs';
-
-
+ 
+ 
 export class MARKETING_EVENT {
   private page: Page;
   private testInfo: TestInfo;
   private playwrightFactory: PlaywrightFactoryActions;
   private dataFactory: DataFactory;
-  private container: any; 
+  private container: any;
   private databricks_sqlware: DatabricksSQLwarehouse;
   private databricks_dbfs: DatabricksFactoryDBFS;
-
+ 
   readonly emt_homepage_reporting: Locator;
   readonly link_search_open: Locator;
-  
-
+ 
+ 
   //**Declare */
-
-
+ 
+ 
 readonly Create_Marketing_Forlder_Tittle: Locator;
 readonly Folder_Name: Locator;
 readonly Select_Event: Locator;
@@ -31,7 +31,7 @@ readonly Event_DropDown_Option: Locator;
 readonly Drop_Box_Url: Locator;
 readonly Save_btn: Locator;
 readonly Update_btn:Locator;
-
+ 
   /**
    * @param {Page} page
    * @param {TestInfo} testInfo
@@ -41,7 +41,7 @@ readonly Update_btn:Locator;
    * @param {DatabricksSQLwarehouse} databricks_sqlware;
    * @param {DatabricksFactoryDBFS} databricks_dbfs;
    */
-
+ 
   constructor(container: any) {
     this.container = container;
     this.page = container.resolve('page');
@@ -50,7 +50,7 @@ readonly Update_btn:Locator;
     this.dataFactory = container.resolve('dataFactory');
     this.databricks_sqlware = container.resolve('databricks_sqlware');
     this.databricks_dbfs = container.resolve('databricks_dbfs');
-
+ 
     /******************** Page Objects ************************/
 this.emt_homepage_reporting = this.page.getByText('Reporting', { exact: true });
    this.link_search_open = this.page.getByRole('link', { name: 'Portal open' });
@@ -64,7 +64,7 @@ this.emt_homepage_reporting = this.page.getByText('Reporting', { exact: true });
    this.Update_btn= this.page.locator("//span[normalize-space()='Update']")
      
   }
-  
+ 
 async user_verify_create_folder_tittle(){
   await expect(this.Create_Marketing_Forlder_Tittle).toBeVisible();
 }
@@ -87,15 +87,17 @@ async user_enter_dropbox_url(strURL: string){
 async user_click_save_btn(){
   await this.playwrightFactory.click(this.Save_btn);
 }
-  
+ 
 async user_clear_name(){
   await this.Folder_Name.clear();
   await this.page.waitForTimeout(3000)
   }
-  
+ 
   async user_click_update_btn(){
     await this.playwrightFactory.click(this.Update_btn);
   }
 }
-
-
+ 
+ 
+ 
+ 
