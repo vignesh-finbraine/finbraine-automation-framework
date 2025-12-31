@@ -291,6 +291,7 @@ async user_navigates_to_national_trust_charity(){
   await this.playwrightFactory.click(this.navigate_to_charity);
 }
 async user_clicks_filter_button(){
+      await this.page.waitForTimeout(5000);
       await expect(this.btn_Filter).toBeEnabled();
       await this.btn_Filter.click();
     }

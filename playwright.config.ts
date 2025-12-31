@@ -40,7 +40,7 @@ export default defineConfig({
     screenshot: 'off',
     actionTimeout: 60000
   },
- 
+
   /* Configure projects for major browsers */
    projects: [
      {

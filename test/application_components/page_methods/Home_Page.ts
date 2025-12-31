@@ -151,6 +151,7 @@ this.emt_homepage_reporting = this.page.getByText('Reporting', { exact: true });
     await this.playwrightFactory.click(this.element_charities);
   }
   async user_click_eventmanagement(){
+    await this.page.waitForTimeout(5000);
   await this.playwrightFactory.click(this.element_EventManagement);
   }
 
@@ -178,6 +179,7 @@ async user_click_registration_pages(){
   await this.playwrightFactory.click(this.Registration);
 }
 async user_click_landing_page(){
+  await this.page.waitForTimeout(5000)
   await this.playwrightFactory.click(this.Landing_Page);
 }
 async user_click_charity_management(){
