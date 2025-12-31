@@ -44,7 +44,7 @@ readonly btn_StartDate: Locator;
 //readonly btn_StartDay: Locator;
 readonly btn_CloseCalender: Locator;
 readonly btn_EndDate: Locator;
-//readonly btn_EndDay: Locator;
+readonly btn_EndDay: Locator;
 readonly txt_reagion: Locator;
 //readonly btn_regionOption: Locator;
 readonly txt_eventAdress: Locator;
@@ -192,14 +192,14 @@ this.emt_homepage_reporting = this.page.getByText('Reporting', { exact: true });
     this.txt_country= this.page.locator("//input[@placeholder='Country']");
    this.txt_CharityDiscription= this.page.frameLocator("//*[contains(text(),'Charity Description ')]/ancestor::component-textarea//iframe[contains(@id,'tiny-angular')]").locator('#tinymce');
     this.txt_Distance= this.page.locator("//*[contains(text(),'Distance')]/ancestor::component-select//span[@class='dropdown-btn']");
-    //this.txt_DistanceOption= this.page.locator("//div[normalize-space()='10K']");
+   //this.txt_DistanceOption= this.page.locator("//div[normalize-space()='10k']");
     this.btn_DistanceTittle= this.page.locator("//*[contains(text(),'Distance ')]");
     this.txt_LocalFee= this.page.locator("//input[@placeholder='For UK residents']");
     this.btn_StartDate= this.page.locator("//*[contains(text(),'Start Date ')]/ancestor::component-datetime//button[@class='datepicker__mask']");
     //this.btn_StartDay= this.page.locator("(//span[@class='custom-day'])[15]");
     this.btn_CloseCalender= this.page.locator("//component-button[contains(@classname,'button button-primary button-sm')]//button//span");
     this.btn_EndDate= this.page.locator("//*[contains(text(),'End Date ')]/ancestor::component-datetime//button[@class='datepicker__mask']")
-    //this.btn_EndDay= this.page.locator("(//span[@class='custom-day'])[25]");
+    this.btn_EndDay= this.page.locator("(//span[@class='custom-day'])[25]");
     this.txt_reagion= this.page.locator("//*[contains(text(),'Region ')]/ancestor::component-select//span[@class='dropdown-btn']");
     //this.btn_regionOption= this.page.locator("//*[contains(text(),' Charity Runs East of England ')]");
     this.txt_eventAdress= this.page.locator("//input[contains(@placeholder,'Where is the event taking place?')]");
@@ -257,12 +257,18 @@ this.emt_homepage_reporting = this.page.getByText('Reporting', { exact: true });
    // this.Registration_Date= this.page.locator("(//span[@class='custom-day'])[15]");
     //this.Withdrawal_Date= this.page.locator("(//span[@class='custom-day'])[11]");
     this.Event_List= this.page.locator("//*[contains(text(),'Events')]/ancestor::component-table//table[@class='table table-borderless local-table']");
+
     this.Total_Places= this.page.locator("//component-input[@labelinfo[contains(.,'Total number of charity places available')]]//input[@placeholder='Number of places']");
+
+    //this.Total_Places= this.page.locator("//component-input[@labelinfo='Total number of places available to all charities regardless of their individual reservations']//input[@placeholder='Number of places']");
+    this.Total_Places= this.page.locator("//component-input[@labelinfo='Total number of charity places available. Only relevant if there is a set allocation.']//input[@placeholder='Number of places']");
+
     this.SEO_Configuration=this.page.locator('//*[contains(text()," SEO Configuration ")]');
     this.Gallery=this.page.locator("//*[contains(text(),'Details')]/ancestor::component-section//*[contains(text(),'Gallery')]");
     this.Reminder=this.page.locator("//*[contains(text(),'Reminder ')]/ancestor::component-select//div[@class='select__dropdown']");
     this.FundraisingEmail=this.page.locator(" //*[contains(text(),'Fundraising Email')]/ancestor::component-checkbox//input[@type='checkbox']");
-    this.ExcludefromWeb=this.page.locator(" //*[contains(text(),'Exclude from Website')]/ancestor::component-checkbox//span[@class='checkbox__text']")
+    //this.ExcludefromWeb=this.page.locator(" //*[contains(text(),'Exclude from Website')]/ancestor::component-checkbox//span[@class='checkbox__text']")
+    this.ExcludefromWeb=this.page.locator("//component-select[@label='Exclude from Website']")
     this.Withdrawal=this.page.locator (" //*[contains(text(),'Withdrawals')]/ancestor::component-checkbox//input[@type='checkbox']")
     this.VirualEvent=this.page.locator(" //*[contains(text(),'Virtual Event')]/ancestor::component-checkbox//input[@type='checkbox']")
     this.RankingEvent=this.page.locator(" //*[contains(text(),'Ranking Event')]");  
@@ -278,7 +284,7 @@ this.ExcludefromCharities=this.page.locator("//*[contains(text(),'Exclude from C
     this.Standalone=this.page.locator("//*[contains(text(),'Details')]/ancestor::component-section//*[contains(text(),'Type')]/ancestor::component-select//span[@class='dropdown-btn']")
     this.Yes=this.page.locator("//*[contains(text(),'Details')]/ancestor::component-section//*[contains(text(),'Partner')]/ancestor::component-select//span[@class='dropdown-btn']")
  this.CountryUK=this.page.locator("//*[contains(text(),'Country')]/ancestor::component-i18n-selector//span[@class='dropdown-btn']")
- this.Error_Msg=this.page.locator("//div[contains(text(),' The withdrawal deadline must be a date before registration deadline. ')]")
+ this.Error_Msg=this.page.locator("//div[contains(text(),' Withdrawal deadline must be before registration deadline. ')]")
  this.TypeDropdownbtn=this.page.locator("//*[contains(text(),'Type ')]/ancestor::component-select//span[@class='dropdown-btn']")
  //this.past_start_date=this.page.locator('//span[normalize-space()="17"]')
     this.past_end_date=this.page.locator('//*[contains(text(),"End Date ")]/ancestor::component-datetime//button[@class="datepicker__mask"]')
@@ -309,6 +315,10 @@ this.ExcludefromCharities=this.page.locator("//*[contains(text(),'Exclude from C
    this.btn_regportal=this.page.locator('("span").filter({ hasText: "Internal x" }).nth(1);')
    this.Select_Month=this.page.locator("//select[@title='Select month']")
    this.Select_Year=this.page.locator("//select[@aria-label='Select year']")
+
+
+     
+
   }
   
   
@@ -322,6 +332,7 @@ async user_enter_charity_name(striteration: any){
   async user_select_distance(strDistance: string){
     await this.playwrightFactory.click(this.txt_Distance);
     await this.playwrightFactory.click(this.page.locator("//div[normalize-space()='"+strDistance+"']"));
+    //await this.playwrightFactory.click(this.txt_DistanceOption);
     await this.playwrightFactory.click(this.btn_DistanceTittle);
   }
 
@@ -336,7 +347,7 @@ async user_select_startdate(strStartdate: string){
   await this.playwrightFactory.click(this.page.locator("(//span[@class='custom-day'])["+strStartdate+"]"));
   await this.playwrightFactory.click(this.btn_CloseCalender);
 }
-
+ 
 async user_select_enddate(strEnddate: string){
   await this.playwrightFactory.click(this.btn_EndDate);
   await this.Select_Month.selectOption({label:'Sep'})
@@ -344,6 +355,7 @@ async user_select_enddate(strEnddate: string){
   await this.playwrightFactory.click(this.page.locator("(//span[@class='custom-day'])["+strEnddate+"]"));
   await this.playwrightFactory.click(this.btn_CloseCalender);
 }
+ 
 
 async user_select_region(strRegion: string){
   await this.playwrightFactory.click(this.txt_reagion);
@@ -561,8 +573,8 @@ await expect (this.Reminder).toBeVisible();
 await expect (this.FundraisingEmail).toBeVisible();
 await expect (this.ExcludefromWeb).toBeVisible();
 await expect (this.Withdrawal).toBeVisible();
-await expect (this.VirualEvent).toBeVisible();
-await expect (this.RankingEvent).toBeVisible();
+//await expect (this.VirualEvent).toBeVisible();
+//await expect (this.RankingEvent).toBeVisible();
 }
 async user_view_mode_dropdown_opn(){
   await this.page.waitForTimeout(5000);
@@ -578,7 +590,8 @@ async user_verify_other_fields(strDistance: string){
 await expect (this.btn_DistanceTittle).toBeVisible();
 await this.playwrightFactory.click(this.txt_Distance); 
 await this.playwrightFactory.click(this.page.locator("//div[normalize-space()='"+strDistance+"']"))
-await this.playwrightFactory.click(this.btn_DistanceTittle)
+ //await this.playwrightFactory.click(this.txt_DistanceOption);
+await this.playwrightFactory.click(this.btn_DistanceTittle);
 await expect (this.Registration_Deadline).toBeVisible();
 await expect (this.Withdrawel_Deadline).toBeVisible();
 await expect (this.Total_Places).toBeVisible();

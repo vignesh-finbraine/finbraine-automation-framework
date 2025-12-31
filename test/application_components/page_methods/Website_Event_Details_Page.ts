@@ -165,7 +165,7 @@ this.emt_homepage_reporting = this.page.getByText('Reporting', { exact: true });
     
     this.txt_Profile_Icon=this.page.locator("#dropdownMenu")
     this.txt_Login=this.page.locator("//a[normalize-space()='Login']")
-    this.drpdwn_Select_Distance=this.page.locator("//select[@class='select ng-pristine ng-valid ng-touched']")
+    this.drpdwn_Select_Distance=this.page.locator("//span[contains(text(),'Please Select')][1]")
   //this.txt_10k=this.page.locator("//option[@value='9e4b6f93-5241-45e6-8ddb-868bd07a55aa']")
     this.tab_Choose_Distance_Category=this.page.locator("//a[normalize-space()='Choose Distance Category']")
     this.btn_10K_Select_Button=this.page.locator("(//*[contains(text(),'Select')]/ancestor::component-button//button[@class='button button-primary'])[1]")
