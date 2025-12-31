@@ -71,19 +71,8 @@ readonly link_event:Locator;
 readonly txt_Event_Pages: Locator;
 readonly txt_Future_Dated_Event: Locator;
 readonly landing_charity_searchbar: Locator;
+readonly  accessible_learning_foundation: Locator; 
  
-
-
-
-
-
-
-
-
-
-
-
-
 
   
   /**
@@ -106,7 +95,7 @@ readonly landing_charity_searchbar: Locator;
     this.databricks_dbfs = container.resolve('databricks_dbfs');
 
     /******************** Page Objects ************************/
-this.emt_homepage_reporting = this.page.getByText('Reporting', { exact: true });
+   this.emt_homepage_reporting = this.page.getByText('Reporting', { exact: true });
     this.link_search_open = this.page.getByRole('link', { name: 'Portal open' });
  
  
@@ -142,8 +131,11 @@ this.emt_homepage_reporting = this.page.getByText('Reporting', { exact: true });
     this.OKBTN=this.page.locator("//button[normalize-space()='OK']")
     this.Created_event=this.page.locator("//div[contains(text(),'Created at: Mon June 9, 2025 -')]")
     this.Charity=this.page.locator ("//*[contains(text(),' Create')]/ancestor::component-section//*[contains(text(),'Charity')]/ancestor::component-select//span[@class='dropdown-btn']")
+
     this.search_charity=this.page.locator("//input[@placeholder='Press ENTER to search']")
+    this.search_charity=this.page.locator("//*[contains(text(),'Charity')]/ancestor::component-select//input[@placeholder='Press ENTER to search']")
     //this.automation_marathon_name=this.page.locator("(//*[contains(text(),' Automation City Marathony4yap ')])[1]")
+    this.accessible_learning_foundation=this.page.locator("//*[contains(text(),' Accessible Learning Foundation ')]")
     this.Existing_search_name=this.page.locator("(//div[@class='table__item'])[1]")
     this.txt_title_list=this.page.locator('//th[normalize-space()="Title"]');
     this.txt_charity_list=this.page.locator('//th[normalize-space()="Charity"]');
@@ -158,7 +150,7 @@ this.emt_homepage_reporting = this.page.getByText('Reporting', { exact: true });
     this.txt_Charity_Search_Bar=this.page.locator("//input[@placeholder = 'Press ENTER to search']/parent :: li[@class ='filter-textbox']");
     this.txt_Event_Pages=this.page.locator("//*[contains(text(),'Event Pages ')]/ancestor::component-select//span[@class='dropdown-btn']")
     this.txt_Future_Dated_Event=this.page.locator("//ul//div[contains(text(),'Created at: Mon June 9, 2025 -')]")
-    this.landing_charity_searchbar=this.page.locator("//*[contains(text(),'Charity')]/ancestor::component-select//input[@placeholder='Search']")
+    this.landing_charity_searchbar=this.page.locator("//*[contains(text(),'Charity')]/ancestor::component-select//input[@placeholder='Press ENTER to search']")
  
 
   
@@ -372,11 +364,6 @@ let name= await this.dataFactory.getIterationData(this.container,'USER_NAME',str
    
  
  
-
-  
-
-
-
 
 }
 
