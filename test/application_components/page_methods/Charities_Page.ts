@@ -157,7 +157,7 @@ readonly Filter_catagory_search_box: Locator;
     this.Export_denied_msg= this.page.locator("//*[contains(text(),'You do not have permission to access this resource!')]");
     this.Filter_catagory_search_box= this.page.locator("//component-select[@placeholder='Please Select']//input[@placeholder='Press ENTER to search']");
    
-  
+  }
 async user_click_categories_btn(){
   await this.btn_Catagories.click();
 }
