@@ -2,6 +2,7 @@ import {expect, type TestInfo } from '@playwright/test';
 import { type Locator, type Page } from 'playwright';
 import { PlaywrightFactoryActions } from '../../utilities/playwright_factory_actions_UI';
 import DataFactory from '../../utilities/data-factory';
+import * as fs from 'fs';
 import { PowerBI_Actions } from '../../utilities/powerbi';
 import { DatabricksFactoryDBFS } from '../../utilities/databricks_dbfs';
 import { DatabricksSQLwarehouse } from '../../utilities/databricks_sqlware';

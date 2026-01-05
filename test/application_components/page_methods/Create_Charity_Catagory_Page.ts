@@ -5,25 +5,25 @@ import DataFactory from '../../utilities/data-factory';
 import * as fs from 'fs';
 import { DatabricksSQLwarehouse } from '../../utilities/databricks_sqlware';
 import { DatabricksFactoryDBFS } from '../../utilities/databricks_dbfs';
-
-
+ 
+ 
 export class Create_Charity_Chatagory_Page {
   private page: Page;
   private testInfo: TestInfo;
   private playwrightFactory: PlaywrightFactoryActions;
   private dataFactory: DataFactory;
-  private container: any; 
+  private container: any;
   private databricks_sqlware: DatabricksSQLwarehouse;
   private databricks_dbfs: DatabricksFactoryDBFS;
-
+ 
   readonly emt_homepage_reporting: Locator;
   readonly link_search_open: Locator;
-  
-
+ 
+ 
   //**Declare */
-
-
-
+ 
+ 
+ 
 readonly txt_name: Locator;
  readonly element_dropdown: Locator;
  readonly element_dropdownoption: Locator;
@@ -46,7 +46,7 @@ readonly txt_name: Locator;
   readonly canonical_link: Locator;
   readonly save_draft_btn: Locator;
   readonly form_layout: Locator;
-
+ 
   /**
    * @param {Page} page
    * @param {TestInfo} testInfo
@@ -56,7 +56,7 @@ readonly txt_name: Locator;
    * @param {DatabricksSQLwarehouse} databricks_sqlware;
    * @param {DatabricksFactoryDBFS} databricks_dbfs;
    */
-
+ 
   constructor(container: any) {
     this.container = container;
     this.page = container.resolve('page');
@@ -65,7 +65,7 @@ readonly txt_name: Locator;
     this.dataFactory = container.resolve('dataFactory');
     this.databricks_sqlware = container.resolve('databricks_sqlware');
     this.databricks_dbfs = container.resolve('databricks_dbfs');
-
+ 
     /******************** Page Objects ************************/
 this.emt_homepage_reporting = this.page.getByText('Reporting', { exact: true });
     this.link_search_open = this.page.getByRole('link', { name: 'Portal open' });
@@ -90,38 +90,38 @@ this.emt_homepage_reporting = this.page.getByText('Reporting', { exact: true });
     this.canonical_url_title = this.page.locator("//span[normalize-space()='Canonical URL']");
     this.canonical_link = this.page.locator("//input[@placeholder='Preferred version of the webpage chosen by search engines']");
     this.save_draft_btn = this.page.locator("//component-button[@lefticon='assets/icons/save-light.svg']//button");
-    this.form_layout = this.page.locator("//form[@id='createEventForm']//component-section[@sectiontitle='Details']/div[1]");
+    this.form_layout = this.page.locator("//form[@id='createEventForm']//component-section[@sectiontitle='Details']");
      
   }
  
   async user_enter_name(striteration : any){
 let username = await this.dataFactory.getIterationData(this.container,"USER_NAME",striteration);
 await this.playwrightFactory.fill(this.txt_name, username);
-
+ 
   }
-
-  
+ 
+ 
   async user_select_dropdownoption_active(){
     await this.playwrightFactory.click(this.element_dropdown);
     await this.playwrightFactory.click(this.element_dropdownoption);
-    
+   
   }
-
+ 
   async user_select_colour(strColour: string){
     await this.playwrightFactory.click(this.element_colour);
     await this.playwrightFactory.fill(this.element_colour, strColour);
   }
-
+ 
   async user_click_publishbtn(){
     await this.playwrightFactory.click(this.btn_Publish);
   }
-
+ 
   async verify_success_massage(){
     await expect(this.txt_SuccessMaasage).toBeVisible();
-    
+   
   }
   async user_click_ok_button(){
-    
+   
     await this.playwrightFactory.click(this.btn_OK);
     await this.page.waitForTimeout(5000);
   }
@@ -179,5 +179,7 @@ async user_verifies_image_option_not_available(){
 }
  
 }
-
-
+ 
+ 
+ 
+ 

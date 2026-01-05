@@ -8,7 +8,7 @@ import { defineConfig, devices } from '@playwright/test';
  * See https://playwright.dev/docs/test-configuration.
  */
 export default defineConfig({
-  globalSetup: require.resolve('./global-setup.ts'), 
+  globalSetup: require.resolve('./global-setup.ts'),
   testDir: './test/test_scripts',
   /* Maximum time one test can run for. */
   timeout: 600 * 1000 * 100,
@@ -33,7 +33,7 @@ export default defineConfig({
   use: {
     /* Base URL to use in actions like `await page.goto('/')`. */
     // baseURL: 'http://127.0.0.1:3000',
-
+ 
     /* Collect trace when retrying the failed test. See https://playwright.dev/docs/trace-viewer */
     trace: 'on',
     video: 'on',
@@ -47,17 +47,17 @@ export default defineConfig({
        name: 'Google Chrome',
       use: { ...devices['Desktop Chrome'], channel: 'chrome',viewport: { width: 1920, height: 1080 },},
      },
-
+ 
     // {
     //   name: 'firefox',
     //   use: { ...devices['Desktop Firefox'] },
     // },
-
+ 
     // {
     //   name: 'webkit',
     //   use: { ...devices['Desktop Safari'] },
     // },
-
+ 
     /* Test against mobile viewports. */
     // {
     //   name: 'Mobile Chrome',
@@ -67,7 +67,7 @@ export default defineConfig({
     //   name: 'Mobile Safari',
     //   use: { ...devices['iPhone 12'] },
     // },
-
+ 
     /* Test against branded browsers. */
      //{
        //name: 'Microsoft Edge',

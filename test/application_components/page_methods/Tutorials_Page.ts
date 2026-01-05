@@ -92,7 +92,7 @@ readonly btn_ok: Locator;
     /******************** Page Objects ************************/
 this.emt_homepage_reporting = this.page.getByText('Reporting', { exact: true });
     this.link_search_open = this.page.getByRole('link', { name: 'Portal open' });
-    this.Tutorials_Tittle= this.page.locator("//*[contains(text(),' Tutorials ')]");
+    this.Tutorials_Tittle= this.page.locator("//h1[contains(text(),'Tutorials')]");
     this.Column_Tittle= this.page.locator("//*[contains(text(),'Title')]");
     this.Column_Platform= this.page.locator("//*[contains(text(),'Platform')]");
     this.Column_Action= this.page.locator("//*[contains(text(),'Tutorials')]/ancestor::component-table//*[contains(text(),'Action')]/ancestor::tr[1]/th[3]");

@@ -3,6 +3,7 @@ import { type Locator, type Page } from 'playwright';
 import { PlaywrightFactoryActions } from '../../utilities/playwright_factory_actions_UI';
 import DataFactory from '../../utilities/data-factory';
 import * as fs from 'fs';
+import { parse } from 'csv-parse/sync';
 import { DatabricksSQLwarehouse } from '../../utilities/databricks_sqlware';
 import { DatabricksFactoryDBFS } from '../../utilities/databricks_dbfs';
 

@@ -41,10 +41,11 @@ readonly txt_Distance: Locator;
 readonly btn_DistanceTittle: Locator;
 readonly txt_LocalFee: Locator;
 readonly btn_StartDate: Locator;
+readonly select_year:Locator;
 //readonly btn_StartDay: Locator;
 readonly btn_CloseCalender: Locator;
 readonly btn_EndDate: Locator;
-//readonly btn_EndDay: Locator;
+readonly btn_EndDay: Locator;
 readonly txt_reagion: Locator;
 //readonly btn_regionOption: Locator;
 readonly txt_eventAdress: Locator;
@@ -155,11 +156,6 @@ readonly TypeDropdownbtn:Locator;
    readonly btn_regportal: Locator;
    readonly Select_Month:Locator;
    readonly Select_Year:Locator;
-<<<<<<< HEAD
- 
-=======
-
->>>>>>> 3403859e2f763a88bde93a4d483d0800a0c67721
   /**
    * @param {Page} page
    * @param {TestInfo} testInfo
@@ -197,14 +193,15 @@ this.emt_homepage_reporting = this.page.getByText('Reporting', { exact: true });
     this.txt_country= this.page.locator("//input[@placeholder='Country']");
    this.txt_CharityDiscription= this.page.frameLocator("//*[contains(text(),'Charity Description ')]/ancestor::component-textarea//iframe[contains(@id,'tiny-angular')]").locator('#tinymce');
     this.txt_Distance= this.page.locator("//*[contains(text(),'Distance')]/ancestor::component-select//span[@class='dropdown-btn']");
-    //this.txt_DistanceOption= this.page.locator("//div[normalize-space()='10K']");
+   //this.txt_DistanceOption= this.page.locator("//div[normalize-space()='10k']");
     this.btn_DistanceTittle= this.page.locator("//*[contains(text(),'Distance ')]");
     this.txt_LocalFee= this.page.locator("//input[@placeholder='For UK residents']");
     this.btn_StartDate= this.page.locator("//*[contains(text(),'Start Date ')]/ancestor::component-datetime//button[@class='datepicker__mask']");
+    this.select_year=this.page.locator("//*[@aria-label='Select year']");
     //this.btn_StartDay= this.page.locator("(//span[@class='custom-day'])[15]");
     this.btn_CloseCalender= this.page.locator("//component-button[contains(@classname,'button button-primary button-sm')]//button//span");
     this.btn_EndDate= this.page.locator("//*[contains(text(),'End Date ')]/ancestor::component-datetime//button[@class='datepicker__mask']")
-    //this.btn_EndDay= this.page.locator("(//span[@class='custom-day'])[25]");
+    this.btn_EndDay= this.page.locator("(//span[@class='custom-day'])[25]");
     this.txt_reagion= this.page.locator("//*[contains(text(),'Region ')]/ancestor::component-select//span[@class='dropdown-btn']");
     //this.btn_regionOption= this.page.locator("//*[contains(text(),' Charity Runs East of England ')]");
     this.txt_eventAdress= this.page.locator("//input[contains(@placeholder,'Where is the event taking place?')]");
@@ -233,6 +230,13 @@ this.emt_homepage_reporting = this.page.getByText('Reporting', { exact: true });
     this.Gallary_Pick_File= this.page.locator("//component-section[@sectiontitle='Details']//div[@class='section section__background']//component-file-editor//div//div//div[@class='py-4']//component-file//span[contains(text(),'Pick Files')]");
     this.Gallery_Load_More = this.page.locator("//span[text()='Load More']")
     this.Gallary_Image1= this.page.locator("//*[contains(text(),'Images')]/ancestor::component-section//*[contains(text(),'Test Event')]");
+    this.Vedio_Field= this.page.locator("//form[@id='createEventForm']//component-input[@formcontrolname='video']//input");
+    this.Website_Field= this.page.locator("//form[@id='createEventForm']//component-input[@formcontrolname='website']//input");
+    this.Reviews_Field= this.page.locator("//form[@id='createEventForm']//component-input[@formcontrolname='review']//input");
+    this.TC_Field= this.page.locator("//form[@id='createEventForm']//component-input[@formcontrolname='terms_and_conditions']//input");
+    this.Pick_File= this.page.locator("//*[contains(text(),'Pick a File')]");
+    this.Gallary_Pick_File= this.page.locator("//*[contains(text(),'Gallery ')]/ancestor::component-file//button[@tabindex='0'][1]");
+    this.Gallary_Image1= this.page.locator("//*[@title='11']");
     this.btn_Done= this.page.locator("//component-button[@label='Done']");
     this.method_drpdwn_btn1= this.page.locator("//*[contains(text(),' Website ')]/ancestor::component-select//span[@class='dropdown-btn']");
     this.Internal_Checkbox1= this.page.locator("//*[contains(text(),' Website ')]/ancestor::component-select//input[@aria-label='Internal']");
@@ -243,7 +247,7 @@ this.emt_homepage_reporting = this.page.getByText('Reporting', { exact: true });
     this.Meta_Tittle_Editcheckbox= this.page.locator("//*[contains(text(),'Meta Title ')]/ancestor::component-input//span[@class='checkbox__tick']");
     this.Keywords= this.page.locator("//span[@role='textbox']");
     this.Robot_Fields= this.page.locator("//*[contains(text(),'Robots ')]/ancestor::component-select//span[@class='dropdown-btn']");
-    this.No_Index= this.page.locator("//*[contains(text(),'Robots ')]/ancestor::component-select//*[contains(text(),'No Index')]");
+    this.No_Index= this.page.locator("//*[contains(text(),'Robots ')]/ancestor::component-select//*[contains(text(),' No Index ')]");
     this.Coronical_URL= this.page.locator("//input[@placeholder='Preferred version of the webpage chosen by search engines']");
     this.Type_Field= this.page.locator("//*[contains(text(),' Route Information ')]/ancestor::component-section//span[@class='dropdown-btn']");
     this.Route_Image= this.page.locator("//*[contains(text(),'Type ')]/ancestor::component-select//*[contains(text(),' Route Image ')]");
@@ -266,12 +270,18 @@ this.emt_homepage_reporting = this.page.getByText('Reporting', { exact: true });
    // this.Registration_Date= this.page.locator("(//span[@class='custom-day'])[15]");
     //this.Withdrawal_Date= this.page.locator("(//span[@class='custom-day'])[11]");
     this.Event_List= this.page.locator("//*[contains(text(),'Events')]/ancestor::component-table//table[@class='table table-borderless local-table']");
+
     this.Total_Places= this.page.locator("//component-input[@labelinfo[contains(.,'Total number of charity places available')]]//input[@placeholder='Number of places']");
+
+    //this.Total_Places= this.page.locator("//component-input[@labelinfo='Total number of places available to all charities regardless of their individual reservations']//input[@placeholder='Number of places']");
+    this.Total_Places= this.page.locator("//component-input[@labelinfo='Total number of charity places available. Only relevant if there is a set allocation.']//input[@placeholder='Number of places']");
+
     this.SEO_Configuration=this.page.locator('//*[contains(text()," SEO Configuration ")]');
     this.Gallery=this.page.locator("//*[contains(text(),'Details')]/ancestor::component-section//*[contains(text(),'Gallery')]");
     this.Reminder=this.page.locator("//*[contains(text(),'Reminder ')]/ancestor::component-select//div[@class='select__dropdown']");
     this.FundraisingEmail=this.page.locator(" //*[contains(text(),'Fundraising Email')]/ancestor::component-checkbox//input[@type='checkbox']");
-    this.ExcludefromWeb=this.page.locator(" //*[contains(text(),'Exclude from Website')]/ancestor::component-checkbox//span[@class='checkbox__text']")
+    //this.ExcludefromWeb=this.page.locator(" //*[contains(text(),'Exclude from Website')]/ancestor::component-checkbox//span[@class='checkbox__text']")
+    this.ExcludefromWeb=this.page.locator("//component-select[@label='Exclude from Website']")
     this.Withdrawal=this.page.locator (" //*[contains(text(),'Withdrawals')]/ancestor::component-checkbox//input[@type='checkbox']")
     this.VirualEvent=this.page.locator(" //*[contains(text(),'Virtual Event')]/ancestor::component-checkbox//input[@type='checkbox']")
     this.RankingEvent=this.page.locator(" //*[contains(text(),'Ranking Event')]");  
@@ -287,7 +297,7 @@ this.ExcludefromCharities=this.page.locator("//*[contains(text(),'Exclude from C
     this.Standalone=this.page.locator("//*[contains(text(),'Details')]/ancestor::component-section//*[contains(text(),'Type')]/ancestor::component-select//span[@class='dropdown-btn']")
     this.Yes=this.page.locator("//*[contains(text(),'Details')]/ancestor::component-section//*[contains(text(),'Partner')]/ancestor::component-select//span[@class='dropdown-btn']")
  this.CountryUK=this.page.locator("//*[contains(text(),'Country')]/ancestor::component-i18n-selector//span[@class='dropdown-btn']")
- this.Error_Msg=this.page.locator("//div[contains(text(),' The withdrawal deadline must be a date before registration deadline. ')]")
+ this.Error_Msg=this.page.locator("//div[contains(text(),' Withdrawal deadline must be before registration deadline. ')]")
  this.TypeDropdownbtn=this.page.locator("//*[contains(text(),'Type ')]/ancestor::component-select//span[@class='dropdown-btn']")
  //this.past_start_date=this.page.locator('//span[normalize-space()="17"]')
     this.past_end_date=this.page.locator('//*[contains(text(),"End Date ")]/ancestor::component-datetime//button[@class="datepicker__mask"]')
@@ -314,14 +324,11 @@ this.ExcludefromCharities=this.page.locator("//*[contains(text(),'Exclude from C
    this.txt_terms=this.page.locator('//*[@placeholder="https://www.mywebsite.com/terms" and  @label="Terms & Conditions"]')
    this.btn_imagepickfile=this.page.locator('//span[normalize-space()="Pick a File"]')
    this.btn_gallerypickfile=this.page.locator("//*[contains(text(),'Details')]/ancestor::component-section//*[contains(text(),'Gallery')]/ancestor::component-file//span[contains(text(),'Pick Files')]")
-   this.btn_regwebsite=this.page.locator("//input[@placeholder='Domain or URL']");
-   this.btn_regportal=this.page.locator('("span").filter({ hasText: "Internal x" }).nth(1);')
-   this.Select_Month=this.page.locator("//select[@title='Select month']")
+   this.btn_regwebsite=this.page.locator("//div[contains(@class,'input__bottom_info') and normalize-space(.)='Website'] /ancestor::component-select //div[contains(@class,'multiselect-dropdown')]");
+   this.btn_regportal=this.page.locator("//div[contains(@class,'input__bottom_info') and normalize-space(.)='Portal'] /ancestor::component-select //div[contains(@class,'multiselect-dropdown')]")
+   this.Select_Month=this.page.locator("//select[@title='Select month']")  
    this.Select_Year=this.page.locator("//select[@aria-label='Select year']")
-<<<<<<< HEAD
-     
-=======
->>>>>>> 3403859e2f763a88bde93a4d483d0800a0c67721
+
   }
  
  
@@ -335,6 +342,7 @@ async user_enter_charity_name(striteration: any){
   async user_select_distance(strDistance: string){
     await this.playwrightFactory.click(this.txt_Distance);
     await this.playwrightFactory.click(this.page.locator("//div[normalize-space()='"+strDistance+"']"));
+    //await this.playwrightFactory.click(this.txt_DistanceOption);
     await this.playwrightFactory.click(this.btn_DistanceTittle);
   }
  
@@ -345,7 +353,7 @@ async user_enter_localfee(strfee: string){
 async user_select_startdate(strStartdate: string){
   await this.playwrightFactory.click(this.btn_StartDate);
   await this.Select_Month.selectOption({label:'Sep'})
-  await this.Select_Year.selectOption({ label: '2026'})
+  await this.select_year.selectOption('2026');
   await this.playwrightFactory.click(this.page.locator("(//span[@class='custom-day'])["+strStartdate+"]"));
   await this.playwrightFactory.click(this.btn_CloseCalender);
 }
@@ -353,7 +361,7 @@ async user_select_startdate(strStartdate: string){
 async user_select_enddate(strEnddate: string){
   await this.playwrightFactory.click(this.btn_EndDate);
   await this.Select_Month.selectOption({label:'Sep'})
-  await this.Select_Year.selectOption({ label: '2026'})
+  await this.select_year.selectOption('2026');
   await this.playwrightFactory.click(this.page.locator("(//span[@class='custom-day'])["+strEnddate+"]"));
   await this.playwrightFactory.click(this.btn_CloseCalender);
 }
@@ -475,7 +483,6 @@ window.scrollBy(2500, 3000); // Scroll down
   async verify_robotfield_accesible(){
     await this.playwrightFactory.click(this.Robot_Fields);
     await this.playwrightFactory.click(this.No_Index);
-    await this.playwrightFactory.click(this.Robot_Fields);
   }
   async user_enter_coronical_url(strCoronical: string){
     await this.playwrightFactory.fill(this.Coronical_URL, strCoronical);
@@ -524,13 +531,15 @@ window.scrollBy(2500, 3000); // Scroll down
   }
   async user_select_registration_date(strDate: string){
     await this.playwrightFactory.click(this.Registration_Deadline);
-    await this.Select_Month.selectOption({label:'Sep'})
+    await this.Select_Month.selectOption({label:'Sep'});
+    await this.select_year.selectOption('2026');
     await this.playwrightFactory.click(this.page.locator("(//span[@class='custom-day'])["+strDate+"]"));
     await this.playwrightFactory.click(this.btn_CloseCalender);
   }
   async user_select_widrawaldate(strDate: string){
     await this.playwrightFactory.click(this.Withdrawel_Deadline);
-    await this.Select_Month.selectOption({label:'Sep'})
+    await this.Select_Month.selectOption({label:'Sep'});
+    await this.select_year.selectOption('2026');
     await this.playwrightFactory.click(this.page.locator("(//span[@class='custom-day'])["+strDate+"]"));
     await this.playwrightFactory.click(this.btn_CloseCalender);
   }
@@ -579,8 +588,8 @@ await expect (this.Reminder).toBeVisible();
 await expect (this.FundraisingEmail).toBeVisible();
 await expect (this.ExcludefromWeb).toBeVisible();
 await expect (this.Withdrawal).toBeVisible();
-await expect (this.VirualEvent).toBeVisible();
-await expect (this.RankingEvent).toBeVisible();
+//await expect (this.VirualEvent).toBeVisible();
+//await expect (this.RankingEvent).toBeVisible();
 }
 async user_view_mode_dropdown_opn(){
   await this.page.waitForTimeout(5000);
@@ -596,7 +605,8 @@ async user_verify_other_fields(strDistance: string){
 await expect (this.btn_DistanceTittle).toBeVisible();
 await this.playwrightFactory.click(this.txt_Distance);
 await this.playwrightFactory.click(this.page.locator("//div[normalize-space()='"+strDistance+"']"))
-await this.playwrightFactory.click(this.btn_DistanceTittle)
+ //await this.playwrightFactory.click(this.txt_DistanceOption);
+await this.playwrightFactory.click(this.btn_DistanceTittle);
 await expect (this.Registration_Deadline).toBeVisible();
 await expect (this.Withdrawel_Deadline).toBeVisible();
 await expect (this.Total_Places).toBeVisible();

@@ -5,24 +5,24 @@ import DataFactory from '../../utilities/data-factory';
 import * as fs from 'fs';
 import { DatabricksSQLwarehouse } from '../../utilities/databricks_sqlware';
 import { DatabricksFactoryDBFS } from '../../utilities/databricks_dbfs';
-
-
+ 
+ 
 export class EDIT_CHARITIES {
   private page: Page;
   private testInfo: TestInfo;
   private playwrightFactory: PlaywrightFactoryActions;
   private dataFactory: DataFactory;
-  private container: any; 
+  private container: any;
   private databricks_sqlware: DatabricksSQLwarehouse;
   private databricks_dbfs: DatabricksFactoryDBFS;
-
+ 
   readonly emt_homepage_reporting: Locator;
   readonly link_search_open: Locator;
-  
-
+ 
+ 
   //**Declare */
-
-
+ 
+ 
 readonly Membership_btn: Locator;
 readonly Membership_Tittle: Locator;
 readonly Expiry_Date: Locator;
@@ -38,6 +38,8 @@ readonly Status: Locator
 readonly Membership_type_classic: Locator;
 readonly Expiry_Past_Date: Locator;
 readonly Expiry_Date_Error_Msg: Locator;
+readonly btn_next_year:Locator;
+readonly successfull_msg:Locator;
 readonly Type_Partner: Locator;
 readonly Type_Premium: Locator;
 readonly Type_Charity_of_the_Year: Locator;
@@ -101,7 +103,7 @@ readonly btn_Call_Notes_Title: Locator;
    * @param {DatabricksSQLwarehouse} databricks_sqlware;
    * @param {DatabricksFactoryDBFS} databricks_dbfs;
    */
-
+ 
   constructor(container: any) {
     this.container = container;
     this.page = container.resolve('page');
@@ -110,7 +112,7 @@ readonly btn_Call_Notes_Title: Locator;
     this.dataFactory = container.resolve('dataFactory');
     this.databricks_sqlware = container.resolve('databricks_sqlware');
     this.databricks_dbfs = container.resolve('databricks_dbfs');
-
+ 
     /******************** Page Objects ************************/
 this.emt_homepage_reporting = this.page.getByText('Reporting', { exact: true });
     this.link_search_open = this.page.getByRole('link', { name: 'Portal open' });
@@ -129,6 +131,8 @@ this.emt_homepage_reporting = this.page.getByText('Reporting', { exact: true });
     this.Membership_type_classic=this.page.locator("//*[contains(text(),'Membership Type')]/ancestor::component-select//*[contains(text(),'Classic')]")
     this.Expiry_Past_Date= this.page.locator("//*[contains(text(),'may')]");
     this.Expiry_Date_Error_Msg= this.page.locator("//*[contains(text(),' The expiry date should be greater than 1 month or more ')]");
+    this.btn_next_year=this.page.locator('//button[contains(text(),"›")]');
+    this.successfull_msg=this.page.locator('//*[contains(text(), "Successfully updated the charity membership!")]');
     this.Type_Partner= this.page.locator("//*[contains(text(),'Membership Type')]/ancestor::component-select//*[contains(text(), 'Partner ')]");
     this.Type_Premium= this.page.locator("//*[contains(text(),'Membership Type')]/ancestor::component-select//*[contains(text(), ' Premium ')]");
     this.Type_Charity_of_the_Year= this.page.locator("//*[contains(text(),'Membership Type')]/ancestor::component-select//*[contains(text(), ' Charity of the Year ')]");
@@ -158,12 +162,12 @@ this.emt_homepage_reporting = this.page.getByText('Reporting', { exact: true });
     this.select_expiry_date = this.page.locator("//span[normalize-space()='30']");
     this.close_expiry_date = this.page.locator("//span[normalize-space()='Close']");
     this.type_drpdwn = this.page.locator("//span[contains(text(),'Select Type')]");
-    this.select_type = this.page.locator("//div[normalize-space()='Membership Allocation']");
+    this.select_type = this.page.locator("//div[normalize-space()='Allocation']");
     this.create_credit = this.page.locator("//div[normalize-space()='Create Credit']");
     this.ok_btn = this.page.locator("//button[normalize-space()='OK']");
     this.credit_history = this.page.locator("//h2[normalize-space()='Credit History']");
     this.coloumn = this.page.locator("//tr[4]//td[4]");
-    this.edit_credit_history = this.page.locator("//tr[4]//div[1]//button[1]//component-tooltip[1]//div[1]//a[1]");
+    this.edit_credit_history = this.page.locator("//tr[2][@class='table__row']/following::div/button/component-tooltip/div/a[1]/svg-icon[1]");
     this.update_credit_title = this.page.locator("//h2[normalize-space()='Update Credit']");
     this.update_amount = this.page.locator("//input[@placeholder='Amount']");
     this.update_date = this.page.locator("//component-datetime[@selector='date']//div//div//div//button");
@@ -182,13 +186,13 @@ this.emt_homepage_reporting = this.page.getByText('Reporting', { exact: true });
     this.btn_Users_Title=this.page.locator("//button[normalize-space()='Users']")
     this.btn_Events_Title=this.page.locator("//button[normalize-space()='Events']")
     this.btn_Call_Notes_Title=this.page.locator("//button[normalize-space()='Call Notes']")
-
+ 
   }
-  
-
-  
+ 
+ 
+ 
 // Create Category- Flow
-  
+ 
   async user_click_membership_tab(){
     await this.playwrightFactory.click(this.Membership_btn);
   }
@@ -198,6 +202,7 @@ this.emt_homepage_reporting = this.page.getByText('Reporting', { exact: true });
   }
   async user_select_expiry_date(){
     await this.playwrightFactory.click(this.Expiry_Date);
+    await this.playwrightFactory.click(this.btn_next_year);
     await this.playwrightFactory.click(this.Expiry_Month);
   }
   async user_select_membership(){
@@ -382,6 +387,11 @@ async user_verifies_membership_updated(){
   await expect(this.membership_updated).toContainText('Update Membership');
   await this.playwrightFactory.click(this.ok_btn);
 }
+ 
+async user_verify_success_msg(){
+  await expect(this.successfull_msg).toBeVisible();
+  await this.playwrightFactory.click(this.ok_btn)
+}
 async verify_edit_charity_title(){
     await expect(this.txt_Edit_Charity_Title).toBeVisible();
   }
@@ -418,7 +428,9 @@ async verify_edit_charity_title(){
   async verify_call_notes_title(){
     await expect(this.btn_Call_Notes_Title).toBeVisible();
   }
-
+ 
 }
-
-
+ 
+ 
+ 
+ 

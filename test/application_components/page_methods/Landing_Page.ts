@@ -37,6 +37,7 @@ readonly Filter_Charity: Locator;
 readonly Filter_Delete: Locator;
 readonly Filter_Charity_Name: Locator;
 //readonly Filter_Deleted_All: Locator;
+readonly all_option:Locator;
 readonly Apply_Button: Locator;
 readonly Reset_Button: Locator;
 readonly Get_Involve_Tittle: Locator;
@@ -70,19 +71,8 @@ readonly link_event:Locator;
 readonly txt_Event_Pages: Locator;
 readonly txt_Future_Dated_Event: Locator;
 readonly landing_charity_searchbar: Locator;
+readonly  accessible_learning_foundation: Locator; 
  
-
-
-
-
-
-
-
-
-
-
-
-
 
   
   /**
@@ -105,7 +95,7 @@ readonly landing_charity_searchbar: Locator;
     this.databricks_dbfs = container.resolve('databricks_dbfs');
 
     /******************** Page Objects ************************/
-this.emt_homepage_reporting = this.page.getByText('Reporting', { exact: true });
+   this.emt_homepage_reporting = this.page.getByText('Reporting', { exact: true });
     this.link_search_open = this.page.getByRole('link', { name: 'Portal open' });
  
  
@@ -119,10 +109,12 @@ this.emt_homepage_reporting = this.page.getByText('Reporting', { exact: true });
     this.View_Charities_btn= this.page.locator("(//button[@class='button button-primary min-width-auto'])[1]");
     this.Charities_Tittle= this.page.locator("//*[contains(text(),'Charities')]/ancestor::component-table//div[@class='title-purple card__title']");
     this.Filter_Button= this.page.locator("//component-button[@label='Filter']");
-    this.Filter_Charity= this.page.locator("//*[contains(text(),'Charity ')]/ancestor::form//ng-multiselect-dropdown[@id='root-paginated-select']");
-    this.Filter_Delete= this.page.locator("//*[contains(text(),'Deleted ')]/ancestor::component-select//span[@class='dropdown-btn']");
-    this.Filter_Charity_Name= this.page.locator("//*[contains(text(),'Charity ')]/ancestor::form//*[contains(text(),' Cancer_kid ')]");
+    this.Filter_Charity= this.page.locator("//*[contains(text(),'Charity')]/ancestor::form//ng-multiselect-dropdown[@id='root-paginated-select']");
+    this.Filter_Delete= this.page.locator("//*[contains(text(),'Deleted')]/ancestor::component-select//span[@class='dropdown-btn']");
+    this.Filter_Charity_Name= this.page.locator("//*[contains(text(),'Charity ')]/ancestor::form//*[contains(text(),'Accessible Learning Foundation')]");
     //this.Filter_Deleted_All= this.page.locator("//*[contains(text(),'Deleted ')]/ancestor::component-select//*[contains(text(),' All ')]");
+    //this.Filter_Deleted_All = this.page.locator("//ng-multiselect-dropdown[.//label[normalize-space()='Deleted']]//li[.//div[normalize-space()='All']]");
+    this.all_option = this.page.locator("//*[contains(text(),'All')]/parent::li[@class='multiselect-item-checkbox']")
     this.Apply_Button= this.page.locator("//component-button[@label='Apply']//button");
     this.Reset_Button= this.page.locator("//*[contains(text(),'Reset')]/ancestor::component-button//*[contains(text(),'Reset')]");
     this.Get_Involve_Tittle= this.page.locator("//*[contains(text(),'Create Get Involved Charity Page')]");
@@ -139,8 +131,11 @@ this.emt_homepage_reporting = this.page.getByText('Reporting', { exact: true });
     this.OKBTN=this.page.locator("//button[normalize-space()='OK']")
     this.Created_event=this.page.locator("//div[contains(text(),'Created at: Mon June 9, 2025 -')]")
     this.Charity=this.page.locator ("//*[contains(text(),' Create')]/ancestor::component-section//*[contains(text(),'Charity')]/ancestor::component-select//span[@class='dropdown-btn']")
-    this.search_charity=this.page.locator("//input[@placeholder='Search']")
+
+    this.search_charity=this.page.locator("//input[@placeholder='Press ENTER to search']")
+    this.search_charity=this.page.locator("//*[contains(text(),'Charity')]/ancestor::component-select//input[@placeholder='Press ENTER to search']")
     //this.automation_marathon_name=this.page.locator("(//*[contains(text(),' Automation City Marathony4yap ')])[1]")
+    this.accessible_learning_foundation=this.page.locator("//*[contains(text(),' Accessible Learning Foundation ')]")
     this.Existing_search_name=this.page.locator("(//div[@class='table__item'])[1]")
     this.txt_title_list=this.page.locator('//th[normalize-space()="Title"]');
     this.txt_charity_list=this.page.locator('//th[normalize-space()="Charity"]');
@@ -152,10 +147,10 @@ this.emt_homepage_reporting = this.page.getByText('Reporting', { exact: true });
     this.link_playwright_automation=this.page.locator('//div[contains(text(),"Automation Playwright for Rfc")]');
     this.drpdwn_event_page=this.page.locator('//*[contains(text(), "Event Pages ")]/ancestor::component-select//*[@class="dropdown-btn"]');
     this.link_event=this.page.locator("//*[contains(text(),'Event Pages')]/ancestor::component-select//ul[@class='item2']");
-    this.txt_Charity_Search_Bar=this.page.locator("//*[contains(text(),'Filter Registration Pages')]/ancestor::ngb-modal-window//*[contains(text(),'Charity ')]/ancestor::component-select//input[@placeholder='Search']");
+    this.txt_Charity_Search_Bar=this.page.locator("//input[@placeholder = 'Press ENTER to search']/parent :: li[@class ='filter-textbox']");
     this.txt_Event_Pages=this.page.locator("//*[contains(text(),'Event Pages ')]/ancestor::component-select//span[@class='dropdown-btn']")
     this.txt_Future_Dated_Event=this.page.locator("//ul//div[contains(text(),'Created at: Mon June 9, 2025 -')]")
-    this.landing_charity_searchbar=this.page.locator("//*[contains(text(),'Charity')]/ancestor::component-select//input[@placeholder='Search']")
+    this.landing_charity_searchbar=this.page.locator("//*[contains(text(),'Charity')]/ancestor::component-select//input[@placeholder='Press ENTER to search']")
  
 
   
@@ -206,7 +201,8 @@ this.emt_homepage_reporting = this.page.getByText('Reporting', { exact: true });
     await expect(this.page.locator("//span[normalize-space()='"+strPage+"']")).toContainText('1');
     await this.playwrightFactory.click(this.Next_btn);
     await this.page.waitForTimeout(3000);
-    await expect(this.Page_Number).toContainText('2');
+    //await expect(this.Page_Number).toContainText('2');
+    await expect(this.Page_Number).toHaveValue('2', { timeout: 60000 });
  
   }
   async user_sees_view_charities_btn(){
@@ -227,19 +223,28 @@ this.emt_homepage_reporting = this.page.getByText('Reporting', { exact: true });
   }
   async user_select_charity_for_filter(strCharityname: string){
 
+
+    
+
     await this.playwrightFactory.click(this.Filter_Charity);
 
-    await this.playwrightFactory.fill(this.txt_Charity_Search_Bar, strCharityname)
+    //await this.playwrightFactory.fill(this.txt_Charity_Search_Bar, strCharityname)
+    await this.playwrightFactory.click(this.txt_Charity_Search_Bar);
 
     await this.page.keyboard.press('Enter');
 
-    await this.playwrightFactory.click(this.page.locator("//*[contains(text(),'Charity ')]/ancestor::form//*[contains(text(),'"+strCharityname+"')]"));
+    await this.playwrightFactory.click(this.page.locator("//*[contains(text(),'Charity')]/ancestor::form//*[contains(text(),'"+strCharityname+"')]"));
 
   }
  
   async user_select_deleted_drpdwn(strDeletedAll: string){
     await this.playwrightFactory.click(this.Filter_Delete);
-    await this.playwrightFactory.click(this.page.locator("//*[contains(text(),'Deleted ')]/ancestor::component-select//*[contains(text(),'"+strDeletedAll+"')]"));
+    //await this.playwrightFactory.click(this.page.locator("//*[contains(text(),'Deleted')]/ancestor::component-select//*[contains(text(),'"+strDeletedAll+"')]"));
+    //await this.playwrightFactory.click(this.Filter_Deleted_All);
+    //await this.Filter_Deleted_All.waitFor({ state: 'visible', timeout: 10000 });
+    //await this.Filter_Deleted_All.fill('a');
+    await this.playwrightFactory.click(this.all_option);
+
   }
   async user_click_and_veirfy_apply_button(){
     await expect(this.Apply_Button).toBeEnabled();
@@ -267,7 +272,8 @@ this.emt_homepage_reporting = this.page.getByText('Reporting', { exact: true });
   }
   async user_verify_charity_name(strName: string){
     await this.page.waitForTimeout(3000);
-    await expect(this.page.locator("//*[contains(text(),'"+strName+"')]")).toBeVisible()
+    await expect(this.page.locator("//*[contains(text(),'"+strName+"')]")).toBeVisible();
+    //await expect(this.page.locator(`//*[contains(normalize-space(.),'${strName.trim()}')]`)).toBeVisible();
   }
   async user_enters_name(striteration: any) {
   let name= await this.dataFactory.getIterationData(this.container,'USER_NAME',striteration);
@@ -358,11 +364,6 @@ let name= await this.dataFactory.getIterationData(this.container,'USER_NAME',str
    
  
  
-
-  
-
-
-
 
 }
 

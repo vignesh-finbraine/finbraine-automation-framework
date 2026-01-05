@@ -65,6 +65,9 @@ readonly txt_Automation_Interstate_Marathonymb: Locator;
 readonly btn_participant:Locator;
 readonly participant_table:Locator;
 readonly participant:Locator;
+readonly btn_reset:Locator;
+readonly txt_Deleted:Locator;
+readonly drpdwn_Without:Locator;
 
   /**
    * @param {Page} page
@@ -110,32 +113,36 @@ this.emt_homepage_reporting = this.page.getByText('Reporting', { exact: true });
     this.txt_no_record=this.page.locator('//caption[normalize-space()="No records found!"]');
     this.btn_ok=this.page.locator('//button[normalize-space()="OK"]');
     this.txt_Category_Title=this.page.locator("//span[normalize-space()='Category']");
-    this.txt_Category=this.page.locator('ng-multiselect-dropdown').filter({ hasText: 'Please Select 5K 10K Half' }).locator('span').nth(1);
-    this.drpdwn_Half_Marathon=this.page.getByText('Half Marathon', { exact: true });
+    this.txt_Category=this.page.locator('ng-multiselect-dropdown').filter({ hasText: '5k' }).locator('span').nth(1);
+    this.drpdwn_Half_Marathon=this.page.getByText('Half Marathons', { exact: true });
     this.txt_Year_Title=this.page.locator("//span[normalize-space()='Year']");
     this.txt_Year=this.page.locator("//*[contains(text(),'Year ')]/ancestor::component-select//span[@class='dropdown-btn']");
     this.drpdwn_2025=this.page.locator("//div[normalize-space()='2025']");
     this.txt_Month=this.page.locator("//*[contains(text(),'Month ')]/ancestor::component-select//span[@class='dropdown-btn']");
     this.drpdwn_May=this.page.locator("//div[normalize-space()='May']");
     this.txt_State=this.page.locator("//*[contains(text(),'State ')]/ancestor::component-select//span[@class='dropdown-btn']");
-    this.drpdwn_Live=this.page.locator("//div[normalize-space()='Live']");
+    this.drpdwn_Live=this.page.locator("//li[normalize-space()='Live']");
     this.txt_Status_Title=this.page.locator("//span[normalize-space()='Status']");
-    this.txt_Status=this.page.getByText('Please Select').nth(1);
+    this.txt_Status=this.page.getByText('Please Select').nth(0);
     this.drpdwn_Active=this.page.locator('#createEventForm').getByText('Active', { exact: true });
     this.txt_Partner_Title=this.page.locator("//span[normalize-space()='Partner']");
-    this.txt_Partner=this.page.getByText('Please Select').nth(1);
-    this.drpdwn_Yes=this.page.getByText('Yes');
+    //this.txt_Partner=this.page.getByText('Please Select').nth(2);
+    this.txt_Partner=this.page.locator("//*[contains(text(),'Partner ')]/ancestor::component-select//span[@class='dropdown-btn']");
+    this.drpdwn_Yes=this.page.locator("//div[normalize-space()='Yes']");
     this.txt_Deleted_Title=this.page.locator("//span[normalize-space()='Deleted']");
-    this.btn_Apply=this.page.locator("//component-button[@label='Apply']//button");
+   this.btn_Apply=this.page.locator("//component-button[@label='Apply']//button");
     this.btn_Export=this.page.locator("//span[normalize-space()='Export']");
     this.txt_Export_Email_Success_Message=this.page.locator("//div[normalize-space()='Mail Send Successfully']");
     this.btn_OK_Button=this.page.locator("//button[normalize-space()='OK']");
-   this.btn_Charity_Summary=this.page.locator("(//*[contains(@href,'charity-summary')]/ancestor::table//a[@href='/events/9f00a870-2f9b-4a47-bf47-8beb506c9155/charity-summary'])[2]");
-   this.txt_Charity_Summary_For_Event=this.page.locator("//h2[contains(text(),'Charity Summary for Event: Automation Interstate M')]");
- this.txt_Automation_Interstate_Marathonymb=this.page.locator("//div[normalize-space()='Automation Interstate Marathonymb']");
+   this.btn_Charity_Summary=this.page.locator("(//*[contains(@href,'charity-summary')]/ancestor::table//a[@href='/events/a04cca6b-418c-4569-81e9-5ce4325fb777/charity-summary'])[2]");
+   this.txt_Charity_Summary_For_Event=this.page.locator("//h2[contains(text(),'Charity Summary for Event: Marathon new 2')]");
+ this.txt_Automation_Interstate_Marathonymb=this.page.locator("//div[normalize-space()='Marathon New 2']");
  this.btn_participant=this.page.locator("(//*[contains(text(),' Participants ')])[6]")
  this.participant_table=this.page.locator("//*[contains(text(),'Participants')]/ancestor::component-table//table")
  this.participant=this.page.locator("(//*[contains(text(),' Automation Using Playwright by Rutuja ')]/ancestor::tr//*[contains(text(),'Participants')])[2]")
+ this.btn_reset= this.page.locator("//span[normalize-space()='Reset']");
+  this.txt_Deleted=this.page.locator("//*[contains(text(),'Deleted')]/ancestor::component-select//span[@class='dropdown-btn']");
+  this.drpdwn_Without=this.page.locator("//div[normalize-space()='Without']");
                                                             
   }
   
@@ -298,7 +305,7 @@ async user_clicks_three_dots_for_custom_field(){
     }
  
     async user_selects_partner(strpartner: string){
-      await expect(this.txt_Status_Title).toBeVisible();
+      await expect(this.txt_Partner_Title).toBeVisible();
        await this.playwrightFactory.click(this.txt_Partner);
        await this.playwrightFactory.click(this.drpdwn_Yes);
  
@@ -307,6 +314,8 @@ async user_clicks_three_dots_for_custom_field(){
  
     async user_selects_deleted(){
       await expect(this.txt_Deleted_Title).toBeVisible();
+      await this.playwrightFactory.click(this.txt_Deleted);
+       await this.playwrightFactory.click(this.drpdwn_Without);
  
     }
  
@@ -315,6 +324,7 @@ async user_clicks_three_dots_for_custom_field(){
     }
  
     async user_clicks_export_button(){
+      await this.page.pause();
       await expect(this.btn_Export).toBeVisible();
       await this.btn_Export.click();
     }
@@ -342,6 +352,12 @@ async user_clicks_three_dots_for_custom_field(){
       await expect(this.txt_Charity_Summary_For_Event).toBeVisible();
      
     }
+
+    async user_click_reset_button(){
+    await this.page.waitForTimeout(5000);
+    await this.playwrightFactory.click(this.btn_reset);
+
+  }
 
 }
 

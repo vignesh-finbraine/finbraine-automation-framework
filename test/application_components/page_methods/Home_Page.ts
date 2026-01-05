@@ -98,7 +98,7 @@ this.emt_homepage_reporting = this.page.getByText('Reporting', { exact: true });
     this.element_event= this.page.locator("//div[@title='Event Management']//div//a[@title='Events']");
     this.element_Managers= this.page.locator("//*[contains(text(),' Managers ')]");
     this.Marketing_Management= this.page.locator("//*[contains(text(),' Marketing Management ')]");
-    this.Event_Photo_Vedios= this.page.locator("//*[contains(text(),' Marketing Management ')]/ancestor::component-sidebar//a[@title='Events(Photos, Videos)']");
+    this.Event_Photo_Vedios= this.page.locator("//*[contains(text(),'Marketing Management')]/ancestor::component-sidebar//a[@title='Events(Photos, Videos)']");
     this.Tutorial= this.page.locator("//*[contains(text(),' Marketing Management ')]/ancestor::component-sidebar//a[@title='Tutorials(Explanatory Videos)']");
     this.Content_Management= this.page.locator("//*[contains(text(),' Content Management ')]");
     this.Registration= this.page.locator("//*[contains(text(),' Registration Pages ')]");
@@ -151,6 +151,7 @@ this.emt_homepage_reporting = this.page.getByText('Reporting', { exact: true });
     await this.playwrightFactory.click(this.element_charities);
   }
   async user_click_eventmanagement(){
+    await this.page.waitForTimeout(5000);
   await this.playwrightFactory.click(this.element_EventManagement);
   }
 
@@ -161,9 +162,11 @@ async user_click_managers(){
   await this.playwrightFactory.click(this.element_Managers);
 }
 async user_click_marketing_management(){
+  await this.page.waitForTimeout(5000);
   await this.playwrightFactory.click(this.Marketing_Management);
 }
 async user_click_event_photo_vedio(){
+  await this.page.waitForTimeout(2000);
   await this.playwrightFactory.click(this.Event_Photo_Vedios);
 }
 async user_click_tutorials(){
@@ -176,6 +179,7 @@ async user_click_registration_pages(){
   await this.playwrightFactory.click(this.Registration);
 }
 async user_click_landing_page(){
+  await this.page.waitForTimeout(5000)
   await this.playwrightFactory.click(this.Landing_Page);
 }
 async user_click_charity_management(){

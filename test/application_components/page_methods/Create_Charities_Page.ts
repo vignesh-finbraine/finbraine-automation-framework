@@ -39,6 +39,7 @@ readonly txt_adressoption: Locator;
 readonly txt_postcode: Locator;
 readonly txt_city: Locator;
 readonly txt_country: Locator;
+readonly txt_registration_no:Locator;
 readonly txt_CharityDiscription: Locator;
 readonly SaveDraft: Locator;
 readonly SEO_Config:Locator;
@@ -83,21 +84,24 @@ readonly MetaDiscriptioncheckbox:Locator;
     this.txt_chatagoriesDropdown = this.page.locator("//*[contains(text(),'Category ')]/ancestor::component-select//span[@class='dropdown-btn']");
     this.txt_chatagoriesoption = this.page.locator("//div[normalize-space()='Mini and Mum Care Center']");
     this.txt_supportemail = this.page.getByRole('textbox', { name: 'Used for sending emails to' });
-    this.txt_TCLink = this.page.locator("//input[@placeholder='T&Cs Link']");
-    this.txt_website = this.page.locator("//input[@placeholder='Domain or URL']");
+    // this.txt_TCLink = this.page.locator("//input[@placeholder='T&Cs Link']");
+    this.txt_TCLink = this.page.locator("//input[@placeholder='https://my_charity.com/terms']");
+    this.txt_website = this.page.locator("//input[@placeholder='https://my_charity.com']");
     this.txt_phonenumber = this.page.locator('#phoneNumber');
     this.txt_adress= this.page.locator("//input[@placeholder='Address']");
     this.txt_adressoption= this.page.getByText('London Luton Airport (LTN)');
     this.txt_postcode= this.page.locator("//input[@placeholder='Postcode']");
     this.txt_city= this.page.locator("//input[@placeholder='City']");
     this.txt_country= this.page.locator("//input[@placeholder='Country']");
+    this.txt_registration_no=this.page.locator(`//*[@type="text" and @placeholder="The charity's registration number"]`);
    this.txt_CharityDiscription= this.page.frameLocator("//*[contains(text(),'Charity Description ')]/ancestor::component-textarea//iframe[contains(@id,'tiny-angular')]").locator('#tinymce');
    this.SaveDraft=this.page.locator("//component-button[@lefticon='assets/icons/save-light.svg']//button");
    this.SEO_Config=this.page.locator("//h2[normalize-space()='SEO Configuration']")
    this.Checkbox=this.page.locator("//*[contains(text(),'Meta Title ')]/ancestor::component-input//span[@class='checkbox__tick']")
    this.MetaTitleDiscription=this.page.locator("//input[@placeholder='Preferred search engine title']")
    this.MetaDiscriptioncheckbox=this.page.locator("//*[contains(text(),'Meta Description')]/ancestor::component-textarea//span[@class='checkbox__tick']")
-   this.meta_discription=this.page.locator("//*[contains(text(),'Meta Description')]/ancestor::component-textarea//textarea[@class='editor__textarea disabled ng-untouched ng-pristine ng-valid']")
+  //  this.meta_discription=this.page.locator("//*[contains(text(),'Meta Description')]/ancestor::component-textarea//textarea[@class='editor__textarea disabled ng-untouched ng-pristine ng-valid']")
+  this.meta_discription=this.page.locator("//textarea[@class='editor__textarea ng-untouched ng-pristine ng-valid']")
    this.Keyword=this.page.locator("//span[@role='textbox']")
    this.RobotDropdown=this.page.locator("//*[contains(text(),'Robots')]/ancestor::component-select//span[@class='dropdown-btn']")
    this.Index=this.page.locator("//div[normalize-space()='Index']")
@@ -159,7 +163,10 @@ readonly MetaDiscriptioncheckbox:Locator;
   async user_enter_country(strCountry: string){
     await this.playwrightFactory.fill(this.txt_country, strCountry);
   }
- 
+  async user_enters_registration_number(strno:string){
+    await this.playwrightFactory.fill(this.txt_registration_no,strno)
+  }
+
   async user_enter_description(strDescription: string){
     await this.page.waitForTimeout(5000);
     await this.playwrightFactory.fill(this.txt_CharityDiscription, strDescription);
@@ -213,5 +220,3 @@ async user_enters_facebook_link(strfacebook: string){
   }
  
 }
-
-

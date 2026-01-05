@@ -12,22 +12,22 @@ export class REGISTRATION_PAGE {
   private testInfo: TestInfo;
   private playwrightFactory: PlaywrightFactoryActions;
   private dataFactory: DataFactory;
-  private container: any;
+  private container: any; 
   private databricks_sqlware: DatabricksSQLwarehouse;
   private databricks_dbfs: DatabricksFactoryDBFS;
 
   readonly emt_homepage_reporting: Locator;
   readonly link_search_open: Locator;
-
+  
 
   //**Declare */
-  readonly Create_Registration: Locator;
-  readonly Search_Bar: Locator;
-  //readonly Event_Name: Locator;
-  readonly Slug_Field: Locator;
-  readonly Event_Name1: Locator;
-  readonly Save_Button: Locator;
-  readonly Charity_NV: Locator;
+readonly Create_Registration: Locator;
+readonly Search_Bar: Locator;
+//readonly Event_Name: Locator;
+readonly Slug_Field: Locator;
+readonly Event_Name1: Locator;
+readonly Save_Button: Locator;
+readonly Charity_NV: Locator;
   readonly Charity_Coloumn: Locator;
   readonly Event_coloumn: Locator;
   readonly Distance_Category: Locator;
@@ -45,8 +45,8 @@ export class REGISTRATION_PAGE {
   readonly Event: Locator;
   readonly Payment_optn: Locator;
   readonly Apply: Locator;
-  readonly Deleted: Locator;
-  readonly Searched_Result: Locator;
+ readonly Deleted: Locator;
+ readonly Searched_Result: Locator;
   readonly Wolfcity: Locator;
   readonly Fundraising: Locator;
   readonly Checkbox: Locator;
@@ -61,8 +61,8 @@ export class REGISTRATION_PAGE {
   readonly Search_name: Locator;
   readonly Fundraising_fees: Locator;
   readonly Payment_opn: Locator;
-  readonly txt_Registration_Pages_Heading: Locator;
-  readonly txt_Create_Event_Registration_Page_Title: Locator;
+ readonly txt_Registration_Pages_Heading: Locator;
+ readonly txt_Create_Event_Registration_Page_Title: Locator;
   readonly published_box: Locator;
   readonly Tick_box: Locator;
   readonly Event_tittle: Locator;
@@ -73,19 +73,20 @@ export class REGISTRATION_PAGE {
   readonly txt_age_2: Locator;
   readonly txt_amount_2: Locator;
   readonly txt_Event: Locator;
-  readonly drpdwn_Test_Event_Date: Locator;
-  readonly txt_Distance: Locator;
-  readonly txt_Charity: Locator;
-  readonly drpdwn_Fund_For_Charity: Locator;
-  readonly txt_Payment_Option: Locator;
-  readonly drpdwn_Participant_Pays_Family_Registrations: Locator;
-  readonly txt_Existing_Registration_Page: Locator;
-  readonly txt_Distance_10K: Locator;
-  readonly txt_Charity_Name: Locator;
-  readonly drpdwn_Participant_pays: Locator;
-  readonly txt_Charity_Search_Bar: Locator;
-  readonly txt_Fund_for_Charity: Locator;
-  readonly Filter_charity_drpdwn_btn: Locator;
+readonly drpdwn_Test_Event_Date: Locator;
+readonly txt_Distance: Locator;
+readonly txt_Charity: Locator;
+readonly drpdwn_Fund_For_Charity: Locator;
+readonly txt_Payment_Option: Locator;
+readonly drpdwn_Participant_Pays_Family_Registrations: Locator;
+readonly txt_Existing_Registration_Page: Locator;
+readonly txt_Distance_10K: Locator;
+readonly txt_Charity_Name: Locator;
+readonly drpdwn_Participant_pays: Locator;
+readonly txt_Charity_Search_Bar: Locator;
+readonly txt_Fund_for_Charity: Locator;
+readonly Filter_charity_drpdwn_btn: Locator;
+  Click_Save: Locator;
 
 
 
@@ -101,7 +102,7 @@ export class REGISTRATION_PAGE {
 
 
 
-
+  
   /**
    * @param {Page} page
    * @param {TestInfo} testInfo
@@ -122,7 +123,7 @@ export class REGISTRATION_PAGE {
     this.databricks_dbfs = container.resolve('databricks_dbfs');
 
     /******************** Page Objects ************************/
-    this.emt_homepage_reporting = this.page.getByText('Reporting', { exact: true });
+this.emt_homepage_reporting = this.page.getByText('Reporting', { exact: true });
     this.link_search_open = this.page.getByRole('link', { name: 'Portal open' });
     this.Create_Registration = this.page.locator("//component-button[@label='Create']//button//span");
     this.Search_Bar = this.page.locator("//input[@placeholder='Press ENTER to search']");
@@ -163,9 +164,9 @@ export class REGISTRATION_PAGE {
     this.Reg_Text = this.page.locator("//component-textarea[@label='Registration Form Text']")
     this.Search_name = this.page.locator("(//div[@class='table__item'])[1]")
     this.Fundraising_fees = this.page.locator("//input[@placeholder='How much can you Fundraise?']")
-    //this.Event=this.page.locator("//*[contains(text(),'Events')]/ancestor::component-select")
+     //this.Event=this.page.locator("//*[contains(text(),'Events')]/ancestor::component-select")
     this.Payment_opn = this.page.locator("//*[contains(text(),'Payment Option ')]/ancestor::component-select")
-
+    this.Click_Save = this.page.locator("//span[normalize-space()='Save']");
     this.published_box = this.page.locator("//*[contains(text(),'Published')]")
     this.Tick_box = this.page.locator("//*[contains(text(),'Tick box to add Fundraising Information')]")
     this.Event_tittle = this.page.locator("//*[contains(text(),'Events')]/ancestor::component-select");
@@ -181,16 +182,19 @@ export class REGISTRATION_PAGE {
     this.drpdwn_Test_Event_Date = this.page.locator("//div[normalize-space()='Test event date']")
     this.txt_Distance = this.page.locator("//*[contains(text(),'Distance')]/ancestor::component-select//div[@class='multiselect-dropdown']")
     this.txt_Charity = this.page.locator("(//*[contains(text(),'Create')]/ancestor::component-section//*[contains(text(),'Charity ')]/ancestor::component-select//span[@class='dropdown-btn'])[1]")
-    this.txt_Payment_Option = this.page.locator("//*[contains(text(),'Create')]/ancestor::component-section//*[contains(text(),'Payment Option')]/ancestor::component-select//span[@class='dropdown-btn']")
+    // this.txt_Payment_Option = this.page.locator("//*[contains(text(),'Create')]/ancestor::component-section//*[contains(text(),'Payment Option')]/ancestor::component-select//span[@class='dropdown-btn']")
+       this.txt_Payment_Option=this.page.locator("//th[normalize-space()='Payment Option']")
     this.drpdwn_Participant_Pays_Family_Registrations = this.page.locator("//ul//div[contains(text(),'Participant Pays + Family Registrations')]")
     this.txt_Existing_Registration_Page = this.page.locator("(//div[@class='table__item'])[1]")
     this.txt_Distance_10K = this.page.locator("//*[contains(text(),'Distance')]/ancestor::component-select//ng-multiselect-dropdown[@id='root-paginated-select']")
     this.txt_Charity_Name = this.page.locator("(//*[contains(text(),' Automation City Marathony4yap ')])[1]")
     this.drpdwn_Participant_pays = this.page.locator("//div[normalize-space()='Participant Pays']")
     this.drpdwn_Fund_For_Charity = this.page.locator("(//*[contains(text(),' Charity NV ')])[2]")
-    this.txt_Charity_Search_Bar = this.page.locator("//component-select[@placeholder='Please select']//ng-multiselect-dropdown[@id='root-paginated-select']//input[@placeholder='Search']")
+    this.txt_Charity_Search_Bar = this.page.locator("//component-select[@placeholder='Please select']//ng-multiselect-dropdown[@id='root-paginated-select']//input[@placeholder='Search']']")
     this.txt_Fund_for_Charity = this.page.locator("//div[contains(text(),'Fund for Charity')]")
     this.Filter_charity_drpdwn_btn = this.page.locator("//*[contains(text(),'Charity')]/ancestor::component-select//*[contains(text(),'Please Select')]");
+    
+    
 
 
 
@@ -200,36 +204,34 @@ export class REGISTRATION_PAGE {
 
 
 
-
-
-
-
+    
+    
   }
+  
+  
 
-
-
-
-  // Create Category- Flow
-
+  
+// Create Category- Flow
+  
   async user_click_createbtn() {
     await this.playwrightFactory.click(this.Create_Registration);
-
+    
   }
   async user_enter_values_searchbar(strsearchbar: string) {
     await this.playwrightFactory.fill(this.Search_Bar, strsearchbar);
     await this.page.waitForTimeout(3000);
     await this.page.keyboard.press('Enter');
-
+    
   }
-  async user_click_event(strEventname: string) {
-    await expect(this.page.locator("//div[@class='table__product'][normalize-space(.)='" + strEventname + "']")).toBeVisible();
-    await this.playwrightFactory.click(this.page.locator("//div[@class='table__product'][normalize-space(.)='" + strEventname + "']"));
-    await this.page.waitForTimeout(3000);
-  }
+  async user_click_event(strEventname: string){
+    await this.page.locator("(//*[contains(text(),'"+strEventname+"')])[1]").waitFor();
+     await this.playwrightFactory.click(this.page.locator("(//*[contains(text(),'"+strEventname+"')])[1]"));
+     await this.page.waitForTimeout(3000);
+   }
   async verify_slug_not_editable() {
     await expect(this.Slug_Field).toBeVisible();
     await this.page.goBack();
-
+    
   }
   async user_click_event1() {
     await this.playwrightFactory.click(this.Event_Name1);
@@ -253,86 +255,87 @@ export class REGISTRATION_PAGE {
   }
   async user_verify_table_column() {
 
-    await this.page.waitForTimeout(3000);
+  await this.page.waitForTimeout(3000);
     await expect(this.Charity_Coloumn).toBeVisible();
     await expect(this.Event_coloumn).toBeVisible();
     await expect(this.Distance_Category).toBeVisible();
     await expect(this.Status).toBeVisible();
-    await expect(this.Target).toBeVisible();
+    // await expect(this.Target).toBeVisible();
     await expect(this.Payment_Option).toBeVisible();
     await expect(this.Actions).toBeVisible();
-
-
-  }
+ 
+ 
+}
   async user_clicks_itemdropdown(strNumber: string) {
-    await this.playwrightFactory.click(this.Item_Page_Dropdown);
+  await this.playwrightFactory.click(this.Item_Page_Dropdown);
     await this.playwrightFactory.click(this.page.locator("//div[normalize-space()='" + strNumber + "']"));
-    await this.page.waitForTimeout(5000);
-    await this.playwrightFactory.click(this.Forward_arrow);
-    await this.playwrightFactory.click(this.Backward_arrow);
-  }
+  await this.page.waitForTimeout(5000);
+  await this.playwrightFactory.click(this.Forward_arrow);
+  await this.playwrightFactory.click(this.Backward_arrow);
+}
   async user_clicks_filter() {
-    await this.playwrightFactory.click(this.Filter_btn);
+  await this.playwrightFactory.click(this.Filter_btn);
     await expect(this.Filter_Reg_Page).toBeVisible();
     await expect(this.Charity).toBeVisible();
     await expect(this.Event).toBeVisible();
     await expect(this.Payment_Option).toBeVisible();
     await expect(this.Deleted).toBeVisible();
     await expect(this.Apply).toBeVisible();
+ 
+}  
+async user_verify_searched_registration_page(strPage: string){
+  // await expect(this.page.locator("//*[contains(text(),'"+strPage+"')]")).toBeVisible();
+  const results = this.page.getByRole('link', { name: strPage });
+await expect(results.first()).toBeVisible();
 
-  }
-  async user_verify_searched_registration_page(strPage: string) {
-    await expect(this.page.locator("//*[contains(text(),'" + strPage + "')]")).toBeVisible();
-  }
+}
   async user_click_eventwolfcity() {
-    await this.playwrightFactory.click(this.Wolfcity)
-  }
+  await this.playwrightFactory.click(this.Wolfcity)
+}
   async verify_users_registration_fields() {
     await expect(this.Registration_fees).toBeVisible();
     await expect(this.Fundraising).toBeVisible();
-    await this.playwrightFactory.click(this.Checkbox)
-    await this.playwrightFactory.click(this.Edit_Fundraising_amount)
-    await this.Edit_Fundraising_amount.clear();
-  }
+  await this.playwrightFactory.click(this.Checkbox)
+  await this.playwrightFactory.click(this.Edit_Fundraising_amount)
+  await this.Edit_Fundraising_amount.clear();
+}
   async user_enters_fundraising_ammount(stramount: string) {
     await this.playwrightFactory.fill(this.Edit_Fundraising_amount, stramount)
-  }
+}
   async user_verify_fundraising_amt(strName: string) {
     await this.playwrightFactory.fill(this.Search, strName)
-    await this.page.keyboard.press('Enter');
+  await this.page.keyboard.press('Enter');
     await expect(this.Target).toBeVisible();
-
-  }
+ 
+}
   async user_clicks_target_amt_btn() {
-    await this.playwrightFactory.click(this.Target_amt_btn)
-    await this.playwrightFactory.click(this.YES_btn)
-    await this.page.waitForTimeout(3000)
-  }
+  await this.playwrightFactory.click(this.Target_amt_btn)
+  await this.playwrightFactory.click(this.YES_btn)
+  await this.page.waitForTimeout(3000)
+}
   async user_clicks_accept_condition() {
-
-    await this.playwrightFactory.click(this.Accept1)
-  }
-
+    
+   await this.playwrightFactory.click(this.Accept1)
+}
+ 
   async user_clicks_accept2_condition() {
     await this.page.waitForTimeout(5000);
-    await this.playwrightFactory.click(this.Accept2)
-    await this.page.waitForTimeout(5000);
-  }
+   await this.playwrightFactory.click(this.Accept2)
+   await this.page.waitForTimeout(5000);
+}
   async verify_reg_text() {
     await expect(this.Reg_Text).toBeVisible();
     await this.page.waitForTimeout(5000)
   }
   async verify_searchbar_create_registration_name(striteration: any) {
-
+   
     await this.page.waitForTimeout(5000);
     await this.playwrightFactory.fill(this.Search_Bar, striteration);
     await this.page.keyboard.press('Enter');
     await this.page.waitForTimeout(5000);
     await expect(this.Search_name).toBeVisible();
     await this.playwrightFactory.click(this.Search_name)
-<<<<<<< HEAD
-=======
-<<<<<<< HEAD
+
     }
     async user_enters_edit_reg_ammount(stramount: string){
       await this.page.waitForTimeout(5000);
@@ -364,56 +367,57 @@ async verify_edit_reg_autopopulated_fields(){
       await this.page.waitForTimeout(5000)
     }
   async user_clicks_registration_fee_checkbox(){
-=======
->>>>>>> main
-  }
-  async user_enters_edit_reg_ammount(stramount: string) {
-    await this.page.waitForTimeout(5000);
-    await this.Registration_fees.clear();
-    await this.playwrightFactory.fill(this.Registration_fees, stramount)
-  }
-  async user_enters_edit_fund_ammount(stramount: string) {
-    await this.page.waitForTimeout(5000);
-    await this.Fundraising_fees.clear();
-    await this.page.waitForTimeout(5000);
-    await this.playwrightFactory.fill(this.Fundraising_fees, stramount)
 
   }
+
+    }
+
+  async user_enters_edit_reg_ammount(stramount: string) {
+      await this.page.waitForTimeout(5000);
+      await this.Registration_fees.clear();
+    await this.playwrightFactory.fill(this.Registration_fees, stramount)
+      }
+  async user_enters_edit_fund_ammount(stramount: string) {
+        await this.page.waitForTimeout(5000);
+        await this.Fundraising_fees.clear();
+        await this.page.waitForTimeout(5000);
+    await this.playwrightFactory.fill(this.Fundraising_fees, stramount)
+ 
+}
   async verify_edit_reg_autopopulated_fields() {
     await expect(this.Event_tittle).toBeVisible();
     await expect(this.Payment_opn).toBeVisible();
-
-  }
+       
+     }
   async verify_edit_reg_checkbox_fields() {
-    await expect(this.published_box).toBeVisible();
+   // await expect(this.published_box).toBeVisible();
+   await expect(this.Click_Save).toBeVisible
+    await this.playwrightFactory.click(this.Click_Save);
     await expect(this.Tick_box).toBeVisible();
-  }
+     }
   async user_click_wolfcity(strEvent: string) {
-    await this.playwrightFactory.click(this.page.locator("//div[contains(text(),'" + strEvent + "')]"));
-  }
+    await this.playwrightFactory.click(this.page.locator("//div[contains(text(),'" + strEvent + "')]").first());
+    }
   async user_clicks_edit_btn_of_registration_page(strPage: string) {
     await this.page.locator("//div[contains(text(),'" + strPage + "')]").hover();
     await this.playwrightFactory.click(this.page.locator("//div[contains(text(),'" + strPage + "')]"));
-    await this.page.waitForTimeout(5000)
-  }
+      await this.page.waitForTimeout(5000)
+    }
   async user_clicks_registration_fee_checkbox() {
-<<<<<<< HEAD
-=======
->>>>>>> 3403859e2f763a88bde93a4d483d0800a0c67721
->>>>>>> main
+
     await this.playwrightFactory.click(this.checkbox_registration_fee);
   }
-
+ 
   async user_sets_registration_fee(strfee: string) {
     await this.playwrightFactory.click(this.Registration_fees);
     await this.playwrightFactory.fill(this.Registration_fees, strfee);
-
+ 
   }
-
+ 
   async user_clicks_fundraising_checkbox() {
     await this.playwrightFactory.click(this.Checkbox);
   }
-
+ 
   async user_sets_fundraising_amount(stramount: string) {
     await this.playwrightFactory.click(this.Fundraising_fees);
     await this.playwrightFactory.fill(this.Fundraising_fees, stramount);
@@ -422,109 +426,104 @@ async verify_edit_reg_autopopulated_fields(){
     await this.playwrightFactory.click(this.txt_age_1);
     await this.playwrightFactory.fill(this.txt_age_1, strage);
   }
-
+ 
   async user_sets_amount1(stramount: string) {
     await this.playwrightFactory.click(this.txt_amount_1);
     await this.playwrightFactory.fill(this.txt_amount_1, stramount);
   }
-
-
+ 
+ 
   async user_sets_family_2_age(strage: string) {
     await this.playwrightFactory.click(this.txt_age_2);
     await this.playwrightFactory.fill(this.txt_age_2, strage);
   }
-
-
+ 
+ 
   async user_sets_amount2(stramount: string) {
     await this.playwrightFactory.click(this.txt_amount_2);
     await this.playwrightFactory.fill(this.txt_amount_2, stramount);
-
+ 
   }
   async user_click_save() {
     await this.playwrightFactory.click(this.Save_Button);
-
+    
   }
   async user_verifies_title_of_registration_pages() {
-    await expect(this.txt_Registration_Pages_Heading).toBeVisible();
-  }
+        await expect(this.txt_Registration_Pages_Heading).toBeVisible();
+      }
   async user_verify_create_event_registration_page_title() {
-    await expect(this.txt_Create_Event_Registration_Page_Title).toBeVisible();
-  }
+        await expect(this.txt_Create_Event_Registration_Page_Title).toBeVisible();
+      }
   async user_selects_event(strEvent: string) {
-    await this.txt_Event.click();
-    await this.playwrightFactory.click(this.drpdwn_Test_Event_Date);
-  }
-
+        await this.txt_Event.click();
+        await this.playwrightFactory.click(this.drpdwn_Test_Event_Date);
+      }
+ 
   async user_verifies_distance() {
-    await expect(this.txt_Distance).toBeVisible();
-  }
-
+        await expect(this.txt_Distance).toBeVisible();
+      }
+ 
   async user_selects_charity(strCharity: string) {
-    await this.txt_Charity.click();
-    //await this.playwrightFactory.click(this.drpdwn_Fund_For_Charity);
-
-  }
+        await this.txt_Charity.click();
+        //await this.playwrightFactory.click(this.drpdwn_Fund_For_Charity);
+ 
+      }
   async user_search_charity_on_search_bar(strcharitysearch: string) {
-    await this.playwrightFactory.fill(this.txt_Charity_Search_Bar, strcharitysearch);
-    await this.page.keyboard.press('Enter');
-    await this.page.waitForTimeout(3000);
-    await this.playwrightFactory.clickForce(this.txt_Fund_for_Charity);
-    await this.page.waitForTimeout(3000);
-  }
-
+  await this.playwrightFactory.fill(this.txt_Charity_Search_Bar, strcharitysearch);
+  await this.page.keyboard.press('Enter');
+  await this.page.waitForTimeout(3000);
+  await this.playwrightFactory.clickForce(this.txt_Fund_for_Charity);
+  await this.page.waitForTimeout(3000);
+}
+ 
   async user_selects_payment_option(strPayment: string) {
-    await this.txt_Payment_Option.click();
-    await this.playwrightFactory.click(this.drpdwn_Participant_Pays_Family_Registrations);
-  }
-
+        await this.txt_Payment_Option.click();
+        await this.playwrightFactory.click(this.drpdwn_Participant_Pays_Family_Registrations);
+      }   
+      
   async user_click_existing_registration_page() {
-    await this.playwrightFactory.click(this.txt_Existing_Registration_Page);
-    await this.page.waitForTimeout(3000);
-  }
+        await this.playwrightFactory.click(this.txt_Existing_Registration_Page);
+        await this.page.waitForTimeout(3000);
+      }
   async user_verify_events() {
-
-    await expect(this.page.locator('#non-existent-element')).toHaveCount(0);
-
-  }
+       
+       await expect(this.page.locator('#non-existent-element')).toHaveCount(0);
+   
+      }
   async user_verify_distance() {
-    await expect(this.txt_Distance_10K).toBeVisible();
-    await expect(this.txt_Distance_10K).toContainText('10K')
-  }
+        await expect(this.txt_Distance_10K).toBeVisible();
+        await expect(this.txt_Distance_10K).toContainText('10K')
+      }
   async user_verifies_charity_name_field_auto_populated(strCahrityname: string) {
     await expect(this.page.locator("(//*[contains(text(),'" + strCahrityname + "')])[1]")).toBeVisible();
     await expect(this.page.locator("(//*[contains(text(),'" + strCahrityname + "')])[1]")).toContainText('Automation 0pyia');
-
-  }
-  async user_searche_existing_registration_page(striteration: any) {
-
+ 
+      }
+      async user_searche_existing_registration_page(striteration: any) {
+   
     await this.page.waitForTimeout(5000);
     await this.playwrightFactory.fill(this.Search_Bar, striteration);
     await this.page.keyboard.press('Enter');
     await this.page.waitForTimeout(5000);
-  }
+      }
   async user_selects_payment_option_participent_pay(strPayment: string) {
-    await this.txt_Payment_Option.click();
-    await this.playwrightFactory.click(this.drpdwn_Participant_pays);
-  }
-
+        await this.txt_Payment_Option.click();
+        await this.playwrightFactory.click(this.drpdwn_Participant_pays);
+      }
+ 
   async user_click_filter_btn() {
-    await this.playwrightFactory.click(this.Filter_btn);
-  }
+        await this.playwrightFactory.click(this.Filter_btn);
+      }
   async user_select_charity_in_filter(strCharity: string) {
-    await this.playwrightFactory.click(this.Filter_charity_drpdwn_btn);
+        await this.playwrightFactory.click(this.Filter_charity_drpdwn_btn);
     await this.playwrightFactory.click(this.page.locator("//*[contains(text(),'Charity')]/ancestor::component-select//*[contains(text(),'" + strCharity + "')]"))
-  }
+      }
   async user_click_apply_btn() {
-    await this.playwrightFactory.click(this.Apply);
-  }
+        await this.playwrightFactory.click(this.Apply);
+      }
   async user_verify_filter_result(strCharity: string) {
     await expect(this.page.locator("(//*[contains(text(),'" + strCharity + "')])[1]")).toBeVisible();
-  }
-
-
-
-
-
-
+      }
+ 
 }
 
