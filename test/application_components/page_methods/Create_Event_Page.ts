@@ -69,6 +69,7 @@ readonly Reviews_Field: Locator;
 readonly TC_Field: Locator;
 readonly Pick_File: Locator;
 readonly Gallary_Pick_File: Locator;
+readonly Gallery_Load_More: Locator;
 readonly Gallary_Image1: Locator;
 readonly btn_Done: Locator;
 readonly method_drpdwn_btn1: Locator;
@@ -154,7 +155,7 @@ readonly TypeDropdownbtn:Locator;
   readonly btn_regwebsite: Locator;
    readonly btn_regportal: Locator;
    readonly Select_Month:Locator;
- 
+   readonly Select_Year:Locator;
   /**
    * @param {Page} page
    * @param {TestInfo} testInfo
@@ -218,6 +219,17 @@ this.emt_homepage_reporting = this.page.getByText('Reporting', { exact: true });
     this.meta_description= this.page.locator("//*[contains(text(),'Meta Description ')]/ancestor::component-textarea//textarea[@class='editor__textarea ng-untouched ng-pristine ng-valid']");
     this.Create_Event_Tittle= this.page.locator("//*[contains(text(),'Create Event')]");
     this.City_Dropdown_list= this.page.locator("//*[contains(text(),'City')]/ancestor::component-select//div[@class='dropdown-list']");
+    //this.Vedio_Field= this.page.locator("//input[@placeholder='Video (YouTube, Vimeo, etc) link']");
+    this.Vedio_Field= this.page.locator("//input[@placeholder='https://wwww.youtube.com/watch?v=abc']");
+    //this.Website_Field= this.page.locator("//input[@placeholder='Domain or URL']");
+    this.Website_Field= this.page.locator("//input[@placeholder='https://www.mywebsite.com']");
+    //this.Reviews_Field= this.page.locator("//input[@placeholder='Ratings page link']");
+    this.Reviews_Field= this.page.locator("//input[@placeholder='https://www.mywebsite.com/reviews']");
+    this.TC_Field= this.page.locator("//input[@placeholder='https://www.mywebsite.com/terms']");
+    this.Pick_File= this.page.locator("//*[contains(text(),'Pick a File')]");
+    this.Gallary_Pick_File= this.page.locator("//component-section[@sectiontitle='Details']//div[@class='section section__background']//component-file-editor//div//div//div[@class='py-4']//component-file//span[contains(text(),'Pick Files')]");
+    this.Gallery_Load_More = this.page.locator("//span[text()='Load More']")
+    this.Gallary_Image1= this.page.locator("//*[contains(text(),'Images')]/ancestor::component-section//*[contains(text(),'Test Event')]");
     this.Vedio_Field= this.page.locator("//form[@id='createEventForm']//component-input[@formcontrolname='video']//input");
     this.Website_Field= this.page.locator("//form[@id='createEventForm']//component-input[@formcontrolname='website']//input");
     this.Reviews_Field= this.page.locator("//form[@id='createEventForm']//component-input[@formcontrolname='review']//input");
@@ -316,7 +328,7 @@ this.ExcludefromCharities=this.page.locator("//*[contains(text(),'Exclude from C
    this.btn_regportal=this.page.locator("//div[contains(@class,'input__bottom_info') and normalize-space(.)='Portal'] /ancestor::component-select //div[contains(@class,'multiselect-dropdown')]")
    this.Select_Month=this.page.locator("//select[@title='Select month']")  
    this.Select_Year=this.page.locator("//select[@aria-label='Select year']")
-    
+
   }
  
  
@@ -430,12 +442,14 @@ async user_click_publishbtn(){
   }
   async user_click_andselect_gallaryimage(){
     await this.playwrightFactory.click(this.Gallary_Pick_File);
+    await this.playwrightFactory.click(this.Gallery_Load_More);
     await this.playwrightFactory.click(this.Gallary_Image1);
      await this.playwrightFactory.click(this.btn_Done);
    
   }
   async user_clickandselect_image(){
     await this.playwrightFactory.click(this.Pick_File);
+    await this.playwrightFactory.click(this.Gallery_Load_More);
     await this.playwrightFactory.click(this.Gallary_Image1);
   }
   async user_verify_defaultmethodsetto_internal(){
@@ -473,13 +487,13 @@ window.scrollBy(2500, 3000); // Scroll down
   async user_enter_coronical_url(strCoronical: string){
     await this.playwrightFactory.fill(this.Coronical_URL, strCoronical);
   }
-  async user_check_routeinformation_field_accesible(strRouteInfo: string){
-    await this.playwrightFactory.click(this.Type_Field);
-    await this.playwrightFactory.click(this.Route_Image);
-    await this.playwrightFactory.click(this.Type_Field);
-    await this.playwrightFactory.click(this.Embed_Code);
-    await this.playwrightFactory.fill(this.route_Information, strRouteInfo);
-  }
+  // async user_check_routeinformation_field_accesible(strRouteInfo: string){
+  //   await this.playwrightFactory.click(this.Type_Field);
+  //   await this.playwrightFactory.click(this.Route_Image);
+  //   await this.playwrightFactory.click(this.Type_Field);
+  //   await this.playwrightFactory.click(this.Embed_Code);
+  //   await this.playwrightFactory.fill(this.route_Information, strRouteInfo);
+  // }
   async user_check_whtatsincludedfield_accessible(strWhat: string){
     await this.playwrightFactory.fill(this.what_included, strWhat);
   }
@@ -533,8 +547,11 @@ window.scrollBy(2500, 3000); // Scroll down
     await expect(this.Event_List).toBeVisible();
   }
   async user_enter_total_places(strPlace: string){
-    await this.playwrightFactory.fill(this.Total_Places, strPlace);
-  }
+    await this.playwrightFactory.click(this.Total_Places);
+   await this.playwrightFactory.fill(this.Total_Places,strPlace);
+};
+  
+
   async user_view_seo_configuration(){
 await this.page.evaluate(() => {
 window.scrollBy(2000, 2500); // Scroll down
