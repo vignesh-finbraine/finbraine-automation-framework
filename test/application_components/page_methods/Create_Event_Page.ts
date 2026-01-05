@@ -315,7 +315,7 @@ this.ExcludefromCharities=this.page.locator("//*[contains(text(),'Exclude from C
    this.btn_regwebsite=this.page.locator("//div[contains(@class,'input__bottom_info') and normalize-space(.)='Website'] /ancestor::component-select //div[contains(@class,'multiselect-dropdown')]");
    this.btn_regportal=this.page.locator("//div[contains(@class,'input__bottom_info') and normalize-space(.)='Portal'] /ancestor::component-select //div[contains(@class,'multiselect-dropdown')]")
    this.Select_Month=this.page.locator("//select[@title='Select month']")  
-   this.Select_Year=this.page.locator("//select[@aria-label='Select year']")
+   //this.Select_Year=this.page.locator("//select[@aria-label='Select year']")
     
   }
  
