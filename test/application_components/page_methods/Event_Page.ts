@@ -94,8 +94,10 @@ this.emt_homepage_reporting = this.page.getByText('Reporting', { exact: true });
     this.btn_create = this.page.locator("//component-button[@label='Create']//button//span");
     this.Event_List= this.page.locator("//table[@class='table table-borderless local-table']");
     this.Event_SearchBar= this.page.locator("//input[@placeholder='Press ENTER to search']");
+
     this.Event_Name= this.page.locator("(//div[@class='table__product event__title'])[1]");
-    this.View_Icon= this.page.locator("(//*[contains(@href,'https://rfc-staging.sportsmediaagency.com/event')])[2]");
+    this.View_Icon= this.page.locator("(//component-tooltip//a[contains(@class,'icon')])[3]");
+
     this.Event_Tittle= this.page.locator("//div[@class='event-name']");
     this.Created_Event_Name= this.page.locator("//div[@class='table__product event__title']");
     this.btn_three_dots=this.page.locator('(//a[@id="dropdownMenu"])[3]')
