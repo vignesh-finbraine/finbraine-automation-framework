@@ -105,7 +105,7 @@ readonly Invalid_mobile_number_msg:Locator;
     this.Catagory_drpdwn= this.page.locator("//*[contains(text(),'Category ')]/ancestor::component-select//span[@class='dropdown-btn']");
     this.Search_Category= this.page.locator("//input[@placeholder='Press ENTER to search']")
     this.Category_Name=this.page.locator("//div[contains(text(),'Mini and Mum Care Center')]")
-    this.Charity_registration_thanku_msg=this.page.locator("//h3[normalize-space()='Thank you for your Enquiry']")
+    this.Charity_registration_thanku_msg=this.page.locator("//h3[normalize-space()='Thank you so much for your enquiry!']")
     this.charity_registration_success_mark=this.page.locator("//div[@class='success-icon']")
     this.charity_registration_success_message=this.page.locator("//p[contains(text(),'Your details have been passed to your charity of c')]")
     this.Explore_more_btn=this.page.locator("//a[normalize-space()='Explore More']")
@@ -175,17 +175,18 @@ async user_verify_charity_name(){
   await expect(this.As_Charity_name_field).toBeVisible();
 }
 async user_enter_charity_name(striteration : any){
-  
 let username = await this.dataFactory.getIterationData(this.container,"USER_NAME",striteration);
 await this.playwrightFactory.fill(this.As_Charity_name_field, username);
-  
 }
 async user_verify_charity_registration_number(){
   await expect(this.Charity_registration_number).toBeVisible();
 }
-async user_enter_charity_registration_number(strnum: string){
-  await this.playwrightFactory.fill(this.Charity_registration_number,strnum)
-  }
+
+async user_enter_charity_registration_number(striteration :any){
+  let regno= await this.dataFactory.getIterationData(this.container,"NUMBER",striteration);
+  await this.playwrightFactory.fill(this.Charity_registration_number,regno)
+}
+
   async user_verify_paragraph_below_register_for_charity(){
     await expect(this.Register_Run_for_charity_paragraph).toBeVisible();
   }

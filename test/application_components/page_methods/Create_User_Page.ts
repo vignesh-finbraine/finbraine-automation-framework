@@ -1,3 +1,5 @@
+//CREATE_USER_PAGE
+ 
 import {expect, type TestInfo } from '@playwright/test';
 import { type Locator, type Page } from 'playwright';
 import { PlaywrightFactoryActions } from '../../utilities/playwright_factory_actions_UI';
@@ -6,21 +8,21 @@ import * as fs from 'fs';
 import { DatabricksSQLwarehouse } from '../../utilities/databricks_sqlware';
 import { DatabricksFactoryDBFS } from '../../utilities/databricks_dbfs';
 import * as path from 'path';
-
-
+ 
+ 
 export class CREATE_USER_PAGE {
   private page: Page;
   private testInfo: TestInfo;
   private playwrightFactory: PlaywrightFactoryActions;
   private dataFactory: DataFactory;
-  private container: any; 
+  private container: any;
   private databricks_sqlware: DatabricksSQLwarehouse;
   private databricks_dbfs: DatabricksFactoryDBFS;
-
+ 
   readonly emt_homepage_reporting: Locator;
   readonly link_search_open: Locator;
-  
-
+ 
+ 
   //**Declare */
 readonly First_Name: Locator;
 readonly Last_Name: Locator;
@@ -40,7 +42,8 @@ readonly btn_OK: Locator;
 readonly Set_Profile_picture: Locator;
 readonly Add_Button: Locator;
 readonly Profile_tab_close_btn: Locator;
-
+readonly monthDropdown: Locator
+ 
   /**
    * @param {Page} page
    * @param {TestInfo} testInfo
@@ -50,7 +53,7 @@ readonly Profile_tab_close_btn: Locator;
    * @param {DatabricksSQLwarehouse} databricks_sqlware;
    * @param {DatabricksFactoryDBFS} databricks_dbfs;
    */
-
+ 
   constructor(container: any) {
     this.container = container;
     this.page = container.resolve('page');
@@ -59,7 +62,7 @@ readonly Profile_tab_close_btn: Locator;
     this.dataFactory = container.resolve('dataFactory');
     this.databricks_sqlware = container.resolve('databricks_sqlware');
     this.databricks_dbfs = container.resolve('databricks_dbfs');
-
+ 
     /******************** Page Objects ************************/
 this.emt_homepage_reporting = this.page.getByText('Reporting', { exact: true });
     this.link_search_open = this.page.getByRole('link', { name: 'Portal open' });
@@ -69,6 +72,7 @@ this.emt_homepage_reporting = this.page.getByText('Reporting', { exact: true });
    this.Male= this.page.locator("//*[contains(text(),'Gender')]/ancestor::component-select//*[contains(text(),'Male')]");
    this.DOB= this.page.locator("//*[contains(text(),'Date of Birth ')]/ancestor::component-datetime//button[@class='datepicker__mask']")
    this.Select_Month= this.page.locator("//select[@title='Select month']");
+  this.monthDropdown = this.page.locator("//select[@title='Select month']");
    this.Select_Year=this.page.locator("//select[@title='Select year']");
    this.Date= this.page.locator("(//span[@class='custom-day'])[8]");
    this.Email= this.page.locator("//input[@placeholder='Their email address']");
@@ -81,7 +85,7 @@ this.emt_homepage_reporting = this.page.getByText('Reporting', { exact: true });
    this.Set_Profile_picture= this.page.locator("//*[contains(text(),'Set Profile Picture')]");
    this.Add_Button=this.page.locator("//*[contains(text(),'Profile Photo')]/ancestor::div//*[contains(text(),'Add')]");
    this.Profile_tab_close_btn= this.page.locator("//*[contains(text(),'Profile Photo')]/ancestor::div//button[@class='modal__close']");
-  
+ 
   }
   async user_enter_first_name(striteration: any){
      let firstname = await this.dataFactory.getIterationData(this.container,'USER_NAME',striteration);
@@ -93,25 +97,37 @@ this.emt_homepage_reporting = this.page.getByText('Reporting', { exact: true });
   async user_select_gender(){
     await this.playwrightFactory.click(this.Gender);
     await this.playwrightFactory.click(this.Male);
-
+ 
   }
-  async user_select_dob_month(strMonth: string){
-    await this.playwrightFactory.click(this.DOB);
-    await this.Select_Month.selectOption({label:'Apr'})
-    //await this.playwrightFactory.clickForce(this.page.locator("//*[contains(text(),'"+strMonth+"')]"))
-
+  // async user_select_dob_month(strMonth: string){
+  //   await this.playwrightFactory.click(this.DOB);
+  //   await this.Select_Month.selectOption({label:'April'})
+  //   //await this.playwrightFactory.clickForce(this.page.locator("//*[contains(text(),'"+strMonth+"')]"))
+  // }
+  async user_select_dob_month(targetMonth: string) {
+  await this.playwrightFactory.click(this.DOB);
+  const months = await this.page.locator("select.month-select option").all();
+ 
+  for (const month of months) {
+    const text = await month.textContent();
+    if (text?.trim() === targetMonth) {
+      await month.click();
+      break;
+    }
   }
+}
+ 
   async user_select_dob_year_and_date(strYear: string){
    await this.Select_Year.selectOption({label:'2000'})
    //await this.playwrightFactory.click(this.page.locator("//*[contains(text(),'"+strYear+"')]/ancestor::select//*[contains(text(),'"+strYear+"')]"))
-   await this.playwrightFactory.click(this.Date); 
+   await this.playwrightFactory.click(this.Date);
   }
   async user_select_dob_date(strDate: string){
     await this.playwrightFactory.click(this.page.locator(""))
   }
   async user_enter_email(striteration: any){
     let Email = await this.dataFactory.getIterationData(this.container,'EMAIL',striteration);
-    await this.playwrightFactory.fill(this.Email,Email); 
+    await this.playwrightFactory.fill(this.Email,Email);
   }
   async user_enter_phonenumber(strPhonenumber: string){
     await this.playwrightFactory.fill(this.PhoneNumber, strPhonenumber);
@@ -141,7 +157,7 @@ this.emt_homepage_reporting = this.page.getByText('Reporting', { exact: true });
   await this.page.getByRole('button', { name: 'Add' }).setInputFiles('bird.jpg');
   await this.page.getByRole('button', { name: 'Apply' }).click();
     await this.playwrightFactory.click(this.Profile_tab_close_btn);
-
+ 
   }
   async uploadImage(locator: Locator, filePath:string) {
       const rootPath = path.join(__dirname, '..', '..');
@@ -154,5 +170,7 @@ this.emt_homepage_reporting = this.page.getByText('Reporting', { exact: true });
     await this.playwrightFactory.click(this.Profile_tab_close_btn);    
     }
 }
-
-
+ 
+ 
+ 
+ 

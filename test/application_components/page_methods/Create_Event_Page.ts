@@ -70,6 +70,7 @@ readonly TC_Field: Locator;
 readonly Pick_File: Locator;
 readonly Gallary_Pick_File: Locator;
 readonly Gallery_Load_More: Locator;
+readonly image
 readonly Gallary_Image1: Locator;
 readonly btn_Done: Locator;
 readonly method_drpdwn_btn1: Locator;
@@ -192,9 +193,11 @@ this.emt_homepage_reporting = this.page.getByText('Reporting', { exact: true });
     this.txt_city= this.page.locator("//input[@placeholder='City']");
     this.txt_country= this.page.locator("//input[@placeholder='Country']");
    this.txt_CharityDiscription= this.page.frameLocator("//*[contains(text(),'Charity Description ')]/ancestor::component-textarea//iframe[contains(@id,'tiny-angular')]").locator('#tinymce');
-    this.txt_Distance= this.page.locator("//*[contains(text(),'Distance')]/ancestor::component-select//span[@class='dropdown-btn']");
+   this.txt_Distance = this.page.locator("//*[normalize-space()='Distance (required)']/ancestor::component-select//span[@class='dropdown-btn']");
+   // this.txt_Distance= this.page.locator("//*[contains(text(),'Distance')]/ancestor::component-select//span[@class='dropdown-btn']");
    //this.txt_DistanceOption= this.page.locator("//div[normalize-space()='10k']");
-    this.btn_DistanceTittle= this.page.locator("//*[contains(text(),'Distance ')]");
+   this.btn_DistanceTittle = this.page.getByText('Distance (required)', { exact: true });
+    // this.btn_DistanceTittle= this.page.locator("//*[contains(text(),'Distance ')]");
     this.txt_LocalFee= this.page.locator("//input[@placeholder='For UK residents']");
     this.btn_StartDate= this.page.locator("//*[contains(text(),'Start Date ')]/ancestor::component-datetime//button[@class='datepicker__mask']");
     this.select_year=this.page.locator("//*[@aria-label='Select year']");
@@ -236,7 +239,8 @@ this.emt_homepage_reporting = this.page.getByText('Reporting', { exact: true });
     this.TC_Field= this.page.locator("//form[@id='createEventForm']//component-input[@formcontrolname='terms_and_conditions']//input");
     this.Pick_File= this.page.locator("//*[contains(text(),'Pick a File')]");
     this.Gallary_Pick_File= this.page.locator("//*[contains(text(),'Gallery ')]/ancestor::component-file//button[@tabindex='0'][1]");
-    this.Gallary_Image1= this.page.locator("//*[@title='image 1']");
+    this.image=this.page.locator("//img[@alt='1']/ancestor::div[@role='button']");
+    this.Gallary_Image1= this.page.locator("//*[@class='mt-3 img__card__title' and normalize-space()='1']");
     this.btn_Done= this.page.locator("//component-button[@label='Done']");
     this.method_drpdwn_btn1= this.page.locator("//*[contains(text(),' Website ')]/ancestor::component-select//span[@class='dropdown-btn']");
     this.Internal_Checkbox1= this.page.locator("//*[contains(text(),' Website ')]/ancestor::component-select//input[@aria-label='Internal']");
@@ -342,7 +346,7 @@ async user_enter_charity_name(striteration: any){
  
   async user_select_distance(strDistance: string){
     await this.playwrightFactory.click(this.txt_Distance);
-    await this.playwrightFactory.click(this.page.locator("//div[normalize-space()='"+strDistance+"']"));
+   await this.playwrightFactory.click(this.page.locator("//div[normalize-space()='"+strDistance+"']"));
     //await this.playwrightFactory.click(this.txt_DistanceOption);
     await this.playwrightFactory.click(this.btn_DistanceTittle);
   }
@@ -451,7 +455,8 @@ async user_click_publishbtn(){
   async user_clickandselect_image(){
     await this.playwrightFactory.click(this.Pick_File);
     //await this.playwrightFactory.click(this.Gallery_Load_More);
-    await this.playwrightFactory.click(this.Gallary_Image1);
+    await this.playwrightFactory.click(this.image);
+
   }
   async user_verify_defaultmethodsetto_internal(){
     this.playwrightFactory.click(this.method_drpdwn_btn1);

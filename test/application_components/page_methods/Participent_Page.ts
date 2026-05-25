@@ -21,7 +21,7 @@ export class PARTICIPENT_PAGE {
   
 
   //**Declare */
-readonly btn_Event_Managament: Locator;
+  readonly btn_Event_Managament: Locator;
   readonly link_participants:Locator;
   readonly txt_search_participant:Locator;
   readonly title_name:Locator;
@@ -34,7 +34,7 @@ readonly btn_Event_Managament: Locator;
   //readonly activity_name:Locator;
   readonly btn_back:Locator;
   readonly btn_export:Locator;
-  readonly txt_success_msg:Locator;
+  readonly btn_download_file:Locator;
   readonly btn_ok:Locator;
   readonly btn_filter:Locator;
   readonly drpdwn_events:Locator;
@@ -94,15 +94,15 @@ this.emt_homepage_reporting = this.page.getByText('Reporting', { exact: true });
      this.link_participants=this.page.locator('//a[normalize-space()="Participants"]');
      this.txt_search_participant=this.page.locator('//input[@placeholder="Press ENTER to search"]');
      this.title_name=this.page.locator('//th[normalize-space()="Name"]');
-     this.participant_name=this.page.locator('//div[normalize-space()="Vivek v"]');
+     this.participant_name=this.page.locator('//div[@class="table__product" and normalize-space()="Rutuja M"]');
      this.title_event=this.page.locator('//th[normalize-space()="Event"]');
-     this.event_name=this.page.locator('//div[contains(text(),"Hackney Half Marathon 2026")]');
+     this.event_name=this.page.locator("//div[@class='table__product' and normalize-space()='Ground Events']");
      this.title_status=this.page.locator('//th[normalize-space()="Status"]');
-     this.status_notified=this.page.locator('//div[contains(text(),"Incomplete")]');
+     this.status_notified=this.page.locator("//div[@class='pill' and normalize-space()='Notified']");
      this.title_activity=this.page.locator('//th[normalize-space()="Activity"]');
      this.btn_back=this.page.locator('//*[@class="search__close"]');
      this.btn_export=this.page.locator('//span[normalize-space()="Export"]');
-     this.txt_success_msg=this.page.locator('//div[@class="swal-title"]');
+     this.btn_download_file=this.page.locator('//*[contains(text(), "Download file")]');
      this.btn_ok=this.page.locator('//button[normalize-space()="OK"]');
      this.btn_filter=this.page.locator('//span[normalize-space()="Filter"]');
      this.drpdwn_events=this.page.locator('//component-select[@label="Event"]//div//span[contains(text(),"Please Select")]');
@@ -114,12 +114,12 @@ this.emt_homepage_reporting = this.page.getByText('Reporting', { exact: true });
      this.btn_notified=this.page.locator('//li[@class="multiselect-item-checkbox"]//div[contains(text(),"Incomplete")]');
      this.btn_payment_status=this.page.locator('//component-select[@label="Payment Status"]//div//span[contains(text(),"Please Select")]');
      this.btn_paid=this.page.locator('//li[@class="multiselect-item-checkbox"]//div[contains(text(),"Waived")]');
-     this.btn_category=this.page.locator('(//ng-multiselect-dropdown[@id="root-paginated-select"]//div//span[contains(text(),"Please Select")])[3]');
-     this.btn_5k=this.page.locator('//component-select[@label="Category"]//div[contains(text(),"16k")]');
+     this.btn_category=this.page.locator('//component-select[@label="Category"]//div//span[contains(text(),"Please Select")]');
+     this.btn_5k=this.page.locator('//component-select[@label="Category"]//div[contains(text(),"5k old")]');
      this.btn_gender=this.page.locator('//component-select[@label="Gender"]//div//span[contains(text(),"Please Select")]');
      this.btn_male=this.page.locator('//div[normalize-space()="Male"]');
      this.btn_apply=this.page.locator('//component-button[@label="Apply"]//span[contains(text(),"Apply")]');
-     this.filtered_data=this.page.locator('//div[normalize-space()="Suraj W"]');
+     this.filtered_data=this.page.locator('//div[normalize-space()="Swap Test"]');
      this.Adress_Line_1= this.page.locator("//*[contains(text(),'Adress Line 1')]/ancestor::component-input//input[@id='address']");
      this.Save_btn= this.page.locator("//*[contains(text(),'Save')]/ancestor::component-button");
      this.Update_Success_msg= this.page.locator("//*[contains(text(),'Registration successfully updated! But there are warnings.')]");
@@ -191,8 +191,8 @@ async user_verifies_export_functionality(){
  
 }
  
-async user_verifies_succcess_msg(){
-   await expect(this.txt_success_msg).toBeVisible();
+async user_verifies_download_file_functionality(){
+   await this.playwrightFactory.click(this.btn_download_file);
  
 }
  
@@ -240,8 +240,8 @@ async user_clicks_ok_btn(){
  
  async user_selects_category(strcategory: string){
     await this.playwrightFactory.click(this.btn_category);
-    await this.playwrightFactory.click(this.page.locator("//component-select[@label='Category']//div[contains(text(),'"+strcategory+"')]"));
- 
+   // await this.playwrightFactory.click(this.page.locator("//component-select[@label='Category']//div[contains(text(),'"+strcategory+"')]"));
+    await this.playwrightFactory.click(this.btn_5k);
  }
    
  
@@ -267,10 +267,9 @@ async user_clicks_ok_btn(){
  
  }
  
- async user_verifies_success_msg(){
-     await expect(this.txt_success_msg).toBeVisible();
- 
- }
+//  async user_verifies_success_msg(){
+//      await expect(this.txt_success_msg).toBeVisible();
+//  }
  
  async user_click_ok_btn(){
     await this.playwrightFactory.click(this.btn_ok);

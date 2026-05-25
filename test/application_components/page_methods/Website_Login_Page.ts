@@ -74,9 +74,9 @@ export class website_Login_page {
     this.Email_field=this.page.locator("#email")                 
     this.Login_password_field=this.page.locator("//*[contains(text(),'Password')]/ancestor::component-input//input[@class='input-primary pr-10 pl-10 ng-untouched ng-pristine ng-valid']")
     this.forgot_password_btn=this.page.locator("//a[@href='/auth/password/forgot']")
-    this.btn_login = this.page.locator('.button.button-primary');
+    this.btn_login = this.page.locator('(//button[@class="button button-primary"])[1]');
     this.Set_password_reset_code_btn = this.page.locator("//*[contains(text(),'Send Password Reset Code')]")
-    this.Request_reset_code_msg= this.page.locator("//div[normalize-space()='Request Reset Code']")
+    this.Request_reset_code_msg= this.page.locator("//button[.//span[normalize-space()='Send Password Reset Code']]")
     this.Email_Invalid_msg= this.page.locator("//div[contains(text(),'The email is invalid')]")
     this.reset_enter_code_field= this.page.locator("#code")
     this.reset_password_btn= this.page.locator("//span[normalize-space()='Reset Password']")

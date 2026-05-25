@@ -75,6 +75,7 @@ readonly Apply_btn: Locator;
 readonly Export_btn: Locator;
 readonly Export_denied_msg: Locator;
 readonly Filter_catagory_search_box: Locator;
+readonly btn_close_search:Locator;
   /**
    * @param {Page} page
    * @param {TestInfo} testInfo
@@ -114,7 +115,7 @@ readonly Filter_catagory_search_box: Locator;
     //this.Edit_btn= this.page.locator("(//button[@class='table__button primary d-block'])[1]");
     this.Charity_Name= this.page.locator("(//div[@class='table__item'])[1]");
       this.Name=this.page.locator("//th[normalize-space()='Name']")
-      this.Status=this.page.locator("//th[normalize-space()='Status']")
+      this.Status=this.page.locator("//th[normalize-space()='Charity Status']")
       this.Categorypage=this.page.locator("//th[normalize-space()='Category']")
       this.Membership=this.page.locator("//th[normalize-space()='Membership']")
       this.AccountManager=this.page.locator("//th[normalize-space()='Account Manager']")
@@ -156,8 +157,10 @@ readonly Filter_catagory_search_box: Locator;
     this.Export_btn= this.page.locator("//*[contains(text(),'Export')]/ancestor::component-button");
     this.Export_denied_msg= this.page.locator("//*[contains(text(),'You do not have permission to access this resource!')]");
     this.Filter_catagory_search_box= this.page.locator("//component-select[@placeholder='Please Select']//input[@placeholder='Press ENTER to search']");
-   
+    this.btn_close_search=this.page.locator('//button[@class="search__close"]');
   }
+
+
 async user_click_categories_btn(){
   await this.btn_Catagories.click();
 }
@@ -201,6 +204,10 @@ async user_click_createbtn(){
  
   }
 
+  async user_click_catgory_btn(){
+    await this.playwrightFactory.click(this.btn_Catagories)
+  }
+
   async user_sees_cagories_listwith_name_number(){
     await expect(this.List_Catagories).toBeVisible();
     await expect(this.Catagory_Name).toBeVisible();
@@ -217,11 +224,17 @@ async user_click_createbtn(){
     await expect(this.Delete_Massage).toBeVisible();
     await this.playwrightFactory.click(this.OK_btn);
   }
+  // async user_search_charity(strSearch: string){
+  //   await this.playwrightFactory.fill(this.txt_SearchBox, strSearch);
+  //   await this.txt_SearchBox.press('Enter');
+  //   await this.page.waitForTimeout(3000);
+  // }
+
   async user_search_charity(strSearch: string){
     await this.playwrightFactory.fill(this.txt_SearchBox, strSearch);
+    await this.txt_SearchBox.click(); // ensure focus
     await this.page.keyboard.press('Enter');
-    await this.page.waitForTimeout(3000);
-  }
+}
 
   async user_click_edit_btn(striteration : any){
      let strusername= await this.dataFactory.getIterationData(this.container,"USER_NAME",striteration);
@@ -260,12 +273,16 @@ async user_verifies_associated_charity_field_three(){
   await expect(this.coloumn_three).toBeVisible();
   await expect(this.coloumn_three).toHaveText('Automation Using Playwright22');
 }
+async user_click_search_close_btn(){
+  await this.playwrightFactory.click(this.btn_close_search);
+
+}
  
 async user_verifies_items_per_page_pagination(strPagenumber: string){
   await this.playwrightFactory.click(this.items_per_page_drpdwn);
-  await this.playwrightFactory.clickForce(this.page.locator("//*[contains(text(),'Items per page:')]/parent::div//*[contains(@type,'checkbox') and contains(@aria-label,'"+strPagenumber+"')]"));
+  await this.playwrightFactory.clickForce(this.page.locator("//*[contains(text(),'Items per page:')]/parent::div//*[@type='checkbox' and @aria-label='"+strPagenumber+"']"));
   await this.playwrightFactory.click(this.items_per_page_drpdwn);
-  await this.playwrightFactory.clickForce(this.page.locator("//*[contains(text(),'Items per page:')]/parent::div//*[contains(@type,'checkbox') and contains(@aria-label,'"+strPagenumber+"')]"));
+  await this.playwrightFactory.clickForce(this.page.locator("//*[contains(text(),'Items per page:')]/parent::div//*[@type='checkbox' and @aria-label='"+strPagenumber+"']"));
   await expect(this.items_per_page_number).toContainText(strPagenumber);
 }
 async user_verifies_and_clicks_page_forward_btn(){

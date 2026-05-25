@@ -132,14 +132,14 @@ this.emt_homepage_reporting = this.page.getByText('Reporting', { exact: true });
     this.txt_Export_Email_Success_Message=this.page.locator("//div[normalize-space()='Mail Send Successfully']");
     this.btn_OK_Button=this.page.locator("//button[normalize-space()='OK']");
    this.btn_Charity_Summary=this.page.locator("(//*[contains(@href,'charity-summary')]/ancestor::table//a[@href='/events/a04cca6b-418c-4569-81e9-5ce4325fb777/charity-summary'])[2]");
-   this.txt_Charity_Summary_For_Event=this.page.locator("//h2[contains(text(),'Charity Summary for Event: Marathon new 2')]");
+   this.txt_Charity_Summary_For_Event=this.page.locator("//h2[contains(text(),' Charity Summary for Event: Action Duchenne Virtual Santa Dash')]");
  this.txt_Automation_Interstate_Marathonymb=this.page.locator("//div[normalize-space()='Marathon New 2']");
  this.btn_participant=this.page.locator("(//*[contains(text(),' Participants ')])[6]")
  this.participant_table=this.page.locator("//*[contains(text(),'Participants')]/ancestor::component-table//table")
  this.participant=this.page.locator("(//*[contains(text(),' Automation Using Playwright by Rutuja ')]/ancestor::tr//*[contains(text(),'Participants')])[2]")
  this.btn_reset= this.page.locator("//span[normalize-space()='Reset']");
   this.txt_Deleted=this.page.locator("//*[contains(text(),'Deleted')]/ancestor::component-select//span[@class='dropdown-btn']");
-  this.drpdwn_Without=this.page.locator("//div[normalize-space()='Without']");
+  this.drpdwn_Without=this.page.locator("//div[normalize-space()='Deleted']/following::div[normalize-space()='Without'][1]");
                                                             
   }
   
@@ -289,7 +289,7 @@ async user_clicks_three_dots_for_custom_field(){
     async user_selects_state(strstate: string){
       await this.txt_State.click();
       await this.playwrightFactory.click(this.page.locator("//div[normalize-space()='"+strstate+"']"));
-      //await this.page.pau(3000)
+    
     }
  
     async user_selects_status(strstatus: string){
@@ -297,7 +297,7 @@ async user_clicks_three_dots_for_custom_field(){
       await this.playwrightFactory.click(this.txt_Status);
       await this.playwrightFactory.click(this.drpdwn_Active);
       //await this.playwrightFactory.click(this.page.locator("#createEventForm').getByText('"+strstatus+"', { exact: true }"));
-      //await this.page.pause()
+      
      
     }
  
@@ -321,7 +321,6 @@ async user_clicks_three_dots_for_custom_field(){
     }
  
     async user_clicks_export_button(){
-      await this.page.pause();
       await expect(this.btn_Export).toBeVisible();
       await this.btn_Export.click();
     }

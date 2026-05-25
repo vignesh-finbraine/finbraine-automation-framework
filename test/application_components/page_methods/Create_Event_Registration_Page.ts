@@ -57,7 +57,7 @@ export class CREATE_EVENT_REGISTRATION {
   readonly Test_Event_Date: Locator;
   readonly Search_Charity: Locator;
   readonly Event_drpdwn_search_bar: Locator;
-  readonly Event_Dorny_Lake_edit: Locator;
+  readonly RFC_Event: Locator;
   readonly set_registration_fee_charity_participant: Locator;
   readonly yes_chk_charity_participant: Locator;
   readonly selected_event_name: Locator;
@@ -92,7 +92,7 @@ export class CREATE_EVENT_REGISTRATION {
     this.emt_homepage_reporting = this.page.getByText('Reporting', { exact: true });
     this.link_search_open = this.page.getByRole('link', { name: 'Portal open' });
     this.Create_Registration_Page_Tittle = this.page.locator("//h1[text()='Create Event Registration Page']");
-    this.Select_Event = this.page.locator("(//*[contains(text(),' Create ')]/ancestor::component-section//span[@class='dropdown-btn'])[1]");
+    this.Select_Event = this.page.locator("(//*[contains(text(),' Event')]/ancestor::component-section//span[@class='dropdown-btn'])[1]");
     this.Event_Dorny_Lake = this.page.locator("(//*[contains(text(),' Events ')]/ancestor::component-section//*[contains(text(),' Dorney Lake ')]/ancestor::li//*[contains(text(),' Dorney Lake ')]");
     this.Event_Drpdwn_List = this.page.locator("//component-select[@label='Events']//div[@class='dropdown-list']");
     this.Primary_Checkbox = this.page.locator("//span[text()=' This page is primary registration page ']/parent::span/span[@class='checkbox__tick']");
@@ -127,7 +127,7 @@ export class CREATE_EVENT_REGISTRATION {
     this.Test_Event_Date = this.page.locator("//div[normalize-space()='Test event date']")
     this.Search_Charity = this.page.locator("//component-select[@label='Charity']//input[@placeholder='Press ENTER to search']");
     this.Event_drpdwn_search_bar = this.page.locator("//component-select[@label='Events']//input[@placeholder='Press ENTER to search']");
-    this.Event_Dorny_Lake_edit = this.page.locator("//*[contains(text(),'Dorney Lake')]");
+    this.RFC_Event = this.page.locator("//input[@type='checkbox' and @aria-label='RFC Event 2027']");
     this.set_registration_fee_charity_participant = this.page.locator("//span[text()='Would you like to set your own  Fundraising Target Amount? ']/ancestor::div[@class='select__dropdown']//span[@class='dropdown-btn']");
     this.yes_chk_charity_participant = this.page.locator("//span[text()='Would you like to set your own  Fundraising Target Amount? ']/ancestor::div[@class='select__dropdown']//input[@aria-label='Yes']/parent::li");
     this.selected_event_name = this.page.locator("//component-select[@label='Events']//div[@class='selected-item']");
@@ -136,30 +136,30 @@ export class CREATE_EVENT_REGISTRATION {
   async user_verify_create_event_registration_page() {
     await expect(this.Create_Registration_Page_Tittle).toBeVisible();
   }
-  async user_select_event(strevent: string) {
-    for (let i = 0; i < 3; i++) {
-      await this.Select_Event.click();
-      await this.Event_drpdwn_search_bar.fill('');
-      await this.Event_drpdwn_search_bar.pressSequentially(strevent, { delay: 50 });
-      await this.page.keyboard.press('Enter');
+ 
+async user_select_event(strevent: string) {
+  for (let i = 0; i < 3; i++) {
+    await this.Select_Event.click();
+    await this.Event_drpdwn_search_bar.fill('');
+    await this.Event_drpdwn_search_bar.pressSequentially(strevent, { delay: 50 });
+    await this.page.keyboard.press('Enter');
 
-      const option = this.event_name(strevent);
-      await expect(option).toBeVisible();
-      await option.click();
+    const option = this.event_name(strevent);
+    await expect(option).toBeVisible();
+    await option.click();
 
-      if ((await this.selected_event_name.textContent())?.includes(strevent)) {
-        return;
-      }
-    }
-
-    throw new Error(`Event "${strevent}" was not selected`);
-
+    // ✅ auto-waits for text to appear
+    await expect(this.selected_event_name).toContainText(strevent);
+    return;
   }
+
+  throw new Error(`Event "${strevent}" was not selected`);
+}
   async user_select_event_edit_registration_page(strevent: string) {
     await this.playwrightFactory.click(this.Select_Event);
     await this.playwrightFactory.fill(this.Event_drpdwn_search_bar, strevent);
-    await this.page.keyboard.press('Enter');
-    await expect(this.Event_Dorny_Lake_edit).toBeVisible();
+    await this.Event_drpdwn_search_bar.press('Enter');
+    await expect(this.RFC_Event).toBeVisible();
 
   }
 
@@ -246,8 +246,14 @@ export class CREATE_EVENT_REGISTRATION {
     await expect(this.Distance_Field).toContainText(strDistance);
   }
   async user_verify_event(strevent: string) {
+    await this.playwrightFactory.click(this.Select_Event)
     await expect(this.Select_Event).toContainText(strevent);
   }
+
+
+
+
+
   async user_click_save() {
     await this.playwrightFactory.click(this.Save_Button);
   }

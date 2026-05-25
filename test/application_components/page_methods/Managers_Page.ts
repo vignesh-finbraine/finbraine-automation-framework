@@ -82,9 +82,9 @@ this.emt_homepage_reporting = this.page.getByText('Reporting', { exact: true });
 
     this.Manager_List= this.page.locator("//table[@class='table table-borderless local-table']");
    // this.Manager_Name= this.page.locator("//*[contains(text(),' Suraj W ')]");
-    this.Manager_Email= this.page.locator("//*[contains(text(),' suraj.testtemp@gmail.com ')]");
-    this.Charities= this.page.locator("//div[text()='Account Managers']/ancestor::component-table//td[normalize-space()='Suraj W']/ancestor::tr[1]/td[3]");
-    this.Action= this.page.locator("//div[text()='Account Managers']/ancestor::component-table//td[normalize-space()='Suraj W']/ancestor::tr[1]/td[4]");
+    this.Manager_Email= this.page.locator("//*[contains(text(), 'baishali.nath@newvision-software.com')]");
+    this.Charities= this.page.locator("//div[text()='Account Managers']/ancestor::component-table//td[normalize-space()='Baishali Nath']/ancestor::tr[1]/td[3]");
+    this.Action= this.page.locator("//div[text()='Account Managers']/ancestor::component-table//td[normalize-space()='Baishali Nath']/ancestor::tr[1]/td[4]");
     this.Manager_SearchBar= this.page.locator("//input[@placeholder='Press ENTER to search']");
     this.Item_Per_Page= this.page.locator("//*[contains(text(),'Items per page:')]/ancestor::pagination-template//span[@class='dropdown-multiselect__caret']");
     this.Select_Specific_Page= this.page.locator("//input[@type='number']");
@@ -92,10 +92,10 @@ this.emt_homepage_reporting = this.page.getByText('Reporting', { exact: true });
     this.Next_btn= this.page.locator("//*[contains(text(),'Page')]/ancestor::div//component-button[@centericon='assets/icons/chevron_forward-light.svg']")
     this.Page_Number= this.page.locator("//component-pagination[@position='center']//div[3]//div[1]//span[1]");
     //this.Five_Page= this.page.locator("//*[contains(text(),' 5 ')]/ancestor::li");
-    this.View_Charities_btn= this.page.locator("//div[text()='Account Managers']/ancestor::component-table//td[normalize-space()='Suraj W']/ancestor::tr[1]/td[4]");
+    this.View_Charities_btn= this.page.locator("//div[text()='Account Managers']/ancestor::component-table//td[normalize-space()='Baishali Nath']/ancestor::tr[1]/td[4]");
     this.Charities_Tittle= this.page.locator("//*[contains(text(),'Charities')]/ancestor::component-table//div[@class='title-purple card__title']");
     this.lbl_accountmanagers=this.page.locator('text="Account Managers"');
-    this.btn_viewcharities=this.page.locator("//div[text()='Account Managers']/ancestor::component-table//td[normalize-space()='Suraj W']/ancestor::tr[1]/td[4]");
+    this.btn_viewcharities=this.page.locator("//div[text()='Account Managers']/ancestor::component-table//td[normalize-space()='Baishali Nath']/ancestor::tr[1]/td[4]");
 this.col_charityname=this.page.locator('//th[normalize-space()="Name"]');
 this.col_charitycategory=this.page.locator('//th[normalize-space()="Category"]');
 this.col_charityaction=this.page.locator('//th[normalize-space()="Action"]');

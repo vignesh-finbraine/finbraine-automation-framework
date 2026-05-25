@@ -93,6 +93,14 @@ readonly btn_Fundraising_Platform_Title: Locator;
 readonly btn_Users_Title: Locator;
 readonly btn_Events_Title: Locator;
 readonly btn_Call_Notes_Title: Locator;
+readonly membership_update_success_msg:Locator;
+
+readonly row: Locator
+readonly edit_icon: Locator
+readonly delete_icon : Locator
+readonly updateCredit_btn : Locator;
+readonly updateCredit_Success_Msg : Locator
+ readonly deleteCredit_Success_Msg: Locator
  
   /**
    * @param {Page} page
@@ -167,7 +175,7 @@ this.emt_homepage_reporting = this.page.getByText('Reporting', { exact: true });
     this.ok_btn = this.page.locator("//button[normalize-space()='OK']");
     this.credit_history = this.page.locator("//h2[normalize-space()='Credit History']");
     this.coloumn = this.page.locator("//tr[4]//td[4]");
-    this.edit_credit_history = this.page.locator("//tr[2][@class='table__row']/following::div/button/component-tooltip/div/a[1]/svg-icon[1]");
+    this.edit_credit_history = this.page.locator("(//tr[@class='table__row'])[2]//button/component-tooltip/div/a[1]/svg-icon");
     this.update_credit_title = this.page.locator("//h2[normalize-space()='Update Credit']");
     this.update_amount = this.page.locator("//input[@placeholder='Amount']");
     this.update_date = this.page.locator("//component-datetime[@selector='date']//div//div//div//button");
@@ -186,6 +194,15 @@ this.emt_homepage_reporting = this.page.getByText('Reporting', { exact: true });
     this.btn_Users_Title=this.page.locator("//button[normalize-space()='Users']")
     this.btn_Events_Title=this.page.locator("//button[normalize-space()='Events']")
     this.btn_Call_Notes_Title=this.page.locator("//button[normalize-space()='Call Notes']")
+    this.membership_update_success_msg=this.page.locator("//*[contains(text(), 'Successfully updated the charity membership!')]");
+
+    this.row = this.page.locator("//div[@id='tab-4']//tr[10]")
+  this.edit_icon = this.page.locator("//div[@id='tab-4']//tr[10]//div[1]//button[1]")
+  this.delete_icon = this.page.locator("//div[@id='tab-4']//tr[10]//div[1]//button[2]")
+ this.updateCredit_btn = this.page.locator("//button[@class='button button-primary mt-4']")
+ this.updateCredit_Success_Msg = this.page.locator("//div[@class='swal-text']")
+  this.deleteCredit_Success_Msg = this.page.locator("//div[@class='swal-text']")
+ 
  
   }
  
@@ -339,10 +356,7 @@ async user_enters_credit_successfully(){
 async user_verifies_credit_history(){
   await expect(this.credit_history).toBeVisible();
 }
-async user_clicks_edit_icon(){
-  await this.playwrightFactory.click(this.coloumn);
-  await this.playwrightFactory.click(this.edit_credit_history);
-}
+
  
 async user_verifies_update_credit_title(){
   await expect(this.update_credit_title).toContainText('Update Credit');
@@ -428,6 +442,37 @@ async verify_edit_charity_title(){
   async verify_call_notes_title(){
     await expect(this.btn_Call_Notes_Title).toBeVisible();
   }
+
+  async user_verify_membership_updated_success_msg(){
+    await expect(this.membership_update_success_msg).toBeVisible();
+  }
+  async user_clicks_row(){
+  await this.playwrightFactory.click(this.row);                
+}
+
+async user_clicks_edit_icon(){
+    await this.playwrightFactory.click(this.edit_icon);
+}
+ 
+async user_clicks_updateCredit_btn(){
+  await this.playwrightFactory.click(this.updateCredit_btn)
+}
+async user_verifies_updateCredit_Success_Msg(){
+  await expect(this.updateCredit_Success_Msg).toContainText('Successfully updated the credit!')
+  await this.playwrightFactory.click(this.ok_btn);
+ 
+}
+async user_clicks_delete_icon(){
+    await this.playwrightFactory.click(this.delete_icon);
+   
+}
+ 
+async user_verifies_deleteCredit_Success_Msg(){
+  await expect(this.deleteCredit_Success_Msg).toContainText('You want to delete this credit.')
+  await this.playwrightFactory.click(this.OK_btn);
+}
+
+  
  
 }
  

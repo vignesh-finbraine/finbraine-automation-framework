@@ -39,6 +39,7 @@ readonly txt_adressoption: Locator;
 readonly txt_postcode: Locator;
 readonly txt_city: Locator;
 readonly txt_country: Locator;
+readonly txt_registration:Locator;
 readonly txt_registration_no:Locator;
 readonly txt_CharityDiscription: Locator;
 readonly SaveDraft: Locator;
@@ -93,6 +94,7 @@ readonly MetaDiscriptioncheckbox:Locator;
     this.txt_postcode= this.page.locator("//input[@placeholder='Postcode']");
     this.txt_city= this.page.locator("//input[@placeholder='City']");
     this.txt_country= this.page.locator("//input[@placeholder='Country']");
+    this.txt_registration=this.page.locator(`//input[@placeholder="The charity's registration number"]`);
     this.txt_registration_no=this.page.locator(`//*[@type="text" and @placeholder="The charity's registration number"]`);
    this.txt_CharityDiscription= this.page.frameLocator("//*[contains(text(),'Charity Description ')]/ancestor::component-textarea//iframe[contains(@id,'tiny-angular')]").locator('#tinymce');
    this.SaveDraft=this.page.locator("//component-button[@lefticon='assets/icons/save-light.svg']//button");
@@ -162,6 +164,10 @@ readonly MetaDiscriptioncheckbox:Locator;
   }
   async user_enter_country(strCountry: string){
     await this.playwrightFactory.fill(this.txt_country, strCountry);
+  }
+
+  async user_enter_registration_number(strregno:string){
+    await this.playwrightFactory.fill(this.txt_registration, strregno);
   }
   async user_enters_registration_number(strno:string){
     await this.playwrightFactory.fill(this.txt_registration_no,strno)

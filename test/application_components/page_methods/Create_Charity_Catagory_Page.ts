@@ -69,7 +69,7 @@ readonly txt_name: Locator;
     /******************** Page Objects ************************/
 this.emt_homepage_reporting = this.page.getByText('Reporting', { exact: true });
     this.link_search_open = this.page.getByRole('link', { name: 'Portal open' });
-    this.txt_name = this.page.locator("//input[@placeholder='Name']");
+    this.txt_name = this.page.locator('//input[@placeholder="Name"]');
     this.element_dropdown = this.page.locator("//*[contains(text(),'Status ')]/ancestor::component-select//span[@class='dropdown-btn']");
     this.element_dropdownoption = this.page.locator("//div[normalize-space()='Active']");
     this.element_colour = this.page.locator("//input[@type='color']");
@@ -95,9 +95,13 @@ this.emt_homepage_reporting = this.page.getByText('Reporting', { exact: true });
   }
  
   async user_enter_name(striteration : any){
-let username = await this.dataFactory.getIterationData(this.container,"USER_NAME",striteration);
-await this.playwrightFactory.fill(this.txt_name, username);
+let username = await this.dataFactory.getIterationData(this.container,'USER_NAME',striteration);
+await this.playwrightFactory.fill(this.txt_name,username);
  
+  }
+    async user_enter_charity_name(striteration: any){
+    let charityname = await this.dataFactory.getIterationData(this.container,'USER_NAME',striteration);
+    await this.playwrightFactory.fill(this.txt_name,charityname);
   }
  
  
@@ -109,7 +113,7 @@ await this.playwrightFactory.fill(this.txt_name, username);
  
   async user_select_colour(strColour: string){
     await this.playwrightFactory.click(this.element_colour);
-    await this.playwrightFactory.fill(this.element_colour, strColour);
+    await this.playwrightFactory.fill(this.element_colour,strColour);
   }
  
   async user_click_publishbtn(){

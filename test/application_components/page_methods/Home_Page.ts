@@ -92,7 +92,7 @@ readonly txt_Administrator: Locator;
     /******************** Page Objects ************************/
 this.emt_homepage_reporting = this.page.getByText('Reporting', { exact: true });
     this.link_search_open = this.page.getByRole('link', { name: 'Portal open' });
-    this.element_CharityManagement = this.page.locator("//*[contains(text(),' Charity Management ')]");
+    this.element_CharityManagement = this.page.locator("//button[normalize-space()='Charity Management']");
     this.element_charities = this.page.locator("//div[@title='Charity Management']//div//a[@title='Charities']");
     this.element_EventManagement= this.page.locator("//div[@title='Event Management']//div//button");
     this.element_event= this.page.locator("//div[@title='Event Management']//div//a[@title='Events']");
@@ -111,7 +111,7 @@ this.emt_homepage_reporting = this.page.getByText('Reporting', { exact: true });
     this.Enquiry_Management_btn=this.page.locator("//button[normalize-space()='Enquiry Management']")
     this.Enquiry_charity_btn=this.page.locator("//a[@href='/enquiries/charity'][normalize-space()='Charities']")  
     this.Partner_Events_btn=this.page.locator("//a[normalize-space()='Partner Events']")
-    this.Account_Managament= this.page.locator("//*[contains(text(),' Account Management ')]");
+   this.Account_Managament = this.page.getByRole('button', { name: 'Account Management' });
     this.Users= this.page.locator("//div[@title='Account Management']//div//a[@title='Users']");
     this.Users_Table= this.page.locator("//*[contains(text(),'Users')]/ancestor::component-table//table")
     this.Dashboard=this.page.locator("//*[contains(text(),' Dashboard ')]"); 
@@ -183,7 +183,7 @@ async user_click_landing_page(){
   await this.playwrightFactory.click(this.Landing_Page);
 }
 async user_click_charity_management(){
-  await this.playwrightFactory.click(this.element_CharityManagement);
+  await this.playwrightFactory.clickForce(this.element_CharityManagement);
 }
 async user_clicks_participant(){
     await expect (this.link_participants).toBeVisible();

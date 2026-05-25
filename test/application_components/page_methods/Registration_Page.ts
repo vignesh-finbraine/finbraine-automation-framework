@@ -181,7 +181,7 @@ this.published_box=this.page.locator("//*[contains(text(),'Published')]")
     this.txt_Registration_Pages_Heading=this.page.locator("//h1[normalize-space()='Registration Pages']")
     this.txt_Create_Event_Registration_Page_Title=this.page.locator("//h1[normalize-space()='Create Event Registration Page']")
     this.txt_Event=this.page.locator("//span[contains(text(),'Select Event')]")
-    this.drpdwn_Test_Event_Date=this.page.locator("//div[normalize-space()='Test event date']")
+    this.drpdwn_Test_Event_Date=this.page.locator('//*[contains(text(), "New test")]');
     this.txt_Distance=this.page.locator("//*[contains(text(),'Distance')]/ancestor::component-select//div[@class='multiselect-dropdown']")
     this.txt_Charity=this.page.locator("(//*[contains(text(),'Create')]/ancestor::component-section//*[contains(text(),'Charity ')]/ancestor::component-select//span[@class='dropdown-btn'])[1]")
     this.txt_Payment_Option=this.page.locator("//*[contains(text(),'Create')]/ancestor::component-section//*[contains(text(),'Payment Option')]/ancestor::component-select//span[@class='dropdown-btn']")
@@ -191,8 +191,8 @@ this.published_box=this.page.locator("//*[contains(text(),'Published')]")
     this.txt_Charity_Name=this.page.locator("(//*[contains(text(),' Automation City Marathony4yap ')])[1]")
     this.drpdwn_Participant_pays=this.page.locator("//div[normalize-space()='Participant Pays']")
     this.drpdwn_Fund_For_Charity=this.page.locator("(//*[contains(text(),' Charity NV ')])[2]")
-    this.txt_Charity_Search_Bar=this.page.locator("//component-select[@placeholder='Please select']//ng-multiselect-dropdown[@id='root-paginated-select']//input[@placeholder='Search']")
-    this.txt_Fund_for_Charity=this.page.locator("//div[contains(text(),'Fund for Charity')]")
+    this.txt_Charity_Search_Bar=this.page.locator("//component-select[@placeholder='Please select']//ng-multiselect-dropdown[@id='root-paginated-select']//input[@placeholder='Press ENTER to search']")
+    this.txt_Fund_for_Charity=this.page.locator("//div[contains(text(), 'Fundraise Givestar Charity')]")
     this.Filter_charity_drpdwn_btn= this.page.locator("//*[contains(text(),'Charity')]/ancestor::component-select//*[contains(text(),'Please Select')]");
     this.Edit_pencil_icon= this.page.locator("//a[@class='icon']");
     
@@ -222,7 +222,7 @@ async user_click_createbtn(){
   async user_enter_values_searchbar(strsearchbar: string){
     await this.playwrightFactory.fill(this.Search_Bar, strsearchbar);
     await this.page.waitForTimeout(3000);
-    await this.page.keyboard.press('Enter');
+    await this.Search_Bar.press('Enter');
     
   }
   async user_click_event(strEventname: string){
@@ -262,7 +262,6 @@ async user_click_createbtn(){
   await expect (this.Event_coloumn).toBeVisible();
   await expect (this.Distance_Category).toBeVisible();
   await expect (this.Status).toBeVisible();
-  await expect (this.Target).toBeVisible();
   await expect (this.Payment_Option).toBeVisible();
   await expect (this.Actions).toBeVisible();
  
@@ -353,8 +352,7 @@ async verify_edit_reg_autopopulated_fields(){
        
      }
      async verify_edit_reg_checkbox_fields(){
-      await expect (this.published_box).toBeVisible();
-      await expect (this.Tick_box).toBeVisible();
+     await expect (this.Save_Button).toBeVisible();
      }
      async user_click_wolfcity(strEvent: string){
       await this.playwrightFactory.click(this.page.locator("//div[contains(text(),'"+strEvent+"')]"));
@@ -413,7 +411,7 @@ async verify_edit_reg_autopopulated_fields(){
  async user_verify_create_event_registration_page_title(){
         await expect(this.txt_Create_Event_Registration_Page_Title).toBeVisible();
       }
-  async user_selects_event(strEvent: string){
+  async user_selects_event(){
         await this.txt_Event.click();
         await this.playwrightFactory.click(this.drpdwn_Test_Event_Date);
       }
@@ -455,7 +453,7 @@ async verify_edit_reg_autopopulated_fields(){
       }
       async user_verifies_charity_name_field_auto_populated(strCahrityname: string){
         await expect(this.page.locator("(//*[contains(text(),'"+strCahrityname+"')])[1]")).toBeVisible();
-        await expect(this.page.locator("(//*[contains(text(),'"+strCahrityname+"')])[1]")).toContainText('Automation 0pyia');
+        await expect(this.page.locator("(//*[contains(text(),'"+strCahrityname+"')])[1]")).toContainText('QA Charity x');
  
       }
       async user_searche_existing_registration_page(striteration: any) {

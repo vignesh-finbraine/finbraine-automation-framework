@@ -60,7 +60,7 @@ export class PARTNER_EVENT_PAGE {
     this.emt_homepage_reporting = this.page.getByText('Reporting', { exact: true });
     this.link_search_open = this.page.getByRole('link', { name: 'Portal open' });
     
-    this.partner_event_manage_btn=this.page.locator ("//*[contains(text(),'29 May Testing Events')]/ancestor::component-card8//div[@class='card8__buttons']")
+    this.partner_event_manage_btn=this.page.locator ("//*[contains(text(),'1 Nov 2025 - 31 Jan 2026')]/ancestor::component-card8//div[@class='card8__buttons']")
     this.partner_event_email_field=this.page.locator("//input[@placeholder='Their email address']")
     this.partner_event_first_name=this.page.locator("//input[@placeholder='Their first name']")
     this.partner_event_last_name=this.page.locator("//input[@placeholder='Their last name']")

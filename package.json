@@ -31,7 +31,7 @@
     "uuid": "^9.0.1"
   },
   "devDependencies": {
-    "@playwright/test": "^1.57.0",
+    "@playwright/test": "^1.60.0",
     "@types/deasync": "^0.1.5",
     "@types/fs-extra": "^11.0.4",
     "@types/json2csv": "^5.0.7",

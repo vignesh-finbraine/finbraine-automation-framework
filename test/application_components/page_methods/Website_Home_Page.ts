@@ -371,9 +371,9 @@ this.emt_homepage_reporting = this.page.getByText('Reporting', { exact: true });
     this.Search_Charity= this.page.locator("(//div[@class='header__sub-item']//*[contains(text(),'Search Charities')])[1]");
     this.Search_Events= this.page.locator("(//div[@class='header__sub-item']//*[contains(text(),' Search Events')])[1]");
     this.Register_My_Charity_Find_Charity= this.page.locator("(//div[@class='header__sub-item']//*[contains(text(),'Register My Charity')])[1]");
-    this.Kit_for_charity= this.page.locator("//div[@class='header__sub-item']//*[contains(text(),' Kit for Charity')]");
+    this.Kit_for_charity= this.page.locator("(//div[@class='header__sub-item']//*[contains(text(),' Kit for Charity')])[1]");
     this.Runner_Support= this.page.locator("//div[@class='header__item']//div[@title='Runner Support']");
-    this.Get_of_that_Couch= this.page.locator("//div[@class='header__sub-item']//*[contains(text(),'Get off that Couch')]");
+    this.Get_of_that_Couch= this.page.locator("(//div[@class='header__sub-item']//*[contains(text(),'Get off that Couch')])[1]");
     this.Training_Plans= this.page.locator("(//div[@class='header__sub-item']//*[contains(text(),'Training Plans')])[1]");
     this.Diet_and_Nutritions= this.page.locator("(//*[contains(text(),'Diet and Nutrition') and @class='header__link'])[1]");
     this.Injury_Help= this.page.locator("(//div[@class='header__sub-item']//*[contains(text(),'Injury Help')])[1]");
@@ -607,7 +607,7 @@ this.emt_homepage_reporting = this.page.getByText('Reporting', { exact: true });
   }
   
   async user_launches_website() {
-    let url = process.env.APP_URL || "https://rfc-staging.sportsmediaagency.com/"
+    let url = process.env.APP_URL || "https://rfc-staging.sportsmediaagency.com/" 
     await this.playwrightFactory.launchApplication(url);
   }
   async user_click_profile_icon(){

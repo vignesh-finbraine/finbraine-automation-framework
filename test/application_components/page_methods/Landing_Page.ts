@@ -147,7 +147,7 @@ readonly  accessible_learning_foundation: Locator;
     this.link_playwright_automation=this.page.locator('//div[contains(text(),"Automation Playwright for Rfc")]');
     this.drpdwn_event_page=this.page.locator('//*[contains(text(), "Event Pages ")]/ancestor::component-select//*[@class="dropdown-btn"]');
     this.link_event=this.page.locator("//*[contains(text(),'Event Pages')]/ancestor::component-select//ul[@class='item2']");
-    this.txt_Charity_Search_Bar=this.page.locator("//input[@placeholder = 'Press ENTER to search']/parent :: li[@class ='filter-textbox']");
+    this.txt_Charity_Search_Bar = this.page.getByRole('textbox', { name: 'multiselect-search' });
     this.txt_Event_Pages=this.page.locator("//*[contains(text(),'Event Pages ')]/ancestor::component-select//span[@class='dropdown-btn']")
     this.txt_Future_Dated_Event=this.page.locator("//ul//div[contains(text(),'Created at: Mon June 9, 2025 -')]")
     this.landing_charity_searchbar=this.page.locator("//*[contains(text(),'Charity')]/ancestor::component-select//input[@placeholder='Press ENTER to search']")
@@ -222,18 +222,11 @@ readonly  accessible_learning_foundation: Locator;
     await expect(this.Filter_Delete).toBeVisible();
   }
   async user_select_charity_for_filter(strCharityname: string){
-
-
-    
-
     await this.playwrightFactory.click(this.Filter_Charity);
-
-    //await this.playwrightFactory.fill(this.txt_Charity_Search_Bar, strCharityname)
-    await this.playwrightFactory.click(this.txt_Charity_Search_Bar);
-
-    await this.page.keyboard.press('Enter');
-
+    await this.playwrightFactory.fill(this.txt_Charity_Search_Bar, strCharityname);
+    await this.txt_Charity_Search_Bar.press('Enter');
     await this.playwrightFactory.click(this.page.locator("//*[contains(text(),'Charity')]/ancestor::form//*[contains(text(),'"+strCharityname+"')]"));
+  
 
   }
  
@@ -289,6 +282,7 @@ async user_clicks_selectopn() {
  
 }
 async user_clicks_select(strEvent: string) {
+  await this.page.waitForTimeout(3000);
   await this.playwrightFactory.click(this.Select)
   await this.playwrightFactory.click(this.page.locator("(//*[contains(text(),'"+strEvent+"')])[1]"))
 }
@@ -306,7 +300,7 @@ async user_clicks_charity() {
   await this.page.keyboard.press('Enter');
   await this.page.waitForTimeout(3000);
   await this.playwrightFactory.click(this.page.locator("(//*[contains(text(),' Create')]/ancestor::component-section//*[contains(text(),'Charity')]/ancestor::component-select//*[contains(text(),'"+strsearch+"')])[1]"));
-  await this.page.waitForTimeout(3000);
+  
 }
 async user_clicks_charity_dropdown(strcharityname: string) {
     await this.playwrightFactory.click(this.Charity)

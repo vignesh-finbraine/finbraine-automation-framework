@@ -79,7 +79,7 @@ readonly News_ltter_subscribe_btn: Locator;
     this.email_adress= this.page.locator('#mce-EMAIL');
     this.First_name= this.page.locator('#mce-FNAME');
     this.Last_Name= this.page.locator('#mce-LNAME');
-    this.News_ltter_subscribe_btn= this.page.locator("#mc-embedded-subscribe");
+    this.News_ltter_subscribe_btn= this.page.locator("//button[@class='button btn-subscribe' and contains(text(), 'Subscribe')]");
     this.Success_msg= this.page.locator("//*[contains(text(),'Thank you for subscribing!')]")
     
   }

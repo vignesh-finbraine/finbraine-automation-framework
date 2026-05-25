@@ -46,6 +46,20 @@ class DataFactory {
     return result;
   }
 
+  // ================= ONLY NUMBER SUPPORT (ADDED) =================
+async generateOnlyNumbers(length: any) {
+  let result = '';
+  const numbers = '0123456789';
+  const numbersLength = numbers.length;
+
+  for (let i = 0; i < length; i++) {
+    result += numbers.charAt(Math.floor(Math.random() * numbersLength));
+  }
+
+  return result;
+}
+
+
   async getTestData(testcaseName: any, testcaseId: any) {
     let testdata_sheet = (process.env.TESTDATASHEET || "testdata").trim();
     const recordsJsonFull = parse(fs.readFileSync('./test/data/'+testdata_sheet+'.csv'), {
@@ -93,19 +107,40 @@ class DataFactory {
           }
           computedData = await this.addDaysToCurrentDate(dateAdd);
           break;
+
+                  case "DATE":
+          if (data.includes("#")) {
+            dateAdd = data.split("#")[1].trim();
+          }
+          computedData = await this.addDaysToCurrentDate(dateAdd);
+          break;
+
+        // 👇 ADD FROM HERE (around line 127)
+        case "ONLY_NUMBER":
+        case "RANDOM_ONLY_NUMBER":
+          if (data.includes("#")) {
+            length = data.split("#")[1].trim();
+          }
+          computedData = await this.generateOnlyNumbers(length);
+          break;
+        // 👆 ADD TILL HERE
+
         default:
           computedData = data;
+
+  
       }
       
       testCaseData[iteration][strFieldName] = computedData;
       container.register('testData', testCaseData);
       return computedData;
-      
 
+      
     }catch(error){
       throw new Error("Unable Fetch Data "+strFieldName +" Iteration "+iteration + "Error - "+error);
         
     }
+    
         
   }
 
@@ -144,10 +179,12 @@ class DataFactory {
     const testCaseDesc = jsonData["TestcaseDescription"];
     return testCaseDesc;
   }
+  
 
   async getRandomInt(min: number, max: number) {
     return Math.floor(Math.random() * (max - min + 1)) + min;
   }
+  
 
 }
 

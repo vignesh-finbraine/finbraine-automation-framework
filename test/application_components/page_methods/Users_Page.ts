@@ -1,3 +1,5 @@
+//USER_PAGE
+ 
 import {expect, type TestInfo } from '@playwright/test';
 import { type Locator, type Page } from 'playwright';
 import { PlaywrightFactoryActions } from '../../utilities/playwright_factory_actions_UI';
@@ -5,21 +7,21 @@ import DataFactory from '../../utilities/data-factory';
 import * as fs from 'fs';
 import { DatabricksSQLwarehouse } from '../../utilities/databricks_sqlware';
 import { DatabricksFactoryDBFS } from '../../utilities/databricks_dbfs';
-
-
+ 
+ 
 export class USER_PAGE {
   private page: Page;
   private testInfo: TestInfo;
   private playwrightFactory: PlaywrightFactoryActions;
   private dataFactory: DataFactory;
-  private container: any; 
+  private container: any;
   private databricks_sqlware: DatabricksSQLwarehouse;
   private databricks_dbfs: DatabricksFactoryDBFS;
-
+ 
   readonly emt_homepage_reporting: Locator;
   readonly link_search_open: Locator;
-  
-
+ 
+ 
   //**Declare */
 readonly create_button: Locator;
 readonly search_bar: Locator;
@@ -47,19 +49,19 @@ readonly Restricted_msg: Locator;
 readonly Restriction_success_msg: Locator;
 readonly Verify_btn: Locator;
 readonly Account_Restricted_msg: Locator;
-
-
-
-
-
-
-
-
-
-
-
-
-  
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
   /**
    * @param {Page} page
    * @param {TestInfo} testInfo
@@ -69,7 +71,7 @@ readonly Account_Restricted_msg: Locator;
    * @param {DatabricksSQLwarehouse} databricks_sqlware;
    * @param {DatabricksFactoryDBFS} databricks_dbfs;
    */
-
+ 
   constructor(container: any) {
     this.container = container;
     this.page = container.resolve('page');
@@ -78,7 +80,7 @@ readonly Account_Restricted_msg: Locator;
     this.dataFactory = container.resolve('dataFactory');
     this.databricks_sqlware = container.resolve('databricks_sqlware');
     this.databricks_dbfs = container.resolve('databricks_dbfs');
-
+ 
     /******************** Page Objects ************************/
 this.emt_homepage_reporting = this.page.getByText('Reporting', { exact: true });
     this.link_search_open = this.page.getByRole('link', { name: 'Portal open' });
@@ -96,7 +98,7 @@ this.emt_homepage_reporting = this.page.getByText('Reporting', { exact: true });
     this.Period= this.page.locator("//*[contains(text(),'Filter Users')]/ancestor::div//*[contains(text(),'Period')]/ancestor::component-select//span[@class='dropdown-btn']");
     this.Deleted= this.page.locator("//*[contains(text(),'Filter Users')]/ancestor::div//*[contains(text(),'Deleted')]/ancestor::component-select//span[@class='dropdown-btn']");
     this.Apply_btn= this.page.locator("//*[contains(text(),'Filter Users')]/ancestor::div//*[contains(text(),'Apply')]");
-    this.User= this.page.locator("//*[contains(text(),'Ayush T')]");
+    this.User= this.page.locator("//*[contains(text(),'Karabi S')]");
     this.Last_Name= this.page.locator("//input[@placeholder='Their last name']");
     this.Save_Button= this.page.locator("//*[contains(text(),'Save')]");
     this.Save_success_msg= this.page.locator("//div[@class='swal-text']");
@@ -108,14 +110,14 @@ this.emt_homepage_reporting = this.page.getByText('Reporting', { exact: true });
     this.Restriction_success_msg= this.page.locator("//*[contains(text(),'Restriction has been placed on specified user account(s).')]");
     this.Verify_btn= this.page.locator("//button[@class='swal-button swal-button--confirm swal-button--danger']");
     this.Account_Restricted_msg= this.page.locator("//div[@class='swal-text']");
-    
-
-
-    
-    
-
-    
-    
+   
+ 
+ 
+   
+   
+ 
+   
+   
   }
   async user_click_create_button(){
     await this.playwrightFactory.click(this.create_button);
@@ -137,7 +139,7 @@ this.emt_homepage_reporting = this.page.getByText('Reporting', { exact: true });
   }
   async user_verify_verification_msg(){
     await expect(this.verification_msg).toContainText('Please enter the verification code we sent to you earlier.');
-
+ 
   }
   async user_click_export_btn(){
     await this.playwrightFactory.click(this.Export_btn);
@@ -186,7 +188,7 @@ async user_click_save_btn(){
   await this.playwrightFactory.click(this.Save_Button);
 }
 async user_verify_save_success_msg(){
-  await expect(this.Save_success_msg).toContainText("User has been Updated.")
+  await expect(this.Save_success_msg).toContainText("User's personal info has been Updated.")
 }
 async user_click_ok_btn(){
   await this.page.waitForTimeout(2000);
@@ -218,14 +220,16 @@ async user_click_verify_btn(){
 async user_verify_account_restricted_msg(){
   await expect(this.Account_Restricted_msg).toContainText('Your account is currently restricted. Please contact the admin to have this resolved.');
 }
-  
  
-
  
-
-
-
-
+ 
+ 
+ 
+ 
+ 
+ 
 }
-
-
+ 
+ 
+ 
+ 
