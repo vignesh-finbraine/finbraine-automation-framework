@@ -32,15 +32,6 @@ export class LOGIN_PAGE {
 
 
 
-
-
-
-
-
-
-
-
-
   /**
    * @param {Page} page
    * @param {TestInfo} testInfo
@@ -72,15 +63,12 @@ export class LOGIN_PAGE {
     this.Login_Logo = this.page.locator("//div[@class='h2 entry__title']");
 
 
-
-
-
-    // Login to RFC
+    // Login to Finbraine
 
   }
 
   async user_launches_application() {
-    let url = process.env.APP_URL || "https://rfc2-staging-portal.fororganizers.com/"
+    let url = process.env.APP_URL || "https://campaignintelligenceqaui.azurewebsites.net/account/login";
     await this.playwrightFactory.launchApplication(url);
   }
 
