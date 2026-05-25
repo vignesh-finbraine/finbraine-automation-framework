@@ -4,6 +4,7 @@ test/test-results/
 /playwright/.cache/
 package-lock.json
 /package-lock.json
+playwright-report.zip
 test/data/generated_data
 test/data/dataflows_report
 .DS_Store
