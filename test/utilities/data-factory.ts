@@ -151,7 +151,7 @@ async generateOnlyNumbers(length: any) {
   }
        
   static getTestCases(testCaseName: any) {
-    let business_process = process.env.BUSINESS_PROCESS || "functional_flow";
+    let business_process = process.env.BUSINESS_PROCESS || "functional_flow_vignesh_vignesh";
     const recordsJsonFull = parse(fs.readFileSync('./test/data/business_transactions/'+business_process.trim()+'.csv'), {
       columns: true,
       skip_empty_lines: true
@@ -162,7 +162,7 @@ async generateOnlyNumbers(length: any) {
   }
   
   static getAllTestCases() {
-    let business_process = process.env.BUSINESS_PROCESS || "functional_flow";
+    let business_process = process.env.BUSINESS_PROCESS || "functional_flow_vignesh_vignesh";
     const recordsJsonFull = parse(fs.readFileSync('./test/data/business_transactions/'+business_process.trim()+'.csv'), {
       columns: true,
       skip_empty_lines: true
