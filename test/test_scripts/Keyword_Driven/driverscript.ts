@@ -5,7 +5,7 @@ import { PlaywrightFactoryActions } from '../../utilities/playwright_factory_act
 import { PlaywrightFactoryActionsAPI } from '../../utilities/playwright_factory_actions_API';
 
 import { LOGIN_PAGE } from '../../application_components/page_methods/Login_Page';
-import { DatabricksSQLwarehouse } from '../../utilities/databricks_sqlwarehouse';
+import { DatabricksSQLwarehouse } from '../../utilities/databricks_sqlware';
 import { DatabricksFactoryDBFS } from '../../utilities/databricks_dbfs';
 
 export class DriverScript { 
@@ -25,7 +25,7 @@ export class DriverScript {
     ); 
 
     container.register(
-      'databricks_sqlwarehouse',
+      'databricks_sqlware',
       new DatabricksSQLwarehouse(container)
     );
 

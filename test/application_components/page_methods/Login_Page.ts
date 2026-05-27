@@ -1,7 +1,7 @@
 import { expect, type TestInfo } from '@playwright/test';
 import { type Locator, type Page } from 'playwright';
 import { PlaywrightFactoryActions } from '../../utilities/playwright_factory_actions_UI';
-import { DatabricksSQLwarehouse } from '../../utilities/databricks_sqlwarehouse';
+import { DatabricksSQLwarehouse } from '../../utilities/databricks_sqlware';
 import { DatabricksFactoryDBFS } from '../../utilities/databricks_dbfs';
 
 export class LOGIN_PAGE {
