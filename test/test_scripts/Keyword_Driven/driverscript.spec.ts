@@ -6,8 +6,19 @@ import Azure_DevOps from '../../utilities/azure_devops';
 
 const records = DataFactory.getAllTestCases();
 
-for (const record of records) {
-  // Check if record indicates an API test
+const loginRecords = records.filter((r: any) => {
+  const name = (r.TestCaseName || '').toString().trim().toLowerCase();
+  return name === 'login_page' || name.includes('login');
+});
+
+for (const record of loginRecords) {
+  const recordId = (record.TestcaseID || '').toString().trim();
+  const recordName = (record.TestCaseName || '').toString().trim();
+  if (!recordId || !recordName) {
+    console.warn('Skipping empty or malformed record', record);
+    continue;
+  }
+
   if (record.TestCaseName.includes('@coreapi')) {
     test.describe(`API ${DataFactory.getTestCaseDescription(record)}`, () => {
       test(DataFactory.frameTestCaseName(record), async ({ request }, testInfo: TestInfo) => {
@@ -18,18 +29,15 @@ for (const record of records) {
 
         container.register('dataFactory', dataFactory);
         container.register('testData', testData);
-        // Register the API context rather than a page
         container.register('apicontext', request);
         container.register('azure_devops', azure_devops);
 
         const driverScript = new DriverScript();
-        // Note: Since there’s no page for an API test, pass null (or omit) if your driver supports it.
         await driverScript.registerContainer(container, testInfo);
         await driverScript.execute(record, container);
       });
     });
   } else {
-    // Original browser-based test case
     test.describe(DataFactory.getTestCaseDescription(record), () => {
       test(DataFactory.frameTestCaseName(record), async ({ page, request }, testInfo: TestInfo) => {
         const container = new Container();
@@ -51,7 +59,6 @@ for (const record of records) {
   }
 }
 
-// Adjust the afterEach hook to account for API tests (which may not have a page)
 test.afterEach('Status check', async ({ page, request }, testInfo: TestInfo) => {
   let statusCode = 3;
   let comment = "";
@@ -59,7 +66,7 @@ test.afterEach('Status check', async ({ page, request }, testInfo: TestInfo) => 
     comment = testInfo.errors.toString();
     statusCode = 1;
   } else if (testInfo.status === 'failed' || testInfo.status === 'timedOut') {
-    // Only attempt screenshot if a page is available
+
     if (page) {
       const screenshot = await page.screenshot({ fullPage: true });
       await testInfo.attach("Failure Page Screenshot", { body: screenshot, contentType: 'image/png' });
