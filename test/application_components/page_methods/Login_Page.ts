@@ -64,7 +64,7 @@ export class LOGIN_PAGE {
   }
 
   async user_launches_application() {
-    let url = process.env.APP_URL || "https://leadmanagementdemoui.azurewebsites.net/account/login";
+    let url = process.env.APP_URL || "https://campaignintelligenceqaui.azurewebsites.net/account/login";
     await this.playwrightFactory.launchApplication(url);
   }
 
