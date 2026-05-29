@@ -1,5 +1,5 @@
 {
-  "name": "RFC_TestAutomationframework",
+  "name": "Finbrain_TestAutomationframework",
   "version": "1.0.0",
   "description": "",
   "main": "playwright.config.ts",
@@ -26,7 +26,7 @@
     "level": "^9.0.0",
     "moment": "^2.30.1",
     "mssql": "^11.0.1",
-    "playwright": "^1.57.0",
+    "playwright": "^1.60.0",
     "retry": "^0.13.1",
     "uuid": "^9.0.1"
   },
