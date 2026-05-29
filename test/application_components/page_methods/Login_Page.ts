@@ -54,9 +54,9 @@ export class LOGIN_PAGE {
     /******************** Page Objects ************************/
     this.emt_homepage_reporting = this.page.getByText('Reporting', { exact: true });
     this.link_search_open = this.page.getByRole('link', { name: 'Portal open' });
-    this.txt_username = this.page.locator('//*[@placeholder="Username or Mobile Number"]');
-    this.txt_password = this.page.locator('//*[@placeholder="Password"]');
-    this.btn_login = this.page.locator('//button[contains(text(), "SIGN IN")]');
+    this.txt_username = this.page.locator('#email');
+    this.txt_password = this.page.locator('#password');
+    this.btn_login = this.page.locator('//component-button//button[.//span[normalize-space()="Log In"]]');
     this.txt_invalid_Username = this.page.locator("//*[contains(text(),'The email is invalid')]");
     this.txt_invalid_password = this.page.locator("//*[contains(text(),' The password must be at least 8 characters and include at least a lowercase, uppercase, number, and special character. ')]");
     this.wrong_password = this.page.locator("//*[contains(text(),' The password is incorrect. ')]");
