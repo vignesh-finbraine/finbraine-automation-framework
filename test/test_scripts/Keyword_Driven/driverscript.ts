@@ -20,9 +20,21 @@ export class DriverScript {
     // ===================== UTILITIES (Do NOT change this section) =====================
     container.register('testInfo', testInfo);
     container.register('playwrightFactory', new PlaywrightFactoryActions(container));
-    container.register('playwrightAPIFactory', new PlaywrightFactoryActionsAPI(container));
+
+    try {
+      container.register('playwrightAPIFactory', new PlaywrightFactoryActionsAPI(container));
+    } catch (error) {
+      console.warn('⚠️  Skipping playwrightAPIFactory registration:', (error as Error).message);
+    }
+
     container.register('databricks_sqlware', new DatabricksSQLwarehouse(container));
-    container.register('databricks_dbfs', new DatabricksFactoryDBFS(container));
+
+    try {
+      container.register('databricks_dbfs', new DatabricksFactoryDBFS(container));
+    } catch (error) {
+      console.warn('⚠️  Skipping databricks_dbfs registration:', (error as Error).message);
+    }
+
     container.register('powerbi', new PowerBI_Actions(container));
     container.register('azure_appinsights', new AppInsightsKQLExecutor(container));
     container.register('azure_appinsights_apis', new AzureAppInsights(container));
@@ -111,6 +123,29 @@ export class DriverScript {
     }
   }
 
+  async executeDirect(businessFlow: Record<string, string>, container: Container) {
+    const rows: string[] = [];
+
+    for (const key of Object.keys(businessFlow)) {
+      if (key.includes('Keyword_')) {
+        if (businessFlow[key] != '' && businessFlow[key] != null) {
+          rows.push(businessFlow[key]);
+        } else {
+          break;
+        }
+      }
+    }
+
+    for (const row of rows) {
+      const [keyword, ...params] = row.split(',');
+      if (!keyword) {
+        continue;
+      }
+
+      const functionInstance = container.resolve(keyword.split('.')[0]);
+      await this.callMethodOnObject(functionInstance, keyword.split('.')[1].split('${')[0], ...params);
+    }
+  }
 
   async callMethodOnObject(functionInstance: any, methodName: string, ...params: any[]) {
     if (functionInstance) {
