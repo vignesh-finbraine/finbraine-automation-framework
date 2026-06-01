@@ -1,5 +1,5 @@
 {
-  "name": "Finbrain_TestAutomationframework",
+  "name": "finbrain_testautomationframework",
   "version": "1.0.0",
   "description": "",
   "main": "playwright.config.ts",
