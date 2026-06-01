@@ -60,16 +60,48 @@ async generateOnlyNumbers(length: any) {
 }
 
 
-  async getTestData(testcaseName: any, testcaseId: any) {
-    let testdata_sheet = (process.env.TESTDATASHEET || "testdata").trim();
-    const recordsJsonFull = parse(fs.readFileSync('./test/data/'+testdata_sheet+'.csv'), {
-      columns: true,
-      skip_empty_lines: true
-    });
-    const strQueryToFilterTestCase = '$..[?((@.TestCaseName=="'+testcaseName+'") && (@.TestcaseID=="'+testcaseId+'"))]';
-    const records = jp.query(recordsJsonFull, strQueryToFilterTestCase);
-    return records;
-  }
+  // async getTestData(testcaseName: any, testcaseId: any) {
+  //   let testdata_sheet = (process.env.TESTDATASHEET || "testdata").trim();
+  //   const recordsJsonFull = parse(fs.readFileSync('./test/data/'+testdata_sheet+'.csv'), {
+  //     columns: true,
+  //     skip_empty_lines: true
+  //   });
+  //   const strQueryToFilterTestCase = '$..[?((@.TestCaseName=="'+testcaseName+'") && (@.TestcaseID=="'+testcaseId+'"))]';
+  //   const records = jp.query(recordsJsonFull, strQueryToFilterTestCase);
+  //   return records;
+  // }
+
+async getTestData(testcaseName: any, testcaseId: any) {
+    const folderPath = './test/data';
+
+    const files = fs.readdirSync(folderPath)
+        .filter((file: string) => file.endsWith('.csv'));
+
+    // 👇 TEMP DEBUG
+    console.log('=== FILES FOUND ===', files);
+    // 👆 REMOVE AFTER FIX
+
+    let allRecords: any[] = [];
+
+    for (const file of files) {
+        const filePath = `${folderPath}/${file}`;
+        const records = parse(fs.readFileSync(filePath), {
+            columns: true,
+            skip_empty_lines: true
+        });
+        allRecords = allRecords.concat(records);
+    }
+
+    // 👇 TEMP DEBUG
+    console.log('=== TOTAL RECORDS FOUND ===', allRecords.length);
+    console.log('=== SEARCHING FOR ===', testcaseName, testcaseId);
+    const match = allRecords.filter(r => r.TestCaseName === testcaseName && r.TestcaseID === testcaseId);
+    console.log('=== MATCH FOUND ===', match.length, JSON.stringify(match[0]));
+    // 👆 REMOVE AFTER FIX
+
+    const strQueryToFilterTestCase = `$..[?((@.TestCaseName=="${testcaseName}") && (@.TestcaseID=="${testcaseId}"))]`;
+    return jp.query(allRecords, strQueryToFilterTestCase);
+}
 
   async getIterationData(container: any, strFieldName: any, iteration = 0){
     try{
@@ -149,26 +181,58 @@ async generateOnlyNumbers(length: any) {
     testCaseData[iteration][strFieldName] = setData;
     container.register('testData', testCaseData);
   }
-       
+
   static getTestCases(testCaseName: any) {
-    let business_process = process.env.BUSINESS_PROCESS || "functional_flow_vignesh";
-    const recordsJsonFull = parse(fs.readFileSync('./test/data/business_transactions/'+business_process.trim()+'.csv'), {
-      columns: true,
-      skip_empty_lines: true
-    });
-    const strQueryToFilterTestCase = '$..[?(@.TestCaseName=="'+testCaseName+'")]';
-    const records = jp.query(recordsJsonFull, strQueryToFilterTestCase);
-    return records;
-  }
+  const allRecords = this.getAllTestCases();
+
+  const strQuery = `$..[?(@.TestCaseName=="${testCaseName}")]`;
+
+  return jp.query(allRecords, strQuery);
+}
+       
+  // static getTestCases(testCaseName: any) {
+  //   let business_process = process.env.BUSINESS_PROCESS || "functional_flow";
+  //   const recordsJsonFull = parse(fs.readFileSync('./test/data/business_transactions/'+business_process.trim()+'.csv'), {
+  //     columns: true,
+  //     skip_empty_lines: true
+  //   });
+  //   const strQueryToFilterTestCase = '$..[?(@.TestCaseName=="'+testCaseName+'")]';
+  //   const records = jp.query(recordsJsonFull, strQueryToFilterTestCase);
+  //   return records;
+  // }
   
+  // static getAllTestCases() {
+  //   let business_process = process.env.BUSINESS_PROCESS || "functional_flow";
+  //   const recordsJsonFull = parse(fs.readFileSync('./test/data/business_transactions/'+business_process.trim()+'.csv'), {
+  //     columns: true,
+  //     skip_empty_lines: true
+  //   });
+  //   return recordsJsonFull;
+  // }
+
+
   static getAllTestCases() {
-    let business_process = process.env.BUSINESS_PROCESS || "functional_flow_vignesh";
-    const recordsJsonFull = parse(fs.readFileSync('./test/data/business_transactions/'+business_process.trim()+'.csv'), {
+  const folderPath = './test/data/business_transactions';
+
+  // Read all CSV files from folder
+  const files = fs.readdirSync(folderPath)
+    .filter((file: string) => file.endsWith('.csv'));
+
+  let allRecords: any[] = [];
+
+  for (const file of files) {
+    const filePath = `${folderPath}/${file}`;
+
+    const records = parse(fs.readFileSync(filePath), {
       columns: true,
       skip_empty_lines: true
     });
-    return recordsJsonFull;
+
+    allRecords = allRecords.concat(records);
   }
+
+  return allRecords;
+}
 
   static frameTestCaseName(jsonData: any) {
     const testCaseName = '[' + jsonData["TestcaseID"] + '] ' + ' - ' + jsonData["TestCaseName"] + ' - ' + jsonData["Tags"];
