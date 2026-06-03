@@ -78,3 +78,4 @@ export class Rule_Engine {
     await this.page.waitForLoadState('networkidle');
   }
 }
+ 
