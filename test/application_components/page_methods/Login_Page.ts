@@ -208,3 +208,4 @@ export class LOGIN_PAGE {
     await expect(this.alert_text.first()).toContainText(expectedText);
   }
 }
+ 
