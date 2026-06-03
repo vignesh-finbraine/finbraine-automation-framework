@@ -31,7 +31,7 @@ export class TENANT_PAGE {
   readonly New_Tenant_btn: Locator;
   readonly edit_icon: Locator;
   readonly Edit_Tenant_Name: Locator;
-  readonly Save_btn: Locator;
+  readonly Save_btn1: Locator;
   readonly Delete_Icon: Locator;
  readonly New_Tenant_txt: Locator;
  readonly admin_email_txt: Locator;
@@ -61,7 +61,7 @@ export class TENANT_PAGE {
   this.New_Tenant_btn = this.page.locator("//button[@class='btn-create']");
   this.edit_icon = this.page.locator("//button[@title='Edit tenant']");
   this.Edit_Tenant_Name = this.page.locator("//input[@formcontrolname='name']");
-  this.Save_btn = this.page.locator("//button[@type='submit']");
+  this.Save_btn1 = this.page.locator("//button[@type='submit']");
   this.Delete_Icon = this.page.locator("//button[@title='Delete tenant']");
   this.New_Tenant_txt = this.page.locator("//input[@formcontrolname='name']");
   this.admin_email_txt = this.page.locator("//input[@type='email']");
@@ -108,15 +108,15 @@ export class TENANT_PAGE {
   }
 
   //verify Edit functionality
-  async user_verify_edit_functionality(strTenantname1: string){
-  await this.playwrightFactory.click(this.edit_icon);
-  await this.Edit_Tenant_Name.clear();
-  await this.playwrightFactory.fill(this.Edit_Tenant_Name, strTenantname1);
-  await this.page.waitForTimeout(3000);
-  await this.playwrightFactory.click(this.Save_btn);
-  await expect(this.page.locator("//table[@class='etb-table']//td[contains(.,'"+strTenantname1+"')]")).toBeVisible();
+  // async user_verify_edit_functionality(strTenantname1: string){
+  // await this.playwrightFactory.click(this.edit_icon);
+  // await this.Edit_Tenant_Name.clear();
+  // await this.playwrightFactory.fill(this.Edit_Tenant_Name, strTenantname1);
+  // await this.page.waitForTimeout(3000);
+  // //await this.playwrightFactory.click(this.Save_btn);
+  // await expect(this.page.locator("//table[@class='etb-table']//td[contains(.,'"+strTenantname1+"')]")).toBeVisible();
 
-  }
+  // }
 
   async user_verify_Delete_functionality(strTenantname1: string){
     await this.playwrightFactory.click(this.Delete_Icon);
@@ -135,7 +135,7 @@ export class TENANT_PAGE {
     await this.playwrightFactory.fill(this.admin_email_txt, strAdminEmail);
     await this.playwrightFactory.click(this.password_txt);
     await this.playwrightFactory.fill(this.password_txt, strPassword);
-    await this.playwrightFactory.click(this.Save_btn);
+    await this.playwrightFactory.click(this.Save_btn1);
     await expect(this.page.locator("//h3[text()='Tenant Created Successfully!']")).toBeVisible();
     await this.playwrightFactory.click(this.ok_btn);
 

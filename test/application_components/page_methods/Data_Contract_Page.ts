@@ -28,6 +28,7 @@ private page: Page;
   readonly draft_btn: Locator;
   readonly apply_filter_btn: Locator;
   readonly data_contract_btn: Locator;
+  readonly data_contract_btn1: Locator;
   readonly data_contract_list: Locator;
   readonly pagination: Locator;
 
@@ -53,6 +54,7 @@ this.active_btn = this.page.locator("//div[@class='status-group']//button[text()
 this.draft_btn = this.page.locator("//div[@class='status-group']//button[text()=' Draft ']");
 this.apply_filter_btn = this.page.locator("//button[text()='Apply']");
 this.data_contract_btn = this.page.locator("//button[@class='btn-create']");
+this.data_contract_btn1 = this.page.locator("//button[@class='btn-create']");
 this.data_contract_list = this.page.locator("//table[@class='etb-table']");
 this.pagination = this.page.locator("//ul[@class='pagination dark-pagination mb-0']");
 
@@ -77,6 +79,29 @@ this.pagination = this.page.locator("//ul[@class='pagination dark-pagination mb-
     await expect(this.data_contract_btn).toBeVisible();
     await expect(this.data_contract_list).toBeVisible();
     await expect(this.pagination).toBeVisible();
+  }
+
+  async user_verify_data_contract_list(){
+    const rowCount = await this.data_contract_list.locator('tbody tr').count();
+    if(rowCount > 0){
+      console.log(`Data Contract list has ${rowCount} entries.`);
+    } else {
+      console.log("Data Contract list is empty.");
+    } 
+
+  }
+
+  async user_clicks_data_contract_btn(){
+    await this.playwrightFactory.click(this.data_contract_btn1);
+    await expect(this.page.locator("//div[@class='page-title' and text()='Contract Details']")).toBeVisible();
+  }
+ 
+  async user_verify_filter_by_source_type(){
+    await this.playwrightFactory.selectByVisibleText(this.source_type_drpdwn,"File");
+    
+    await this.page.waitForTimeout(3000);
+
+
   }
 
 
