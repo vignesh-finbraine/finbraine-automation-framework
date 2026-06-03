@@ -163,6 +163,11 @@ export class LOGIN_PAGE {
   await expect(tenantLabel).toHaveText(tenantName);
   }
  
+  /*async verify_tenant_switched() {
+    const tenantDisplay = this.page.locator('[data-testid="current-tenant"]');
+    await expect(tenantDisplay).toBeVisible();
+  }*/
+ 
   async login_with_credentials(username: string, password: string) {
     await this.user_launches_application();
     await this.user_enter_username(username);
@@ -203,3 +208,4 @@ export class LOGIN_PAGE {
     await expect(this.alert_text.first()).toContainText(expectedText);
   }
 }
+ 
