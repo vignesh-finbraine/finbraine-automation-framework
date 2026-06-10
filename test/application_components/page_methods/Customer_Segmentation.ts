@@ -463,9 +463,7 @@ export class CUSTOMER_SEGMENTATION {
   }
 
   async verify_no_records_message_displayed() {
-  await expect(
-    this.page.locator('.ai').filter({
-      has: this.page.locator('i.bi-inbox')})).toBeVisible();
+  await expect(this.page.getByText(' No strategies found for this data contract. ')).toBeVisible();
   }
 
   async click_next_select_audience() {
