@@ -653,5 +653,4 @@ export class CUSTOMER_SEGMENTATION {
   await this.page.waitForURL(/\/segmentation$/, {timeout: 30000});
   await expect(this.page.getByText('All Segments', { exact: true })).toBeVisible();
   }
-
 }
