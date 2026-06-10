@@ -46,19 +46,21 @@ export class LOGIN_PAGE {
     this.databricks_dbfs = container.resolve('databricks_dbfs');
 
     /******************** Page Objects ************************/
-    this.emt_homepage_reporting = this.page.getByText('Reporting', { exact: true });
-    this.link_search_open = this.page.getByRole('link', { name: 'Portal open' });
-    this.txt_username = this.page.locator('//*[@placeholder="Username or Mobile Number"]');
-    this.txt_password = this.page.locator('//*[@placeholder="Password"]');
-    this.btn_login = this.page.locator('//button[contains(text(), "SIGN IN")]');
-    this.txt_invalid_Username = this.page.locator("//*[contains(text(),'The email is invalid')]");
-    this.txt_invalid_password = this.page.locator("//*[contains(text(),' The password must be at least 8 characters and include at least a lowercase, uppercase, number, and special character. ')]");
-    this.wrong_password = this.page.locator("//*[contains(text(),' The password is incorrect. ')]");
-    this.Login_Logo = this.page.locator("//div[@class='h2 entry__title']");
-
-
-    // Login to Finbraine
-
+    this.txt_username = this.page.locator('#username');
+    this.txt_password = this.page.locator('#password');
+    this.btn_login = this.page.locator('button:has-text("SIGN IN")');
+    this.txt_invalid_Username = this.page.locator("//*[contains(text(),'Invalid username or password!')]");
+    this.Login_Logo = this.page.locator("//img[@class='login-logo-img']");
+    this.btn_show_password = this.page.locator('button.input-suffix-btn');
+    this.lnk_forgot_password = this.page.locator('text=Forgot Password?');
+    this.tenant_selector = this.page.locator('[data-testid="tenant-selector"]');
+    this.error_message = this.page.locator('[class*="error-message"]');
+    this.alert_warning = this.page.locator('div.alert.alert-warning[role="alert"]');
+    this.alert_success = this.page.locator('div.alert.alert-success[role="alert"]');
+    this.alert_info = this.page.locator('div.alert.alert-info[role="alert"]');
+    this.alert_danger = this.page.locator('div.alert.alert-danger[role="alert"]');
+    this.alert_close_btn = this.page.locator('div.alert button, div.alert .close, div.alert .btn-close');
+    this.alert_text = this.page.locator('div[role="alert"], div.alert');
   }
 
   async user_launches_application() {
@@ -160,6 +162,11 @@ export class LOGIN_PAGE {
   const tenantLabel = this.page.locator('.tenant-label strong');
   await expect(tenantLabel).toHaveText(tenantName);
   }
+
+  /*async verify_tenant_switched() {
+    const tenantDisplay = this.page.locator('[data-testid="current-tenant"]');
+    await expect(tenantDisplay).toBeVisible();
+  }*/
 
   async login_with_credentials(username: string, password: string) {
     await this.user_launches_application();
