@@ -217,7 +217,7 @@ async getTestData(testcaseName: any, testcaseId: any) {
   // Read all CSV files from folder
   const files = fs.readdirSync(folderPath)
     .filter((file: string) => file.endsWith('.csv'));
-
+  console.log("Loaded CSV files:", files);
   let allRecords: any[] = [];
 
   for (const file of files) {
