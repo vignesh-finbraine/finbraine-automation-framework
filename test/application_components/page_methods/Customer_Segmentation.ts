@@ -45,6 +45,7 @@ export class CUSTOMER_SEGMENTATION {
   readonly audience_search_input: Locator;
   readonly audience_rows: Locator;
   readonly audience_selected_badge: Locator;
+  readonly no_batches_found_message: Locator;
 
   // Rules (step 3)
   readonly rules_search_input: Locator;
@@ -52,6 +53,7 @@ export class CUSTOMER_SEGMENTATION {
   readonly ruleCards: Locator;
   readonly selected_config_panel: Locator;
   readonly rule_name: Locator;
+  readonly no_strategies_found_message: Locator;
 
   // Preview (step 4)
   readonly preview_heading: Locator;
@@ -99,6 +101,7 @@ export class CUSTOMER_SEGMENTATION {
     this.audience_search_input = this.page.getByPlaceholder('Search audiences...');
     this.audience_rows = this.page.locator('div.ai.d-flex.align-items-center');
     this.audience_selected_badge = this.page.locator('span.ai-ct');
+    this.no_batches_found_message = this.page.getByText('No batches found for this data contract.');
 
     // Rules
     this.rules_search_input = this.page.getByPlaceholder('Search Rules').or(this.page.locator('input[placeholder*="Search rules"]'));
@@ -106,6 +109,7 @@ export class CUSTOMER_SEGMENTATION {
     this.ruleCards = this.page.locator('.rcard').filter({has: this.page.locator('.rdesc')});
     this.selected_config_panel = this.page.locator('.sc2').filter({hasText: 'Selected Config'});
     this.rule_name = this.selected_config_panel.locator('.cfg-r').filter({ hasText: 'Rule' }).locator('.cfg-v');
+    this.no_strategies_found_message = this.page.getByText('No strategies found for this data contract.');
     
     // Preview
     this.preview_heading = this.page.locator('text=Segment Preview').first();
@@ -462,8 +466,12 @@ export class CUSTOMER_SEGMENTATION {
   await expect(badge).toHaveText(/\d+/);
   }
 
-  async verify_no_records_message_displayed() {
-  await expect(this.page.getByText(' No strategies found for this data contract. ')).toBeVisible();
+  async verify_no_batches_found_message_displayed() {
+  await expect(this.no_batches_found_message).toBeVisible();
+  }
+
+  async verify_no_strategies_found_message_displayed() {
+  await expect(this.no_strategies_found_message).toBeVisible();
   }
 
   async click_next_select_audience() {
@@ -653,4 +661,5 @@ export class CUSTOMER_SEGMENTATION {
   await this.page.waitForURL(/\/segmentation$/, {timeout: 30000});
   await expect(this.page.getByText('All Segments', { exact: true })).toBeVisible();
   }
+
 }
