@@ -151,6 +151,7 @@ export class LOGIN_PAGE {
   async click_use_button() {
   const useButton = this.page.getByRole('button', { name: 'Use' });
   await this.playwrightFactory.click(useButton);
+  await this.page.waitForTimeout(2000);
   }
  
   async select_tenant(tenantName: string) {
