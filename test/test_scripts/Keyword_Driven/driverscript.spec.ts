@@ -8,7 +8,7 @@ const records = DataFactory.getAllTestCases();
 
 for (const record of records) {
   // Check if record indicates an API test
-  if (record.TestCaseName.includes('@coreapi')) {
+  if (record?.TestCaseName?.includes('@coreapi')) {
     test.describe(`API ${DataFactory.getTestCaseDescription(record)}`, () => {
       test(DataFactory.frameTestCaseName(record), async ({ request }, testInfo: TestInfo) => {
         const container = new Container();
