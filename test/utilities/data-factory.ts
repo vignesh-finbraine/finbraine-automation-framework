@@ -125,10 +125,10 @@ async getTestData(testcaseName: any, testcaseId: any) {
           if (data.includes("#")) {
             length = data.split("#")[1].trim();
           }
-          computedData = "Automation City Marathon" + await this.generateRandomAplhaNumeric(length);
+          computedData = "Auto_Bank" + await this.generateRandomAplhaNumeric(length);
           break;
         case "RANDOM_EMAIL":
-          computedData = "Ayush"+await this.generateRandomAplhabets(length) + "@gmail.com";
+          computedData = "name"+await this.generateRandomAplhabets(length) + "@gmail.com";
           break;
         case "VALID_EMAIL":
           computedData = await this.generateRandomAplhabets(length) + "@guerrillamail.com";
