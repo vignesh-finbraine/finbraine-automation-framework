@@ -36,7 +36,7 @@ export class LOGIN_PAGE {
    * @param {DatabricksSQLwarehouse} databricks_sqlware
    * @param {DatabricksFactoryDBFS} databricks_dbfs
    */
-
+ 
   constructor(container: any) {
     this.container = container;
     this.page = container.resolve('page');
@@ -44,7 +44,7 @@ export class LOGIN_PAGE {
     this.playwrightFactory = container.resolve('playwrightFactory');
     this.databricks_sqlware = container.resolve('databricks_sqlware');
     this.databricks_dbfs = container.resolve('databricks_dbfs');
-
+ 
     /******************** Page Objects ************************/
     this.txt_username = this.page.locator('#username');
     this.txt_password = this.page.locator('#password');
