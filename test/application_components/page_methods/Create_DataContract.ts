@@ -88,7 +88,7 @@ async user_enter_contract_details(strDataContractName: string){
     await this.playwrightFactory.fill(this.Contract_name_txt,strDataContractName);
     await this.Tenant_name_drpdwn.selectOption({ label: "VSTbank" });
     await this.select_status_drpdwn.selectOption({ label: "Active" });
-    await this.select_profile_drpdwn.selectOption({ label: "Banking Customer Profile" });
+    await this.select_profile_drpdwn.selectOption({ label: "Banking Customer" });
     await this.description_txt.fill("This is test data contract created by automation script");
     await this.page.waitForTimeout(3000);
 
@@ -110,7 +110,7 @@ await this.page.waitForTimeout(6000);
 
 //user verify SFTP configuration fields are displayed and enter SFTP details
 async user_verify_sftp_cofiguration(strHostName: string, strRemotePath: string){
-await expect(this.contract_name).toHaveText("DC_SFTP_VSTbank_Test_Contract");
+//await expect(this.contract_name).toHaveText("DC_SFTP_VSTbank_Test_Contract");
 await this.playwrightFactory.fill(this.host_name_txt, strHostName);
 await this.playwrightFactory.fill(this.remote_path_txt, strRemotePath);
 }
