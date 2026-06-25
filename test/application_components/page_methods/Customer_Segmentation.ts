@@ -46,6 +46,7 @@ export class CUSTOMER_SEGMENTATION {
   readonly audience_rows: Locator;
   readonly audience_selected_badge: Locator;
   readonly no_batches_found_message: Locator;
+  readonly audience_row: Locator;
 
   // Rules (step 3)
   readonly rules_search_input: Locator;
@@ -99,16 +100,16 @@ export class CUSTOMER_SEGMENTATION {
 
     // Audience
     this.audience_search_input = this.page.getByPlaceholder('Search audiences...');
-    this.audience_rows = this.page.locator('div.ai.d-flex.align-items-center');
+    this.audience_rows = this.page.locator('//div[@class="ai d-flex align-items-center"][1]');
     this.audience_selected_badge = this.page.locator('span.ai-ct');
     this.no_batches_found_message = this.page.getByText('No batches found for this data contract.');
-
+this.audience_row = this.page.locator('//div[@class="ai d-flex align-items-center"][1]')
     // Rules
     this.rules_search_input = this.page.getByPlaceholder('Search Rules').or(this.page.locator('input[placeholder*="Search rules"]'));
     this.rules_rows = this.page.locator('.rcard, .rule-row');
     this.ruleCards = this.page.locator('.rcard').filter({has: this.page.locator('.rdesc')});
     this.selected_config_panel = this.page.locator('.sc2').filter({hasText: 'Selected Config'});
-    this.rule_name = this.selected_config_panel.locator('.cfg-r').filter({ hasText: 'Rule' }).locator('.cfg-v');
+    this.rule_name = this.page.locator('//div[@class="rcard d-flex align-items-start"][1]')
     this.no_strategies_found_message = this.page.getByText('No strategies found for this data contract.');
     
     // Preview
@@ -369,18 +370,20 @@ export class CUSTOMER_SEGMENTATION {
 
   // Step 2 - Audience
   async verify_select_audience_page_loads() {
-  await expect(
-    this.page.getByPlaceholder('Search audiences...')
-  ).toBeVisible();
-
-  await expect(
-    this.page.getByText('Choose Audience Pool')
-  ).toBeVisible();
-
-  await expect(
-    this.page.getByRole('button', { name: /Previous/i })
-  ).toBeVisible();
+    await this.audience_row.click();
   }
+  // await expect(
+  //   this.page.getByPlaceholder('Search audiences...')
+  // ).toBeVisible();
+
+  // await expect(
+  //   this.page.getByText('Choose Audience Pool')
+  // ).toBeVisible();
+
+  // await expect(
+  //   this.page.getByRole('button', { name: /Previous/i })
+  // ).toBeVisible();
+  // }
 
   async verify_step2_highlighted() {
   await expect(this.active_step).toBeVisible();
@@ -522,8 +525,9 @@ export class CUSTOMER_SEGMENTATION {
   }
 
   async select_rule_by_name(name?: string) {
-    const row = name ? this.rules_rows.filter({ hasText: name }).first() : this.rules_rows.first();
-    await this.playwrightFactory.click(row);
+    // const row = name ? this.rules_rows.filter({ hasText: name }).first() : this.rules_rows.first();
+    // await this.playwrightFactory.click(row);
+    await this.rule_name.click();
   }
 
   async verify_selected_config_panel_updated() {

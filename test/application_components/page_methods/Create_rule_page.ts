@@ -67,9 +67,9 @@ export class  CREATE_RULE_PAGE {
     this.active_rule_toggle = this.page.locator("//span[@class='toggle-slider']");
     this.btn_add_group = this.page.locator("//button[@class='btn-add-group mt-2' and contains(text(), 'Add Group')]");
     this.btn_remove_group= this.page.locator("(//button[contains(text(), 'Remove Group')])[1]")
-    this.drpdwn_select_filed = this.page.locator("//select[@class='crit-select ng-untouched ng-pristine ng-valid'and option[contains(text(), 'Select field')]]");
+    this.drpdwn_select_filed = this.page.locator("//select[option[contains(text(),'Select field')]]");
     this.drpdwn_operator= this.page.locator("//select[contains(@class,'crit-select')]").last();
-    this.txt_value = this.page.locator("//input[@placeholder='Enter value' and (@value='' or not(@value))]");
+    this.txt_value = this.page.locator('//select[@class="crit-input ng-untouched ng-pristine ng-valid"]');
     this.drpdwn_action = this.page.locator("//button[@class='btn btn-secondary btn-action btn-sm dropdown-toggle' and contains(text(), 'Action')]").last();
     this.drpdwn_three_dots = this.page.locator("(//button[i[@class='bi bi-three-dots']])[1]");
     this.btn_add_rows = this.page.locator("//ul[contains(@class,'dropdown-menu')]//li[normalize-space()='Add Row']");
@@ -93,8 +93,8 @@ export class  CREATE_RULE_PAGE {
       await this.drpdwn_data_contract.selectOption({value: bankName});
 }
 
-    async user_enters_rule_name_in_input_field(striteration: any){
-    let rulename = await this.dataFactory.getIterationData(this.container,'USER_NAME',striteration);
+    async user_enters_rule_name_in_input_field(rulename: string){
+    //let rulename = await this.dataFactory.getIterationData(this.container,'USER_NAME',striteration);
     await this.playwrightFactory.fill(this.txt_rule_name,rulename);
   }
 
@@ -132,7 +132,9 @@ export class  CREATE_RULE_PAGE {
 
     async user_enters_value_in_input_field(value: string) {
      // await this.playwrightFactory.fill(this.txt_value, value);
-     await this.page.locator("//input[@placeholder='Enter value']").last().fill(value);
+     //await this.page.locator("//input[@placeholder='Enter value']").last().fill(value);
+     await this.txt_value.click();
+     await this.txt_value.selectOption({label:value});
 }
     
     async user_verify_action_dropdown_is_visible_and_clickable_and_select_value(actionValue: string) {
