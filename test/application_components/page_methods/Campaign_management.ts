@@ -72,7 +72,6 @@ export class CAMPAIGN_MANAGEMENT {
     readonly duration_label: Locator;
     readonly workflow_label: Locator;
     readonly close_details_btn: Locator;
-    readonly modal_backdrop: Locator;
 
 
     /**
@@ -150,7 +149,6 @@ export class CAMPAIGN_MANAGEMENT {
         this.duration_label = this.page.locator(".cd-field:has(.cd-label:text-is('CAMPAIGN DURATION')) .cd-value");
         this.workflow_label = this.page.locator(".cd-section-title:text-is('WORKFLOW')");
         this.close_details_btn = this.page.locator("button.cd-btn-close");
-        this.modal_backdrop = this.page.locator(".ul-modal-backdrop");
 
 
 
@@ -358,8 +356,8 @@ export class CAMPAIGN_MANAGEMENT {
 
         await expect(this.campaign_launch_ok_button).toBeVisible();
         await this.campaign_launch_ok_button.click({ force: true });    
-        await this.modal_backdrop.waitFor({state: "hidden",timeout: 60000}).catch(() => {});
-        await expect(this.action_button.first()).toBeVisible();
+        await this.page.waitForLoadState('networkidle');
+        await expect(this.action_button).toBeVisible();
     }
 
     async verify_newly_launched_campaign_in_list() {
@@ -381,13 +379,11 @@ export class CAMPAIGN_MANAGEMENT {
 
     async click_edit_campaign() {
 
-         await expect(this.action_button.first()).toBeVisible();
-         await expect(this.action_button.first()).toBeEnabled();
-         await this.action_button.first().click();
-         await expect(this.edit_campaign_option).toBeVisible();
-         await this.edit_campaign_option.click();
-         await this.cancel_btn.waitFor({ state: "visible" });
-         await this.cancel_btn.click();
+        await this.action_button.first().click();
+        await expect(this.edit_campaign_option).toBeVisible();
+        await this.edit_campaign_option.click();
+        await this.cancel_btn.waitFor({ state: 'visible' });
+        await this.cancel_btn.click();
         
 
     }
@@ -430,7 +426,8 @@ export class CAMPAIGN_MANAGEMENT {
     const campaignName = "CMPGN";
     await this.search_campaign_input.fill(campaignName);
     await expect(this.searched_campaign_name).toContainText(campaignName);
-}
+
+   }
 
     async verify_campaign_status_tabs() {
 
