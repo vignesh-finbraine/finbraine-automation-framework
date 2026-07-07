@@ -2,26 +2,26 @@ const fs = require('fs');
 const moment = require('moment');
 const jp = require('jsonpath');
 const { parse } = require('csv-parse/sync');
-
-
+ 
+ 
 class DataFactory {
   private container: any;
   /**
    * @param {import('playwright').Page} page
    * @param {import('@playwright/test').TestInfo} testInfo
-   * 
-   * 
+   *
+   *
    */
   constructor(container: any) {
     this.container = container;
   }
-  
+ 
   async addDaysToCurrentDate(addDays: any) {
     const date = moment().add(addDays,'d').toDate();
     const formattedDate = moment(date).format('DD-MMM-YYYY');
     return formattedDate;
   }
-
+ 
   async generateRandomAplhabets(length: any) {
     let result = '';
     const characters = 'abcdefghijklmnopqrstuvwxyz';
@@ -33,7 +33,7 @@ class DataFactory {
     }
     return result;
   }
-
+ 
   async generateRandomAplhaNumeric(length: any) {
     let result = '';
     const characters = 'abcdefghijklmnopqrstuvwxyz0123456789';
@@ -45,21 +45,21 @@ class DataFactory {
     }
     return result;
   }
-
+ 
   // ================= ONLY NUMBER SUPPORT (ADDED) =================
 async generateOnlyNumbers(length: any) {
   let result = '';
   const numbers = '0123456789';
   const numbersLength = numbers.length;
-
+ 
   for (let i = 0; i < length; i++) {
     result += numbers.charAt(Math.floor(Math.random() * numbersLength));
   }
-
+ 
   return result;
 }
-
-
+ 
+ 
   // async getTestData(testcaseName: any, testcaseId: any) {
   //   let testdata_sheet = (process.env.TESTDATASHEET || "testdata").trim();
   //   const recordsJsonFull = parse(fs.readFileSync('./test/data/'+testdata_sheet+'.csv'), {
@@ -70,19 +70,19 @@ async generateOnlyNumbers(length: any) {
   //   const records = jp.query(recordsJsonFull, strQueryToFilterTestCase);
   //   return records;
   // }
-
+ 
 async getTestData(testcaseName: any, testcaseId: any) {
     const folderPath = './test/data';
-
+ 
     const files = fs.readdirSync(folderPath)
         .filter((file: string) => file.endsWith('.csv'));
-
+ 
     // 👇 TEMP DEBUG
     console.log('=== FILES FOUND ===', files);
     // 👆 REMOVE AFTER FIX
-
+ 
     let allRecords: any[] = [];
-
+ 
     for (const file of files) {
         const filePath = `${folderPath}/${file}`;
         const records = parse(fs.readFileSync(filePath), {
@@ -91,18 +91,18 @@ async getTestData(testcaseName: any, testcaseId: any) {
         });
         allRecords = allRecords.concat(records);
     }
-
+ 
     // 👇 TEMP DEBUG
     console.log('=== TOTAL RECORDS FOUND ===', allRecords.length);
     console.log('=== SEARCHING FOR ===', testcaseName, testcaseId);
     const match = allRecords.filter(r => r.TestCaseName === testcaseName && r.TestcaseID === testcaseId);
     console.log('=== MATCH FOUND ===', match.length, JSON.stringify(match[0]));
     // 👆 REMOVE AFTER FIX
-
+ 
     const strQueryToFilterTestCase = `$..[?((@.TestCaseName=="${testcaseName}") && (@.TestcaseID=="${testcaseId}"))]`;
     return jp.query(allRecords, strQueryToFilterTestCase);
 }
-
+ 
   async getIterationData(container: any, strFieldName: any, iteration = 0){
     try{
       debugger;
@@ -112,7 +112,7 @@ async getTestData(testcaseName: any, testcaseId: any) {
       let length =5;
       let dateAdd = 0;
       let computedData = "";
-
+ 
       switch (caseData.toUpperCase()) {
         case "RANDOM_ALPHABET":
           if (data.includes("#")) {
@@ -139,14 +139,14 @@ async getTestData(testcaseName: any, testcaseId: any) {
           }
           computedData = await this.addDaysToCurrentDate(dateAdd);
           break;
-
+ 
                   case "DATE":
           if (data.includes("#")) {
             dateAdd = data.split("#")[1].trim();
           }
           computedData = await this.addDaysToCurrentDate(dateAdd);
           break;
-
+ 
         // 👇 ADD FROM HERE (around line 127)
         case "ONLY_NUMBER":
         case "RANDOM_ONLY_NUMBER":
@@ -156,37 +156,37 @@ async getTestData(testcaseName: any, testcaseId: any) {
           computedData = await this.generateOnlyNumbers(length);
           break;
         // 👆 ADD TILL HERE
-
+ 
         default:
           computedData = data;
-
-  
+ 
+ 
       }
-      
+     
       testCaseData[iteration][strFieldName] = computedData;
       container.register('testData', testCaseData);
       return computedData;
-
-      
+ 
+     
     }catch(error){
       throw new Error("Unable Fetch Data "+strFieldName +" Iteration "+iteration + "Error - "+error);
-        
+       
     }
-    
-        
+   
+       
   }
-
+ 
   async setIterationData(container: any, strFieldName: any, iteration = 0, setData: any){
     const testCaseData = container.resolve('testData');
     testCaseData[iteration][strFieldName] = setData;
     container.register('testData', testCaseData);
   }
-
+ 
   static getTestCases(testCaseName: any) {
   const allRecords = this.getAllTestCases();
-
+ 
   const strQuery = `$..[?(@.TestCaseName=="${testCaseName}")]`;
-
+ 
   return jp.query(allRecords, strQuery);
 }
        
@@ -200,7 +200,7 @@ async getTestData(testcaseName: any, testcaseId: any) {
   //   const records = jp.query(recordsJsonFull, strQueryToFilterTestCase);
   //   return records;
   // }
-  
+ 
   // static getAllTestCases() {
   //   let business_process = process.env.BUSINESS_PROCESS || "functional_flow";
   //   const recordsJsonFull = parse(fs.readFileSync('./test/data/business_transactions/'+business_process.trim()+'.csv'), {
@@ -209,47 +209,49 @@ async getTestData(testcaseName: any, testcaseId: any) {
   //   });
   //   return recordsJsonFull;
   // }
-
-
+ 
+ 
   static getAllTestCases() {
   const folderPath = './test/data/business_transactions';
-
+ 
   // Read all CSV files from folder
   const files = fs.readdirSync(folderPath)
     .filter((file: string) => file.endsWith('.csv'));
-
+ 
   let allRecords: any[] = [];
-
+ 
   for (const file of files) {
     const filePath = `${folderPath}/${file}`;
-
+ 
     const records = parse(fs.readFileSync(filePath), {
       columns: true,
       skip_empty_lines: true
     });
-
+ 
     allRecords = allRecords.concat(records);
   }
-
+ 
   return allRecords;
 }
-
+ 
   static frameTestCaseName(jsonData: any) {
     const testCaseName = '[' + jsonData["TestcaseID"] + '] ' + ' - ' + jsonData["TestCaseName"] + ' - ' + jsonData["Tags"];
     return testCaseName;
   }
-
+ 
   static getTestCaseDescription(jsonData: any) {
     const testCaseDesc = jsonData["TestcaseDescription"];
     return testCaseDesc;
   }
-  
-
+ 
+ 
   async getRandomInt(min: number, max: number) {
     return Math.floor(Math.random() * (max - min + 1)) + min;
   }
-  
-
+ 
+ 
 }
-
+ 
 export default DataFactory;
+ 
+ 

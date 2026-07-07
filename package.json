@@ -14,7 +14,6 @@
     "@databricks/sql": "^1.8.4",
     "adm-zip": "^0.5.16",
     "axios": "^1.5.0",
-    "csv-parse": "^5.4.0",
     "csv-parser": "^3.0.0",
     "csv-writer": "^1.6.0",
     "deasync": "^0.1.30",
@@ -36,6 +35,7 @@
     "@types/fs-extra": "^11.0.4",
     "@types/json2csv": "^5.0.7",
     "@types/moment": "^2.11.29",
-    "@types/node": "^20.19.27"
+    "@types/node": "^20.19.43",
+    "csv-parse": "^7.0.0"
   }
 }

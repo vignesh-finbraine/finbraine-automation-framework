@@ -46,9 +46,9 @@ export class LOGIN_PAGE {
     this.databricks_dbfs = container.resolve('databricks_dbfs');
  
     /******************** Page Objects ************************/
-    this.txt_username = this.page.locator('#username');
-    this.txt_password = this.page.locator('#password');
-    this.btn_login = this.page.locator('button:has-text("SIGN IN")');
+      this.txt_username = this.page.locator('#username');
+      this.txt_password = this.page.locator('#password');
+      this.btn_login = this.page.locator('button:has-text("SIGN IN")');
     this.txt_invalid_Username = this.page.locator("//*[contains(text(),'Invalid username or password!')]");
     this.Login_Logo = this.page.locator("//img[@class='login-logo-img']");
     this.btn_show_password = this.page.locator('button.input-suffix-btn');
