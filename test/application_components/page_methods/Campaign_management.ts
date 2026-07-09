@@ -87,7 +87,7 @@ export class CAMPAIGN_MANAGEMENT {
         this.txt_password = this.page.locator('#password');
         this.btn_login = this.page.locator('button:has-text("SIGN IN")');
         this.nav_campaigns_link = this.page.locator('a[href="/campaign-management"]');
-        this.campaign_listing_heading = this.page.getByRole('heading', { name: /Campaign/i });
+        this.campaign_listing_heading = this.page.locator("//h2[@class='page-title']");
         this.campaign_listing_table = this.page.locator('table');
         this.btn_create_campaign = this.page.getByRole('button', { name: 'Create Campaign' });
         this.campaign_creation_heading = this.page.getByRole('heading', { name: /Create Campaign|Campaign Creation/i });
@@ -248,11 +248,13 @@ export class CAMPAIGN_MANAGEMENT {
     }
 
     async click_next_button() {
+
         await this.playwrightFactory.click(this.btn_next);
         await this.page.waitForLoadState('networkidle');
     }
 
     async verify_navigated_to_target_segment_step() {
+
         await expect(this.target_segment_heading).toBeVisible();
     }
 
@@ -263,6 +265,7 @@ export class CAMPAIGN_MANAGEMENT {
     }
 
     async verify_target_segment_selected(segment: string) {
+        
         const selected = this.page.getByText(segment, { exact: true });
         await expect(selected).toBeVisible();
     }
