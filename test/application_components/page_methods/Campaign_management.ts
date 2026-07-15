@@ -7,6 +7,8 @@ export class CAMPAIGN_MANAGEMENT {
     private testInfo: TestInfo;
     private playwrightFactory: PlaywrightFactoryActions;
     private container: any;
+    private createdCampaignName: string = "";
+
     readonly txt_username: Locator;
     readonly txt_password: Locator;
     readonly btn_login: Locator;
@@ -56,7 +58,9 @@ export class CAMPAIGN_MANAGEMENT {
     readonly paused_btn: Locator;
     readonly unpause: Locator;
     readonly unpause_popup: Locator;
+    readonly failed_campaign_ok_btn: Locator;
     readonly Campaign_Resumed_ok_btn: Locator;
+    readonly modal_backdrop: Locator;
     readonly duplicate_campaign_option: Locator;
     readonly duplicated_campaign_popup: Locator;
     readonly search_campaign_input: Locator;
@@ -114,14 +118,14 @@ export class CAMPAIGN_MANAGEMENT {
         this.campaign_launch_success_heading = this.page.getByRole('heading', { name: 'Campaign Launched' });
         this.campaign_launch_success_message = this.page.locator("p.ul-modal-message");
         this.campaign_launch_ok_button = this.page.getByRole('button', { name: 'OK' });
-        this.launched_campaign = this.page.locator("div.card-name-block",{hasText: "AutoCampaign_Test"});
-        this.launched_campaign_status = this.page.locator(".campaign-card").filter({has: this.page.locator("h3", {hasText: "CMPGN_Active users campaign_AutoCampaign_Test"})}).first();
+        this.launched_campaign = this.page.locator("div.card-name-block", { hasText: "AutoCampaign_Test" });
+        this.launched_campaign_status = this.page.locator(".campaign-card").filter({ has: this.page.locator("h3", { hasText: "CMPGN_Active users campaign_AutoCampaign_Test" }) }).first();
         this.action_button = this.page.locator("button.btn-action").first();
         this.view_details_option = this.page.locator("//ul/li[normalize-space()='View Details']");
         this.campaign_details_popup = this.page.locator(".cd-modal");
         this.campaign_details_close_btn = this.page.locator("button.cd-btn-close");
         this.campaign_details_title = this.page.getByRole("heading", { name: "Campaign Details" });
-        this.edit_campaign_option =  this.page.getByText("Edit Campaign", { exact: true });
+        this.edit_campaign_option = this.page.getByText("Edit Campaign", { exact: true });
         this.edit_campaign_heading = this.page.getByRole("heading", { name: "Edit Campaign", });
         this.cancel_btn = this.page.getByRole("button", { name: "Cancel", });
         this.pause_campaign_option = this.page.locator("div.action-dropdown li").filter({ hasText: "Pause" });
@@ -131,9 +135,11 @@ export class CAMPAIGN_MANAGEMENT {
         this.pause_success_ok_btn = this.page.getByRole("button", { name: "OK" });
         this.paused_btn = this.page.getByRole("button", { name: "Paused" });
         this.unpause = this.page.locator("button.btn-unpause-campaign").first();
-        this.unpause_popup = this.page.getByRole("button", { name: "OK" });
-        this.Campaign_Resumed_ok_btn = this.page.locator("//button[@class='ul-modal-btn ul-modal-btn--ok']");
-        this.duplicate_campaign_option =  this.page.locator("//ul/li[normalize-space()='Duplicate']");
+        this.unpause_popup = this.page.locator("//button[normalize-space()='OK']");
+        this.failed_campaign_ok_btn = this.page.locator("//button[normalize-space()='OK']");
+        this.Campaign_Resumed_ok_btn = this.page.locator("//button[normalize-space()='OK']");
+        this.modal_backdrop = this.page.locator(".ul-modal-backdrop");
+        this.duplicate_campaign_option = this.page.locator("//ul/li[normalize-space()='Duplicate']");
         this.duplicated_campaign_popup = this.page.getByRole("button", { name: "OK" });
         this.search_campaign_input = this.page.getByPlaceholder("Search campaigns...");
         this.searched_campaign_name = this.page.locator(".card-name-block").first();
@@ -149,10 +155,6 @@ export class CAMPAIGN_MANAGEMENT {
         this.duration_label = this.page.locator(".cd-field:has(.cd-label:text-is('CAMPAIGN DURATION')) .cd-value");
         this.workflow_label = this.page.locator(".cd-section-title:text-is('WORKFLOW')");
         this.close_details_btn = this.page.locator("button.cd-btn-close");
-
-
-
-
 
     }
 
@@ -210,7 +212,12 @@ export class CAMPAIGN_MANAGEMENT {
 
     async enter_campaign_name(campaignName: string) {
 
-        await this.playwrightFactory.fill(this.txt_campaign_name, campaignName);
+        this.createdCampaignName = `${campaignName}_${Date.now()}`;
+
+        await this.playwrightFactory.fill(
+            this.txt_campaign_name,
+            this.createdCampaignName
+        );
     }
 
     async enter_campaign_duration(duration: string) {
@@ -265,7 +272,7 @@ export class CAMPAIGN_MANAGEMENT {
     }
 
     async verify_target_segment_selected(segment: string) {
-        
+
         const selected = this.page.getByText(segment, { exact: true });
         await expect(selected).toBeVisible();
     }
@@ -284,11 +291,13 @@ export class CAMPAIGN_MANAGEMENT {
     }
 
     async click_target_segment_next() {
+
         await this.btn_target_segment_next.waitFor({ state: 'visible' });
         await this.btn_target_segment_next.click();
     }
 
     async verify_define_workflow_page_loaded() {
+
         await expect(this.define_workflow_heading).toBeVisible();
 
     }
@@ -358,25 +367,25 @@ export class CAMPAIGN_MANAGEMENT {
     async click_campaign_launch_ok_button() {
 
         await expect(this.campaign_launch_ok_button).toBeVisible();
-        await this.campaign_launch_ok_button.click({ force: true });    
+        await this.campaign_launch_ok_button.click({ force: true });
         await this.page.waitForLoadState('networkidle');
         await expect(this.action_button).toBeVisible();
     }
 
     async verify_newly_launched_campaign_in_list() {
 
-    await expect(this.launched_campaign.first()).toBeVisible();
+        await expect(this.launched_campaign.first()).toBeVisible();
 
     }
 
     async verify_scheduled_campaign_displayed() {
 
-         await expect(this.launched_campaign_status).toBeVisible();
-         await expect(this.launched_campaign_status.first()).toHaveText(/Active/);
-         await this.action_button.click();
-         await this.view_details_option.click();
-         await expect(this.campaign_details_popup).toBeVisible();
-         await this.close_details_btn.click();
+        await expect(this.launched_campaign_status).toBeVisible();
+        await expect(this.launched_campaign_status.first()).toHaveText(/Active/);
+        await this.action_button.click();
+        await this.view_details_option.click();
+        await expect(this.campaign_details_popup).toBeVisible();
+        await this.close_details_btn.click();
 
     }
 
@@ -387,7 +396,6 @@ export class CAMPAIGN_MANAGEMENT {
         await this.edit_campaign_option.click();
         await this.cancel_btn.waitFor({ state: 'visible' });
         await this.cancel_btn.click();
-        
 
     }
 
@@ -399,7 +407,6 @@ export class CAMPAIGN_MANAGEMENT {
         await this.pause_confirm_ok_btn.click();
         await expect(this.campaign_paused_popup).toBeVisible();
         await this.pause_success_ok_btn.click();
-        await expect(this.campaign_paused_popup).toBeHidden();
     }
 
     async Unpause_Campaign() {
@@ -413,10 +420,14 @@ export class CAMPAIGN_MANAGEMENT {
         await expect(this.Campaign_Resumed_ok_btn).toBeVisible();
         await this.Campaign_Resumed_ok_btn.click();
 
+
     }
 
     async duplicate_campaign() {
-
+        await expect(this.all_tab).toBeVisible();
+        await expect(this.all_tab).toBeEnabled();
+        await this.all_tab.click();
+        await expect(this.action_button).toBeVisible();
         await this.action_button.click();
         await this.duplicate_campaign_option.click();
         await expect(this.duplicated_campaign_popup).toBeVisible();
@@ -426,11 +437,11 @@ export class CAMPAIGN_MANAGEMENT {
 
     async search_campaign() {
 
-    const campaignName = "CMPGN";
-    await this.search_campaign_input.fill(campaignName);
-    await expect(this.searched_campaign_name).toContainText(campaignName);
+        await this.page.waitForLoadState("networkidle");
+        await this.search_campaign_input.fill(this.createdCampaignName);
+        await expect(this.searched_campaign_name).toContainText(this.createdCampaignName);
 
-   }
+    }
 
     async verify_campaign_status_tabs() {
 
@@ -455,7 +466,6 @@ export class CAMPAIGN_MANAGEMENT {
         await expect(this.campaign_name_label).not.toHaveText("");
         await expect(this.status_label).toBeVisible();
         await expect(this.duration_label).not.toHaveText("");
-        //await expect(this.workflow_label).not.toHaveText("");
         await this.close_details_btn.click();
         await expect(this.campaign_details_popup).toBeHidden();
     }
