@@ -143,7 +143,7 @@ export class CAMPAIGN_MANAGEMENT {
         this.duplicated_campaign_popup = this.page.getByRole("button", { name: "OK" });
         this.search_campaign_input = this.page.getByPlaceholder("Search campaigns...");
         this.searched_campaign_name = this.page.locator(".card-name-block").first();
-        this.all_tab = this.page.locator('button:has-text("All")');
+        this.all_tab = this.page.locator("button.cl-tab", { hasText: "All" });
         this.active_tab = this.page.locator("button.cl-tab", { hasText: "Active" });
         this.scheduled_tab = this.page.locator("button.cl-tab", { hasText: "Scheduled" });
         this.completed_tab = this.page.locator("button.cl-tab", { hasText: "Completed" });
@@ -424,8 +424,9 @@ export class CAMPAIGN_MANAGEMENT {
     }
 
     async duplicate_campaign() {
+        await expect(this.all_tab).toBeVisible();
+        await expect(this.all_tab).toBeEnabled();
         await this.all_tab.click();
-        await this.page.waitForLoadState("networkidle");
         await expect(this.action_button).toBeVisible();
         await this.action_button.click();
         await this.duplicate_campaign_option.click();
