@@ -143,7 +143,7 @@ export class CAMPAIGN_MANAGEMENT {
         this.duplicated_campaign_popup = this.page.getByRole("button", { name: "OK" });
         this.search_campaign_input = this.page.getByPlaceholder("Search campaigns...");
         this.searched_campaign_name = this.page.locator(".card-name-block").first();
-        this.all_tab = this.page.locator("button.cl-tab", { hasText: "All" });
+        this.all_tab = this.page.locator('button:has-text("All")');
         this.active_tab = this.page.locator("button.cl-tab", { hasText: "Active" });
         this.scheduled_tab = this.page.locator("button.cl-tab", { hasText: "Scheduled" });
         this.completed_tab = this.page.locator("button.cl-tab", { hasText: "Completed" });
